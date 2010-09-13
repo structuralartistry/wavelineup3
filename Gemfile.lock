@@ -56,6 +56,7 @@ GEM
       mime-types
       treetop (>= 1.4.5)
     mime-types (1.16)
+    nokogiri (1.4.3.1)
     pg (0.9.0)
     polyglot (0.3.1)
     rack (1.2.1)
@@ -103,6 +104,10 @@ GEM
     treetop (1.4.8)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
+    webrat (0.7.1)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
 
 PLATFORMS
   ruby
@@ -114,3 +119,4 @@ DEPENDENCIES
   rails (= 3.0.0)
   rspec-rails (>= 2.0.0.beta.22)
   ruby-debug19
+  webrat

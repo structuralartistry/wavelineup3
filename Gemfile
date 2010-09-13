@@ -31,9 +31,9 @@ gem 'ruby-debug19'
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '>= 2.0.0.beta.22'
-  
+  gem 'webrat'
+    
   # gem 'mocha'
   # gem 'test-spec'
   # gem 'test-unit' # required for test-spec to work with ruby 1.9
-  #   gem 'webrat'
 end
