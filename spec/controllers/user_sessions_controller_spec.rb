@@ -12,16 +12,26 @@ describe UserSessionsController do
     end
   end
   
-  describe 'POST create (login)' do
+  describe 'POST create and DELETE destroy' do
     it 'successfully logs the user in' do
       user = Factory.create(:user)
       post :create, { :user_session => { :login => user.login, :password => user.password } }
       response.should redirect_to(root_url)
       flash[:notice].should == 'Successfully logged in'
     end
+    
+    it 'successfully logs the user out' do
+      user = Factory.create(:user)
+      post :create, { :user_session => { :login => user.login, :password => user.password } }
+      response.should redirect_to(root_url)
+      flash[:notice].should == 'Successfully logged in'
+      
+      
+      pending('get the destroy action working with the session and not the id')
+      delete :destroy, :id => 0
+      assert_equal flash[:notice], 'Successfully logged out'
+    end
   end
-  
-  
 
 end
 
