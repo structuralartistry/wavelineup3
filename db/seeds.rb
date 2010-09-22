@@ -9,9 +9,13 @@
 user = User.new
 user.login = 'sysadmin'
 user.email = 'dk@structuralartistry.com'
-user.password = 'w1RtS@2010'
-user.password_confirmation = 'w1RtS@2010'
+user.password = 'password1'
+user.password_confirmation = 'password1'
 user.save
+
+puts ""
+puts "WARNING: Sysadmin has an unsecure password, '#{user.password}'. Change before production!"
+puts ""
 
 user = User.new
 user.login = 'practice'
