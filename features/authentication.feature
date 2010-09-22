@@ -1,0 +1,24 @@
+Feature: Log in and log out
+  In order to protect secure information
+  As an authorized user
+  I want to be able to log in to the system
+  And I want to be able to log out of the system
+  
+  Scenario: I can get to the login page
+    When I go to the login page
+    Then I should see "Login" within "h1"
+    Then I should see "Login" within "label"
+    And I should see "Password" within "label"
+    And I should see "Register" within "a"
+#    And I should see "Submit" --- cant seem to test this but it will get found in other tests if missing
+    And I should not see "Logout"
+    And I should not see "Login" within "a"
+    
+  Scenario: When I am logged in and I go to the login page I am redirected to the home page
+    Given I am logged in
+    When I go to the login page
+    Then I should see "Home Page" within "h1"
+    And I should see "Logout" within "a"
+
+  
+  

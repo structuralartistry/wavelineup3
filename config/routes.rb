@@ -1,7 +1,9 @@
 Wavelineup3::Application.routes.draw do
 
-  match 'login' => 'user_sessions#login'
-  match 'logout' => 'user_sessions#logout'
+  match 'login' => 'user_sessions#new'
+  match 'logout' => 'user_sessions#destroy'
+  match 'register' => 'users#new'
+  match 'user_profile' => 'users#edit'
 
   resources :user_sessions
 

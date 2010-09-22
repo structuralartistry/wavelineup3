@@ -4,7 +4,11 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      if !current_user
+        format.html # new.html.erb
+      else
+        format.html { redirect_to root_path }
+      end
     end
   end
 
