@@ -7,8 +7,7 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 user = User.new
-user.login = 'sysadmin'
-user.email = 'dk@structuralartistry.com'
+user.email = 'sysadmin@structuralartistry.com'
 user.password = 'password1'
 user.password_confirmation = 'password1'
 user.save
@@ -18,8 +17,7 @@ puts "WARNING: Sysadmin has an unsecure password, '#{user.password}'. Change bef
 puts ""
 
 user = User.new
-user.login = 'practice'
-user.email = 'practice@gmail.com'
+user.email = 'practice@structuralartistry.com'
 user.password = 'password1'
 user.password_confirmation = 'password1'
 user.save

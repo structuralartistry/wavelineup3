@@ -7,7 +7,7 @@ Feature: Log in and log out
   Scenario: I can get to the login page
     When I go to the login page
     Then I should see "Login" within "h1"
-    Then I should see "Login" within "label"
+    Then I should see "Email" within "label"
     And I should see "Password" within "label"
     And I should see "Register" within "a"
 #    And I should see "Submit" --- cant seem to test this but it will get found in other tests if missing
@@ -25,7 +25,7 @@ Feature: Log in and log out
     When I follow "Logout"
     Then I should see "Successfully logged out"
     And I should see "Login" within "h1"
-    And I should see "Login" within "label"
+    And I should see "Email" within "label"
     And I should see "Password" within "label"
     And I should not see "Logout" within "a"  
 

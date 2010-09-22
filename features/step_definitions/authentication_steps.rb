@@ -22,7 +22,7 @@ Given /^I am logged in as a (.+) user$/ do |role|
   end
   
   visit('/login')
-  fill_in('Login', :with => user.login)
+  fill_in('Email', :with => user.email)
   fill_in('Password', :with => 'password1')
   click_button('Submit')
   page.should have_content('Logout')

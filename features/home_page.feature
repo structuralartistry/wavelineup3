@@ -7,11 +7,12 @@ Feature: Show Home Page
   
   Scenario: Home Page when not logged in
     When I go to the home page
-    Then I should see "Home Page" within "h1"
-    And I should see "Login" within "a"
+    Then I should see "Login" within "h1"
     And I should see "Register" within "a"
+    And I should not see "Login" within "a"
     And I should not see "Logout"
     And I should not see "Logged in user:"
+    And I should not see "Logged in role:"
     
   Scenario: Home Page when logged in as a sysadmin user
     Given I am logged in as a sysadmin user
@@ -19,7 +20,7 @@ Feature: Show Home Page
     Then I should see "Home Page" within "h1"
     And I should see "Logout" within "a"
     And I should see "Edit Profile" within "a"
-    And I should see "Logged in user: sysadmin" within "p"
+    And I should see "Logged in user: sysadmin@structuralartistry.com" within "p"
     And I should see "Logged in role: sysadmin" within "p"
     And I should not see "Login"
     
@@ -29,6 +30,6 @@ Feature: Show Home Page
     Then I should see "Home Page" within "h1"
     And I should see "Logout" within "a"
     And I should see "Edit Profile" within "a"
-    And I should see "Logged in user: practice" within "p"
+    And I should see "Logged in user: practice@structuralartistry.com" within "p"
     And I should see "Logged in role: practice" within "p"
     And I should not see "Login"

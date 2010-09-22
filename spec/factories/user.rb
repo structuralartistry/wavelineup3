@@ -3,12 +3,11 @@ Factory.define :user do |u|
   u.password_confirmation 'password1'  
 end
 
-Factory.define :practice_user , :parent => :user do |u|
-  u.login 'practice'
-  u.email 'practice@gmail.com'
+Factory.define :sysadmin_user, :parent => :user do |u|
+  u.email 'sysadmin@structuralartistry.com'
 end
 
-Factory.define :sysadmin_user, :parent => :user do |u|
-  u.login "sysadmin"
-  u.email 'sysadmin@gmail.com'
+Factory.define :practice_user , :parent => :user do |u|
+  u.email 'practice@structuralartistry.com'
 end
+
