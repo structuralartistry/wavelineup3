@@ -29,7 +29,7 @@ class UserSessionsController < ApplicationController
     @user_session.destroy
 
     respond_to do |format|
-      format.html { redirect_to(root_url, :notice => 'Successfully logged out') }
+      format.html { redirect_to(login_url, :notice => 'Successfully logged out') }
     end
   end
 end

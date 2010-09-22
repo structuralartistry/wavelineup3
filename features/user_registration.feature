@@ -19,14 +19,14 @@ Feature: User registration
     Then I should see "Registration successful"
   
   Scenario: An existing user can view and update their profile
-    Given I am logged in
+    Given I am logged in as a practice user
     When I go to the user profile page
     Then I should see "Login" within "label"
     Then I should see "Email" within "label"
     Then I should see "Password" within "label"
     Then I should see "Password confirmation" within "label"
-    And the "user_login" field should contain "ssokol"
-    And the "user_email" field should contain "ssokol@gmail.com"
+    And the "user_login" field should contain "practice"
+    And the "user_email" field should contain "practice@gmail.com"
     When I fill in "user_email" with "sasha@gmail.com"
     When I press "Submit"
     Then I should see "User profile successfully updated"

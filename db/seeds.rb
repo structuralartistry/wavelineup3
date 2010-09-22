@@ -7,8 +7,15 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 user = User.new
-user.login = 'ssokol'
-user.email = 'ssokol@gmail.com'
+user.login = 'sysadmin'
+user.email = 'dk@structuralartistry.com'
+user.password = 'w1RtS@2010'
+user.password_confirmation = 'w1RtS@2010'
+user.save
+
+user = User.new
+user.login = 'practice'
+user.email = 'practice@gmail.com'
 user.password = 'password1'
 user.password_confirmation = 'password1'
 user.save

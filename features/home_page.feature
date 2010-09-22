@@ -13,12 +13,22 @@ Feature: Show Home Page
     And I should not see "Logout"
     And I should not see "Logged in user:"
     
-  Scenario: Home Page when logged in
-    Given I am logged in
+  Scenario: Home Page when logged in as a sysadmin user
+    Given I am logged in as a sysadmin user
     When I go to the home page
     Then I should see "Home Page" within "h1"
     And I should see "Logout" within "a"
     And I should see "Edit Profile" within "a"
-    And I should see "Logged in user: ssokol" within "p"
+    And I should see "Logged in user: sysadmin" within "p"
+    And I should see "Logged in role: sysadmin" within "p"
     And I should not see "Login"
     
+  Scenario: Home Page when logged in as a practice user
+    Given I am logged in as a practice user
+    When I go to the home page
+    Then I should see "Home Page" within "h1"
+    And I should see "Logout" within "a"
+    And I should see "Edit Profile" within "a"
+    And I should see "Logged in user: practice" within "p"
+    And I should see "Logged in role: practice" within "p"
+    And I should not see "Login"

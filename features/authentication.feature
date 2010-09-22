@@ -15,10 +15,19 @@ Feature: Log in and log out
     And I should not see "Login" within "a"
     
   Scenario: When I am logged in and I go to the login page I am redirected to the home page
-    Given I am logged in
+    Given I am logged in as a practice user
     When I go to the login page
     Then I should see "Home Page" within "h1"
     And I should see "Logout" within "a"
+    
+  Scenario: When I am logged in and I click the logout link I am sent to the login page
+    Given I am logged in as a practice user
+    When I follow "Logout"
+    Then I should see "Successfully logged out"
+    And I should see "Login" within "h1"
+    And I should see "Login" within "label"
+    And I should see "Password" within "label"
+    And I should not see "Logout" within "a"  
 
   
   
