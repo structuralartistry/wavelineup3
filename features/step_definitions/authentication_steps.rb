@@ -28,3 +28,8 @@ Given /^I am logged in as a (.+) user$/ do |role|
   page.should have_content('Logout')
 end
 
+Given /^I am logged out$/ do
+  visit('/logout')
+  page.should have_content("Login")
+end
+

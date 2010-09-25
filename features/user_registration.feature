@@ -29,4 +29,4 @@ Feature: User registration
     And I should see "Home Page"
     When I go to the user profile page
     Then the "user_email" field should contain "sasha@gmail.com"
-    
+        

@@ -3,7 +3,30 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
   
+  before_filter :authorize
+  
+  
   private
+  
+    def authorize
+      
+      case controller_name
+      when 'password_resets'
+        if current_user_session
+          flash[:notice] = "You are already logged in to the system"
+          redirect_to root_url
+        end
+        
+      # when 'users'
+      #   case action_name
+      #   when 'index'
+      #     if current_user.role != 'sysadmin'
+      #       flash[:notice] = "This action is not permitted"
+      #     end
+      #   end
+        
+      end
+    end
   
     def current_user_session
       return @current_user_session if defined?(@current_user_session)

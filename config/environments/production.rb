@@ -35,7 +35,8 @@ Wavelineup3::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { :host => "wavelineup.heroku.com" }
 
   # Enable threaded mode
   # config.threadsafe!
@@ -47,3 +48,6 @@ Wavelineup3::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 end
+
+ActionMailer::Base.default_url_options[:host] = "wavelineup.heroku.com"
+

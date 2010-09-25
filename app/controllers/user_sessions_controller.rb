@@ -26,7 +26,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     @user_session = UserSession.find(params[:id])
-    @user_session.destroy
+    @user_session.destroy if @user_session
 
     respond_to do |format|
       format.html { redirect_to(login_url, :notice => 'Successfully logged out') }

@@ -8,14 +8,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
-  end
-
   def new
     @user = User.new
 
@@ -30,9 +22,10 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
+   
     respond_to do |format|
-      if @user.save
+      if @user.save  
+        SystemMailer.user_welcome_email(@user).deliver
         format.html { redirect_to(root_url, :notice => 'Registration successful') }
       else
         format.html { render :action => "new" }
@@ -40,7 +33,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def update
+  def update  
     @user = current_user
 
     respond_to do |format|

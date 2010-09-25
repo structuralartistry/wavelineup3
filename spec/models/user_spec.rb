@@ -11,5 +11,5 @@ describe User do
       user.role.should == 'sysadmin'
     end
   end
-
+  
 end

@@ -4,7 +4,10 @@ Wavelineup3::Application.routes.draw do
   match 'logout' => 'user_sessions#destroy'
   match 'register' => 'users#new'
   match 'user_profile' => 'users#edit'
+  
+  match 'reset_password' => 'password_resets#new'
 
+  resources :password_resets
   resources :user_sessions
 
   resources :users

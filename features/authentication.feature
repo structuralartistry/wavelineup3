@@ -10,6 +10,7 @@ Feature: Log in and log out
     Then I should see "Email" within "label"
     And I should see "Password" within "label"
     And I should see "Register" within "a"
+    And I should see "Forgot Password?" within "a"
 #    And I should see "Submit" --- cant seem to test this but it will get found in other tests if missing
     And I should not see "Logout"
     And I should not see "Login" within "a"
@@ -27,7 +28,7 @@ Feature: Log in and log out
     And I should see "Login" within "h1"
     And I should see "Email" within "label"
     And I should see "Password" within "label"
-    And I should not see "Logout" within "a"  
+    And I should not see "Logout" within "a" 
 
   
   
