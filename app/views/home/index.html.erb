@@ -2,5 +2,5 @@
 
 <% if current_user %>
   <p>Logged in user: <%= current_user.email %></p>
-  <p>Logged in role: <%= current_user.role %></p>
+  <p>Logged in role: <%= current_user.role.name %></p>
 <% end %>

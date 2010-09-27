@@ -22,11 +22,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user.practice_id = current_user.practice.id
+    @user.role_id = Role.find_by_name('practice user').id
    
     respond_to do |format|
       if @user.save  
         SystemMailer.user_welcome_email(@user).deliver
-        format.html { redirect_to(root_url, :notice => 'Registration successful') }
+        format.html { redirect_to(edit_practice_path(current_user.practice.id), :notice => 'User successfully created') }
       else
         format.html { render :action => "new" }
       end
@@ -47,10 +49,15 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
+    
 
     respond_to do |format|
-      format.html { redirect_to(users_url) }
+      if @user != current_user
+        @user.destroy
+        format.html { redirect_to(edit_practice_path(current_user.practice.id), :notice => "User successfully deleted") }
+      else
+        format.html { redirect_to(edit_practice_path(current_user.practice.id), :notice => "Can not delete the current user") }
+      end
     end
   end
 end

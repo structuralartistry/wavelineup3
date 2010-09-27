@@ -8,12 +8,17 @@ class ApplicationController < ActionController::Base
   
   private
   
-    def authorize
-      
+    def authorize  
       case controller_name
       when 'password_resets'
         if current_user_session
           flash[:notice] = "You are already logged in to the system"
+          redirect_to root_url
+        end
+        
+      when 'practices'
+        if action_name == 'index' && current_user.role.name != 'sysadmin'
+          flash[:notice] = "Page not permitted per your user role"
           redirect_to root_url
         end
         

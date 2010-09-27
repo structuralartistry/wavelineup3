@@ -56,3 +56,13 @@ if defined?(ActiveRecord::Base)
   rescue LoadError => ignore_if_database_cleaner_not_present
   end
 end
+
+# Dir[File.expand_path(File.join(File.dirname(__FILE__),'..','..',
+#   'spec','factories','*.rb'))].each {|f| require f}
+
+AfterConfiguration do |config|  
+  Factory.create(:sysadmin_role)
+  Factory.create(:practice_admin_role)
+  Factory.create(:practice_user_role)
+end
+

@@ -3,3 +3,7 @@
 
 en:
   hello: "Home Page"
+  activerecord:  
+    attributes: 
+      practice: 
+        name: "Practice name"

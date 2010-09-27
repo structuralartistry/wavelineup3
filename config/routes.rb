@@ -1,4 +1,9 @@
+
+
+
 Wavelineup3::Application.routes.draw do
+
+  resources :practices
 
   match 'login' => 'user_sessions#new'
   match 'logout' => 'user_sessions#destroy'

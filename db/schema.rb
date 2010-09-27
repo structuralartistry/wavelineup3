@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100922191306) do
+ActiveRecord::Schema.define(:version => 20100925182853) do
+
+  create_table "practices", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"
@@ -27,6 +39,8 @@ ActiveRecord::Schema.define(:version => 20100922191306) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "perishable_token",   :default => "", :null => false
+    t.integer  "practice_id"
+    t.integer  "role_id"
   end
 
 end

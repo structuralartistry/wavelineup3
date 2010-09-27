@@ -1,26 +1,7 @@
-# Given /^I am logged in$/ do
-#   user = Factory.create(:user) 
-#   visit('/login')
-#   fill_in('Login', :with => user.login)
-#   fill_in('Password', :with => 'password1')
-#   click_button('Submit')
-#   page.should have_content('Logout')
-# end
-# 
-# 
-# When /^(?:|I )fill in "([^\"]*)" with "([^\"]*)"(?: within "([^\"]*)")?$/ do |field, value, selector|
-#   with_scope(selector) do
-#     fill_in(field, :with => value)
-#   end
-# end
+Given /^I am logged in in a "([^"]*)" user role$/ do |role|
+  formal_role = role.gsub(/ /, '_')
+  user = Factory.create( formal_role.to_sym, :email => formal_role + "@structuralartistry.com" )
 
-
-Given /^I am logged in as a (.+) user$/ do |role|
-  case role
-  when 'sysadmin' then user = Factory.create(:sysadmin_user) 
-  when 'practice' then user = Factory.create(:practice_user)
-  end
-  
   visit('/login')
   fill_in('Email', :with => user.email)
   fill_in('Password', :with => 'password1')
@@ -28,7 +9,24 @@ Given /^I am logged in as a (.+) user$/ do |role|
   page.should have_content('Logout')
 end
 
-Given /^I am logged out$/ do
+Given /^I am logged in in a "([^"]*)" user role for "([^"]*)"$/ do |role, practice_name|
+  formal_role = role.gsub(/ /, '_')
+  user = Factory.create( formal_role.to_sym, :email => formal_role + "@structuralartistry.com" )
+
+  if practice_name
+    practice = Practice.find(user.practice_id)
+    practice.name = practice_name
+    practice.save
+  end
+
+  visit('/login')
+  fill_in('Email', :with => user.email)
+  fill_in('Password', :with => 'password1')
+  click_button('Submit')
+  page.should have_content('Logout')
+end
+
+Given /^I am not logged in$/ do
   visit('/logout')
   page.should have_content("Login")
 end

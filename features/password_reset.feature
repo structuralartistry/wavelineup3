@@ -2,7 +2,7 @@ Feature: Allow user to reset their password
   
   Scenario: A registered user resets their password
     Given I am a registered user with the email practice@structuralartistry.com
-    Given I am logged out
+    Given I am not logged in
     When I go to the login page
     Then I should see "Forgot Password?"
     When I follow "Forgot Password?"
@@ -31,7 +31,7 @@ Feature: Allow user to reset their password
     Then I should see "Logged in user: practice@structuralartistry.com"
     
   Scenario: Password reset is attempted on a non-registered email
-    Given there are no registered users
+    Given there are no registered practices or users
     When I go to the reset password page
     And I fill in "user_email" with "practice@structuralartistry.com"
     And I press "Submit"
@@ -39,6 +39,6 @@ Feature: Allow user to reset their password
     
     
   Scenario: Logged in user tries to reset their password
-    Given I am logged in as a practice user
+    Given I am logged in in a "practice user" user role
     When I go to the reset password page
     Then I should see "You are already logged in to the system"
