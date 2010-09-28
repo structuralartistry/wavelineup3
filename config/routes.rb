@@ -1,23 +1,22 @@
-
-
-
 Wavelineup3::Application.routes.draw do
+
+  match 'activations/:activation_code' => 'activations#create', :as => 'activations'
 
   resources :practices
 
-  match 'login' => 'user_sessions#new'
-  match 'logout' => 'user_sessions#destroy'
-  match 'register' => 'users#new'
-  match 'user_profile' => 'users#edit'
+  match 'login' => 'user_sessions#new', :as => 'login'
+  match 'logout' => 'user_sessions#destroy', :as => 'logout'
+  match 'register' => 'users#new', :as => 'register'
+  match 'user_profile' => 'users#edit', :as => 'user_profile'
   
-  match 'reset_password' => 'password_resets#new'
+  match 'reset_password' => 'password_resets#new', :as => 'reset_password'
 
   resources :password_resets
   resources :user_sessions
 
   resources :users
-
-  get "home/index"
+  
+  match 'home/index', :as => 'home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

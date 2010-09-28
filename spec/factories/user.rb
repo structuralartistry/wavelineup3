@@ -3,7 +3,8 @@ Factory.define :user do |u|
   u.password 'password1'
   u.password_confirmation 'password1'
   u.role { |a| a.association(:role) }  
-  u.sequence(:email) {|n| "user#{n}@structuralartistry.com" } 
+  u.sequence(:email) {|n| "user#{n}@structuralartistry.com" }
+  u.active true
 end
 
 Factory.define :sysadmin, :parent => :user do |u|

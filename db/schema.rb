@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100925182853) do
+ActiveRecord::Schema.define(:version => 20100927210914) do
 
   create_table "practices", :force => true do |t|
     t.string   "name"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20100925182853) do
     t.string   "perishable_token",   :default => "", :null => false
     t.integer  "practice_id"
     t.integer  "role_id"
+    t.boolean  "active"
   end
 
 end

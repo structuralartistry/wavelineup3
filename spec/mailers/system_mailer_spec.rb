@@ -1,7 +1,19 @@
 require "spec_helper"
 
 describe SystemMailer do  
-  
+
+  it "successfully sends activation instructions to a new user" do
+    user = Factory.build(:practice_user)
+    user.save
+    email = SystemMailer.user_activation_instructions(user).deliver
+    ActionMailer::Base.deliveries.size.should == 1
+    
+    email.to.should == [user.email]
+    email.subject.should == 'User activation for WaveLineup'
+    email.encoded.should =~ /To activate your user for WaveLineup please follow this link/ 
+    email.encoded.should =~ /#{activations_url(user.perishable_token)}/
+  end
+    
   it "successfully sends a welcome email to a new user" do
     user = Factory.build(:practice_user)
     user.save

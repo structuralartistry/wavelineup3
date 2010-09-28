@@ -19,16 +19,16 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
   end
-
+  
   def create
     @user = User.new(params[:user])
     @user.practice_id = current_user.practice.id
     @user.role_id = Role.find_by_name('practice user').id
    
     respond_to do |format|
-      if @user.save  
-        SystemMailer.user_welcome_email(@user).deliver
-        format.html { redirect_to(edit_practice_path(current_user.practice.id), :notice => 'User successfully created') }
+      if @user.save_without_session_maintenance 
+        @user.deliver_activation_instructions!
+        format.html { redirect_to(edit_practice_path(current_user.practice.id), :notice => 'User was successfully created. Please check your email for the activation link.') }
       else
         format.html { render :action => "new" }
       end

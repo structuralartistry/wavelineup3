@@ -1,7 +1,7 @@
 Feature: User Management
 
   Scenario: Add a new user to a practice
-    Given I am logged in in a "practice user" user role for "Test Practice One"
+    Given I am logged in in a "practice user" user role for the practice "Test Practice One"
     Given I am on the home page
     When I follow "Test Practice One"
     Then I should see "Test Practice One"
@@ -36,7 +36,7 @@ Feature: User Management
     Then the "user_email" field should contain "sasha@gmail.com"
     
   Scenario: I can delete a user from my account
-    Given I am logged in in a "practice user" user role for "Test Practice One"
+    Given I am logged in in a "practice user" user role for the practice "Test Practice One"
     When I follow "Test Practice One"
     When I follow "Destroy" within "tr#practice_user"
     Then I should see "Can not delete the current user"
@@ -45,7 +45,7 @@ Feature: User Management
     And I fill in "user_password" with "password1"
     And I fill in "user_password_confirmation" with "password1"
     And I press "Submit"
-    Then I should see "User successfully created"
+    Then I should see "User was successfully created. Please check your email for the activation link."
     # just destroying any user... there are two, so one should go
     When I follow "Destroy" within "tr#practice1"
     Then I should see "User successfully deleted"
