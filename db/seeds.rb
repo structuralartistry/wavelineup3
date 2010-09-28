@@ -21,14 +21,14 @@ puts ""
 puts "WARNING: Sysadmin has an unsecure password, '#{user.password}'. Change before production!"
 puts ""
 
-practice = Practice.create(:name => "Demo Practice One")
-
-user = User.new
-user.email = 'practice@structuralartistry.com'
-user.password = 'password1'
-user.password_confirmation = 'password1'
-user.practice_id = practice.id
-user.role_id = Role.find_by_name('practice admin')
-user.save
+# practice = Practice.create(:name => "Demo Practice One")
+# 
+# user = User.new
+# user.email = 'practice@structuralartistry.com'
+# user.password = 'password1'
+# user.password_confirmation = 'password1'
+# user.practice_id = practice.id
+# user.role_id = Role.find_by_name('practice admin')
+# user.save
 
 

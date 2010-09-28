@@ -33,14 +33,11 @@ end
 
 Given /^I check my email "([^"]*)" and activate my user$/ do |email|
   user = User.find_by_email(email)
-  user.active = true
-#  visit("http://localhost:3000/password_resets/#{user.perishable_token}/edit")
+  visit(activations_url(user.perishable_token))
 end
 
-Given /^I am logged in as a "([^"]*)" user role with the email "([^"]*)"$/ do |role, email|
-  formal_role = role.gsub(/ /, '_')
-debugger
-  user = Factory.create( formal_role.to_sym, :email => email )
+Given /^I am logged in with the email "([^"]*)"$/ do |email|
+  user = User.find_by_email(email)
 
   visit('/login')
   fill_in('Email', :with => user.email)

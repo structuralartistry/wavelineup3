@@ -1,10 +1,10 @@
 Feature: User Management
 
   Scenario: Add a new user to a practice
-    Given I am logged in in a "practice user" user role for the practice "Test Practice One"
+    Given I am logged in in a "practice user" user role for the practice "Practice One"
     Given I am on the home page
-    When I follow "Test Practice One"
-    Then I should see "Test Practice One"
+    When I follow "Practice One"
+    Then I should see "Practice One"
     And I should see "Users" within "h1"
     And I should see "practice_user@structuralartistry.com"
     And I should see "Manage Practice"
@@ -16,7 +16,7 @@ Feature: User Management
     And I fill in "user_password" with "password1"
     And I fill in "user_password_confirmation" with "password1"
     When I press "Submit"
-    Then I should see "Test Practice One"
+    Then I should see "Practice One"
     And I should see "Users" within "h1"
     And I should see "practice1@structuralartistry.com"
     And I should see "practice user"
@@ -36,8 +36,8 @@ Feature: User Management
     Then the "user_email" field should contain "sasha@gmail.com"
     
   Scenario: I can delete a user from my account
-    Given I am logged in in a "practice user" user role for the practice "Test Practice One"
-    When I follow "Test Practice One"
+    Given I am logged in in a "practice user" user role for the practice "Practice One"
+    When I follow "Practice One"
     When I follow "Destroy" within "tr#practice_user"
     Then I should see "Can not delete the current user"
     When I follow "New User"

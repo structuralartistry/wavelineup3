@@ -12,20 +12,16 @@ Feature: User registration
     And I should see "Email" within "label"
     And I should see "Password" within "label"
     And I should see "Password confirmation" within "label"
-    When I fill in "practice_name" with "Test Practice One"
+    When I fill in "practice_name" with "Practice One"
     And I fill in "practice_users_attributes_0_email" with "practice@structuralartistry.com"
     And I fill in "practice_users_attributes_0_password" with "password1"
     And I fill in "practice_users_attributes_0_password_confirmation" with "password1"
     When I press "Submit"
     Then I should see "Practice was successfully created. Please check your email for the activation link."
     Given I check my email "practice@structuralartistry.com" and activate my user
-    Then I should see "Login" within "h1"
-    Then I should see "Email" within "label"
-    And I should see "Password" within "label"
-    Given I am logged in as a "practice" user role with the email "practice@structuralartistry.com"
-    Then I should see "Test Practice One" within "a"
+    Then I should see "Practice One" within "a"
     And I should see "practice@structuralartistry.com" within "a"
-    When I follow "Test Practice One"
+    When I follow "Practice One"
     Then I should see "Manage Practice"
     And I should see "practice@structuralartistry.com" within "td"
     And I should see "practice admin" within "td"
@@ -35,10 +31,10 @@ Feature: User registration
     
     
   Scenario: A practitioner tries to register a practice with a name which already exists
-    Given there is a practice in the system named "Test Practice One"
+    Given there is a practice in the system named "Practice One"
     Given I am not logged in
     When I go to the new practice page
-    When I fill in "practice_name" with "Test Practice One"
+    When I fill in "practice_name" with "Practice One"
     And I fill in "practice_users_attributes_0_email" with "practice@structuralartistry.com"
     And I fill in "practice_users_attributes_0_password" with "password1"
     And I fill in "practice_users_attributes_0_password_confirmation" with "password1"

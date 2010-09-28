@@ -4,12 +4,17 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   before_filter :authorize
-  
-  
+    
   private
   
     def authorize  
       case controller_name
+      when 'activations'
+        if current_user_session
+          flash[:notice] = "You are already logged in to the system"
+          redirect_to root_url
+        end
+                
       when 'password_resets'
         if current_user_session
           flash[:notice] = "You are already logged in to the system"

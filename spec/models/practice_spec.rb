@@ -4,7 +4,7 @@ describe Practice do
   it "deletes all associated users when it is deleted" do
     User.count.should == 0
     Practice.count.should == 0
-    practice = Factory.create(:practice)
+    practice = Factory.create(:practice_one)
     user1 = Factory.create(:practice_admin, :practice_id => practice.id)
     user2 = Factory.create(:practice_user, :practice_id => practice.id)
     User.count.should == 2

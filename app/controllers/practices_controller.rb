@@ -27,6 +27,7 @@ class PracticesController < ApplicationController
 
     respond_to do |format|
       if @practice.save
+        @practice.users[0].deliver_activation_instructions!
         format.html { redirect_to(login_url, :notice => 'Practice was successfully created. Please check your email for the activation link.') }
       else
         format.html { render :action => "new" }
