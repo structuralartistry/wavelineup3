@@ -5,7 +5,7 @@ class ActivationsController < ApplicationController
      raise Exception if @user.active?
 
      if @user.activate!
-       flash[:notice] = "Your account has been activated!"
+       flash[:notice] = "Your account has been activated"
        UserSession.create(@user, false) # Log user in manually
        @user.deliver_welcome!
        redirect_to root_url
