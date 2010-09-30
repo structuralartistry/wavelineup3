@@ -11,13 +11,13 @@ class ApplicationController < ActionController::Base
       case controller_name
       when 'activations'
         if current_user_session
-          flash[:notice] = "You are already logged in to the system"
+          flash[:notice] = "You are already logged in to the system. If you are activating a new user please log out first and try again."
           redirect_to root_url
         end
                 
       when 'password_resets'
         if current_user_session
-          flash[:notice] = "You are already logged in to the system"
+          flash[:notice] = "Can't reset your password: you are already logged in to the system"
           redirect_to root_url
         end
         

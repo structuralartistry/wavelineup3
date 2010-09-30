@@ -1,0 +1,5 @@
+<li>
+  <%= "Your account is not active. Please check your email for activation link or click" %>
+  <%= link_to 'here', resend_activation_link_path(:email => email) %>
+  <%= "for the link to be resent." %>
+</li>

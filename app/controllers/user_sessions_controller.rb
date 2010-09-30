@@ -17,9 +17,10 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       if @user_session.save
-        format.html { redirect_to(root_url, :notice => 'Successfully logged in') }
-      else
-        format.html { render :action => "new", :notice => 'Authentication failed' }
+        format.html { redirect_to(root_path) }
+      else       
+        flash[:notice] = "Authentication failed"
+        format.html { render :action => "new" }
       end
     end
   end

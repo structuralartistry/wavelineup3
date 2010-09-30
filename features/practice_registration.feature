@@ -1,4 +1,7 @@
-Feature: User registration
+Feature: Practice registration
+  A new chiropractic practice can sign up for an account.
+  When setting up a new account a primary user is set up in the process.
+  The new user must activate their user via their email so we are assured to have a good email address for every user.
 
 
   Scenario: A practitioner can register their practice and create their user in the system

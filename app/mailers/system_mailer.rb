@@ -10,7 +10,7 @@ class SystemMailer < ActionMailer::Base
   
   def user_welcome_email(user)  
     @user = user 
-    @url = "https://wavelineup.structuralartistry.com"  
+    @url = self.root_url
     mail(:to => user.email,  :subject => 'Welcome to WaveLineup')  
   end 
   

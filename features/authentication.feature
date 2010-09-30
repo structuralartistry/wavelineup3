@@ -32,6 +32,38 @@ Feature: Log in and log out
     And I should see "Email" within "label"
     And I should see "Password" within "label"
     And I should not see "Logout" within "a" 
-
+    
+  
+  # log in scenarios
+  
+    Scenario: Authentication succeeds when good information provided
+      Given there are no registered practices or users
+      Given I am on the login page
+      Given I am a registered user with the email "practice@structuralartistry.com"
+      When I fill in "user_session_email" with "practice@structuralartistry.com"
+      And I fill in "user_session_password" with "password1"
+      When I press "Submit"
+      Then I should see "Logged in user: practice@structuralartistry.com" within "p"
+  
+  
+    Scenario: Authentication fails when no login info
+      Given I am not logged in
+      Given I am on the login page
+      When I press "Submit"
+      Then I should see "Authentication failed"
+    
+    
+    Scenario: Authentication fails when no email
+      Given I am not logged in
+      Given I am on the login page
+      When I press "Submit"
+      Then I should see "Authentication failed"
+    
+    
+    Scenario: Authentication fails when no password
+      Given I am not logged in
+      Given I am on the login page
+      When I press "Submit"
+      Then I should see "Authentication failed"
   
   

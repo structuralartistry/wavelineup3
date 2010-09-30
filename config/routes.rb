@@ -1,5 +1,6 @@
 Wavelineup3::Application.routes.draw do
 
+  match 'activations/new', :as => 'resend_activation_link'
   match 'activations/:activation_code' => 'activations#create', :as => 'activations'
 
   resources :practices
