@@ -21,7 +21,7 @@ class ActivationsController < ApplicationController
       end       
     else
       flash[:notice] = "User does not exist"
-      redirect_to root_url
+      redirect_to login_url
     end
   end
 

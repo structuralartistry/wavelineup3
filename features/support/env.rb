@@ -66,3 +66,6 @@ AfterConfiguration do |config|
   Factory.create(:practice_user_role)
 end
 
+$VERBOSE = nil
+
+

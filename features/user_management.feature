@@ -1,7 +1,8 @@
 Feature: User Management
+  Creation of users in the system and associated administrative tasks
 
 
-  Scenario: Add a new user to a practice
+  Scenario: Add a new user to a practice and activate
     Given I am logged in in a "practice user" user role for the practice "Practice One"
     Given I am on the home page
     
@@ -30,6 +31,10 @@ Feature: User Management
     # where the original user is 'practice admin'
     And I should see "practice user"
     
+    # can not activate new user while initial user is logged in
+    Given I check my email "practice1@structuralartistry.com" and activate my user
+    Then I should see "You are already logged in to the system. If you are activating a new user please log out first and try again."
+    
     # login as new user
     When I follow "Logout"
     Given I check my email "practice1@structuralartistry.com" and activate my user
@@ -40,6 +45,23 @@ Feature: User Management
     And I should see "Logged in user: practice1@structuralartistry.com" within "p"
     And I should see "Logged in role: practice user" within "p"
     And I should not see "Login"
+    
+    # can not resubmit activation
+    When I follow "Logout"
+    Given I check my email "practice1@structuralartistry.com" and activate my user
+    Then I should see "This user is already active. You have been logged in to the system."
+    
+    
+  Scenario: Can not activate non-existant user
+    Given I try to activate a non-existant user
+    Then I should see "User does not exist"
+    
+# I can't get this to work because for some reason even if I change User#created_at, the user's perishable token still exists
+  # Scenario: Can not activate user from link after activation code has expired
+  #   Given I am an inactive user with the email "practice@structuralartistry.com"
+  #   Given I have an expired activation code for the email address "practice@structuralartistry.com"
+  #   When I try to activate my user with email address "practice@structuralartistry.com"
+  #   Then I should see "User failed to be activated. We are sending a new activation link"
      
     
   Scenario: An existing user can view and update their profile

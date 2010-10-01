@@ -39,7 +39,7 @@ Feature: Log in and log out
     Scenario: Authentication succeeds when good information provided
       Given there are no registered practices or users
       Given I am on the login page
-      Given I am a registered user with the email "practice@structuralartistry.com"
+      Given I am a registered and activated user with the email "practice@structuralartistry.com"
       When I fill in "user_session_email" with "practice@structuralartistry.com"
       And I fill in "user_session_password" with "password1"
       When I press "Submit"

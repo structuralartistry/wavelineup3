@@ -2,7 +2,7 @@ Feature: Allow user to reset their password
   
   
   Scenario: A registered user resets their password
-    Given I am a registered user with the email "practice@structuralartistry.com"
+    Given I am a registered and activated user with the email "practice@structuralartistry.com"
     Given I am not logged in
     When I go to the login page
     Then I should see "Forgot Password?"
