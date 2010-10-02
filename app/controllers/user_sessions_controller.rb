@@ -30,7 +30,7 @@ class UserSessionsController < ApplicationController
     @user_session.destroy if @user_session
 
     respond_to do |format|
-      format.html { redirect_to(login_url, :notice => 'Successfully logged out') }
+      format.html { redirect_to(login_path, :notice => 'Successfully logged out') }
     end
   end
 end

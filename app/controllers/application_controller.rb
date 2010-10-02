@@ -17,17 +17,17 @@ class ApplicationController < ActionController::Base
         when 'activations'
           if current_user
             flash[:notice] = "You are already logged in to the system. If you are activating a new user please log out first and try again."
-            redirect_to home_url
+            redirect_to home_path
           end   
         when 'password_resets'
           if current_user
             flash[:notice] = "Can't reset your password: you are already logged in to the system"
-            redirect_to home_url
+            redirect_to home_path
           end
         when 'practices'
           if action_name == 'index' && current_user.role.name != 'sysadmin'
             flash[:notice] = restricted_page_notice
-            redirect_to home_url
+            redirect_to home_path
           end
         
         when 'users'
@@ -50,9 +50,9 @@ class ApplicationController < ActionController::Base
         when 'activations'
         when 'password_resets'
         when 'practices'
-          redirect_to login_url if action_name != 'new' && action_name != 'create'
+          redirect_to login_path if action_name != 'new' && action_name != 'create'
         when 'user_sessions'
-        else redirect_to login_url
+        else redirect_to login_path
         end
       
       end

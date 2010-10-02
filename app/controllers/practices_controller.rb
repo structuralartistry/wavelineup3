@@ -28,7 +28,7 @@ class PracticesController < ApplicationController
     respond_to do |format|
       if @practice.save
         @practice.users[0].deliver_activation_instructions!
-        format.html { redirect_to(login_url, :notice => 'Practice was successfully created. Please check your email for the activation link.') }
+        format.html { redirect_to(login_path, :notice => 'Practice was successfully created. Please check your email for the activation link.') }
       else
         format.html { render :action => "new" }
       end
@@ -40,7 +40,7 @@ class PracticesController < ApplicationController
 
     respond_to do |format|
       if @practice.update_attributes(params[:practice])
-        format.html { redirect_to(home_url, :notice => 'Practice was successfully updated.') }
+        format.html { redirect_to(home_path, :notice => 'Practice was successfully updated.') }
       else
         format.html { render :action => "edit" }
       end
@@ -52,7 +52,7 @@ class PracticesController < ApplicationController
     @practice.destroy
 
     respond_to do |format|
-      format.html { redirect_to(practices_url) }
+      format.html { redirect_to(practices_path) }
     end
   end
 end

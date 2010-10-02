@@ -31,7 +31,7 @@ class PasswordResetsController < ApplicationController
     @user.password_confirmation = params[:user][:password_confirmation]  
     if @user.save 
       flash[:notice] = "Password successfully updated"  
-      redirect_to home_url
+      redirect_to home_path
     else  
       render :action => :edit  
     end  
@@ -47,7 +47,7 @@ class PasswordResetsController < ApplicationController
         from your email into your browser or restarting the 
         reset password process.
       EOF
-      redirect_to login_url  
+      redirect_to login_path  
     end  
   end
 

@@ -32,7 +32,7 @@
   #                                 :password => user.password, 
   #                                 :password_confirmation => user.password }
   #                   }
-  #     response.should redirect_to(root_url)
+  #     response.should redirect_to(root_path)
   #     flash[:notice].should == 'Registration successful'
   #   end
   # end

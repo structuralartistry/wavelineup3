@@ -6,7 +6,7 @@
 #     it "sends me to the login form if I am not logged in" do
 #       user = login_user(:practice_admin)
 #       post :create, :activation_code => ''
-#       response.should redirect_to(login_url)
+#       response.should redirect_to(login_path)
 #     end
 #     
 #     it "loads if I am logged in" do

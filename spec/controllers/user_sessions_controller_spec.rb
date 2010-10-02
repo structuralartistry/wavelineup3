@@ -16,14 +16,14 @@
 #     it 'successfully logs the user in' do
 #       user = Factory.create(:user)
 #       post :create, { :user_session => { :login => user.login, :password => user.password } }
-#       response.should redirect_to(root_url)
+#       response.should redirect_to(root_path)
 #       flash[:notice].should == 'Successfully logged in'
 #     end
 #     
 #     it 'successfully logs the user out' do
 #       user = Factory.create(:user)
 #       post :create, { :user_session => { :login => user.login, :password => user.password } }
-#       response.should redirect_to(root_url)
+#       response.should redirect_to(root_path)
 #       flash[:notice].should == 'Successfully logged in'
 #       
 #       
