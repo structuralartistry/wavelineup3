@@ -47,7 +47,7 @@ class PasswordResetsController < ApplicationController
         from your email into your browser or restarting the 
         reset password process.
       EOF
-      redirect_to root_url  
+      redirect_to login_url  
     end  
   end
 

@@ -1,15 +1,18 @@
-# require 'spec_helper'
-# 
-# describe HomeController do
-#   render_views
-# 
-#   describe "GET index" do
-#     it "shows Home Page welcome message" do
-#       get :index
-#       response.should have_selector('h1', :content => 'Home Page')
-#       response.should have_selector('a', :content => 'Login')
-#       response.should have_selector('a', :content => 'Register')
-#     end
-#   end
-# 
-# end
+require 'spec_helper'
+
+describe HomeController do
+
+  describe "GET index" do
+    it "sends me to the login form if I am not logged in" do
+      get :index
+      response.should redirect_to(login_url)
+    end
+    
+    it "loads if I am logged in" do
+      login_user(:practice_admin)
+      get :index
+      response.should be_success
+    end
+  end
+
+end

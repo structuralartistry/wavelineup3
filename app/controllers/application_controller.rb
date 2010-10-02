@@ -9,23 +9,25 @@ class ApplicationController < ActionController::Base
   
     def authorize
       
+      restricted_page_notice = "Page not permitted per your user role"
+      
       if current_user
       
         case controller_name
         when 'activations'
           if current_user
             flash[:notice] = "You are already logged in to the system. If you are activating a new user please log out first and try again."
-            redirect_to root_url
+            redirect_to home_url
           end   
         when 'password_resets'
           if current_user
             flash[:notice] = "Can't reset your password: you are already logged in to the system"
-            redirect_to root_url
+            redirect_to home_url
           end
         when 'practices'
           if action_name == 'index' && current_user.role.name != 'sysadmin'
-            flash[:notice] = "Page not permitted per your user role"
-            redirect_to root_url
+            flash[:notice] = restricted_page_notice
+            redirect_to home_url
           end
         
         when 'users'
