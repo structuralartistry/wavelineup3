@@ -6,11 +6,11 @@ Factory.define :user do |u|
   u.active true
 end
 
-Factory.define :sysadmin, :parent => :user do |u|
+Factory.define :sysadmin_user, :parent => :user do |u|
   u.role { |a| a.association(:sysadmin_role) }   
 end
 
-Factory.define :practice_admin, :parent => :user do |u|
+Factory.define :practice_admin_user, :parent => :user do |u|
   u.role { |a| a.association(:practice_admin_role) }   
 end
 

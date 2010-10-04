@@ -19,7 +19,7 @@ describe UserSessionsController do
     end
     
     it "sends a logged in user to their home page if they are already logged in" do
-      login_user(:practice_admin)
+      login_user(:practice_admin_user)
       
       get :new
       response.should redirect_to(home_path)
@@ -28,7 +28,7 @@ describe UserSessionsController do
   
   describe "POST create" do
     it "logs in the user if good credentials" do
-      user = login_user(:practice_admin)
+      user = login_user(:practice_admin_user)
       
       post :create, :user_session => { :email => user.email, :password => user.password }
       response.should redirect_to(home_path)
@@ -43,7 +43,7 @@ describe UserSessionsController do
   
   describe "DELETE destroy" do
     it "logs out the current user" do
-      user = login_user(:practice_admin)
+      user = login_user(:practice_admin_user)
       
       delete :destroy, :id => user.id
       flash[:notice].should match "Successfully logged out"

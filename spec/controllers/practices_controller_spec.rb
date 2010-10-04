@@ -20,14 +20,14 @@ describe PracticesController do
     end
     
     it "loads for logged sysadmin role" do
-      login_user(:sysadmin)
+      login_user(:sysadmin_user)
       get :index
       flash[:notice].should be_nil
       response.should be_success
     end
     
     it "does not load for practice admin role" do
-      login_user(:practice_admin)
+      login_user(:practice_admin_user)
       get :index
       flash[:notice].should match RESTRICTED_PAGE_NOTICE
       response.should redirect_to(home_path)
@@ -57,7 +57,7 @@ describe PracticesController do
     end
     
     it "loads any practice for sysadmin" do 
-      login_user(:sysadmin)
+      login_user(:sysadmin_user)
       practice_one = Factory.create(:practice_one)
       practice_two = Factory.create(:practice_two)
       get :edit, :id => practice_one.id
@@ -67,7 +67,7 @@ describe PracticesController do
     end
     
     it "loads current users practice only for practice admin" do 
-      user = login_user(:practice_admin)
+      user = login_user(:practice_admin_user)
       
       practice_one = Practice.find(user.practice_id)
       
@@ -111,7 +111,7 @@ describe PracticesController do
     end
     
     it "updates any practice if role is sysadmin" do
-      login_user(:sysadmin)
+      login_user(:sysadmin_user)
     
       practice = Factory.create(:practice_one)
       put :update, { :id => practice.id, :practice => { :name => "Changed Practice One Name" } }
@@ -125,7 +125,7 @@ describe PracticesController do
     end
     
     it "updates only the current user's practice if role is practice admin" do
-      practice = login_user(:practice_admin).practice
+      practice = login_user(:practice_admin_user).practice
       
       # this is the logged in user's practice - should update
       put :update, { :id => practice.id, :practice => { :name => "Changed Practice One Name" } }
@@ -162,7 +162,7 @@ describe PracticesController do
     end
     
     it "allows the sysadmin role to delete practices" do
-      login_user(:sysadmin)
+      login_user(:sysadmin_user)
       
       practice = Factory.create(:practice_one)
       delete :destroy, :id => practice.id
@@ -176,7 +176,7 @@ describe PracticesController do
     end
     
     it "does not allow practice admin role to delete practices" do
-      practice = login_user(:practice_admin).practice
+      practice = login_user(:practice_admin_user).practice
       
       # cant delete own practice
       delete :destroy, :id => practice.id

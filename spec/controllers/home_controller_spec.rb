@@ -9,7 +9,7 @@ describe HomeController do
     end
     
     it "loads if I am logged in" do
-      login_user(:practice_admin)
+      login_user(:practice_admin_user)
       get :index
       response.should be_success
     end

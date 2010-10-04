@@ -15,7 +15,7 @@ describe PasswordResetsController do
   
   describe "POST create" do
     it "sends me the password reset instructions (good user email)" do
-      user = Factory.create(:practice_admin)
+      user = Factory.create(:practice_admin_user)
       post :create, :user => { :email => user.email }
       flash[:notice].should match "Instructions to reset your password have been emailed to you. Please check your email."
       response.should redirect_to(login_path)
@@ -31,7 +31,7 @@ describe PasswordResetsController do
   
   describe "GET edit" do
     it "loads the password reset page (good user token)" do 
-      user = Factory.create(:practice_admin)
+      user = Factory.create(:practice_admin_user)
       get :edit, :id => user.perishable_token
       response.should be_success
     end
@@ -45,14 +45,14 @@ describe PasswordResetsController do
   
   describe "PUT update" do
     it "successfully updates the users password (good user and good token)" do
-      user = Factory.create(:practice_admin)
+      user = Factory.create(:practice_admin_user)
       put :update, { :id => user.perishable_token, :user => { :password => "newpassword1", :password_confirmation => "newpassword1" } }
       flash[:notice].should match "Password successfully updated"  
       response.should redirect_to(home_path)
     end
     
     it "gives validation error if the new password is faulty" do
-      user = Factory.create(:practice_admin)
+      user = Factory.create(:practice_admin_user)
       put :update, { :id => user.perishable_token, :user => { :password => "newpassword1", :password_confirmation => "password1" } }
       response.should be_success  # stays on page presenting the errors
     end

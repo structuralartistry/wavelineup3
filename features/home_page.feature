@@ -21,8 +21,8 @@ Feature: Show Home Page
     When I go to the home page
     Then I should see "Home Page" within "h1"
     And I should see "Logout" within "a"
-    And I should see "sysadmin@structuralartistry.com" within "a"
-    And I should see "Logged in user: sysadmin@structuralartistry.com" within "p"
+    And I should see "sysadmin_user@structuralartistry.com" within "a"
+    And I should see "Logged in user: sysadmin_user@structuralartistry.com" within "p"
     And I should see "Logged in role: sysadmin" within "p"
     And I should not see "Login"
 
@@ -32,8 +32,8 @@ Feature: Show Home Page
     When I go to the home page
     Then I should see "Home Page" within "h1"
     And I should see "Logout" within "a"
-    And I should see "practice_admin@structuralartistry.com" within "a"
-    And I should see "Logged in user: practice_admin@structuralartistry.com" within "p"
+    And I should see "practice_admin_user@structuralartistry.com" within "a"
+    And I should see "Logged in user: practice_admin_user@structuralartistry.com" within "p"
     And I should see "Logged in role: practice admin" within "p"
     And I should not see "Login"
   
