@@ -33,7 +33,8 @@ def login_user(user_factory, options = {})
   # but if does not exist then we create a practice for this user
   if user_factory.to_s != "sysadmin_user" # sysadmin does not have a practice
     if !options[:practice_id]
-      practice = Factory.create(:practice_one)
+      practice = Practice.find_by_name("Practice One") # assign if already exists
+      practice = Factory.create(:practice_one) if !practice
       options[:practice_id] = practice.id
     end
   end

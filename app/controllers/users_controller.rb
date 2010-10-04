@@ -1,13 +1,5 @@
 class UsersController < ApplicationController
 
-  def index
-    @users = User.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
-  end
-
   def new
     @user = User.new
 
@@ -28,19 +20,20 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save_without_session_maintenance 
         @user.deliver_activation_instructions!
-        format.html { redirect_to(edit_practice_path(current_user.practice.id), :notice => 'User was successfully created. Please check your email for the activation link.') }
+        format.html { redirect_to(edit_practice_path(current_user.practice.id), :notice => "User was successfully created. Please check email for #{@user.email} for the activation link.") }
       else
         format.html { render :action => "new" }
       end
     end
   end
 
-  def update  
+  def update
     @user = current_user
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(home_path, :notice => 'User profile successfully updated') }
+        flash[:notice] = 'User profile successfully updated'
+        format.html { redirect_to(home_path) }
       else
         format.html { render :action => "edit" }
       end
@@ -48,15 +41,20 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    
+    @user = User.get_by_id_restricted_by_user_role_and_practice(params[:id], current_user)    
 
     respond_to do |format|
       if @user != current_user
         @user.destroy
-        format.html { redirect_to(edit_practice_path(current_user.practice.id), :notice => "User successfully deleted") }
+        flash[:notice] = "User successfully deleted"
+        if current_user.role.name == 'sysadmin'
+          format.html { redirect_to(home_path) }
+        else
+          format.html { redirect_to(edit_practice_path(current_user.practice.id)) }
+        end
       else
-        format.html { redirect_to(edit_practice_path(current_user.practice.id), :notice => "Can not delete the current user") }
+        flash[:notice] = "Can not delete the current user"
+        format.html { redirect_to(edit_practice_path(current_user.practice.id)) }
       end
     end
   end

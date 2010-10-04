@@ -97,7 +97,7 @@ Feature: User Management
     And I fill in "user_password" with "password1"
     And I fill in "user_password_confirmation" with "password1"
     And I press "Submit"
-    Then I should see "User was successfully created. Please check your email for the activation link."
+    Then I should see "User was successfully created. Please check email for practice1@structuralartistry.com for the activation link."
     
     # verify can destroy the newly created user
     When I follow "Destroy" within "tr#practice1"

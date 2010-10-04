@@ -35,17 +35,7 @@ class ApplicationController < ActionController::Base
               redirect_to home_path
             end
           end
-        
         when 'users'
-          
-          # when 'users'
-          #   case action_name
-          #   when 'index'
-          #     if current_user.role != 'sysadmin'
-          #       flash[:notice] = "This action is not permitted"
-          #     end
-          #   end
-          
         end
           
       else
@@ -60,6 +50,10 @@ class ApplicationController < ActionController::Base
             flash[:notice] = RESTRICTED_PAGE_NOTICE
             redirect_to login_path 
           end
+        when 'users'
+          # no need for new user to guest, use practice controller to create new practice and user from guest
+          flash[:notice] = RESTRICTED_PAGE_NOTICE
+          redirect_to login_path
         when 'user_sessions'
         else redirect_to login_path
         end
