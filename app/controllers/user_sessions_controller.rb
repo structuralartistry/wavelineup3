@@ -7,7 +7,7 @@ class UserSessionsController < ApplicationController
       if !current_user
         format.html # new.html.erb
       else
-        format.html { redirect_to root_path }
+        format.html { redirect_to home_path }
       end
     end
   end
@@ -17,7 +17,7 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       if @user_session.save
-        format.html { redirect_to(root_path) }
+        format.html { redirect_to(home_path) }
       else       
         flash[:notice] = "Authentication failed"
         format.html { render :action => "new" }
@@ -30,7 +30,8 @@ class UserSessionsController < ApplicationController
     @user_session.destroy if @user_session
 
     respond_to do |format|
-      format.html { redirect_to(login_path, :notice => 'Successfully logged out') }
+      flash[:notice] = "Successfully logged out"
+      format.html { redirect_to(login_path) }
     end
   end
 end
