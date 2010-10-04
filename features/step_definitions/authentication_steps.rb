@@ -10,14 +10,10 @@ Given /^I am logged in in a "([^"]*)" user role$/ do |role|
 end
 
 Given /^I am logged in in a "([^"]*)" user role for the practice "([^"]*)"$/ do |role, practice_name|
+  practice = Factory.create(:practice, :name => practice_name)
+  
   formal_role = role.gsub(/ /, '_')
-  user = Factory.create( formal_role.to_sym, :email => formal_role + "@structuralartistry.com" )
-
-  if practice_name
-    practice = Practice.find(user.practice_id)
-    practice.name = practice_name
-    practice.save
-  end
+  user = Factory.create( formal_role.to_sym, :email => formal_role + "@structuralartistry.com", :practice_id => practice.id )
 
   visit('/login')
   fill_in('Email', :with => user.email)
