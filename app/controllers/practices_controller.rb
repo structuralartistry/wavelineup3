@@ -19,6 +19,18 @@ class PracticesController < ApplicationController
   def edit
     @practice = Practice.find(params[:id])
     @users = User.find_all_by_practice_id(params[:id])
+    
+    # should never get to this action if current_user is nil
+    if current_user.role.name == 'sysadmin'
+      render # allow all practices
+    else
+      if current_user.practice_id == @practice.id
+        render
+      else
+        flash[:notice] = RESTRICTED_PAGE_NOTICE
+        redirect_to home_path
+      end
+    end
   end
 
   def create
@@ -39,10 +51,15 @@ class PracticesController < ApplicationController
     @practice = Practice.find(params[:id])
 
     respond_to do |format|
-      if @practice.update_attributes(params[:practice])
-        format.html { redirect_to(home_path, :notice => 'Practice was successfully updated.') }
+      if current_user.role.name == 'sysadmin' || current_user.practice.id == @practice.id
+        if @practice.update_attributes(params[:practice])
+          format.html { redirect_to(home_path, :notice => 'Practice was successfully updated') }
+        else
+          format.html { render :action => "edit" }
+        end
       else
-        format.html { render :action => "edit" }
+        flash[:notice] = RESTRICTED_PAGE_NOTICE
+        redirect_to home_path        
       end
     end
   end
@@ -50,6 +67,7 @@ class PracticesController < ApplicationController
   def destroy
     @practice = Practice.find(params[:id])
     @practice.destroy
+    flash[:notice] = "Practice successfully deleted"
 
     respond_to do |format|
       format.html { redirect_to(practices_path) }

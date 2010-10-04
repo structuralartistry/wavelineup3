@@ -4,7 +4,6 @@ describe ActivationsController do
 
   before(:each) do
     Practice.delete_all
-    User.delete_all
   end
 
   describe "POST create" do

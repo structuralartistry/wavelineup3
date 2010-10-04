@@ -33,3 +33,9 @@ def login_user(user_factory, options = {})
   @logged_in_user
 end
 
+def logout_user
+  @logged_in_user = nil
+  @controller.stub!(:current_user).and_return(@logged_in_user)
+  @logged_in_user
+end
+

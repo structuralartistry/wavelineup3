@@ -7,7 +7,7 @@ Factory.define :user do |u|
 end
 
 Factory.define :sysadmin, :parent => :user do |u|
-  u.practice_id { |a| a.association(:practice_one).id }
+  u.practice_id nil
   u.role { |a| a.association(:sysadmin_role) }   
 end
 

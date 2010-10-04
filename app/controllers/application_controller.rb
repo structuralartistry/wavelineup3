@@ -9,8 +9,6 @@ class ApplicationController < ActionController::Base
   
     def authorize
       
-      restricted_page_notice = "Page not permitted per your user role"
-      
       if current_user
       
         case controller_name
@@ -25,9 +23,17 @@ class ApplicationController < ActionController::Base
             redirect_to home_path
           end
         when 'practices'
-          if action_name == 'index' && current_user.role.name != 'sysadmin'
-            flash[:notice] = restricted_page_notice
-            redirect_to home_path
+          case action_name
+          when 'index'
+            if current_user.role.name != 'sysadmin'
+              flash[:notice] = RESTRICTED_PAGE_NOTICE
+              redirect_to home_path
+            end 
+          when 'destroy'
+            if current_user.role.name != 'sysadmin'
+              flash[:notice] = RESTRICTED_PAGE_NOTICE
+              redirect_to home_path
+            end
           end
         
         when 'users'
@@ -50,7 +56,10 @@ class ApplicationController < ActionController::Base
         when 'activations'
         when 'password_resets'
         when 'practices'
-          redirect_to login_path if action_name != 'new' && action_name != 'create'
+          if action_name != 'new' && action_name != 'create'
+            flash[:notice] = RESTRICTED_PAGE_NOTICE
+            redirect_to login_path 
+          end
         when 'user_sessions'
         else redirect_to login_path
         end

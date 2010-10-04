@@ -11,12 +11,12 @@ Feature: Administer system
     Given there is a practice in the system named "Demo Practice"
     Given I am logged in in a "practice admin" user role
     When I go to the practices page
-    Then I should see "Page not permitted per your user role"  
+    Then I should see "This page is not permitted per your access rights"
     
     
   Scenario: A "practice user" role can not see the practice list
     Given there is a practice in the system named "Demo Practice"
     Given I am logged in in a "practice user" user role
     When I go to the practices page
-    Then I should see "Page not permitted per your user role"
+    Then I should see "This page is not permitted per your access rights"
     

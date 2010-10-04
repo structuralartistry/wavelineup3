@@ -16,4 +16,6 @@ ActionMailer::Base.smtp_settings = {
   :enable_starttls_auto => false
 }
 
+RESTRICTED_PAGE_NOTICE = "This page is not permitted per your access rights"
+
 
