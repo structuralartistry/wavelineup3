@@ -14,7 +14,9 @@ describe UsersController do
   
   describe "GET index" do
     it "does not load for guest role" do
-      
+      get :index
+      flash[:notice].should match 
+      response.should redirect_to(login_url)
     end
     
     it "loads for sysadmin role" do
