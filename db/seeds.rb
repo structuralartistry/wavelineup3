@@ -6,6 +6,7 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
+Role.create(:name => 'guest')
 Role.create(:name => 'sysadmin')
 Role.create(:name => 'practice admin')
 Role.create(:name => 'practice user')
@@ -29,5 +30,14 @@ user.password = 'password1'
 user.password_confirmation = 'password1'
 user.practice_id = practice.id
 user.role_id = Role.find_by_name('practice admin').id
+user.active = true
+user.save
+
+user = User.new
+user.email = 'dnathankahn@yahoo.com'
+user.password = 'password1'
+user.password_confirmation = 'password1'
+user.practice_id = practice.id
+user.role_id = Role.find_by_name('practice user').id
 user.active = true
 user.save

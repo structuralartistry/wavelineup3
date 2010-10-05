@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.get_by_id_restricted_by_user_role_and_practice(params[:id], current_user)    
+    @user = User.get_by_id_restricted_by_user(params[:id], current_user)    
 
     respond_to do |format|
       if @user != current_user

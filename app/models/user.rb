@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   
   attr_accessible :email, :password, :password_confirmation, :perishable_token, :persistence_token, :practice_id, :role_id
    
-     
-  def self.get_all_restricted_by_user_role_and_practice(user)
+    
+  def self.get_all_restricted_by_user(user)
     return nil if !user
     if user.role.name == 'sysadmin'
       return User.all
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
     end
   end
    
-  def self.get_by_id_restricted_by_user_role_and_practice(user_id, user)
+  def self.get_by_id_restricted_by_user(user_id, user)
     return nil if !user
     if user.role.name == 'sysadmin'
       return User.find(user_id)
@@ -44,6 +44,100 @@ class User < ActiveRecord::Base
   def deliver_password_reset_instructions!  
     reset_perishable_token!  
     SystemMailer.password_reset_instructions(self).deliver  
+  end
+  
+  
+  def authorize(controller_name, action_name)
+    if self.role
+      current_role = self.role.name
+    else
+      # guest user is empty user
+      current_role = 'guest'
+    end
+    
+
+    case controller_name
+    when 'activations'
+      if current_role != 'guest'
+        return set_autorize_failure_value("You are already logged in to the system. If you are activating a new user please log out first and try again.")
+      end
+      return authorize_success_message
+    
+    when 'home'
+      if current_role == 'guest'
+        return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
+      end
+      return authorize_success_message
+      
+    when 'password_resets'
+      if current_role != 'guest'
+        return set_autorize_failure_value("Can't reset your password: you are already logged in to the system")
+      end
+      return authorize_success_message
+      
+    when 'practice_members'
+      if current_role == 'guest'
+        return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
+      end
+      return authorize_success_message
+      
+    when 'practices'
+      case current_role
+      when 'guest'
+        if action_name != 'new' && action_name != 'create'
+          return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
+        end
+        return authorize_success_message
+      else
+        case action_name
+        when 'index'
+          if current_role != 'sysadmin'
+            return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
+          end
+        when 'new'
+          return set_autorize_failure_value("If you wish to create a new Practice, you must be logged out of the system")
+        when 'create'
+          return set_autorize_failure_value("If you wish to create a new Practice, you must be logged out of the system")
+        when 'destroy'
+          if current_role != 'sysadmin'
+            return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
+          end
+        end
+        return authorize_success_message
+      end
+      
+    when 'user_sessions'
+      case current_role
+      when 'guest'
+        if action_name == 'destroy'
+          return set_autorize_failure_value("You are not logged in to the system")
+        end
+      else
+        if action_name != 'destroy'
+          return set_autorize_failure_value("You are already logged in to the system")
+        end
+      end
+      return authorize_success_message
+
+    when 'users'
+      if current_role == 'guest'
+        return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
+      end
+      return authorize_success_message
+      
+    else return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
+    end
+  end
+  
+  
+  private
+  
+  def authorize_success_message
+    return { :success => true, :failure_message => nil }
+  end
+  
+  def set_autorize_failure_value(failure_message)
+    return { :success => false, :failure_message => failure_message}
   end
   
 

@@ -5,61 +5,23 @@ class ApplicationController < ActionController::Base
   
   before_filter :authorize
     
-  private
-  
+  private 
+ 
     def authorize
-      
-      if current_user
-      
-        case controller_name
-        when 'activations'
-          if current_user
-            flash[:notice] = "You are already logged in to the system. If you are activating a new user please log out first and try again."
-            redirect_to home_path
-          end   
-        when 'password_resets'
-          if current_user
-            flash[:notice] = "Can't reset your password: you are already logged in to the system"
-            redirect_to home_path
-          end
-        when 'practices'
-          case action_name
-          when 'index'
-            if current_user.role.name != 'sysadmin'
-              flash[:notice] = RESTRICTED_PAGE_NOTICE
-              redirect_to home_path
-            end 
-          when 'destroy'
-            if current_user.role.name != 'sysadmin'
-              flash[:notice] = RESTRICTED_PAGE_NOTICE
-              redirect_to home_path
-            end
-          end
-        when 'users'
-        end
-          
+      if current_user 
+        return_value = current_user.authorize(controller_name, action_name)
       else
-      
-        # no current_user
-      
-        case controller_name
-        when 'activations'
-        when 'password_resets'
-        when 'practices'
-          if action_name != 'new' && action_name != 'create'
-            flash[:notice] = RESTRICTED_PAGE_NOTICE
-            redirect_to login_path 
-          end
-        when 'users'
-          # no need for new user to guest, use practice controller to create new practice and user from guest
-          flash[:notice] = RESTRICTED_PAGE_NOTICE
-          redirect_to login_path
-        when 'user_sessions'
-        else redirect_to login_path
-        end
-      
+        return_value = User.new.authorize(controller_name, action_name)
       end
-      
+
+      if !return_value[:success]
+        flash[:notice] = return_value[:failure_message]
+        if current_user
+          redirect_to home_path
+        else
+          redirect_to login_path
+        end
+      end
     end
   
     def current_user_session

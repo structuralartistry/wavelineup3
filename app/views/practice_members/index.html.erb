@@ -1,0 +1,29 @@
+<h1>Listing practice_members</h1>
+
+<table>
+  <tr>
+    <th>Practice</th>
+    <th>Name last</th>
+    <th>Name first</th>
+    <th>Name middle</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @practice_members.each do |practice_member| %>
+  <tr>
+    <td><%= practice_member.practice_id %></td>
+    <td><%= practice_member.name_last %></td>
+    <td><%= practice_member.name_first %></td>
+    <td><%= practice_member.name_middle %></td>
+    <td><%= link_to 'Show', practice_member %></td>
+    <td><%= link_to 'Edit', edit_practice_member_path(practice_member) %></td>
+    <td><%= link_to 'Destroy', practice_member, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Practice member', new_practice_member_path %>

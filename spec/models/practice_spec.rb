@@ -2,6 +2,9 @@ require 'spec_helper'
 
 describe Practice do
   it "deletes all associated users when it is deleted" do
+    User.delete_all
+    Practice.delete_all
+    
     User.count.should == 0
     Practice.count.should == 0
     practice = Factory.create(:practice_one)

@@ -15,6 +15,15 @@ Feature: Show Home Page
     And I should not see "Logged in user:"
     And I should not see "Logged in role:"
     
+    # should not see form to create a new practice member
+    And I should not see "Create new Practice Member" within "h1"
+    And I should not see "First Name" within "label"
+    And I should not see "Last Name" within "label"
+    And I should not see "Middle Name" within "label"
+    
+    # should not see practice member list
+    And I should not see "Practice Members" within "h1"
+    
     
   Scenario: Home page when logged in in the "sysadmin" role
     Given I am logged in in a "sysadmin" user role
@@ -25,6 +34,15 @@ Feature: Show Home Page
     And I should see "Logged in user: sysadmin_user@structuralartistry.com" within "p"
     And I should see "Logged in role: sysadmin" within "p"
     And I should not see "Login"
+    
+    # should not see form to create a new practice member
+    And I should not see "Create new Practice Member" within "h1"
+    And I should not see "First Name" within "label"
+    And I should not see "Last Name" within "label"
+    And I should not see "Middle Name" within "label"
+    
+    # should not see practice member list
+    And I should not see "Practice Members" within "h1"
 
 
   Scenario: Home page when logged in in the "practice admin" role
@@ -36,6 +54,15 @@ Feature: Show Home Page
     And I should see "Logged in user: practice_admin_user@structuralartistry.com" within "p"
     And I should see "Logged in role: practice admin" within "p"
     And I should not see "Login"
+    
+    # should see form to create a new practice member
+    And I should see "Create new Practice Member" within "h1"
+    And I should see "First Name" within "label"
+    And I should see "Last Name" within "label"
+    And I should see "Middle Name" within "label"
+    
+    # should see practice member list
+    And I should see "Practice Members" within "h1"
   
   
   Scenario: Home page when logged in in the "practice user" role
@@ -47,3 +74,12 @@ Feature: Show Home Page
     And I should see "Logged in user: practice_user@structuralartistry.com" within "p"
     And I should see "Logged in role: practice user" within "p"
     And I should not see "Login"
+    
+    # should see form to create a new practice member
+    And I should see "Create new Practice Member" within "h1"
+    And I should see "First Name" within "label"
+    And I should see "Last Name" within "label"
+    And I should see "Middle Name" within "label"
+    
+    # should see practice member list
+    And I should see "Practice Members" within "h1"
