@@ -8,21 +8,21 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :perishable_token, :persistence_token, :practice_id, :role_id
    
     
-  def self.get_all_restricted_by_user(user)
-    return nil if !user
-    if user.role.name == 'sysadmin'
+  def self.get_all_restricted_by_user(requesting_user)
+    return nil if !requesting_user
+    if requesting_user.role.name == 'sysadmin'
       return User.all
     else
-      return User.find_all_by_practice_id(user.practice_id)
+      return User.find_all_by_practice_id(requesting_user.practice_id)
     end
   end
    
-  def self.get_by_id_restricted_by_user(user_id, user)
-    return nil if !user
-    if user.role.name == 'sysadmin'
+  def self.get_by_id_restricted_by_user(user_id, requesting_user)
+    return nil if !requesting_user
+    if requesting_user.role.name == 'sysadmin'
       return User.find(user_id)
     else
-      return User.where("id=#{user_id} and practice_id=#{user.practice_id}").first
+      return User.where("id=#{user_id} and practice_id=#{requesting_user.practice_id}").first
     end
   end
    
