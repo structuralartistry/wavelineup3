@@ -55,14 +55,11 @@ Feature: Show Home Page
     And I should see "Logged in role: practice admin" within "p"
     And I should not see "Login"
     
-    # should see form to create a new practice member
-    And I should see "New Practice Member" within "h1"
-    And I should see "First Name" within "label"
-    And I should see "Last Name" within "label"
-    And I should see "Middle Name" within "label"
+    # should not see form to create a new practice member
+    And I should not see "New Practice Member"
     
     # should see practice member list
-    And I should see "Practice Members" within "h1"
+    And I should not see "Practice Members"
   
   
   Scenario: Home page when logged in in the "practice user" role
