@@ -49,5 +49,3 @@ Wavelineup3::Application.configure do
   config.active_support.deprecation = :notify
 end
 
-ActionMailer::Base.default_url_options[:host] = "wavelineup.heroku.com"
-
