@@ -11,12 +11,12 @@
   </tr>
 
 <% @practice_members.each do |practice_member| %>
-  <tr id="<%= practice_member.name_last %>_<%= practice_member.name_first %>_<%= practice_member.name_middle %>">
+  <tr id="<%= practice_member.name_last.downcase %>_<%= practice_member.name_first.downcase %>_<%= practice_member.name_middle.downcase %>">
     <td><%= practice_member.name_last %></td>
     <td><%= practice_member.name_first %></td>
     <td><%= practice_member.name_middle %></td>
     <td><%= link_to 'Edit', edit_practice_member_path(practice_member) %></td>
-    <td><%= link_to 'Destroy', practice_member, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', practice_member, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

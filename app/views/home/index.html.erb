@@ -5,7 +5,7 @@
   <p>Logged in role: <%= current_user.role.name %></p>
 <% end %>
 
-<% if current_user.role.name == 'practice_admin' || current_user.role.name == 'practice_user' %>
+<% if current_user.role.name == 'practice admin' || current_user.role.name == 'practice user' %>
   <%= render :partial => 'practice_members/new' %>
   
   <%= render :partial => 'practice_members/index' %>

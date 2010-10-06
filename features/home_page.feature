@@ -37,9 +37,6 @@ Feature: Show Home Page
     
     # should not see form to create a new practice member
     And I should not see "Create new Practice Member"
-    And I should not see "First Name"
-    And I should not see "Last Name"
-    And I should not see "Middle Name"
     
     # should not see practice member list
     And I should not see "Practice Members"
@@ -56,10 +53,13 @@ Feature: Show Home Page
     And I should not see "Login"
     
     # should not see form to create a new practice member
-    And I should not see "New Practice Member"
+    And I should see "New Practice Member" within "h1"
+    And I should see "First Name" within "label"
+    And I should see "Last Name" within "label"
+    And I should see "Middle Name" within "label"
     
     # should see practice member list
-    And I should not see "Practice Members"
+    And I should see "Practice Members" within "h1"
   
   
   Scenario: Home page when logged in in the "practice user" role
