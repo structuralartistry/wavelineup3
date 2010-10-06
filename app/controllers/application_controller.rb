@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
   
     def redirect_to_https
-      redirect_to :protocol => "https://" unless (request.ssl? || RAILS_ENV!='production')
+      redirect_to :protocol => "https://" #unless (request.ssl? || RAILS_ENV!='production')
     end
  
     def authorize
