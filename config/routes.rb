@@ -1,4 +1,8 @@
 Wavelineup3::Application.routes.draw do
+
+if RAILS_ENV == 'production'
+match "login", :to => redirect { |_, request| "https://" + request.host_with_port + request.fullpath }
+end
   
   RAILS_ENV == 'production' ? protocol = 'https' : protocol = 'http'
   scope :constraints => { :protocol => protocol } do 
