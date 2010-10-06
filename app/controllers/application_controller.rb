@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :authorize
     
   private
-  
+ 
     def authorize
       if current_user 
         return_value = current_user.authorize(controller_name, action_name)
