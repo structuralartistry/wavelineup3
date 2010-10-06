@@ -48,6 +48,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (>= 0.0.3)
     columnize (0.3.1)
+    configuration (1.1.0)
     cucumber (0.8.5)
       builder (~> 2.1.2)
       diff-lcs (~> 1.1.2)
@@ -68,8 +69,15 @@ GEM
       rake (>= 0.8.7)
     gherkin (2.1.5)
       trollop (~> 1.16.2)
+    heroku (1.10.13)
+      json_pure (>= 1.2.0, < 1.5.0)
+      launchy (~> 0.3.2)
+      rest-client (>= 1.4.0, < 1.7.0)
     i18n (0.4.1)
     json_pure (1.4.6)
+    launchy (0.3.7)
+      configuration (>= 0.0.5)
+      rake (>= 0.8.1)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
     mail (2.2.6)
@@ -99,6 +107,8 @@ GEM
       rake (>= 0.8.4)
       thor (~> 0.14.0)
     rake (0.8.7)
+    rest-client (1.6.1)
+      mime-types (>= 1.16)
     rspec (2.0.0.beta.22)
       rspec-core (= 2.0.0.beta.22)
       rspec-expectations (= 2.0.0.beta.22)
@@ -146,6 +156,7 @@ DEPENDENCIES
   cucumber (>= 0.8.5)
   cucumber-rails
   factory_girl_rails
+  heroku
   pg
   rails (= 3.0.0)
   rspec-rails (>= 2.0.0.beta.20)
