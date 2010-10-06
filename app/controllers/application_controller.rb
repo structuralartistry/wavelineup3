@@ -3,9 +3,13 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
   
-  before_filter :authorize
+  before_filter :redirect_to_https, :authorize
     
-  private 
+  private
+  
+    def redirect_to_https
+      redirect_to :protocol => "https://" unless (request.ssl? || RAILS_ENV!='production')
+    end
  
     def authorize
       if current_user 
