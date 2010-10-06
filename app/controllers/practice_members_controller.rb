@@ -1,11 +1,4 @@
 class PracticeMembersController < ApplicationController
-  def index
-    @practice_members = PracticeMember.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
-  end
 
   def new
     @practice_member = PracticeMember.new
@@ -21,11 +14,12 @@ class PracticeMembersController < ApplicationController
 
   def create
     @practice_member = PracticeMember.new(params[:practice_member])
+    @practice_member.practice_id = current_user.practice_id
 
     respond_to do |format|
       if @practice_member.save
         flash[:notice] = 'Practice Member successfully created'
-        format.html { edit_practice_path(current_user.practice_id) }
+        format.html { redirect_to home_path }
       else
         format.html { render :action => "new" }
       end
@@ -38,7 +32,7 @@ class PracticeMembersController < ApplicationController
     respond_to do |format|
       if @practice_member.update_attributes(params[:practice_member])
         flash[:notice] = 'Practice Member successfully updated'
-        format.html { edit_practice_path(current_user.practice_id) }
+        format.html { redirect_to home_path }
       else
         format.html { render :action => "edit" }
       end
@@ -50,7 +44,7 @@ class PracticeMembersController < ApplicationController
     flash[:notice] = 'Practice Member successfully deleted' if @practice_member.destroy
 
     respond_to do |format|
-      format.html { redirect_to(edit_practice_path(current_user.practice_id)) }
+      format.html { redirect_to home_path }
     end
   end
 end

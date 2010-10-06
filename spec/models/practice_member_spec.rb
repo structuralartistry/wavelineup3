@@ -14,6 +14,30 @@ describe PracticeMember do
       practice_member.errors.count.should == 1
       practice_member.errors[:practice_member_name].should == ["This Practice Member name already exists in your Practice. Please modify it to be different if you want to save it."]
     end
+    
+    it "should have a practice id assigned" do
+      practice_member = Factory.build(:practice_member)
+      practice_member.practice_id = nil
+      practice_member.save.should == false
+      practice_member.errors.should include(:practice_id)
+      practice_member.practice_id = 1
+      practice_member.save.should == true
+    end
+
+    it "should have both a first name and last name" do
+      practice_member = Factory.build(:practice_member)
+      practice_member.name_last = ""
+      practice_member.name_first = ""
+      practice_member.save.should == false
+      practice_member.errors.should include(:name_last, :name_first)
+      #practice_member.errors[:name_last].size.should == 1
+      #practice_member.errors[:name_first].size.should == 1
+      
+      practice_member.name_last = "Pierce"
+      practice_member.name_first = "Miriam"
+      practice_member.save.should == true      
+    end
+
   end
   
   describe "get Practice Members" do

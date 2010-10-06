@@ -1,11 +1,19 @@
 class PracticeMember < ActiveRecord::Base
   
-  validate :validate_practice_member
   
-  def validate_practice_member    
-    existing_practice_member = PracticeMember.where("name_first='#{self.name_first}' and name_last='#{self.name_last}' and name_middle='#{self.name_middle}' and practice_id=#{self.practice_id}")
-    if existing_practice_member.size >0
-      self.errors.add(:practice_member_name, "This Practice Member name already exists in your Practice. Please modify it to be different if you want to save it.")
+  validates_presence_of :practice_id
+  validates_presence_of :name_last
+  validates_presence_of :name_first
+  validate :validate_practice_member_full_name_does_not_exist_for_practice
+  
+  def validate_practice_member_full_name_does_not_exist_for_practice
+    if self.practice_id # dont bother if no practice id.... its a lost cause and the sql here will break
+      self.id ? existing_id_clause = " and id<>#{self.id}" : existing_id_clause = ""
+  
+      existing_practice_member = PracticeMember.where("name_first='#{self.name_first}' and name_last='#{self.name_last}' and name_middle='#{self.name_middle}' and practice_id=#{self.practice_id}" + existing_id_clause)
+      if existing_practice_member.size > 0
+        self.errors.add(:practice_member_name, "This Practice Member name already exists in your Practice. Please modify it to be different if you want to save it.")
+      end
     end
   end
   

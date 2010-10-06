@@ -4,3 +4,9 @@
   <p>Logged in user: <%= current_user.email %></p>
   <p>Logged in role: <%= current_user.role.name %></p>
 <% end %>
+
+<% if current_user.role.name == 'practice_admin' || current_user.role.name == 'practice_user' %>
+  <%= render :partial => 'practice_members/new' %>
+  
+  <%= render :partial => 'practice_members/index' %>
+<% end %>
