@@ -1,6 +1,6 @@
 Wavelineup3::Application.routes.draw do
 
-if RAILS_ENV == 'production'
+if RAILS_ENV == 'production' && :protocol != 'https'
   match "/:anything", :to => redirect { |_, request| "https://" + request.host_with_port + request.fullpath }
 end
   
