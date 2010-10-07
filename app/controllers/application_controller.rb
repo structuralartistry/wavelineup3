@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   
     def redirect_to_https
       if RAILS_ENV=='production'
-        rediret_to :protocol => 'https://' if !request.env['HTTP_X_FORWARDED_PROTO'] == 'https'
+        redirect_to :protocol => 'https://' if !request.env['HTTP_X_FORWARDED_PROTO'] == 'https'
       end
     
 
