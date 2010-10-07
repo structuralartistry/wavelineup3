@@ -9,8 +9,15 @@ class ApplicationController < ActionController::Base
   
     def redirect_to_https
       if RAILS_ENV=='production'
-        redirect_to :protocol => "https://" if !request.ssl?
+        rediret_to :protocol => 'https://' if !request.env['HTTP_X_FORWARDED_PROTO'] == 'https'
       end
+    
+
+     #@env['HTTPS'] == 'on' || @env['HTTP_X_FORWARDED_PROTO'] == 'https'
+      #
+      #if RAILS_ENV=='production'
+      #  redirect_to :protocol => "https://" if !request.ssl?
+      #end
     end
  
     def authorize
