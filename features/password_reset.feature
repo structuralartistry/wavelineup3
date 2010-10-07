@@ -10,7 +10,7 @@ Feature: Allow user to reset their password
     # retrieve password
     When I follow "Forgot Password?"
     Then I should see "Reset Password" within "h1"
-    Then I should see "Please enter your email and press submit:" within "p"
+    Then I should see "Please enter your email and press submit." within "p"
     And I should see "Email" within "label"
     Then I fill in "user_email" with "practice@structuralartistry.com"
     When I press "Submit"

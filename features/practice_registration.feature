@@ -18,6 +18,7 @@ Feature: Practice registration
     And I should see "Email" within "label"
     And I should see "Password" within "label"
     And I should see "Password confirmation" within "label"
+    And I should see "Cancel" within "a"
     When I fill in "practice_name" with "Practice One"
     And I fill in "practice_users_attributes_0_email" with "practice@structuralartistry.com"
     And I fill in "practice_users_attributes_0_password" with "password1"

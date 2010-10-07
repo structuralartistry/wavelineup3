@@ -1,0 +1,346 @@
+/* ERRORS/VALIDATION */
+#form_error_messages {
+  position: absolute;
+  right: 0;
+}
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+
+
+
+
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  padding:0px;
+  margin:0px;
+}
+
+
+/* full calendar overrides */
+#calendar {
+	width: 1100px;
+	margin: 0 auto;
+}
+
+table.fc-header {
+  background-color: #000033;
+  color: white;
+}
+.fc-content {
+  background-color: #e0e0e0; /*#ECE0A1;*/
+  color: #000033; 
+}
+.fc-event a {
+  background-color: #000033;
+  color: white;
+}
+
+div.form_field {
+  margin-right: 5px;
+}
+
+a {
+  text-decoration: underline;
+}
+
+input, 
+textarea, 
+select, 
+.selector_cell, 
+.selector_cell_diagnosis,
+.selector_cell_half_height,
+.selector_cell_half_height_quadruple,
+.selector_cell_half_height_sentiplet,
+.selector_cell_wide,
+.selector_cell_wide_triple,
+.selector_cell_wide_half_height,
+.selector_cell_wide_half_height_triple,
+.keyboard_selector_cell,
+.keyboard_selector_cell_wide,
+.keyboard_selector_cell_spacebar {
+  background-color: #e0e0e0; /*#ECE0A1;*/
+  color: #000033;
+  border: 2px solid #f0f0f0;
+}
+
+.selector_cell_nav {
+  background-color: #e0e0e0; /*#ECE0A1;*/
+  color: #000033;
+  font-weight: bold;
+  text-align: center;
+}
+
+.selector_cell_add {
+  background-color: green;
+  font-size: 18px;
+}
+.selector_cell_delete {
+  background-color: red;
+font-size: 18px;
+}
+
+.selector_cell_save {
+  background-color: yellow;
+  font-size: 18px;
+}
+
+.selector_cell_cancel {
+  background-color: orange;
+  font-size: 18px;
+}
+
+input,
+textarea,
+select {
+  padding: 3px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.label {
+  background-color: #000033; 
+  color: white;
+  font-weight: bold;
+}
+
+span.section_internal_label {
+  font-weight: bold;
+}
+
+.visit_floating_notes {
+  color: #000033;
+  padding: 5px;
+  z-index: 10;
+}
+
+div.selector {
+  /* to hold coloring but not location */
+  background-color: aqua;
+  z-index: 100;
+  position: absolute;
+}
+
+.item_hover {
+  /*background-color: aqua; #AD90A5;
+  background-color: #60a0e0;*/
+  background-color: #6F6F6F;
+  color: #EFFFFF;
+}
+
+.current_selected {
+  background-color: aqua;
+}
+
+
+.highlighted {
+  /*background-color: #60a0e0;*/
+  background-color: #D38B85;
+  /* background-color: #804060; */
+}
+
+.gateway_selector_side_highlight {
+  color: red;
+}
+
+.important_note_text {
+  color: red;
+}
+
+.header_bottom {
+  border-bottom: 1px solid red;
+}
+
+.wavelineup {
+  font-weight: bold;
+
+  color: #00A4FF;
+  font-size: 18px;
+}
+
+/* this is left column of page */
+div#left_menu {
+
+  float: left;
+  /* background-color: lightgray; */
+  /*height: 100%; */
+  /* border: 1px solid black; */
+}
+
+div#communication {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+
+div#identity_header {
+  background: #000030;
+  color: white;
+}
+
+div#footer {
+  background-color: aqua;
+}
+
+div#selected_visit {
+  padding: 5px;
+  background: pink;
+}
+
+div#past_visits {
+  padding: 5px;
+  background: lightpink;
+}
+
+#past_visit_detail {
+  display: none;
+}
+
+#sri_detail {
+  display: none;
+}
+
+#tension_level_detail {
+  display: none;
+}
+
+#programs_education_detail {
+  display: none;
+}
+
+div#travel_card {
+  padding: 5px;
+  background: lightgreen;
+}
+
+div#processing_message {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.pagination {
+  color: red;
+  color: #000033;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.pagination a {
+  color: red;
+}
+
+.stats_field {
+  background-color: lightgray;
+}
+
+div#cal_event_selector {
+  width: 650px;
+  border: 10px solid aqua;
+  background-color: #ffffff;
+}
+
+.wavelineup_table {
+  font-size: 14px;
+}
+
+.wavelineup_table .header {
+  background-color: #000033;
+  color: white;
+  height: 0.25in;
+}
+
+.wavelineup_table tr {
+  height: 0.50in;
+}
+
+.wavelineup_table tr.even {
+background-color: white;
+}
+
+.wavelineup_table tr.odd {
+background-color: #e0e0e0; /*#c0e0f0;*/ /*#C5ECEC;*/
+}
+
+.wavelineup_table table td {
+  padding: 5px 10px;
+}
+
+.detail_table .header {
+  background-color: #e0e0e0;
+  color: black;
+}
+
+.wavelineup_menu table {
+  background-color: #e0e0e0; /*#c0e0f0;*/ /*#C5ECEC;*/
+}
+
+.wavelineup_menu .header {
+  background-color: #000033;
+  color: white;
+}
+
+.wavelineup_menu table td {
+  padding:5px 10px;
+}
+
+.detail_table tr {
+  height: 0.20px;
+}
+
+
+.ui-datepicker {
+  background-color: aqua;
+}
+
+
+

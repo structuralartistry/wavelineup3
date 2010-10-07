@@ -1,0 +1,140 @@
+.selector_cell_text_single_character {
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+}
+
+.selector_cell_text_three_character {
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+}
+
+
+.selector_cell_diagnosis {
+  float: left;
+  width: 3.0in;
+  height: 0.5in; 
+}
+
+.selector_cell_diagnosis_label {
+  float: left;
+  width: 3.0in;
+  height: 0.25in; 
+}
+
+.selector_cell_text_six_character {
+  font-weight: bold;
+  font-size: 12px;
+  text-align: center;
+}
+
+
+
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px; 
+  background-color: #ffffff; /* #f0f0f0; #75A0A0;*/
+  color: #000033; /*#000033;*/
+}
+
+a {
+  color: #000033;
+}
+
+input[type=text] {
+  height: 0.30in;
+  font-size: 18px;
+}
+
+input[type=password] {
+  height: 0.30in;
+  font-size: 18px;
+}
+
+input[type=submit] {
+  height: 0.5in;
+  width: 1.0in;
+  font-size: 18px;
+}
+
+link_button {
+  height: 0.5in;
+  width: 1.0in;
+  font-size: 18px;
+}
+
+/* these are sizes of individual selectors that dont fall within a table td with defined td width */
+.selector_cell_size_small {
+  text-align: center;
+  font-weight: bold;
+  width: 0.50in;
+  height: 0.50in;
+}
+
+.selector_cell_size_medium {
+  text-align: center;
+  font-weight: bold;
+  width: 1.00in;
+  height: 0.50in;
+}
+
+.selector_cell_size_large {
+  text-align: center;
+  font-weight: bold;
+  width: 1.50in;
+  height: 0.50in;
+}
+
+
+
+select {
+  height: 0.50in;
+  font-size: 18px;
+}
+
+textarea {
+  font-size: 18px;
+}
+
+.section_name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+.selector_table td {
+  width: 0.50in;
+  height: 0.50in;
+}
+
+.nav_table td {
+  width: 1.25in;
+  height: 0.50in;
+}
+
+.diagnosis_field {
+  width: 2.5in;
+  height: 0.5in;
+}
+
+.selector_table .half_height {
+  height: 0.25in;
+}
+
+
+
+
+
+div.selector {
+  border: 5px solid aqua;
+}
+
+.half_height_vertical_spacer {
+  height: 12px;
+}
+
+
+
