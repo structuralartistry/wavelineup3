@@ -4,8 +4,8 @@ Wavelineup3::Application.routes.draw do
 #  match "/:anything", :to => redirect { |_, request| "https://" + request.host_with_port + request.fullpath }
 #end
 #  
-  RAILS_ENV == 'production' ? protocol = 'https' : protocol = 'http'
-  scope :constraints => { :protocol => protocol } do 
+  #RAILS_ENV == 'production' ? protocol = 'https' : protocol = 'http'
+  #scope :constraints => { :protocol => protocol } do 
 
     resources :practice_members
   
@@ -84,5 +84,5 @@ Wavelineup3::Application.routes.draw do
     # This is a legacy wild controller route that's not recommended for RESTful applications.
     # Note: This route will make all actions in every controller accessible via GET requests.
     # match ':controller(/:action(/:id(.:format)))'
-  end
+  #end
 end
