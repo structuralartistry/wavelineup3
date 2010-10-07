@@ -8,9 +8,8 @@ class ApplicationController < ActionController::Base
   private
   
     def redirect_to_https
-      if RAILS_ENV=='production'
-        @protocol = request.env['HTTP_X_FORWARDED_PROTO']
-        redirect_to 'https://' + request.host_with_port + request.fullpath if !request.env['HTTP_X_FORWARDED_PROTO'] == 'https'
+      if RAILS_ENV=='development'
+        redirect_to 'https://' + request.host_with_port + request.fullpath if request.env['HTTP_X_FORWARDED_PROTO'] != 'https'
       end
     
 
