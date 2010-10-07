@@ -15,7 +15,7 @@
   <table width="100%" class="nav_table">
     <tr>
       <td class="wavelineup"><span class="wavelineup">&nbsp;WaveLineup&nbsp;</span></td> 
-      <td width="50%">
+      <td>
         <% if current_user %>
           <% if current_user.practice %><%= link_to current_user.practice.name, edit_practice_path(current_user.practice.id) %> | <% end %>
           <%= link_to current_user.email, edit_user_path(:current) %> |
