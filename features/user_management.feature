@@ -89,6 +89,7 @@ Feature: User Management
     When I click "Practice One" within a selector cell
     
     # destroy the practice user
+    Then tell the page to accept the confirm dialog which is coming
     When I follow "Destroy" within "tr#practice_user"
     Then I should see "Can not delete the current user"
     
@@ -101,6 +102,7 @@ Feature: User Management
     Then I should see "User was successfully created. Please check email for practice1@structuralartistry.com for the activation link."
     
     # verify can destroy the newly created user
+    Then tell the page to accept the confirm dialog which is coming
     When I follow "Destroy" within "tr#practice1"
     Then I should see "User successfully deleted"
     

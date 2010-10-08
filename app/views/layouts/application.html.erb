@@ -12,42 +12,70 @@
 </head>
 <body>
 <div id='container'>
-  <table width='100%' class='nav_table'>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	<table>
     <tr>
-      <td class='wavelineup'><span class='wavelineup'>&nbsp;WaveLineup&nbsp;</span></td> 
-      <% if current_user %>
-        <td class='selector_cell_nav' onmousedown='location.href="<%= home_url %>"'>Home</td>
-        <% if current_user.practice %>
-          <td class='selector_cell_nav' onmousedown='location.href="<%= edit_practice_url(current_user.practice.id) %>"'><%= current_user.practice.name %></td>
-        <% end %>
-        <td class='selector_cell_nav' onmousedown='location.href="<%= edit_user_url(:current) %>"'><%= current_user.email %></td>
-        <td class='selector_cell_nav' onmousedown='location.href="<%= logout_url %>"'>Logout</td>
-      <% else %>
-        <% if !(controller_name=='practices' && action_name=='new') %>
-          <td class='selector_cell_nav' onmousedown='location.href="<%= new_practice_url %>"'>Create My Practice</td>
-        <% end %>
-        <% if controller_name != 'user_sessions' && action_name != 'new' %> 
-          |
-          <td class='selector_cell_nav' onmousedown='location.href="<%= login_url %>"'>Login</td>
-        <% end %>
-      <% end %>
-	  </tr>
-	  <tr>
-	    <td style="height: 5px;" colspan="13" class="header_bottom"></td>
-	  </tr>
-	  <% if flash[:notice] %>
-	  <tr>
-	    <td>
-	      <span id='flash_notice'><%= flash[:notice] %></span>
-	    </td>
-	  </tr>
-	  <% end %>
-	  <tr>
-	    <td>
-	      <%= yield %>
-	    </td>  
-	  </td>
-	</table>
+      <td colspan="2">
+        <table width="100%" class="nav_table">
+          <tr>
+            <td class='wavelineup'><span class='wavelineup'>&nbsp;WaveLineup&nbsp;</span></td> 
+            <% if current_user %>
+              <td class='selector_cell_nav' onmousedown='location.href="<%= home_url %>"'>Home</td>
+              <% if current_user.practice %>
+                <td class='selector_cell_nav' onmousedown='location.href="<%= edit_practice_url(current_user.practice.id) %>"'><%= current_user.practice.name %></td>
+              <% end %>
+              <td class='selector_cell_nav' onmousedown='location.href="<%= edit_user_url(:current) %>"'><%= current_user.email %></td>
+              <td class='selector_cell_nav' onmousedown='location.href="<%= logout_url %>"'>Logout</td>
+            <% else %>
+              <% if !(controller_name=='practices' && action_name=='new') %>
+                <td class='selector_cell_nav' onmousedown='location.href="<%= new_practice_url %>"'>Create My Practice</td>
+              <% end %>
+              <% if controller_name != 'user_sessions' && action_name != 'new' %> 
+                |
+                <td class='selector_cell_nav' onmousedown='location.href="<%= login_url %>"'>Login</td>
+              <% end %>
+            <% end %>
+      	  </tr>
+      	  <tr>
+      	    <td style="height: 5px;" colspan="13" class="header_bottom"></td>
+      	  </tr>
+      	</table>
+    	</td>
+    </tr>
+    <tr valign="top">
+      <td valign="top" style="width: 15px;">
+        <% if current_user %>
+  		    <%= render :partial => "layouts/left_column" %>
+  		  <% end %>
+      </td>
+      <td style="width: 100%;">
+        <% if @practice_members_list %>
+          <%= render :partial => "layouts/identity_selector" %>
+   	    <% end %>
+   	    <div id="notices">
+   	      <p style="color: green"><%= flash[:notice] %></p>
+   	    </div>
+   	    <div id="main_frame">
+          <%= yield %>
+        </div>
+      </td>
+    </tr>
+  </table>
+	
+	
+	
+	
+	
+	
+	
 </div>
 
 </body>

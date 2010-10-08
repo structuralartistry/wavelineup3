@@ -34,5 +34,9 @@ class PracticeMember < ActiveRecord::Base
       return PracticeMember.where("id=#{practice_member_id} and practice_id=#{requesting_user.practice_id}").first
     end
   end
+  
+  def full_name_last_comma_first_middle
+    (self.name_last + ', ' + self.name_first + ' ' + self.name_middle).strip
+  end
     
 end
