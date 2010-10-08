@@ -11,28 +11,29 @@ Feature: Log in and log out
     Then I should see "Login" within "h1"
     Then I should see "Email" within "label"
     And I should see "Password" within "label"
-    And I should see "Create My Practice" within "a"
-    And I should see "Forgot Password?" within "a"
+    And I should see "Create My Practice" within a selector cell
+    And I should see "Forgot Password?" within a selector cell
     And I should not see "Logout"
-    And I should not see "Login" within "a"
+    And I should not see "Login" within "td.selector_cell_nav"
     
     
   Scenario: When I am logged in and I go to the login page I am redirected to the home page
     Given I am logged in in a "practice user" user role
     When I go to the login page
     Then I should see "Home Page" within "h1"
-    And I should see "Logout" within "a"
+    And I should see "Logout" within a selector cell
     
     
+  @javascript
   Scenario: When I am logged in and I click the logout link I am sent to the login page
     Given I am logged in in a "practice user" user role
-    When I follow "Logout"
+    When I click "Logout" within a selector cell
     Then I should see "Successfully logged out"
     And I should see "Login" within "h1"
     And I should see "Email" within "label"
     And I should see "Password" within "label"
-    And I should not see "Logout" within "a" 
-    
+    And I should not see "Logout" within "td.selector_cell_nav"
+        
   
   # log in scenarios
   

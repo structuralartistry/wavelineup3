@@ -18,5 +18,6 @@ unless $heroku
     gem 'factory_girl_rails'
     gem 'webrat', '>=0.4.3'
     gem 'heroku'
+    gem 'database_cleaner'
   end
 end

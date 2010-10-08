@@ -1,13 +1,14 @@
 Feature: User Management
   Creation of users in the system and associated administrative tasks
 
-
+  @javascript
   Scenario: Add a new user to a practice and activate
     Given I am logged in in a "practice user" user role for the practice "Practice One"
     Given I am on the home page
     
     # get to practice management page
-    When I follow "Practice One"
+    When I click "Practice One" within a selector cell
+    
     Then I should see "Practice One"
     And I should see "Users" within "h1"
     And I should see "practice_user@structuralartistry.com"
@@ -36,18 +37,18 @@ Feature: User Management
     Then I should see "You are already logged in to the system. If you are activating a new user please log out first and try again."
     
     # login as new user
-    When I follow "Logout"
+    When I click "Logout" within a selector cell
     Given I check my email "practice1@structuralartistry.com" and activate my user
     Then I should see "Your account has been activated"
     Then I should see "Home Page" within "h1"
-    And I should see "Logout" within "a"
-    And I should see "practice1@structuralartistry.com" within "a"
+    And I should see "Logout" within a selector cell
+    And I should see "practice1@structuralartistry.com" within a selector cell
     And I should see "Logged in user: practice1@structuralartistry.com" within "p"
     And I should see "Logged in role: practice user" within "p"
     And I should not see "Login"
     
     # can not resubmit activation
-    When I follow "Logout"
+    When I click "Logout" within a selector cell
     Given I check my email "practice1@structuralartistry.com" and activate my user
     Then I should see "This user is already active. You have been logged in to the system."
     
@@ -63,7 +64,7 @@ Feature: User Management
   #   When I try to activate my user with email address "practice@structuralartistry.com"
   #   Then I should see "User failed to be activated. We are sending a new activation link"
      
-    
+  @javascript
   Scenario: An existing user can view and update their profile
     Given I am logged in in a "practice user" user role
     When I go to the user profile page
@@ -80,12 +81,12 @@ Feature: User Management
     When I go to the user profile page
     Then the "user_email" field should contain "sasha@gmail.com"
     
-    
+  @javascript
   Scenario: I can delete a user from my account
     Given I am logged in in a "practice user" user role for the practice "Practice One"
     
     # get to the practice management page
-    When I follow "Practice One"
+    When I click "Practice One" within a selector cell
     
     # destroy the practice user
     When I follow "Destroy" within "tr#practice_user"

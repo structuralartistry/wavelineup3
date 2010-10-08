@@ -1,4 +1,9 @@
 Given /^I am a registered and activated user with the email "([^\"]*)"$/ do |email|
+  
+  Factory.create(:sysadmin_role)
+  Factory.create(:practice_admin_role)
+  Factory.create(:practice_user_role)
+  
   user = Factory.build(:user)
   user.email = email
   user.active = true
@@ -6,6 +11,11 @@ Given /^I am a registered and activated user with the email "([^\"]*)"$/ do |ema
 end
 
 Given /^I am an inactive user with the email "([^\"]*)"$/ do |email|
+  
+  Factory.create(:sysadmin_role)
+  Factory.create(:practice_admin_role)
+  Factory.create(:practice_user_role)
+  
   user = Factory.build(:user)
   user.email = email
   user.active = false
@@ -13,7 +23,7 @@ Given /^I am an inactive user with the email "([^\"]*)"$/ do |email|
 end
 
 Given /^I try to activate a non-existant user$/ do
-  visit(activations_url("gobbldygook"))
+  visit(activations_path("gobbldygook"))
 end
 
 # THESE (commented) go with a test I could not get to work... doing with making the User#perishable_token expire

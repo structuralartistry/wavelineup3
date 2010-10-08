@@ -1,4 +1,8 @@
 Given /^I am logged in in a "([^"]*)" user role$/ do |role|
+  Factory.create(:sysadmin_role)
+  Factory.create(:practice_admin_role)
+  Factory.create(:practice_user_role)
+
   practice = Factory.create(:practice, :name => "Practice One")
 
   user_factory_name = role.gsub(/ /, '_')
@@ -14,6 +18,10 @@ Given /^I am logged in in a "([^"]*)" user role$/ do |role|
 end
 
 Given /^I am logged in in a "([^"]*)" user role for the practice "([^"]*)"$/ do |role, practice_name|
+  Factory.create(:sysadmin_role)
+  Factory.create(:practice_admin_role)
+  Factory.create(:practice_user_role)
+  
   practice = Factory.create(:practice, :name => practice_name)
   
   user_factory_name = role.gsub(/ /, '_')
@@ -35,7 +43,7 @@ end
 
 Given /^I check my email "([^"]*)" and activate my user$/ do |email|
   user = User.find_by_email(email)
-  visit(activations_url(user.perishable_token))
+  visit(activations_path(user.perishable_token))
 end
 
 Given /^I am logged in with the email "([^"]*)"$/ do |email|

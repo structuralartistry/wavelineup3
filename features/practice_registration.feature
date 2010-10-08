@@ -3,14 +3,14 @@ Feature: Practice registration
   When setting up a new account a primary user is set up in the process.
   The new user must activate their user via their email so we are assured to have a good email address for every user.
   
-
+  @javascript
   Scenario: A practitioner can register their practice and create their user in the system
     Given there are no registered practices or users
     Given I am not logged in
     Given I am on the home page
     
     # create the practice
-    When I follow "Create My Practice"
+    When I click "Create My Practice" within a selector cell
     Then I should see "Create Practice" within "h1"
     And I should see "Practice name" within "label"
     And I should see "Create your login"
@@ -30,9 +30,9 @@ Feature: Practice registration
     Given I check my email "practice@structuralartistry.com" and activate my user
     
     # verify success
-    Then I should see "Practice One" within "a"
-    And I should see "practice@structuralartistry.com" within "a"
-    When I follow "Practice One"
+    Then I should see "Practice One" within a selector cell
+    And I should see "practice@structuralartistry.com" within a selector cell
+    When I click "Practice One" within a selector cell
     Then I should see "Manage Practice"
     And I should see "practice@structuralartistry.com" within "td"
     And I should see "practice admin" within "td"

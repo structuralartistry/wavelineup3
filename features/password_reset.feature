@@ -1,6 +1,6 @@
 Feature: Allow user to reset their password
   
-  
+  @javascript
   Scenario: A registered user resets their password
     Given I am a registered and activated user with the email "practice@structuralartistry.com"
     Given I am not logged in
@@ -8,7 +8,7 @@ Feature: Allow user to reset their password
     Then I should see "Forgot Password?"
     
     # retrieve password
-    When I follow "Forgot Password?"
+    When I click "Forgot Password?" within a selector cell
     Then I should see "Reset Password" within "h1"
     Then I should see "Please enter your email and press submit." within "p"
     And I should see "Email" within "label"
@@ -33,7 +33,7 @@ Feature: Allow user to reset their password
     And I should see "Logged in user: practice@structuralartistry.com"
     
     # validate new password is good
-    When I follow "Logout"
+    When I click "Logout" within a selector cell
     Then I fill in "Email" with "practice@structuralartistry.com"
     And I fill in "Password" with "newpassword1"
     When I press "Submit"

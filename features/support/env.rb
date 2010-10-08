@@ -60,12 +60,22 @@ end
 # Dir[File.expand_path(File.join(File.dirname(__FILE__),'..','..',
 #   'spec','factories','*.rb'))].each {|f| require f}
 
-AfterConfiguration do |config|  
+# AfterConfiguration do |config|  
+#   Factory.create(:sysadmin_role)
+#   Factory.create(:practice_admin_role)
+#   Factory.create(:practice_user_role)  
+# end
+
+Before do
   Factory.create(:sysadmin_role)
   Factory.create(:practice_admin_role)
-  Factory.create(:practice_user_role)
+  Factory.create(:practice_user_role)  
 end
 
 $VERBOSE = nil
+
+Capybara.default_wait_time = 5 #When we testing AJAX, we can set a default wait time
+Capybara.javascript_driver = :selenium #default driver when you using @javascript tag
+
 
 

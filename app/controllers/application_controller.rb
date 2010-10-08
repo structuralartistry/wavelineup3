@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
   
     def redirect_to_https
-      if RAILS_ENV=='production'
+      if Rails.env=='production'
         redirect_to 'https://' + request.host_with_port + request.fullpath if request.env['HTTP_X_FORWARDED_PROTO'] != 'https'
       end
     end
