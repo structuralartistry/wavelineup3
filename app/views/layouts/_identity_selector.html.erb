@@ -1,0 +1,78 @@
+<script language='javascript'>
+  selected_practice_member_id = '';
+
+  function navigate_now() {
+    selected_page_name = $('.page_selector.current_selected').html();
+    switch(selected_page_name) {
+      case 'Edit Personal Info': 
+        nav_url = '/practice_members/' + selected_practice_member_id + '/edit';
+        break;
+      case 'Travel Card': 
+        nav_url = '/travel_cards/' + selected_practice_member_id + '/edit';
+        break;
+    }
+    window.location.href=nav_url
+  }
+</script>
+
+<div id="identity_selector" class="selector" style="display: none">
+  <table class="selector_table"> 
+    <tr>
+      <td id='travel_card_page_selector' style="width: 200px;" class="selector_cell selector_cell_text_three_character page_selector current_selected" onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');">Travel Card</td>      
+      <td id='user_edit_page_selector' style="width: 200px;" class="selector_cell selector_cell_text_three_character page_selector" onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');">Edit Personal Info</td>
+    </tr>
+  </table>
+  <table class="selector_table">      
+    <tr>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector current_selected" onMouseDown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list').show();">All</td>
+
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onMouseDown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">0-9</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onMouseDown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">A</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">B</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">C</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">D</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">E</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">F</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">G</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">H</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">I</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">J</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">K</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">L</td>
+    </tr>
+    <tr>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">M</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">N</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">O</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">P</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">Q</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">R</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">S</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">T</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">U</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">V</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">W</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">X</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">Y</td>
+      <td style="width: 0.75in;" class="selector_cell selector_cell_text_three_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.identity_list').hide(); $('.identity_list_group_' + $(this).html()).show();">Z</td>      
+    </tr>
+  </table>
+  <table class="selector_table">
+    <tr>
+      <% counter = 0 %>
+      <% @practice_members_list.each do |practice_member| %>
+        <!-- if counter get to expected number, create a new row so these wrap -->
+        <% if counter >= 5 %>
+          </tr>
+          <tr>
+          <% counter = 0 %>
+        <% end %>
+        <td style="width: 200px;" class="selector_cell selector_cell_text_three_character identity_list identity_list_group_<%= practice_member.name_last.first %>" onmousedown="selected_practice_member_id=<%= practice_member.id %>; navigate_now();"><%= truncate(practice_member.full_name_last_comma_first_middle, :length => 30) %></td>
+        <% counter = counter + 1 %>
+      <% end %> 
+    </tr>
+    <tr>
+      <td style="width: 200px;" class="selector_cell selector_cell_add selector_cell_cancel selector_cell_text_three_character" onMouseDown="$('#identity_selector').hide();">Close</td>
+    </tr>     
+  </table>
+</div>

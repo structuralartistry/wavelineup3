@@ -4,9 +4,12 @@ Given /^I am a registered and activated user with the email "([^\"]*)"$/ do |ema
   Factory.create(:practice_admin_role)
   Factory.create(:practice_user_role)
   
+  practice = Factory.create(:practice_one)
+  
   user = Factory.build(:user)
   user.email = email
   user.active = true
+  user.practice_id = practice.id
   user.save
 end
 
@@ -16,9 +19,12 @@ Given /^I am an inactive user with the email "([^\"]*)"$/ do |email|
   Factory.create(:practice_admin_role)
   Factory.create(:practice_user_role)
   
+  practice = Factory.create(:practice_one)
+  
   user = Factory.build(:user)
   user.email = email
   user.active = false
+  user.practice_id = practice.id
   user.save
 end
 

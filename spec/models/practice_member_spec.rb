@@ -2,6 +2,16 @@ require 'spec_helper'
 
 describe PracticeMember do
   
+  describe "practice member list text" do
+    it "should format in Last Name, First Name Middle Name format" do
+      practice_member = PracticeMember.new
+      practice_member.name_last = "Kahn"
+      practice_member.name_first = "David"
+      practice_member.name_middle = "Nathan"
+      practice_member.full_name_last_comma_first_middle.should match "Kahn, David N"
+    end
+  end
+  
   describe "create new Practice Member" do
     it "should have a Last + First + Middle Name combination which is unique to the practice" do
       practice = Factory.create(:practice_one)
