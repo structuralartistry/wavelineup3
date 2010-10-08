@@ -36,7 +36,7 @@ class PracticeMember < ActiveRecord::Base
   end
   
   def full_name_last_comma_first_middle
-    self.name_last + ', ' + self.name_first + ' ' + self.name_middle
+    (self.name_last + ', ' + self.name_first + ' ' + self.name_middle).strip
   end
     
 end

@@ -8,7 +8,15 @@ describe PracticeMember do
       practice_member.name_last = "Kahn"
       practice_member.name_first = "David"
       practice_member.name_middle = "Nathan"
-      practice_member.full_name_last_comma_first_middle.should match "Kahn, David N"
+      practice_member.full_name_last_comma_first_middle.should == "Kahn, David Nathan"
+    end
+    
+    it "should strip empty characters from start and end" do
+      practice_member = PracticeMember.new
+      practice_member.name_last = "Kahn"
+      practice_member.name_first = "David"
+      practice_member.name_middle = ""
+      practice_member.full_name_last_comma_first_middle.should == "Kahn, David"      
     end
   end
   
