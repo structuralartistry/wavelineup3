@@ -11,7 +11,7 @@ class Capybara::XPath
   end
 end
 
-When 'I click "$text" within a selector cell' do |text|
+When /^I click "([^\"]*)" within a selector cell$/ do |text|
   msg = "No selector_cell found with the content of ''#{text}'"  
   locate(:xpath, Capybara::XPath.wavelineup_selector_cell(text)).click
 
@@ -20,7 +20,7 @@ When 'I click "$text" within a selector cell' do |text|
   # find(:wavelineup_selector_cell, text).click
 end
 
-Then 'I should see "$text" within a selector cell' do |text|
+Then /^I should see "([^\"]*)" within a selector cell$/ do |text|
   msg = "No selector_cell found with the content of ''#{text}'"  
   assert locate(:xpath, Capybara::XPath.wavelineup_selector_cell(text)).visible?
  
@@ -28,7 +28,13 @@ Then 'I should see "$text" within a selector cell' do |text|
   # assert find(:wavelineup_selector_cell, text)
 end
 
-Then 'I should not see "$text" within a selector cell' do |text|
-  msg = "No selector_cell found with the content of ''#{text}'"  
-  assert !locate(:xpath, Capybara::XPath.wavelineup_selector_cell(text)).visible?
+Then /^I should not see "([^\"]*)" within a selector cell$/ do |text|
+  msg = "No selector_cell found with the content of ''#{text}'" 
+  element_found = nil
+  begin
+    # this fails fatally if element does not exist
+    element_found = locate(:xpath, Capybara::XPath.wavelineup_selector_cell(text))
+  rescue
+  end
+  assert !element_found || !element_found.visible?  # should either not be found at all, or if found it should not be visible
 end

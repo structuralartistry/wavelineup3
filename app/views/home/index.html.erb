@@ -7,6 +7,4 @@
 
 <% if current_user.role.name == 'practice admin' || current_user.role.name == 'practice user' %>
   <%= render :partial => 'practice_members/new' %>
-  
-  <%= render :partial => 'practice_members/index' %>
 <% end %>

@@ -61,9 +61,8 @@ Feature: Show Home Page
     And I should see "Last Name" within "label"
     And I should see "Middle Name" within "label"
     
-    # should see practice member list
-    And I should see "Practice Members" within "h1"
-  
+    # should not see find button as no practice members
+    And I should not see "Find" within a selector cell  
   
   Scenario: Home page when logged in in the "practice user" role
     Given I am logged in in a "practice user" user role
@@ -82,5 +81,5 @@ Feature: Show Home Page
     And I should see "Last Name" within "label"
     And I should see "Middle Name" within "label"
     
-    # should see practice member list
-    And I should see "Practice Members" within "h1"
+    # should not see find button as no practice members
+    And I should not see "Find" within a selector cell

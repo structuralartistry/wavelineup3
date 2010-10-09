@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  $('a').button();
-  $('a').removeClass('ui-corner-all') // take off the rounded corners
+  // $('a').button();
+  // $('a').removeClass('ui-corner-all') // take off the rounded corners
 
 
   // for touchscreens - highlight on mouse down
