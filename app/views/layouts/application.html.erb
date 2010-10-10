@@ -57,6 +57,11 @@
   		  <% end %>
       </td>
       <td style="width: 100%;">
+        
+        <% if @new_practice_member %>
+          <%= render :partial => 'practice_members/new' %>
+        <% end %>
+        
         <% if @practice_members_list %>
           <%= render :partial => "layouts/identity_selector" %>
    	    <% end %>

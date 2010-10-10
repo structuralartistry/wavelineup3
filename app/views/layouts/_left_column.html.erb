@@ -2,9 +2,14 @@
       <tr><td>&nbsp;</td></tr>
 </table>
 
+<% if @new_practice_member %>
+  <table class="selector_table" width="150px">
+        <tr><td id="new_practice_member_show" class="bold selector_cell selector_cell_add" onclick="$('#identity_selector_show').removeClass('current_selected'); $('#identity_selector').hide(); $(this).toggleClass('current_selected'); $('#new_practice_member').toggle();">New Practice Member</td></tr>
+  </table>
+<% end %>
 
 <% if @practice_members_list %>
-<table class="selector_table" width="150px">
-      <tr><td class="bold selector_cell selector_cell_add" onclick="$('#identity_selector').show();">Find</td></tr>
-</table>
+  <table class="selector_table" width="150px">
+        <tr><td id="identity_selector_show" class="bold selector_cell selector_cell_add" onclick="$('#new_practice_member_show').removeClass('current_selected'); $('#new_practice_member').hide(); $(this).toggleClass('current_selected'); $('#identity_selector').toggle();">Find</td></tr>
+  </table>
 <% end %>

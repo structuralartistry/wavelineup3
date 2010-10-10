@@ -1,10 +1,5 @@
 <h1>Home Page</h1>
 
-<% if current_user %>
-  <p>Logged in user: <%= current_user.email %></p>
-  <p>Logged in role: <%= current_user.role.name %></p>
-<% end %>
-
 <% if current_user.role.name == 'practice admin' || current_user.role.name == 'practice user' %>
   <%= render :partial => 'practice_members/new' %>
 <% end %>

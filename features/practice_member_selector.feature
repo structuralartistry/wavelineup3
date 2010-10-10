@@ -10,7 +10,6 @@ Feature: Practice Member Selector
     Then I should not see "Edit Personal Info" within a selector cell
     Then I should not see "Kahn, David N" within a selector cell
     Then I should not see "Apple, John" within a selector cell
-    Then I should not see "Close" within a selector cell
     
   @javascript
   Scenario: The Practice Member Selector shows when I click find and closes when I click close
@@ -19,13 +18,11 @@ Feature: Practice Member Selector
     Then I should see "Edit Personal Info" within a selector cell
     Then I should see "Kahn, David N" within a selector cell
     Then I should see "Apple, John" within a selector cell
-    Then I should see "Close" within a selector cell
-    When I click "Close" within a selector cell
+    When I click "Find" within a selector cell
     Then I should not see "Travel Card" within a selector cell
     Then I should not see "Edit Personal Info" within a selector cell
     Then I should not see "Kahn, David N" within a selector cell
     Then I should not see "Apple, John" within a selector cell
-    Then I should not see "Close" within a selector cell
     
   @javascript
   Scenario: I can use the Practice Member Selector to select a practice member and edit their personal information

@@ -15,6 +15,7 @@ user.email = 'sysadmin@structuralartistry.com'
 user.password = 'password1'
 user.password_confirmation = 'password1'
 user.role_id = Role.find_by_name('sysadmin').id
+user.active = true
 user.save
 
 puts ""

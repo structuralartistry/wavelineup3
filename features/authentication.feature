@@ -44,7 +44,7 @@ Feature: Log in and log out
       When I fill in "user_session_email" with "practice@structuralartistry.com"
       And I fill in "user_session_password" with "password1"
       When I press "Submit"
-      Then I should see "Logged in user: practice@structuralartistry.com" within "p"
+      Then I should see "practice@structuralartistry.com" within a selector cell
   
   
     Scenario: Authentication fails when no login info

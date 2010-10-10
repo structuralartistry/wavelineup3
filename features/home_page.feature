@@ -13,8 +13,6 @@ Feature: Show Home Page
     And I should not see "Home" within "td.selector_cell_nav"
     And I should not see "Login" within "td.selector_cell_nav"
     And I should not see "Logout"
-    And I should not see "Logged in user:"
-    And I should not see "Logged in role:"
     
     # should not see form to create a new practice member
     And I should not see "Create new Practice Member"
@@ -33,12 +31,10 @@ Feature: Show Home Page
     And I should see "Home" within a selector cell
     And I should see "Logout" within a selector cell
     And I should see "sysadmin_user@structuralartistry.com" within a selector cell
-    And I should see "Logged in user: sysadmin_user@structuralartistry.com" within "p"
-    And I should see "Logged in role: sysadmin" within "p"
+    And I should see "sysadmin_user@structuralartistry.com" within a selector cell
     And I should not see "Login"
     
-    # should not see form to create a new practice member
-    And I should not see "Create new Practice Member"
+    And I should not see "New Practice Member" within a selector cell
     
     # should not see practice member list
     And I should not see "Practice Members"
@@ -51,15 +47,10 @@ Feature: Show Home Page
     And I should see "Home" within a selector cell
     And I should see "Logout" within a selector cell
     And I should see "practice_admin_user@structuralartistry.com" within a selector cell
-    And I should see "Logged in user: practice_admin_user@structuralartistry.com" within "p"
-    And I should see "Logged in role: practice admin" within "p"
+    And I should see "practice_admin_user@structuralartistry.com" within a selector cell
     And I should not see "Login"
     
-    # should not see form to create a new practice member
-    And I should see "New Practice Member" within "h1"
-    And I should see "First Name" within "label"
-    And I should see "Last Name" within "label"
-    And I should see "Middle Name" within "label"
+    And I should see "New Practice Member" within a selector cell
     
     # should not see find button as no practice members
     And I should not see "Find" within a selector cell  
@@ -71,15 +62,10 @@ Feature: Show Home Page
     And I should see "Home" within a selector cell
     And I should see "Logout" within a selector cell
     And I should see "practice_user@structuralartistry.com" within a selector cell
-    And I should see "Logged in user: practice_user@structuralartistry.com" within "p"
-    And I should see "Logged in role: practice user" within "p"
+    And I should see "practice_user@structuralartistry.com" within a selector cell
     And I should not see "Login"
     
-    # should see form to create a new practice member
-    And I should see "New Practice Member" within "h1"
-    And I should see "First Name" within "label"
-    And I should see "Last Name" within "label"
-    And I should see "Middle Name" within "label"
+    And I should see "New Practice Member" within a selector cell
     
     # should not see find button as no practice members
     And I should not see "Find" within a selector cell

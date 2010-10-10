@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
   
-  before_filter :redirect_to_https, :authorize, :set_practice_members_list
+  before_filter :redirect_to_https, :authorize, :set_practice_members_list, :set_new_practice_member
     
   private
   
@@ -27,6 +27,12 @@ class ApplicationController < ActionController::Base
         else
           redirect_to login_path
         end
+      end
+    end
+    
+    def set_new_practice_member
+      if current_user && current_user.role.name != 'sysadmin'
+        @new_practice_member = PracticeMember.new
       end
     end
     

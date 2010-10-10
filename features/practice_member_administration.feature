@@ -4,12 +4,21 @@ Feature: Practice member administration
     Given I am logged in in a "practice admin" user role for the practice "Hello Kitty Practice"
 
   @javascript
+  Scenario: As a practice user I can open and close the New Practice Member section
+    Given I am on the home page
+    When I click "New Practice Member" within a selector cell
+    Then I should see "New Practice Member" within "th"
+    When I click "New Practice Member" within a selector cell
+    Then I should not see "New Practice Member" within "th" visibly on the page
+
+  @javascript
   Scenario: As a practice user I want to add a new Practice Member to the system
     Given I am on the home page
+    When I click "New Practice Member" within a selector cell
     When I fill in "practice_member_name_last" with "Kahn" within "form#new_practice_member"
     And I fill in "practice_member_name_first" with "David" within "form#new_practice_member"
     And I fill in "practice_member_name_middle" with "N" within "form#new_practice_member"
-    And I press "Submit"
+    And I press "Submit" within "form#new_practice_member"
     Then I should see "Practice Member successfully created"
     When I click "Find" within a selector cell
     Then I should see "Kahn, David N" within a selector cell
@@ -22,9 +31,9 @@ Feature: Practice member administration
     When I click "Edit Personal Info" within a selector cell
     When I click "Kahn, David N" within a selector cell
     Then I should see "Edit Practice Member" within "h1"
-    When I fill in "practice_member_name_first" with "Michael"
-    And I fill in "practice_member_name_middle" with "Louis"
-    And I press "Submit"
+    When I fill in "practice_member_name_first" with "Michael" within the edit "PracticeMember" form for "Kahn, David N"
+    When I fill in "practice_member_name_middle" with "Louis" within the edit "PracticeMember" form for "Kahn, David N"
+  When I press "Submit" within the edit "PracticeMember" form for "Kahn, David N"
     Then I should see "Practice Member successfully updated"
     When I click "Find" within a selector cell
     Then I should see "Kahn, Michael Louis" within a selector cell

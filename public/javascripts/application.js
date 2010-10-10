@@ -1,4 +1,7 @@
 $(document).ready(function() {
+  
+  $('.hidden').hide();
+  
   // $('a').button();
   // $('a').removeClass('ui-corner-all') // take off the rounded corners
 

@@ -30,21 +30,21 @@ Feature: Allow user to reset their password
     # confirmation
     Then I should see "Password successfully updated"
     And I should see "Home Page"
-    And I should see "Logged in user: practice@structuralartistry.com"
+    And I should see "practice@structuralartistry.com" within a selector cell
     
     # validate new password is good
     When I click "Logout" within a selector cell
     Then I fill in "Email" with "practice@structuralartistry.com"
     And I fill in "Password" with "newpassword1"
     When I press "Submit"
-    Then I should see "Logged in user: practice@structuralartistry.com"
+    Then I should see "practice@structuralartistry.com"
 
     
   Scenario: Password reset is attempted on a non-registered email
     Given there are no registered practices or users
     When I go to the reset password page
     And I fill in "user_email" with "practice@structuralartistry.com"
-    And I press "Submit"
+    And I press "Submit" within "form#new_user"
     Then I should see "No user was found with that email address"
     
     

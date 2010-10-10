@@ -15,10 +15,9 @@
   }
 </script>
 
-<div id="identity_selector" class="selector" style="display: none">
+<div id="identity_selector" class="selector hidden">
   <table class="selector_table"> 
     <tr>
-      <td style="width: 200px;" class="selector_cell selector_cell_add selector_cell_cancel selector_cell_text_three_character" onMouseDown="$('#identity_selector').hide();">Close</td>
       <td id='travel_card_page_selector' style="width: 200px;" class="selector_cell selector_cell_text_three_character page_selector current_selected" onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');">Travel Card</td>      
       <td id='user_edit_page_selector' style="width: 200px;" class="selector_cell selector_cell_text_three_character page_selector" onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');">Edit Personal Info</td>
     </tr>

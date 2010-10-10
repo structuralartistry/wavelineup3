@@ -22,7 +22,7 @@ Feature: User Management
     When I fill in "user_email" with "practice1@structuralartistry.com"
     And I fill in "user_password" with "password1"
     And I fill in "user_password_confirmation" with "password1"
-    When I press "Submit"
+    When I press "Submit" within "form#new_user"
     
     # verify added
     Then I should see "Practice One"
@@ -43,8 +43,7 @@ Feature: User Management
     Then I should see "Home Page" within "h1"
     And I should see "Logout" within a selector cell
     And I should see "practice1@structuralartistry.com" within a selector cell
-    And I should see "Logged in user: practice1@structuralartistry.com" within "p"
-    And I should see "Logged in role: practice user" within "p"
+    And I should see "practice1@structuralartistry.com" within a selector cell
     And I should not see "Login"
     
     # can not resubmit activation
@@ -72,8 +71,8 @@ Feature: User Management
     Then I should see "Password" within "label"
     Then I should see "Password confirmation" within "label"
     And the "user_email" field should contain "practice_user@structuralartistry.com"
-    When I fill in "user_email" with "sasha@gmail.com"
-    When I press "Submit"
+    When I fill in "user_email" with "sasha@gmail.com"    
+    When I press "Submit" within the edit "User" form for "practice_user@structuralartistry.com"
     
     # verify
     Then I should see "User profile successfully updated"
@@ -98,7 +97,7 @@ Feature: User Management
     And I fill in "user_email" with "practice1@structuralartistry.com"
     And I fill in "user_password" with "password1"
     And I fill in "user_password_confirmation" with "password1"
-    And I press "Submit"
+    And I press "Submit" within "form#new_user"
     Then I should see "User was successfully created. Please check email for practice1@structuralartistry.com for the activation link."
     
     # verify can destroy the newly created user
