@@ -6,82 +6,63 @@
   
   <%= javascript_include_tag 'jquery-1.4.2.min' %>
   <%= javascript_include_tag 'jquery-ui-1.8.5.custom.min' %>
+  <%= javascript_include_tag 'ajax' %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag 'rails' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
-<div id='container'>
-
-	
-	
-	
-	
-	
-	
-	
-	
-	<table>
-    <tr>
-      <td colspan="2">
-        <table width="100%" class="nav_table">
-          <tr>
-            <td class='wavelineup'><span class='wavelineup'>&nbsp;WaveLineup&nbsp;</span></td> 
-            <% if current_user %>
-              <td class='selector_cell_nav' onmousedown='location.href="<%= home_url %>"'>Home</td>
-              <% if current_user.practice %>
-                <td class='selector_cell_nav' onmousedown='location.href="<%= edit_practice_url(current_user.practice.id) %>"'><%= current_user.practice.name %></td>
+  <div id='container'>
+  	<table>
+      <tr>
+        <td colspan="2">
+          <table width="100%" class="nav_table">
+            <tr>
+              <td class='wavelineup'><span class='wavelineup'>&nbsp;WaveLineup&nbsp;</span></td> 
+              <% if current_user %>
+                <td class='selector_cell_nav' onmousedown='location.href="<%= home_url %>"'>Home</td>
+                <% if current_user.practice %>
+                  <td class='selector_cell_nav' onmousedown='location.href="<%= edit_practice_url(current_user.practice.id) %>"'><%= current_user.practice.name %></td>
+                <% end %>
+                <td class='selector_cell_nav' onmousedown='location.href="<%= edit_user_url(:current) %>"'><%= current_user.email %></td>
+                <td class='selector_cell_nav' onmousedown='location.href="<%= logout_url %>"'>Logout</td>
+              <% else %>
+                <% if !(controller_name=='practices' && action_name=='new') %>
+                  <td class='selector_cell_nav' onmousedown='location.href="<%= new_practice_url %>"'>Create My Practice</td>
+                <% end %>
+                <% if controller_name != 'user_sessions' && action_name != 'new' %> 
+                  |
+                  <td class='selector_cell_nav' onmousedown='location.href="<%= login_url %>"'>Login</td>
+                <% end %>
               <% end %>
-              <td class='selector_cell_nav' onmousedown='location.href="<%= edit_user_url(:current) %>"'><%= current_user.email %></td>
-              <td class='selector_cell_nav' onmousedown='location.href="<%= logout_url %>"'>Logout</td>
-            <% else %>
-              <% if !(controller_name=='practices' && action_name=='new') %>
-                <td class='selector_cell_nav' onmousedown='location.href="<%= new_practice_url %>"'>Create My Practice</td>
-              <% end %>
-              <% if controller_name != 'user_sessions' && action_name != 'new' %> 
-                |
-                <td class='selector_cell_nav' onmousedown='location.href="<%= login_url %>"'>Login</td>
-              <% end %>
-            <% end %>
-      	  </tr>
-      	  <tr>
-      	    <td style="height: 5px;" colspan="13" class="header_bottom"></td>
-      	  </tr>
-      	</table>
-    	</td>
-    </tr>
-    <tr valign="top">
-      <td valign="top" style="width: 15px;">
-        <% if current_user %>
-  		    <%= render :partial => "layouts/left_column" %>
-  		  <% end %>
-      </td>
-      <td style="width: 100%;">
-        
-        <% if @new_practice_member %>
-          <%= render :partial => 'practice_members/new' %>
-        <% end %>
-        
-        <% if @practice_members_list %>
-          <%= render :partial => "layouts/identity_selector" %>
-   	    <% end %>
-   	    <div id="notices">
-   	      <p style="color: green"><%= flash[:notice] %></p>
-   	    </div>
-   	    <div id="main_frame">
-          <%= yield %>
-        </div>
-      </td>
-    </tr>
-  </table>
-	
-	
-	
-	
-	
-	
-	
-</div>
-
+        	  </tr>
+        	  <tr>
+        	    <td style="height: 5px;" colspan="13" class="header_bottom"></td>
+        	  </tr>
+        	</table>
+      	</td>
+      </tr>
+      <tr valign="top">
+        <td valign="top" style="width: 15px;">
+          <% if current_user %>
+    		    <%= render :partial => "layouts/left_column" %>
+    		  <% end %>
+        </td>
+        <td style="width: 100%;">        
+          <div id="new_practice_member" class="selector hidden">
+          </div>
+          <div id="identity_selector" class="selector hidden">
+            <%= render :partial => "layouts/identity_selector" %>
+     	    </div>
+     	    <div id="notices">
+     	      <p id="flash_notice" style="color: green"><%= flash[:notice] %></p>
+     	    </div>
+     	    <div id="main_frame">
+            <%= yield %>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
 </body>
 </html>

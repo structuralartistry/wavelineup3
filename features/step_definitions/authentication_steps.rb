@@ -1,14 +1,8 @@
-Given /^I am logged in in a "([^"]*)" user role$/ do |role|
+# sysadmin gets own step as only sysadmin should not have a practice... all other 'role' based login steps should define a practice name
+Given /^I am logged in in a "sysadmin" user role$/ do
   Factory.create(:sysadmin_role)
-  Factory.create(:practice_admin_role)
-  Factory.create(:practice_user_role)
 
-  practice = Factory.create(:practice, :name => "Practice One")
-
-  user_factory_name = role.gsub(/ /, '_')
-  user_factory_name += '_user' if user_factory_name == "sysadmin"
-  user_factory_name += '_user' if user_factory_name == "practice_admin"
-  user = Factory.create( user_factory_name.to_sym, :email => user_factory_name + "@structuralartistry.com", :practice_id => practice.id )
+  user = Factory.create( :sysadmin_user, :email => "sysadmin_user@structuralartistry.com" )
 
   visit('/login')
   fill_in('Email', :with => user.email)
@@ -18,14 +12,13 @@ Given /^I am logged in in a "([^"]*)" user role$/ do |role|
 end
 
 Given /^I am logged in in a "([^"]*)" user role for the practice "([^"]*)"$/ do |role, practice_name|
-  Factory.create(:sysadmin_role)
   Factory.create(:practice_admin_role)
   Factory.create(:practice_user_role)
   
-  practice = Factory.create(:practice, :name => practice_name)
+  practice = Practice.find_by_name(practice_name)
+  practice = Factory.create(:practice, :name => practice_name) if !practice
   
   user_factory_name = role.gsub(/ /, '_')
-  user_factory_name += '_user' if user_factory_name == "sysadmin"
   user_factory_name += '_user' if user_factory_name == "practice_admin"
   user = Factory.create( user_factory_name.to_sym, :email => user_factory_name + "@structuralartistry.com", :practice_id => practice.id )
 

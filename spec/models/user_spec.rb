@@ -223,4 +223,21 @@ describe User do
     
   end
 
+  describe "ability to create a practice member" do
+    it "can not create a practice member if in sysadmin role" do
+      user = Factory.create(:sysadmin_user)
+      user.can_create_a_practice_member?.should == false
+    end
+    
+    it "can create a practice member if in practice admin role" do
+      user = Factory.create(:practice_admin_user)
+      user.can_create_a_practice_member?.should == true
+    end
+    
+    it "can create a practice member if is in the practice user role" do
+      user = Factory.create(:practice_user)
+      user.can_create_a_practice_member?.should == true
+    end
+  end
+
 end

@@ -1,15 +1,67 @@
-<table width="150px">
-      <tr><td>&nbsp;</td></tr>
+<script language='javascript'>
+$(document).ready(function() {
+  // determine if each button should be visible
+  
+  <% if current_user.practice && current_user.practice.practice_members.size > 0 %>
+    identity_selector_available = true;
+  <% end %>
+  
+  <% if current_user.can_create_a_practice_member? %>
+    new_practice_member_form_available = true;
+  <% end %>
+  
+  set_left_column_buttons();
+});
+
+var identity_selector_available;
+var new_practice_member_form_available;
+
+function set_left_column_buttons() {
+  if(new_practice_member_form_available) {
+    $('#new_practice_member_show_selector_cell').show();
+  }
+  if(identity_selector_available) {
+    $('#identity_selector_show_selector_cell').show();
+  }
+  
+  if($('#new_practice_member').is(':visible')) {
+    $('#new_practice_member_show_selector_cell').addClass('current_selected');
+  }
+  else {
+    $('#new_practice_member_show_selector_cell').removeClass('current_selected');
+  }
+  
+  if($('#identity_selector').is(':visible')) {
+    $('#identity_selector_show_selector_cell').addClass('current_selected');
+  }
+  else {
+    $('#identity_selector_show_selector_cell').removeClass('current_selected');
+  }
+}
+
+function load_new_practice_member_form() {
+  // if form already showing dont need to load, just need to toggle off
+  if(!$('#new_practice_member_show_selector_cell').hasClass('current_selected')) {
+    _ajax_request(
+      '/practice_members/new', 
+      null, 
+      null, 
+      null, 
+      'GET');
+  }
+  else {
+    set_new_practice_member();
+  }
+}
+function set_new_practice_member() {
+  $('#identity_selector').hide(); 
+  $('#new_practice_member').toggle();
+  set_left_column_buttons();
+}
+</script>
+
+<table class="selector_table" width="150px">
+  <tr><td id="new_practice_member_show_selector_cell" class="bold selector_cell selector_cell_add hidden" onclick="load_new_practice_member_form();">New Practice Member</td></tr>
+  <tr><td id="identity_selector_show_selector_cell" class="bold selector_cell selector_cell_add hidden" onclick="$('#new_practice_member_show_selector_cell').removeClass('current_selected'); $('#new_practice_member').hide(); $(this).toggleClass('current_selected'); $('#identity_selector').toggle();">Find</td></tr>
 </table>
 
-<% if @new_practice_member %>
-  <table class="selector_table" width="150px">
-        <tr><td id="new_practice_member_show" class="bold selector_cell selector_cell_add" onclick="$('#identity_selector_show').removeClass('current_selected'); $('#identity_selector').hide(); $(this).toggleClass('current_selected'); $('#new_practice_member').toggle();">New Practice Member</td></tr>
-  </table>
-<% end %>
-
-<% if @practice_members_list %>
-  <table class="selector_table" width="150px">
-        <tr><td id="identity_selector_show" class="bold selector_cell selector_cell_add" onclick="$('#new_practice_member_show').removeClass('current_selected'); $('#new_practice_member').hide(); $(this).toggleClass('current_selected'); $('#identity_selector').toggle();">Find</td></tr>
-  </table>
-<% end %>

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
   
-  before_filter :redirect_to_https, :authorize, :set_practice_members_list, :set_new_practice_member
+  before_filter :redirect_to_https, :authorize
     
   private
   
@@ -29,21 +29,7 @@ class ApplicationController < ActionController::Base
         end
       end
     end
-    
-    def set_new_practice_member
-      if current_user && current_user.role.name != 'sysadmin'
-        @new_practice_member = PracticeMember.new
-      end
-    end
-    
-    def set_practice_members_list
-      if current_user && current_user.role.name != 'sysadmin'
-        @practice_members_list = PracticeMember.where("practice_id=#{current_user.practice_id}").order("name_last").all
-      end
-      @practice_members_list = nil if !@practice_members_list || @practice_members_list.size == 0
-      @practice_members_list
-    end
-  
+      
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
       @current_user_session = UserSession.find

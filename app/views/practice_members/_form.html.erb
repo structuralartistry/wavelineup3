@@ -27,7 +27,7 @@
     <%= f.submit 'Submit', :class => 'selector_cell_save' %>
   </div>
 <% end %>
-<!-- this has to be outside the form else the submit action picks up the delete method -->
+<!-- this has to be outside the form else the submit action picks up the delete method -- >
 <% if action_name=='edit' %>
   <%= button_to 'Delete', @practice_member, :confirm => "Are you sure?", :method => :delete, :class => 'selector_cell_delete' %>
 <% end %>

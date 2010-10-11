@@ -49,6 +49,6 @@ Feature: Allow user to reset their password
     
     
   Scenario: Logged in user tries to reset their password
-    Given I am logged in in a "practice user" user role
+    Given I am logged in in a "practice user" user role for the practice "Demo Practice"
     When I go to the reset password page
     Then I should see "Can't reset your password: you are already logged in to the system"

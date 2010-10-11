@@ -65,7 +65,7 @@ Feature: User Management
      
   @javascript
   Scenario: An existing user can view and update their profile
-    Given I am logged in in a "practice user" user role
+    Given I am logged in in a "practice user" user role for the practice "Demo Practice"
     When I go to the user profile page
     Then I should see "Email" within "label"
     Then I should see "Password" within "label"

@@ -32,47 +32,53 @@ When /^I press "([^"]*)" within the edit "([^"]*)" form for "([^"]*)"$/ do |butt
   When "I press \"#{button}\" within \"form##{edit_form_name}\""
 end
 
+# moved here from web_steps.rb as in original if the 'within' element is not present the test fails
+# and in my opinion it is fine if the wrapper does not exist
+Then /^(?:|I )should not see "([^\"]*)"(?: within "([^\"]*)")?$/ do |text, selector|
+  begin
+    with_scope(selector) do
+      if page.respond_to? :should
+        page.should have_no_content(text)
+      else
+        assert page.has_no_content?(text)
+      end
+    end
+  rescue
+      assert true # containing element not found so all is good
+  end
+end
 
 
+When /^I click "([^\"]*)" within a selector cell$/ do |text|
+  msg = "No selector_cell found with the content of '#{text}'"  
+  page.find(:xpath,"//*[( contains(concat(' ',normalize-space(@class),' '),' selector_cell ') or contains(concat(' ',normalize-space(@class),' '),' selector_cell_nav ') ) and text()='#{(text)}']", :visible => true).click
+  
+end
+
+Then /^I should see "([^\"]*)" within a selector cell$/ do |text|
+  msg = "No selector_cell found with the content of '#{text}'"  
+  page.find(:xpath,"//*[( contains(concat(' ',normalize-space(@class),' '),' selector_cell ') or contains(concat(' ',normalize-space(@class),' '),' selector_cell_nav ') ) and text()='#{(text)}']", :visible => true)
+end
+
+Then /^I should not see "([^\"]*)" within a selector cell$/ do |text|
+  msg = "No selector_cell found with the content of '#{text}'" 
+  element_found = nil
+  begin
+    # this fails fatally if element does not exist
+    element_found = page.find(:xpath,"//*[( contains(concat(' ',normalize-space(@class),' '),' selector_cell ') or contains(concat(' ',normalize-space(@class),' '),' selector_cell_nav ') ) and text()='#{(text)}']", :visible => false)
+  rescue
+  end
+  
+  # element could be found but not visible - we only care about visible elements
+  if element_found
+    assert !element_found.visible?
+  else
+    assert !element_found
+  end
+end
 
 
-# class Capybara::XPath
-#   class << self
-#     def element(element, text)
-#       append("//#{element}[text()=#{s(text)}]")
-#     end
-#   end
-# end
-# Then /^I should not see "([^"]*)" within "([^"]*)" visibly on the page$/ do |text, selector|
-#   msg = "No element #{selector} found with the content of '#{text}'" 
-#   element_found = nil
-#   begin
-#     # this fails fatally if element does not exist
-#     element_found = locate(:xpath, Capybara::XPath.element(selector, text))
-#   rescue
-#   end
-#   assert !element_found || !element_found.visible?  # should either not be found at all, or if found it should not be visible
-# end
-# 
-# 
-# 
-# class Capybara::XPath
-#   class << self
-#     def edit_form_element(element, text)
-#       append("//#{element}[text()=#{s(text)}]")
-#     end
-#   end
-# end
-# When /^(?:|I )fill in "([^\"]*)" with "([^\"]*)"(?: within "([^\"]*)")?$/ do |field, value, selector|
-#   with_scope(selector) do
-#     fill_in(field, :with => value)
-#   end
-# end
-# 
-# 
-# 
-# 
-# 
-# Then /tell the page to accept the confirm dialog which is coming/ do
-#   page.evaluate_script('window.confirm = function() { return true; }')
-# end
+# this allows us to tell capybara/selenium to speed through js confirm alerts
+  Then /tell the page to accept the confirm dialog which is coming/ do
+    page.evaluate_script('window.confirm = function() { return true; }')
+  end

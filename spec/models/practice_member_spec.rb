@@ -30,7 +30,7 @@ describe PracticeMember do
       practice_member = Factory.build(:practice_member, :practice_id => practice.id)
       assert !practice_member.save
       practice_member.errors.count.should == 1
-      practice_member.errors[:practice_member_name].should == ["This Practice Member name already exists in your Practice. Please modify it to be different if you want to save it."]
+      practice_member.errors[:practice_member_name].should == ["Practice member name already exists in your Practice"]
     end
     
     it "should have a practice id assigned" do

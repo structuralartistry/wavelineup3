@@ -1,5 +1,13 @@
 $(document).ready(function() {
   
+  initialize_page();
+  
+});
+
+
+function initialize_page() {
+  ajax_links_and_forms();
+  
   $('.hidden').hide();
   
   // $('a').button();
@@ -18,7 +26,4 @@ $(document).ready(function() {
   $('.selector_cell, .selector_cell_add, .selector_cell_delete, .selector_cell_save, .selector_cell_cancel, .selector_cell_nav').mouseout(function() {
     $(this).removeClass("item_highlight");
   });
-  
-
-
-});
+}

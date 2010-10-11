@@ -4,7 +4,7 @@ class PracticeMembersController < ApplicationController
     @practice_member = PracticeMember.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.js {render 'new'}
     end
   end
 
@@ -19,9 +19,9 @@ class PracticeMembersController < ApplicationController
     respond_to do |format|
       if @practice_member.save
         flash[:notice] = 'Practice Member successfully created'
-        format.html { redirect_to home_path }
+        format.js {render 'success'}
       else
-        format.html { render :action => "new" }
+        format.js {render 'new'}
       end
     end
   end

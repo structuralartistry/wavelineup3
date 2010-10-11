@@ -46,6 +46,13 @@ class User < ActiveRecord::Base
     SystemMailer.password_reset_instructions(self).deliver  
   end
   
+  def can_create_a_practice_member?
+    if self.role.name == 'practice admin' || self.role.name == 'practice user' then
+      return true
+    end
+    false
+  end
+  
   
   def authorize(controller_name, action_name)
     if self.role

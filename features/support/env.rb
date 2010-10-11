@@ -76,6 +76,7 @@ $VERBOSE = nil
 
 Capybara.default_wait_time = 5 #When we testing AJAX, we can set a default wait time
 Capybara.javascript_driver = :selenium #default driver when you using @javascript tag
+Capybara.ignore_hidden_elements = true 
 
 
 

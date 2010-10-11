@@ -1,0 +1,7 @@
+$('#new_practice_member').html("<%= escape_javascript(render 'new') %>");
+initialize_page();
+<% if @practice_member.errors.empty? %>
+  set_new_practice_member();
+<% else %>
+  $('#new_practice_member').toggle();
+<% end %>

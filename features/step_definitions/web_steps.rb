@@ -125,15 +125,16 @@ Then /^(?:|I )should see \/([^\/]*)\/(?: within "([^\"]*)")?$/ do |regexp, selec
   end
 end
 
-Then /^(?:|I )should not see "([^\"]*)"(?: within "([^\"]*)")?$/ do |text, selector|
-  with_scope(selector) do
-    if page.respond_to? :should
-      page.should have_no_content(text)
-    else
-      assert page.has_no_content?(text)
-    end
-  end
-end
+# modifying in web steps extended as this fails when the element (scope) does not exist
+# Then /^(?:|I )should not see "([^\"]*)"(?: within "([^\"]*)")?$/ do |text, selector|
+#   with_scope(selector) do
+#     if page.respond_to? :should
+#       page.should have_no_content(text)
+#     else
+#       assert page.has_no_content?(text)
+#     end
+#   end
+# end
 
 Then /^(?:|I )should not see \/([^\/]*)\/(?: within "([^\"]*)")?$/ do |regexp, selector|
   regexp = Regexp.new(regexp)

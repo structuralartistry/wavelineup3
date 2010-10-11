@@ -1,5 +1,1 @@
 <h1>Home Page</h1>
-
-<% if current_user.role.name == 'practice admin' || current_user.role.name == 'practice user' %>
-  <%= render :partial => 'practice_members/new' %>
-<% end %>
