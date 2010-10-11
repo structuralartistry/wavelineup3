@@ -1,0 +1,273 @@
+<div id="travel_card">
+<table>
+  <tr>
+    <td>          
+      <% form_for @travel_card do |f| %>
+   
+      <table class="selector_table">
+        <tr>
+        
+          <td class="half_height label">DO</td>
+          <td class="half_height label">LOC</td>
+          <td class="half_height label">Rsp Wv</td>
+          <td class="half_height label">BME 1</td>
+          <td class="half_height label">BME 2</td>
+          <td class="half_height label">BME 3</td>
+          <td colspan="3" class="half_height"><span class="section_name">&nbsp;&nbsp;Travel Card</span></td>
+        </tr>
+        <tr>
+        
+          <td id="dominant_occiput" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('side_selector', this, 'dominant_occiput', 'practice_member_travel_card_dominant_occiput');"></td>
+          <td id="level_of_care" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('level_of_care_selector', this, 'level_of_care', 'practice_member_travel_card_level_of_care');"></td>
+          <td id="full_respiratory_wave" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('boolean_selector', this, 'full_respiratory_wave', 'practice_member_travel_card_full_respiratory_wave');"></td>
+          <td id="leading_bme_strategy" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('bme_strategy_selector', this, 'leading_bme_strategy', 'practice_member_travel_card_leading_bme_strategy');"></td>
+          <td id="second_bme_strategy" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('bme_strategy_selector', this, 'second_bme_strategy', 'practice_member_travel_card_second_bme_strategy');"></td>
+          <td id="third_bme_strategy" class="selector_cell selector_cell_text_single_character"></td>
+          <td colspan="3"></td>
+        </tr>
+        <tr>
+          <td id="gateway_occ_c1" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_occ_c1', 'practice_member_travel_card_gateway_occ_c1');"></td>
+          <td class="label" align="center">OCC/C1</td>
+          <td id="gateway_c1_occ" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c1_occ', 'practice_member_travel_card_gateway_c1_occ');"></td>
+          <td id="gateway_c1_c2" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c1_c2', 'practice_member_travel_card_gateway_c1_c2');"></td>
+          <td class="label" align="center">C1/C2</td>
+          <td id="gateway_c2_c1" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c2_c1', 'practice_member_travel_card_gateway_c2_c1');"></td>
+          <td id="gateway_c2_c3" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c2_c3', 'practice_member_travel_card_gateway_c2_c3');"></td>
+          <td class="label" align="center">C2/C3</td>
+          <td id="gateway_c3_c2" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c3_c2', 'practice_member_travel_card_gateway_c3_c2');"></td>
+          <td id="gateway_c3_c4" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c3_c4', 'practice_member_travel_card_gateway_c3_c4');"></td>
+          <td class="label" align="center">C3/C4</td>
+          <td id="gateway_c4_c3" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c4_c3', 'practice_member_travel_card_gateway_c4_c3');"></td>
+        </tr>
+        <tr>
+          <td id="gateway_c4_c5" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c4_c5', 'practice_member_travel_card_gateway_c4_c5');"></td>
+          <td class="label" align="center">C4/C5</td>
+          <td id="gateway_c5_c4" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c5_c4', 'practice_member_travel_card_gateway_c5_c4');"></td>
+          <td id="gateway_c5_c6" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c5_c6', 'practice_member_travel_card_gateway_c5_c6');"></td>
+          <td class="label" align="center">C5/C6</td>
+          <td id="gateway_c6_c5" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c6_c5', 'practice_member_travel_card_gateway_c6_c5');"></td>
+          <td id="gateway_c6_c7" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c6_c7', 'practice_member_travel_card_gateway_c6_c7');"></td>
+          <td class="label" align="center">C6/C7</td>
+          <td id="gateway_c7_c6" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c7_c6', 'practice_member_travel_card_gateway_c7_c6');"></td>
+          <td id="gateway_c7_t1" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c7_t1', 'practice_member_travel_card_gateway_c7_t1');"></td>
+          <td class="label" align="center">C7/T1</td>
+          <td id="gateway_t1_c7" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_t1_c7', 'practice_member_travel_card_gateway_t1_c7');"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td id="gateway_t1_t2" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_t1_t2', 'practice_member_travel_card_gateway_t1_t2');"></td>
+          <td class="label" align="center">T1/T2</td>
+          <td id="gateway_t2_t1" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_t2_t1', 'practice_member_travel_card_gateway_t2_t1');"></td>
+          <td id="gateway_t2_t3" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_t2_t3', 'practice_member_travel_card_gateway_t2_t3');"></td>
+          <td class="label" align="center">T2/T3</td>
+          <td id="gateway_t3_t2" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_t3_t2', 'practice_member_travel_card_gateway_t3_t2');"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="label" align="center">S1</td>
+          <td id="gateway_s1" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_s1', 'practice_member_travel_card_gateway_s1');"></td>
+          <td class="label" align="center">S2</td>
+          <td id="gateway_s2" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_s2', 'practice_member_travel_card_gateway_s2');"></td>
+          <td class="label" align="center">S3</td>
+          <td id="gateway_s3" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_s3', 'practice_member_travel_card_gateway_s3');"></td>
+          <td class="label" align="center">S4</td>
+          <td id="gateway_s4" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_s4', 'practice_member_travel_card_gateway_s4');"></td>
+          <td class="label" align="center">S5</td>
+          <td id="gateway_s5" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_s5', 'practice_member_travel_card_gateway_s5');"></td>
+          <td class="label" align="center">CX</td>
+          <td id="gateway_cx" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_cx', 'practice_member_travel_card_gateway_cx');"></td>
+        </tr>
+        <tr>
+          <td colspan="10" class="half_height">&nbsp;</td>
+        </tr>
+      </table>
+ 
+      
+      <table >
+        <tr>
+          <td id="tension_level_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#tension_level_detail').toggle(); $('#tension_level_detail_button').toggleClass('current_selected');">Tension Level Detail</td>     
+        </tr>
+      </table>
+      <table id="tension_level_detail" class="selector_table">
+        <tr>
+          <td class="half_height label">Tension</td>
+          <td class="half_height label">P C1-7</td>
+          <td class="half_height label">P T1-12</td>
+          <td class="half_height label">P L1-5</td>
+          <td class="half_height label">P S1-CX</td>
+          <td class="half_height">&nbsp</td>
+          <td class="half_height label">A C1-7</td>
+          <td class="half_height label">A T1-12</td>
+          <td class="half_height label">A L1-5</td>
+          <td class="half_height label">A S1-CX</td>
+        </tr>
+        <tr>
+          <td class="label">Passive</td>
+          <td id="passive_c1_c7_tension_level" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('tension_level_selector', this, 'passive_c1_c7_tension_level', 'practice_member_travel_card_passive_c1_c7_tension_level');"></td>
+          <td id="passive_t1_t12_tension_level" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('tension_level_selector', this, 'passive_t1_t12_tension_level', 'practice_member_travel_card_passive_t1_t12_tension_level');"></td>
+          <td id="passive_l1_l5_tension_level" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('tension_level_selector', this, 'passive_l1_l5_tension_level', 'practice_member_travel_card_passive_l1_l5_tension_level');"></td>
+          <td id="passive_s1_cx_tension_level" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('tension_level_selector', this, 'passive_s1_cx_tension_level', 'practice_member_travel_card_passive_s1_cx_tension_level');"></td>
+          <td class="label">Active</td>
+          <td id="active_c1_c7_tension_level" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('tension_level_selector', this, 'active_c1_c7_tension_level', 'practice_member_travel_card_active_c1_c7_tension_level');"></td>
+          <td id="active_t1_t12_tension_level" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('tension_level_selector', this, 'active_t1_t12_tension_level', 'practice_member_travel_card_active_t1_t12_tension_level');"></td>
+          <td id="active_l1_l5_tension_level" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('tension_level_selector', this, 'active_l1_l5_tension_level', 'practice_member_travel_card_active_l1_l5_tension_level');"></td>
+          <td id="active_s1_cx_tension_level" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('tension_level_selector', this, 'active_s1_cx_tension_level', 'practice_member_travel_card_active_s1_cx_tension_level');"></td>
+        </tr>
+      </table>
+      
+      
+      
+      
+      
+      
+      
+      
+      <table>
+        <tr><td class="half_height"></td></tr>
+        <tr>
+          <td id="sri_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#sri_detail').toggle(); $('#sri_detail_button').toggleClass('current_selected');">SRI Detail</td>     
+        </tr>
+      </table>
+      <table id="sri_detail" >
+        <tr>
+          <td valign="top">
+            <table class="selector_table">
+              <tr>
+                <td class="half_height label">P1 Aware</td>
+                <td class="half_height label">P2 Aware</td>
+                <td class="half_height label">P3 Aware</td>
+                <td class="half_height label">Safety Pos</td>
+                
+              </tr>
+              <tr>
+                <td id="sri_position_1_level_of_awareness" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_1_level_of_awareness', 'practice_member_travel_card_sri_position_1_level_of_awareness');"></td>
+                <td id="sri_position_2_level_of_awareness" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_2_level_of_awareness', 'practice_member_travel_card_sri_position_2_level_of_awareness');"></td>
+                <td id="sri_position_3_level_of_awareness" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_3_level_of_awareness', 'practice_member_travel_card_sri_position_3_level_of_awareness');"></td>
+                <td id="sri_safety_position" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_position_selector', this, 'sri_safety_position', 'practice_member_travel_card_sri_safety_position');"></td>
+              </tr>
+              <tr>
+                <td colspan="4" class="half_height label">Triggers/Notes</td>
+              <tr>
+              <tr>
+                <td colspan="4"> 
+                    <%= f.text_area :buzz_words_for_sri, :style => "width: 350px; height: 30px" %>  
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>       
+      </table>
+      
+      
+      
+      
+      
+      
+      
+      
+      <table>
+        <tr>
+          <td id="programs_education_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#programs_education_detail').toggle(); $('#programs_education_detail_button').toggleClass('current_selected');">Programs/Education Detail</td>     
+        </tr>
+      </table>
+      <table id="programs_education_detail">
+        <tr>
+          <td class="label" colspan="5">Programs</td>
+          <td class="label" colspan="2">Books</td>
+        </tr>
+        <tr>
+          <td class="label">Gates</td>
+          <td class="label">SRI</td>
+          <td class="label">HIP</td>
+          <td class="label">Ultima</td>
+          <td class="label">Ultimatum</td>
+          <td class="label">12 Stages</td>
+          <td class="label">Healing Magic</td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.text_field :number_gate, :size => 3 %>
+          </td>
+          <td>
+            <%= f.text_field :number_hip, :size => 3 %>
+          </td>
+          <td>
+            <%= f.text_field :number_ultima, :size => 3 %>
+          </td>
+          <td>
+            <%= f.text_field :number_ultimatum, :size => 3 %>
+          </td>
+          <td>
+            <%= f.text_field :number_sri, :size => 3 %>
+          </td>
+          <td align="center">
+            <%= f.check_box :book_12_stages %>
+          </td>
+          <td align="center">
+            <%= f.check_box :book_healing_magic %>
+          </td>
+        </tr>
+      </table>
+
+        <%= f.hidden_field :id %>
+        <%= f.hidden_field :practice_member_id %>
+        <%= f.hidden_field :dominant_occiput %>
+        <%= f.hidden_field :leading_bme_strategy %>
+        <%= f.hidden_field :second_bme_strategy %>
+        <%= f.hidden_field :level_of_care %>
+        <%= f.hidden_field :full_respiratory_wave %>
+        <%= f.hidden_field :gateway_occ_c1 %>
+        <%= f.hidden_field :gateway_c1_occ %>
+        <%= f.hidden_field :gateway_c1_c2 %>
+        <%= f.hidden_field :gateway_c2_c1 %>
+        <%= f.hidden_field :gateway_c2_c3 %>
+        <%= f.hidden_field :gateway_c3_c2 %>
+        <%= f.hidden_field :gateway_c3_c4 %>
+        <%= f.hidden_field :gateway_c4_c3 %>
+        <%= f.hidden_field :gateway_c4_c5 %>
+        <%= f.hidden_field :gateway_c5_c4 %>
+        <%= f.hidden_field :gateway_c5_c6 %>
+        <%= f.hidden_field :gateway_c6_c5 %>
+        <%= f.hidden_field :gateway_c6_c7 %>
+        <%= f.hidden_field :gateway_c7_c6 %>
+        <%= f.hidden_field :gateway_c7_t1 %>
+        <%= f.hidden_field :gateway_t1_c7 %>
+        <%= f.hidden_field :gateway_t1_t2 %>
+        <%= f.hidden_field :gateway_t2_t1 %>
+        <%= f.hidden_field :gateway_t2_t3 %>
+        <%= f.hidden_field :gateway_t3_t2 %>
+        <%= f.hidden_field :gateway_s1 %>
+        <%= f.hidden_field :gateway_s2 %>
+        <%= f.hidden_field :gateway_s3 %>
+        <%= f.hidden_field :gateway_s4 %>
+        <%= f.hidden_field :gateway_s5 %>
+        <%= f.hidden_field :gateway_cx %>
+        
+        <%= f.hidden_field :passive_c1_c7_tension_level %>
+        <%= f.hidden_field :passive_t1_t12_tension_level %>
+        <%= f.hidden_field :passive_l1_l5_tension_level %>
+        <%= f.hidden_field :passive_s1_cx_tension_level %>
+        <%= f.hidden_field :active_c1_c7_tension_level %>
+        <%= f.hidden_field :active_t1_t12_tension_level %>
+        <%= f.hidden_field :active_l1_l5_tension_level %>
+        <%= f.hidden_field :active_s1_cx_tension_level %>
+        
+        <%= f.hidden_field :sri_position_1_level_of_awareness %>
+        <%= f.hidden_field :sri_position_2_level_of_awareness %>
+        <%= f.hidden_field :sri_position_3_level_of_awareness %>
+        <%= f.hidden_field :sri_safety_position %>
+        
+
+
+        
+      <% end %>    
+    </td>
+  </tr>
+</table>
+
+
+<%= render :partial => 'selectors' %>
