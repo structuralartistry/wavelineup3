@@ -6,6 +6,14 @@ class PracticeMember < ActiveRecord::Base
   validates_presence_of :name_first
   validate :validate_practice_member_full_name_does_not_exist_for_practice
   
+  before_save :normalize_input
+  
+  def normalize_input
+    self.name_first.capitalize!
+    self.name_last.capitalize!
+    self.name_middle.capitalize! if self.name_middle
+  end
+  
   def validate_practice_member_full_name_does_not_exist_for_practice
     if self.practice_id # dont bother if no practice id.... its a lost cause and the sql here will break
       self.id ? existing_id_clause = " and id<>#{self.id}" : existing_id_clause = ""
