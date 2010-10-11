@@ -30,7 +30,7 @@ describe PracticeMember do
       practice_member = Factory.build(:practice_member, :practice_id => practice.id)
       assert !practice_member.save
       practice_member.errors.count.should == 1
-      practice_member.errors[:practice_member_name].should == ["Practice member name already exists in your Practice"]
+      practice_member.errors[:practice_member_name].should == ["already exists in your Practice"]
     end
     
     it "should have a practice id assigned" do
@@ -54,6 +54,11 @@ describe PracticeMember do
       practice_member.name_last = "Pierce"
       practice_member.name_first = "Miriam"
       practice_member.save.should == true      
+    end
+    
+    it "gets a Travel Card record automatically" do
+      practice_member = Factory.create(:practice_member)
+      TravelCard.find_by_practice_member_id(practice_member.id).id.should == practice_member.id
     end
 
   end

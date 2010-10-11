@@ -1,5 +1,7 @@
 Wavelineup3::Application.routes.draw do
 
+  resources :travel_cards
+
   resources :practice_members
 
   match 'activations/new', :as => 'resend_activation_link'

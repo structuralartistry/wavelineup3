@@ -113,6 +113,16 @@ class User < ActiveRecord::Base
         return authorize_success_message
       end
       
+    when 'travel_cards'
+      case current_role
+      when 'guest'
+        if action_name != 'new' && action_name != 'create'
+          return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
+        end
+      end
+      return authorize_success_message
+
+    
     when 'user_sessions'
       case current_role
       when 'guest'

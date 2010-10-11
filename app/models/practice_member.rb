@@ -7,13 +7,8 @@ class PracticeMember < ActiveRecord::Base
   validate :validate_practice_member_full_name_does_not_exist_for_practice
   
   before_save :normalize_input
-  
-  def normalize_input
-    self.name_first.capitalize!
-    self.name_last.capitalize!
-    self.name_middle.capitalize! if self.name_middle
-  end
-  
+  after_create :create_travel_card_record
+    
   def validate_practice_member_full_name_does_not_exist_for_practice
     if self.practice_id # dont bother if no practice id.... its a lost cause and the sql here will break
       self.id ? existing_id_clause = " and id<>#{self.id}" : existing_id_clause = ""
@@ -46,5 +41,17 @@ class PracticeMember < ActiveRecord::Base
   def full_name_last_comma_first_middle
     (self.name_last + ', ' + self.name_first + ' ' + self.name_middle).strip
   end
+  
+  private
+  
+    def normalize_input
+      self.name_first.capitalize!
+      self.name_last.capitalize!
+      self.name_middle.capitalize! if self.name_middle
+    end
+
+    def create_travel_card_record
+      TravelCard.create(:practice_member_id => self.id)
+    end
     
 end

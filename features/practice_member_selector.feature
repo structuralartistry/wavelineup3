@@ -1,5 +1,5 @@
 Feature: Practice Member Selector 
-  Shows all practice members, filters them by alphabet and seletects what page to navigate to
+  Shows all practice members, filters them by alphabet and selects what page to navigate to
   
   Background:
     Given I am logged in in a "practice admin" user role for the practice "Hello Kitty Practice"
@@ -27,11 +27,19 @@ Feature: Practice Member Selector
     Then I should not see "Apple, John" within a selector cell
     
   @javascript
-  Scenario: I can use the Practice Member Selector to select a practice member and edit their personal information
+  Scenario: I can use the Practice Member Selector to select a Practice Member and edit their personal information
     When I click "Find" within a selector cell
     When I click "Edit Personal Info" within a selector cell
     And I click "Kahn, David N" within a selector cell
     Then I should see "Edit Practice Member" within "h1"
+    
+  @javascript
+  Scenario: I can use the Practice Member Selector to select a Practice Member and view their Travel Card
+    When I click "Find" within a selector cell
+    When I click "Travel Card" within a selector cell
+    And I click "Kahn, David N" within a selector cell
+    Then I should see "Travel Card" within "h1"
+    
      
   @javascript
   Scenario: I can click on the "K" alphabet key and only see practice members whose last name starts with "K"

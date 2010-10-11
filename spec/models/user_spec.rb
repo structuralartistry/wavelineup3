@@ -29,6 +29,8 @@ describe User do
     user.authorize('practices', 'create')[:success].should == true
     user.authorize('practices', 'update')[:success].should == false
     user.authorize('practices', 'destroy')[:success].should == false
+    user.authorize('travel_cards', 'edit')[:success].should == false
+    user.authorize('travel_cards', 'update')[:success].should == false
     user.authorize('user_sessions', 'new')[:success].should == true
     user.authorize('user_sessions', 'create')[:success].should == true
     user.authorize('user_sessions', 'destroy')[:success].should == false
@@ -59,6 +61,8 @@ describe User do
     user.authorize('practices', 'create')[:success].should == false
     user.authorize('practices', 'update')[:success].should == true
     user.authorize('practices', 'destroy')[:success].should == true
+    user.authorize('travel_cards', 'edit')[:success].should == true
+    user.authorize('travel_cards', 'update')[:success].should == true
     user.authorize('user_sessions', 'new')[:success].should == false
     user.authorize('user_sessions', 'create')[:success].should == false
     user.authorize('user_sessions', 'destroy')[:success].should == true
@@ -89,6 +93,8 @@ describe User do
     user.authorize('practices', 'create')[:success].should == false
     user.authorize('practices', 'update')[:success].should == true
     user.authorize('practices', 'destroy')[:success].should == false
+    user.authorize('travel_cards', 'edit')[:success].should == true
+    user.authorize('travel_cards', 'update')[:success].should == true
     user.authorize('user_sessions', 'new')[:success].should == false
     user.authorize('user_sessions', 'create')[:success].should == false
     user.authorize('user_sessions', 'destroy')[:success].should == true
@@ -119,6 +125,8 @@ describe User do
     user.authorize('practices', 'create')[:success].should == false
     user.authorize('practices', 'update')[:success].should == true
     user.authorize('practices', 'destroy')[:success].should == false
+    user.authorize('travel_cards', 'edit')[:success].should == true
+    user.authorize('travel_cards', 'update')[:success].should == true
     user.authorize('user_sessions', 'new')[:success].should == false
     user.authorize('user_sessions', 'create')[:success].should == false
     user.authorize('user_sessions', 'destroy')[:success].should == true
