@@ -70,13 +70,13 @@ function set_selected_value(object) {
 
 function set_bme_strategy(bme_strategy) {
   // check to see if strategy already used, if so, clear it
-  leading_strategy = $('#practice_member_travel_card_leading_bme_strategy').val();
-  second_strategy = $('#practice_member_travel_card_second_bme_strategy').val();
+  leading_strategy = $('#travel_card_leading_bme_strategy').val();
+  second_strategy = $('#travel_card_second_bme_strategy').val();
   // clear second strategy if applicable
   if(element_to_update_inner_html=='leading_bme_strategy') {
     if(second_strategy==bme_strategy) {
       $('#second_bme_strategy').html('');
-      $('#practice_member_travel_card_second_bme_strategy').val('');
+      $('#travel_card_second_bme_strategy').val('');
       
       second_strategy = '';
     }
@@ -85,7 +85,7 @@ function set_bme_strategy(bme_strategy) {
   if(element_to_update_inner_html=='second_bme_strategy') {
     if(leading_strategy==bme_strategy) {
       $('#leading_bme_strategy').html('');
-      $('#practice_member_travel_card_leading_bme_strategy').val('');
+      $('#travel_card_leading_bme_strategy').val('');
       
       leading_strategy = '';
     }
@@ -109,14 +109,14 @@ function set_bme_strategy(bme_strategy) {
 }
 
 function set_third_bme_strategy() {
-  leading_strategy = $('#practice_member_travel_card_leading_bme_strategy').val();
-  second_strategy = $('#practice_member_travel_card_second_bme_strategy').val();
+  leading_strategy = $('#travel_card_leading_bme_strategy').val();
+  second_strategy = $('#travel_card_second_bme_strategy').val();
   
   $('#third_bme_strategy').html('');
   if(leading_strategy != '' && second_strategy != '') {
     remaining_strategy = "BME";
     remaining_strategy = remaining_strategy.replace(leading_strategy,'');
     remaining_strategy = remaining_strategy.replace(second_strategy,'');
-    if(remaining_strategy.length==1) $('#third_bme_strategy').html(remaining_strategy);
+    $('#third_bme_strategy').html(remaining_strategy);
   }  
 }
