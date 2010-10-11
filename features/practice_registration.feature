@@ -35,7 +35,6 @@ Feature: Practice registration
     When I click "Practice One" within a selector cell
     Then I should see "Manage Practice"
     And I should see "practice@structuralartistry.com" within "td"
-    And I should see "practice admin" within "td"
     And I should not see "Email" within "label"
     And I should not see "Password" within "label"
     And I should not see "Password confirmation" within "label"

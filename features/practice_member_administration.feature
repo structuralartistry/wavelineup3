@@ -7,8 +7,10 @@ Feature: Practice member administration
   Scenario: As a practice user I can open and close the New Practice Member section
     Given I am on the home page
     When I click "New Practice Member" within a selector cell
+    Then I should see the selector cell "New Practice Member" as selected
     Then I should see "New Practice Member" within "th"
     When I click "New Practice Member" within a selector cell
+    Then I should see the selector cell "Find" as not selected
     Then I should not see "New Practice Member" within "th"
 
   @javascript

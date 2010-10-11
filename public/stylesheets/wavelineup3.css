@@ -111,13 +111,17 @@ select,
   text-align: center;
 }
 
+.selector_cell_edit {
+  font-size: 18px;
+}
+
 .selector_cell_add {
   background-color: green;
   font-size: 18px;
 }
 .selector_cell_delete {
   background-color: red;
-font-size: 18px;
+  font-size: 18px;
 }
 
 .selector_cell_save {

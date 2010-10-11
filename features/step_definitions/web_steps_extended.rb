@@ -77,6 +77,32 @@ Then /^I should not see "([^\"]*)" within a selector cell$/ do |text|
   end
 end
 
+Then /^I should see the selector cell "([^\"]*)" as selected$/ do |selector_cell_text|
+  msg = "No selector_cell found with the content of '#{selector_cell_text}'"  
+  assert page.find(:xpath,"//*[
+    ( 
+      contains(concat(' ',normalize-space(@class),' '),' selector_cell ') or 
+      contains(concat(' ',normalize-space(@class),' '),' selector_cell_nav ') 
+    ) and
+    (
+      contains(concat(' ',normalize-space(@class),' '),' current_selected ')
+    ) 
+    and text()='#{(selector_cell_text)}']", :visible => true)
+end
+
+Then /^I should see the selector cell "([^\"]*)" as not selected$/ do |selector_cell_text|
+  msg = "No selector_cell found with the content of '#{selector_cell_text}'"  
+  assert !page.find(:xpath,"//*[
+    ( 
+      contains(concat(' ',normalize-space(@class),' '),' selector_cell ') or 
+      contains(concat(' ',normalize-space(@class),' '),' selector_cell_nav ') 
+    ) and
+    (
+      contains(concat(' ',normalize-space(@class),' '),' current_selected ')
+    ) 
+    and text()='#{(selector_cell_text)}']", :visible => true)
+end
+
 
 # this allows us to tell capybara/selenium to speed through js confirm alerts
   Then /tell the page to accept the confirm dialog which is coming/ do

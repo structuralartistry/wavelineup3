@@ -14,11 +14,13 @@ Feature: Practice Member Selector
   @javascript
   Scenario: The Practice Member Selector shows when I click find and closes when I click close
     When I click "Find" within a selector cell
+    Then I should see the selector cell "Find" as selected
     Then I should see "Travel Card" within a selector cell
     Then I should see "Edit Personal Info" within a selector cell
     Then I should see "Kahn, David N" within a selector cell
     Then I should see "Apple, John" within a selector cell
     When I click "Find" within a selector cell
+    Then I should see the selector cell "Find" as not selected
     Then I should not see "Travel Card" within a selector cell
     Then I should not see "Edit Personal Info" within a selector cell
     Then I should not see "Kahn, David N" within a selector cell

@@ -9,16 +9,22 @@ Feature: User Management
     # get to practice management page
     When I click "Practice One" within a selector cell
     
+    Then I should see "Manage Practice"
     Then I should see "Practice One"
     And I should see "Users" within "h1"
     And I should see "practice_user@structuralartistry.com"
     And I should see "Manage Practice"
     
-    # add a user
-    When I follow "New User"
+    # load form and test cancel route
+    When I press "New User"
     Then I should see "Email"
     And I should see "Password"
     And I should see "Password confirmation"
+    When I press "Cancel"
+    Then I should see "Manage Practice"
+    
+    # add a user
+    When I press "New User"
     When I fill in "user_email" with "practice1@structuralartistry.com"
     And I fill in "user_password" with "password1"
     And I fill in "user_password_confirmation" with "password1"
@@ -30,7 +36,6 @@ Feature: User Management
     And I should see "practice1@structuralartistry.com"
     # all users right now aside from the user which creates the practice will be 'practice user'
     # where the original user is 'practice admin'
-    And I should see "practice user"
     
     # can not activate new user while initial user is logged in
     Given I check my email "practice1@structuralartistry.com" and activate my user
@@ -87,13 +92,13 @@ Feature: User Management
     # get to the practice management page
     When I click "Practice One" within a selector cell
     
-    # destroy the practice user
+    # try to destroy the current user - can not do, so there is always one user in system per practice
     Then tell the page to accept the confirm dialog which is coming
-    When I follow "Destroy" within "tr#practice_user"
+    When I press "Delete" within "tr#practice_user"
     Then I should see "Can not delete the current user"
     
     # create a new user
-    When I follow "New User"
+    When I press "New User"
     And I fill in "user_email" with "practice1@structuralartistry.com"
     And I fill in "user_password" with "password1"
     And I fill in "user_password_confirmation" with "password1"
@@ -102,9 +107,36 @@ Feature: User Management
     
     # verify can destroy the newly created user
     Then tell the page to accept the confirm dialog which is coming
-    When I follow "Destroy" within "tr#practice1"
+    When I press "Delete" within "tr#practice1"
     Then I should see "User successfully deleted"
-    
+
+# purgatory: removed    
+  # @javascript
+  # Scenario: I can edit a user from the Practice Management page
+  #   Given I am logged in in a "practice user" user role for the practice "Practice One"
+  #   Given there is an active user "another@gmail.com" in the practice "Practice One"
+  #   
+  #   # get to the practice management page
+  #   When I click "Practice One" within a selector cell
+  #   Then I should see "another@gmail.com" within "tr#another"
+  #   
+  #   # edit user
+  #   When I press "Edit" within "tr#another"
+  #   Then I should see "Editing user" within "h1"
+  #   
+  #   # cancel edit and return
+  #   When I press "Cancel"
+  #   Then I should see "Manage Practice" within "h1"
+  #   
+  #   # edit the email
+  #   When I press "Edit" within "tr#another"
+  #   Then I should see "Editing user" within "h1"
+  #   When I fill in "user_email" with "another_one@gmail.com"
+  #   When I press "Submit"
+  #   
+  #   # verify change
+  #   Then I should see "Manage Practice"
+  #   And I should see "another_one@gmail.com" within "tr#another_one"
     
     
   

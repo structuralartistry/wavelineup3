@@ -32,6 +32,13 @@ Given /^I try to activate a non-existant user$/ do
   visit(activations_path("gobbldygook"))
 end
 
+Given /^there is an active user "([^"]*)" in the practice "([^"]*)"$/ do |email, practice_name|
+  practice = Practice.find_by_name(practice_name)
+  user = Factory.build(:practice_user, :email => email, :practice_id => practice.id)
+  assert user.save
+end
+
+
 # THESE (commented) go with a test I could not get to work... doing with making the User#perishable_token expire
 # Given /^I have an expired activation code for the email address "([^\"]*)"$/ do |email|
 #   user = User.find_by_email(email)
