@@ -257,6 +257,10 @@ div#past_visits {
   display: none;
 }
 
+#notes_detail {
+  display: none;
+}
+
 #programs_education_detail {
   display: none;
 }

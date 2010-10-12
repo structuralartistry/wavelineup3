@@ -65,12 +65,12 @@ end
 #   Factory.create(:practice_admin_role)
 #   Factory.create(:practice_user_role)  
 # end
-
-Before do
-  Factory.create(:sysadmin_role)
-  Factory.create(:practice_admin_role)
-  Factory.create(:practice_user_role)  
-end
+# 
+# Before do
+#   Factory.create(:sysadmin_role)
+#   Factory.create(:practice_admin_role)
+#   Factory.create(:practice_user_role)  
+# end
 
 $VERBOSE = nil
 

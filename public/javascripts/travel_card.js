@@ -1,3 +1,65 @@
+function travel_card_set_values_from_hidden_fields() {
+  // get values from hidden fields and write the inner html of selectors
+  // this is called on page load in body tag of application layout
+  $('#dominant_occiput').html($('#travel_card_dominant_occiput').val());
+  $('#level_of_care').html($('#travel_card_level_of_care').val());
+  $('#gateway_occ_c1').html($('#travel_card_gateway_occ_c1').val());
+  $('#gateway_c1_occ').html($('#travel_card_gateway_c1_occ').val());
+  $('#gateway_c1_c2').html($('#travel_card_gateway_c1_c2').val());
+  $('#gateway_c2_c1').html($('#travel_card_gateway_c2_c1').val());
+  $('#gateway_c2_c3').html($('#travel_card_gateway_c2_c3').val());
+  $('#gateway_c3_c2').html($('#travel_card_gateway_c3_c2').val());
+  $('#gateway_c3_c4').html($('#travel_card_gateway_c3_c4').val());
+  $('#gateway_c4_c3').html($('#travel_card_gateway_c4_c3').val());
+  $('#gateway_c4_c5').html($('#travel_card_gateway_c4_c5').val());
+  $('#gateway_c5_c4').html($('#travel_card_gateway_c5_c4').val());
+  $('#gateway_c5_c6').html($('#travel_card_gateway_c5_c6').val());
+  $('#gateway_c6_c5').html($('#travel_card_gateway_c6_c5').val());
+  $('#gateway_c6_c7').html($('#travel_card_gateway_c6_c7').val());
+  $('#gateway_c7_c6').html($('#travel_card_gateway_c7_c6').val());
+  $('#gateway_c7_t1').html($('#travel_card_gateway_c7_t1').val());
+  $('#gateway_t1_c7').html($('#travel_card_gateway_t1_c7').val());
+  $('#gateway_t1_t2').html($('#travel_card_gateway_t1_t2').val());
+  $('#gateway_t2_t1').html($('#travel_card_gateway_t2_t1').val());
+  $('#gateway_t2_t3').html($('#travel_card_gateway_t2_t3').val());
+  $('#gateway_t3_t2').html($('#travel_card_gateway_t3_t2').val());
+  $('#gateway_s1').html($('#travel_card_gateway_s1').val());
+  $('#gateway_s2').html($('#travel_card_gateway_s2').val());
+  $('#gateway_s3').html($('#travel_card_gateway_s3').val());
+  $('#gateway_s4').html($('#travel_card_gateway_s4').val());
+  $('#gateway_s5').html($('#travel_card_gateway_s5').val());
+  $('#gateway_cx').html($('#travel_card_gateway_cx').val());
+
+  $('#leading_bme_strategy').html($('#travel_card_leading_bme_strategy').val());
+  $('#second_bme_strategy').html($('#travel_card_second_bme_strategy').val());
+  set_third_bme_strategy();
+
+  $('#full_respiratory_wave').html($('#travel_card_full_respiratory_wave').val());
+
+  $('#passive_c1_c7_tension_level').html($('#travel_card_passive_c1_c7_tension_level').val());
+  $('#passive_t1_t12_tension_level').html($('#travel_card_passive_t1_t12_tension_level').val());
+  $('#passive_l1_l5_tension_level').html($('#travel_card_passive_l1_l5_tension_level').val());
+  $('#passive_s1_cx_tension_level').html($('#travel_card_passive_s1_cx_tension_level').val());
+  $('#active_c1_c7_tension_level').html($('#travel_card_active_c1_c7_tension_level').val());
+  $('#active_t1_t12_tension_level').html($('#travel_card_active_t1_t12_tension_level').val());
+  $('#active_l1_l5_tension_level').html($('#travel_card_active_l1_l5_tension_level').val());
+  $('#active_s1_cx_tension_level').html($('#travel_card_active_s1_cx_tension_level').val());
+
+  $('#sri_position_1_level_of_awareness').html($('#travel_card_sri_position_1_level_of_awareness').val());
+  $('#sri_position_2_level_of_awareness').html($('#travel_card_sri_position_2_level_of_awareness').val());
+  $('#sri_position_3_level_of_awareness').html($('#travel_card_sri_position_3_level_of_awareness').val());
+  $('#sri_safety_position').html($('#travel_card_sri_safety_position').val());
+  $('#buzz_words_for_sri').html($('#travel_card_buzz_words_for_sri').val());
+  
+  $('#book_12_stages').html($('#travel_card_book_12_stages').val());
+  $('#book_healing_magic').html($('#travel_card_book_healing_magic').val());
+  $('#number_gate').html($('#travel_card_number_gate').val());
+  $('#number_hip').html($('#travel_card_number_hip').val());
+  $('#number_ultima').html($('#travel_card_number_ultima').val());
+  $('#number_ultimatum').html($('#travel_card_number_ultimatum').val());
+  $('#number_sri').html($('#travel_card_number_sri').val());  
+}
+
 function show_selector(selector_name, calling_object, element_to_update_inner_html_on_set, control_to_update_on_set) {
   element_to_update_inner_html=element_to_update_inner_html_on_set;
   control_to_update=control_to_update_on_set;
@@ -134,7 +196,7 @@ function autosave(control_id, value) {
   if(control_id.indexOf("travel_card")>=0) {
     controller = "travel_cards";
     qualified_field = "travel_card[" + control_id.replace("travel_card_", "") + "]";
-    record_id = $("#travel_card_identity_id").val();
+    record_id = $("#travel_card_practice_member_id").val();
     update_field_to_server(controller, record_id, qualified_field, value);
     return;
   }

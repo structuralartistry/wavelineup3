@@ -16,6 +16,12 @@ module NavigationHelpers
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
+    
+    when /^the edit travel card page for Practice Member "([^"]*)"$/
+      practice_member = parse_practice_member_formal_name($1)
+      practice_member = PracticeMember.where("name_last='#{practice_member.name_last}' and name_first='#{practice_member.name_first}' and name_middle='#{practice_member.name_middle}'").first
+      travel_card = TravelCard.find_by_practice_member_id(practice_member.id)
+      "/travel_cards/#{travel_card.id}/edit"
 
     else
       begin

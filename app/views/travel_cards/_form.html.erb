@@ -1,19 +1,27 @@
-<div id="travel_card" style='width: 6.5in;'>
+<script language='javascript'>
+  $(document).ready(function() {
+    travel_card_set_values_from_hidden_fields();
+  });
+</script>
+
+
+
+<div id="travel_card" style='width: 7in;'>
 <table>
   <tr>
-    <td>          
-      <% form_for @travel_card do |f| %>
-   
+    <td valign='top'>          
+      <%= form_for @travel_card do |f| %>
+
       <table class="selector_table">
         <tr>
-        
           <td class="half_height label">DO</td>
           <td class="half_height label">LOC</td>
           <td class="half_height label">Rsp Wv</td>
           <td class="half_height label">BME 1</td>
           <td class="half_height label">BME 2</td>
           <td class="half_height label">BME 3</td>
-          <td colspan="3" class="half_height"><span class="section_name">&nbsp;&nbsp;Travel Card</span></td>
+          <td colspan="1"></td>
+          <td colspan="6" class="half_height"><h1>&nbsp;&nbsp;Travel Card</h1></td>
         </tr>
         <tr>
         
@@ -23,7 +31,7 @@
           <td id="leading_bme_strategy" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('bme_strategy_selector', this, 'leading_bme_strategy', 'travel_card_leading_bme_strategy');"></td>
           <td id="second_bme_strategy" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('bme_strategy_selector', this, 'second_bme_strategy', 'travel_card_second_bme_strategy');"></td>
           <td id="third_bme_strategy" class="selector_cell selector_cell_text_single_character"></td>
-          <td colspan="3"></td>
+          <td colspan="6"></td>
         </tr>
         <tr>
           <td id="gateway_occ_c1" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_occ_c1', 'travel_card_gateway_occ_c1');"></td>
@@ -82,28 +90,36 @@
           <td id="gateway_cx" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_cx', 'travel_card_gateway_cx');"></td>
         </tr>
         <tr>
-          <td colspan="10" class="half_height">&nbsp;</td>
+          <td colspan="12" class="half_height">&nbsp;</td>
         </tr>
       </table>
- 
-      
-      <table >
+      <table>
         <tr>
-          <td id="tension_level_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#tension_level_detail').toggle(); $('#tension_level_detail_button').toggleClass('current_selected');">Tension Level Detail</td>     
+          <td id="tension_level_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#tension_level_detail').toggle(); $('#tension_level_detail_button').toggleClass('current_selected');">Tension Levels</td>     
+          <td>&nbsp;</td>
+          <td id="sri_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#sri_detail').toggle(); $('#sri_detail_button').toggleClass('current_selected');">SRI</td>     
+          <td>&nbsp;</td>
+          <td id="programs_education_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#programs_education_detail').toggle(); $('#programs_education_detail_button').toggleClass('current_selected');">Programs/Education</td>     
+          <td>&nbsp;</td>
+          <td id="notes_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#notes_detail').toggle(); $('#notes_detail_button').toggleClass('current_selected');">Notes</td>     
+
+        </tr>
+        <tr>
+          <td colspan="10" class="half_height">&nbsp;</td>
         </tr>
       </table>
       <table id="tension_level_detail" class="selector_table">
         <tr>
           <td class="half_height label">Tension</td>
-          <td class="half_height label">P C1-7</td>
-          <td class="half_height label">P T1-12</td>
-          <td class="half_height label">P L1-5</td>
-          <td class="half_height label">P S1-CX</td>
+          <td class="half_height label">C1-7</td>
+          <td class="half_height label">T1-12</td>
+          <td class="half_height label">L1-5</td>
+          <td class="half_height label">S1-CX</td>
           <td class="half_height">&nbsp</td>
-          <td class="half_height label">A C1-7</td>
-          <td class="half_height label">A T1-12</td>
-          <td class="half_height label">A L1-5</td>
-          <td class="half_height label">A S1-CX</td>
+          <td class="half_height label">C1-7</td>
+          <td class="half_height label">T1-12</td>
+          <td class="half_height label">L1-5</td>
+          <td class="half_height label">S1-CX</td>
         </tr>
         <tr>
           <td class="label">Passive</td>
@@ -118,61 +134,29 @@
           <td id="active_s1_cx_tension_level" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('tension_level_selector', this, 'active_s1_cx_tension_level', 'travel_card_active_s1_cx_tension_level');"></td>
         </tr>
       </table>
-      
-      
-      
-      
-      
-      
-      
-      
-      <table>
-        <tr><td class="half_height"></td></tr>
-        <tr>
-          <td id="sri_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#sri_detail').toggle(); $('#sri_detail_button').toggleClass('current_selected');">SRI Detail</td>     
-        </tr>
-      </table>
       <table id="sri_detail" >
         <tr>
           <td valign="top">
             <table class="selector_table">
               <tr>
-                <td class="half_height label">P1 Aware</td>
-                <td class="half_height label">P2 Aware</td>
-                <td class="half_height label">P3 Aware</td>
+                <td class="half_height label">SRI P1 Aware</td>
+                <td class="half_height label">SRI P2 Aware</td>
+                <td class="half_height label">SRI P3 Aware</td>
                 <td class="half_height label">Safety Pos</td>
-                
+                <td colspan="4" class="half_height label">Triggers/Notes</td>
               </tr>
               <tr>
                 <td id="sri_position_1_level_of_awareness" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_1_level_of_awareness', 'travel_card_sri_position_1_level_of_awareness');"></td>
                 <td id="sri_position_2_level_of_awareness" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_2_level_of_awareness', 'travel_card_sri_position_2_level_of_awareness');"></td>
                 <td id="sri_position_3_level_of_awareness" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_3_level_of_awareness', 'travel_card_sri_position_3_level_of_awareness');"></td>
                 <td id="sri_safety_position" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_position_selector', this, 'sri_safety_position', 'travel_card_sri_safety_position');"></td>
-              </tr>
-              <tr>
-                <td colspan="4" class="half_height label">Triggers/Notes</td>
-              <tr>
-              <tr>
                 <td colspan="4"> 
-                    <%= f.text_area :buzz_words_for_sri, :style => "width: 350px; height: 30px" %>  
+                    <%= f.text_area :buzz_words_for_sri, :style => "width: 4in; height: 0.5in;" %>  
                 </td>
               </tr>
             </table>
           </td>
         </tr>       
-      </table>
-      
-      
-      
-      
-      
-      
-      
-      
-      <table>
-        <tr>
-          <td id="programs_education_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#programs_education_detail').toggle(); $('#programs_education_detail_button').toggleClass('current_selected');">Programs/Education Detail</td>     
-        </tr>
       </table>
       <table id="programs_education_detail">
         <tr>
@@ -211,6 +195,16 @@
             <%= f.check_box :book_healing_magic %>
           </td>
         </tr>
+      </table>
+      
+      <table id="notes_detail">
+        <tr>
+          <td class="label">Notes</td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.text_area :notes, :style => "width: 6in; height: 0.5in;" %>
+          </td>
       </table>
 
         <%= f.hidden_field :id %>
@@ -260,10 +254,6 @@
         <%= f.hidden_field :sri_position_2_level_of_awareness %>
         <%= f.hidden_field :sri_position_3_level_of_awareness %>
         <%= f.hidden_field :sri_safety_position %>
-        
-
-
-        
       <% end %>    
     </td>
   </tr>
