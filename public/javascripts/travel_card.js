@@ -60,9 +60,10 @@ function travel_card_set_values_from_hidden_fields() {
   $('#number_sri').html($('#travel_card_number_sri').val());  
 }
 
-function show_selector(selector_name, calling_object, element_to_update_inner_html_on_set, control_to_update_on_set) {
-  element_to_update_inner_html=element_to_update_inner_html_on_set;
-  control_to_update=control_to_update_on_set;
+function show_selector(selector_name, calling_object, _element_to_update_inner_html, _control_to_update) {
+  // set the global vars
+  element_to_update_inner_html=_element_to_update_inner_html;
+  control_to_update=_control_to_update;
   
   switch(selector_name) {
     case "boolean_selector":
@@ -164,6 +165,10 @@ function set_bme_strategy(bme_strategy) {
     $("#" + control_to_update).val(bme_strategy);
   }
   
+  // autosave
+  autosave('travel_card_leading_bme_strategy', $('#travel_card_leading_bme_strategy').val());
+  autosave('travel_card_second_bme_strategy', $('#travel_card_second_bme_strategy').val());
+  
   // set the third strategy inner html if first two set
   set_third_bme_strategy();
 
@@ -182,7 +187,7 @@ function set_third_bme_strategy() {
     remaining_strategy = "BME";
     remaining_strategy = remaining_strategy.replace(leading_strategy,'');
     remaining_strategy = remaining_strategy.replace(second_strategy,'');
-    $('#third_bme_strategy').html(remaining_strategy);
+    if(remaining_strategy.length == 1) $('#third_bme_strategy').html(remaining_strategy);
   }  
 }
 
