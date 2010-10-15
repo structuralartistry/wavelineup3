@@ -48,3 +48,32 @@ Then /^(?:|I )should not see "([^\"]*)"(?: within "([^\"]*)")?$/ do |text, selec
   end
 end
 
+
+# the stock web step does not get the value of an input field so...
+Then /^the "([^\"]*)" input field should contain "([^\"]*)"$/ do |field, value|
+  assert page.find_by_id(field).value.should == value
+end
+
+# checkbox value can be true, not checked, thus these have been moved from web steps
+Then /^the "([^\"]*)" checkbox(?: within "([^\"]*)")? should be checked$/ do |label, selector|
+  with_scope(selector) do
+    field_checked = find_field(label)['checked']
+    if field_checked == 'checked'
+      assert_equal 'checked', field_checked 
+    else
+      assert_equal 'true', field_checked if field_checked == 'true'
+    end
+  end
+end
+Then /^the "([^\"]*)" checkbox(?: within "([^\"]*)")? should not be checked$/ do |label, selector|
+  with_scope(selector) do
+    field_checked = find_field(label)['checked']
+    if field_checked == 'checked'
+      assert_not_equal 'checked', field_checked 
+    else
+      assert_not_equal 'true', field_checked if field_checked == 'true'
+    end
+  end
+end
+
+

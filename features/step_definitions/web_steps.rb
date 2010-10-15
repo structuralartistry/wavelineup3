@@ -171,27 +171,28 @@ Then /^the "([^\"]*)" field(?: within "([^\"]*)")? should not contain "([^\"]*)"
   end
 end
 
-Then /^the "([^\"]*)" checkbox(?: within "([^\"]*)")? should be checked$/ do |label, selector|
-  with_scope(selector) do
-    field_checked = find_field(label)['checked']
-    if field_checked.respond_to? :should
-      field_checked.should == 'checked'
-    else
-      assert_equal 'checked', field_checked
-    end
-  end
-end
-
-Then /^the "([^\"]*)" checkbox(?: within "([^\"]*)")? should not be checked$/ do |label, selector|
-  with_scope(selector) do
-    field_checked = find_field(label)['checked']
-    if field_checked.respond_to? :should_not
-      field_checked.should_not == 'checked'
-    else
-      assert_not_equal 'checked', field_checked
-    end
-  end
-end
+# These also suck and are being modified in web steps extended as checkbox value can be 'true', not just 'checked'
+# Then /^the "([^\"]*)" checkbox(?: within "([^\"]*)")? should be checked$/ do |label, selector|
+#   with_scope(selector) do
+#     field_checked = find_field(label)['checked']
+#     if field_checked.respond_to? :should
+#       field_checked.should == 'checked'
+#     else
+#       assert_equal 'checked', field_checked
+#     end
+#   end
+# end
+# 
+# Then /^the "([^\"]*)" checkbox(?: within "([^\"]*)")? should not be checked$/ do |label, selector|
+#   with_scope(selector) do
+#     field_checked = find_field(label)['checked']
+#     if field_checked.respond_to? :should_not
+#       field_checked.should_not == 'checked'
+#     else
+#       assert_not_equal 'checked', field_checked
+#     end
+#   end
+# end
  
 Then /^(?:|I )should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path

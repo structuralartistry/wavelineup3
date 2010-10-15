@@ -151,7 +151,7 @@
                 <td id="sri_position_3_level_of_awareness" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_3_level_of_awareness', 'travel_card_sri_position_3_level_of_awareness');"></td>
                 <td id="sri_safety_position" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_position_selector', this, 'sri_safety_position', 'travel_card_sri_safety_position');"></td>
                 <td colspan="4"> 
-                    <%= f.text_area :buzz_words_for_sri, :style => "width: 4in; height: 0.5in;" %>  
+                    <%= f.text_area :buzz_words_for_sri, :style => "width: 4in; height: 0.5in;", :class => 'autosave' %>  
                 </td>
               </tr>
             </table>
@@ -174,25 +174,25 @@
         </tr>
         <tr>
           <td>
-            <%= f.text_field :number_gate, :size => 3 %>
+            <%= f.text_field :number_gate, :size => 3, :class => 'autosave' %>
           </td>
           <td>
-            <%= f.text_field :number_sri, :size => 3 %>
+            <%= f.text_field :number_sri, :size => 3, :class => 'autosave' %>
           </td>
           <td>
-            <%= f.text_field :number_hip, :size => 3 %>
+            <%= f.text_field :number_hip, :size => 3, :class => 'autosave' %>
           </td>
           <td>
-            <%= f.text_field :number_ultima, :size => 3 %>
+            <%= f.text_field :number_ultima, :size => 3, :class => 'autosave' %>
           </td>
           <td>
-            <%= f.text_field :number_ultimatum, :size => 3 %>
+            <%= f.text_field :number_ultimatum, :size => 3, :class => 'autosave' %>
           </td>
           <td align="center">
-            <%= f.check_box :book_12_stages %>
+            <%= f.check_box :book_12_stages, :onclick => "autosave($(this).attr('id'), $(this).val())" %>
           </td>
           <td align="center">
-            <%= f.check_box :book_healing_magic %>
+            <%= f.check_box :book_healing_magic, :onclick => "autosave($(this).attr('id'),  $(this).val())" %>
           </td>
         </tr>
       </table>
@@ -203,7 +203,7 @@
         </tr>
         <tr>
           <td>
-            <%= f.text_area :notes, :style => "width: 6in; height: 0.5in;" %>
+            <%= f.text_area :notes, :style => "width: 6in; height: 0.5in;", :class => 'autosave' %>
           </td>
       </table>
 

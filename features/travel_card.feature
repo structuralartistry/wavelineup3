@@ -449,6 +449,7 @@ Feature: Travel Card
     Then I should see "" within "#travel_card_number_ultimatum"
     Then the "travel_card_book_12_stages" checkbox should not be checked
     Then the "travel_card_book_healing_magic" checkbox should not be checked
+    
     Then I fill in "travel_card_number_gate" with "5"
     Then I fill in "travel_card_number_sri" with "4"
     Then I fill in "travel_card_number_hip" with "3"
@@ -464,11 +465,12 @@ Feature: Travel Card
 
     # verify autosave
     When I go to the edit travel card page for Practice Member "Kahn, David N"
-    Then I should see "5" within "#travel_card_number_gate"
-    Then I should see "4" within "#travel_card_number_sri"
-    Then I should see "3" within "#travel_card_number_hip"
-    Then I should see "2" within "#travel_card_number_ultima"
-    Then I should see "1" within "#travel_card_number_ultimatum"
+    When I click "Programs/Education" within a selector cell
+    Then the "travel_card_number_gate" input field should contain "5"
+    Then the "travel_card_number_sri" input field should contain "4"
+    Then the "travel_card_number_hip" input field should contain "3"
+    Then the "travel_card_number_ultima" input field should contain "2"
+    Then the "travel_card_number_ultimatum" input field should contain "1"
     Then the "travel_card_book_12_stages" checkbox should be checked
     Then the "travel_card_book_healing_magic" checkbox should be checked 
 
@@ -499,5 +501,6 @@ Feature: Travel Card
 
     # verify autosave
     When I go to the edit travel card page for Practice Member "Kahn, David N"
+    When I click "Notes" within a selector cell
     Then I should see "Note on this travel card!" within "#travel_card_notes"
 
