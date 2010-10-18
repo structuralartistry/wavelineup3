@@ -60,12 +60,6 @@ input[type=submit] {
   font-size: 18px;
 }
 
-link_button {
-  height: 0.5in;
-  width: 1.0in;
-  font-size: 18px;
-}
-
 /* these are sizes of individual selectors that dont fall within a table td with defined td width */
 .selector_cell_size_small {
   text-align: center;

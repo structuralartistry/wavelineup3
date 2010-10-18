@@ -100,7 +100,7 @@ function show_selector(selector_name, calling_object, _element_to_update_inner_h
       top = eleOffset.top + 'px';
       $(".selector").hide();
       $('#' + selector_name).css("left",left).css("top",top).css("position","absolute");
-      $('#' + selector_name).show();
+      $('#' + selector_name).show('fast');
       break;
   }
 }
@@ -131,7 +131,7 @@ function set_selected_value(object) {
   
   element_to_update_inner_html='';
   control_to_update=''; 
-  $(".selector").hide();
+  $(".selector").hide('fast');
 }
 
 function set_bme_strategy(bme_strategy) {
@@ -175,7 +175,7 @@ function set_bme_strategy(bme_strategy) {
   // clear and hide
   element_to_update_inner_html='';
   control_to_update=''; 
-  $('#bme_strategy_selector').hide();
+  $('#bme_strategy_selector').hide('fast');
 }
 
 function set_third_bme_strategy() {
@@ -193,6 +193,9 @@ function set_third_bme_strategy() {
 
 
 function autosave(control_id, value) {
+  
+  $('#transmitting').show();
+  
   // ascertain the controller, field name and record id to be saved
   controller = "";
   record_id = "";
@@ -223,6 +226,5 @@ function update_field_to_server(controller, record_id, qualified_field, value) {
             //success: alert(msg),
             //failure: alert(msg)
   });
-  
 }
 

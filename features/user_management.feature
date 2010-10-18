@@ -45,7 +45,6 @@ Feature: User Management
     When I click "Logout" within a selector cell
     Given I check my email "practice1@structuralartistry.com" and activate my user
     Then I should see "Your account has been activated"
-    Then I should see "Home Page" within "h1"
     And I should see "Logout" within a selector cell
     And I should see "practice1@structuralartistry.com" within a selector cell
     And I should see "practice1@structuralartistry.com" within a selector cell

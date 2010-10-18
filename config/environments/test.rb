@@ -25,6 +25,7 @@ Wavelineup3::Application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
+  config.action_mailer.raise_delivery_errors = false
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
@@ -34,8 +35,6 @@ Wavelineup3::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 end
-
-# ActionMailer::Base.default_url_options[:host] = "localhost:3000"
   
 
 

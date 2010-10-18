@@ -20,8 +20,7 @@
           <td class="half_height label">BME 1</td>
           <td class="half_height label">BME 2</td>
           <td class="half_height label">BME 3</td>
-          <td colspan="1"></td>
-          <td colspan="6" class="half_height"><h1>&nbsp;&nbsp;Travel Card</h1></td>
+          <td colspan="7" align="center"><h1><%= truncate(@travel_card.practice_member.full_name_last_comma_first_middle, :length => 20) %></h1></td>
         </tr>
         <tr>
         
@@ -31,7 +30,7 @@
           <td id="leading_bme_strategy" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('bme_strategy_selector', this, 'leading_bme_strategy', 'travel_card_leading_bme_strategy');"></td>
           <td id="second_bme_strategy" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('bme_strategy_selector', this, 'second_bme_strategy', 'travel_card_second_bme_strategy');"></td>
           <td id="third_bme_strategy" class="selector_cell selector_cell_text_single_character"></td>
-          <td colspan="6"></td>
+          <td></td>
         </tr>
         <tr>
           <td id="gateway_occ_c1" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_occ_c1', 'travel_card_gateway_occ_c1');"></td>
@@ -95,13 +94,13 @@
       </table>
       <table>
         <tr>
-          <td id="tension_level_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#tension_level_detail').toggle(); $('#tension_level_detail_button').toggleClass('current_selected');">Tension Levels</td>     
+          <td id="tension_level_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#tension_level_detail').slideToggle(); $('#tension_level_detail_button').toggleClass('current_selected');">Tension Levels</td>     
           <td>&nbsp;</td>
-          <td id="sri_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#sri_detail').toggle(); $('#sri_detail_button').toggleClass('current_selected');">SRI</td>     
+          <td id="sri_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#sri_detail').slideToggle(); $('#sri_detail_button').toggleClass('current_selected');">SRI</td>     
           <td>&nbsp;</td>
-          <td id="programs_education_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#programs_education_detail').toggle(); $('#programs_education_detail_button').toggleClass('current_selected');">Programs/Education</td>     
+          <td id="programs_education_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#programs_education_detail').slideToggle(); $('#programs_education_detail_button').toggleClass('current_selected');">Programs/Education</td>     
           <td>&nbsp;</td>
-          <td id="notes_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#notes_detail').toggle(); $('#notes_detail_button').toggleClass('current_selected');">Notes</td>     
+          <td id="notes_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#notes_detail').slideToggle(); $('#notes_detail_button').toggleClass('current_selected');">Notes</td>     
 
         </tr>
         <tr>
@@ -260,4 +259,4 @@
 </table>
 
 
-<%= render :partial => 'selectors' %>
+<%= render :partial => 'travel_cards/selectors' %>

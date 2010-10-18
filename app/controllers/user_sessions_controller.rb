@@ -17,6 +17,7 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       if @user_session.save
+        flash[:notice] = "Welcome to WaveLineup #{@user_session.email}!"
         format.html { redirect_to(home_path) }
       else       
         flash[:notice] = "Authentication failed"

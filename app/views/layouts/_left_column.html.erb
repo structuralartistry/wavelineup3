@@ -54,14 +54,37 @@ function load_new_practice_member_form() {
   }
 }
 function set_new_practice_member() {
-  $('#identity_selector').hide(); 
-  $('#new_practice_member').toggle();
+  // determine if need is to show or hide before we close all selectors
+  if($('#new_practice_member').is(':visible')==true) is_showing_now = true;
+  else is_showing_now = false;
+
+  $('.selector').hide();
+  if(!is_showing_now) $('#new_practice_member').show('slide');
   set_left_column_buttons();
+}
+
+function show_identity_selector() {
+  // determine if need is to show or hide before we close all selectors
+  if($('#identity_selector').is(':visible')==true) is_showing_now = true;
+  else is_showing_now = false;
+  
+  $('.selector').hide();
+  $('#new_practice_member_show_selector_cell').removeClass('current_selected');
+  $(this).toggleClass('current_selected');
+  if(is_showing_now) $('#identity_selector').hide();
+  else $('#identity_selector').show('slide');
 }
 </script>
 
 <table class="selector_table" width="150px">
+  <tr>
+    <td align="center">
+      <div id="transmitting" class="hidden">
+        <%= image_tag "transmitting.png", :size => "40x40" %>
+      </div>
+    </td>
+  </tr>
   <tr><td id="new_practice_member_show_selector_cell" class="bold selector_cell selector_cell_add hidden" onclick="load_new_practice_member_form();">New Practice Member</td></tr>
-  <tr><td id="identity_selector_show_selector_cell" class="bold selector_cell selector_cell_add hidden" onclick="$('#new_practice_member_show_selector_cell').removeClass('current_selected'); $('#new_practice_member').hide(); $(this).toggleClass('current_selected'); $('#identity_selector').toggle();">Find</td></tr>
+  <tr><td id="identity_selector_show_selector_cell" class="bold selector_cell selector_cell_add hidden" onclick="show_identity_selector();">Find</td></tr>
 </table>
 

@@ -20,7 +20,6 @@ Feature: Log in and log out
   Scenario: When I am logged in and I go to the login page I am redirected to the home page
     Given I am logged in in a "practice user" user role for the practice "Demo Practice"
     When I go to the login page
-    Then I should see "Home Page" within "h1"
     And I should see "Logout" within a selector cell
     
     

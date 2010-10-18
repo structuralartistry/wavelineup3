@@ -9,6 +9,7 @@ Feature: Travel Card
     Given I am logged in in a "practice user" user role for the practice "Demo Practice"
     Given there is a Practice Member in my practice named "Demo Practice" by the name of "Kahn, David N"
     When I go to the edit travel card page for Practice Member "Kahn, David N"
+    Then I should see "Kahn, David N" within "h1"
   
   @javascript
   Scenario Outline: Verify Left/Right selectors 

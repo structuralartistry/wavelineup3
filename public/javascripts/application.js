@@ -13,6 +13,32 @@ function initialize_page() {
   // $('a').button();
   // $('a').removeClass('ui-corner-all') // take off the rounded corners
 
+  // noSelect - all objects which should not be selectable
+  // these must go before the disableTestSelect function addition below
+  $("h1").addClass("noSelect");
+  $("label").addClass("noSelect");
+  $("input[type=submit]").addClass("noSelect");
+  $(".selector_cell_nav").addClass("noSelect");
+  $(".selector_cell").addClass("noSelect");
+  $(".label").addClass("noSelect");
+  $("#notices").addClass("noSelect");
+  $(".wavelineup").addClass("noSelect");
+
+  // no select - this makes the text of any element with this class not selectable
+  $(function(){
+  	$.extend($.fn.disableTextSelect = function() {
+  		return this.each(function(){
+  			if($.browser.mozilla){//Firefox
+  				$(this).css('MozUserSelect','none');
+  			}else if($.browser.msie){//IE
+  				$(this).bind('selectstart',function(){return false;});
+  			}else{//Opera, etc.
+  				$(this).mousedown(function(){return false;});
+  			}
+  		});
+  	});
+  	$('.noSelect').disableTextSelect();//No text selection on elements with a class of 'noSelect'
+  });
 
   $('.autosave').delayedObserver(function() {
       autosave(this.attr('id'), this.val());

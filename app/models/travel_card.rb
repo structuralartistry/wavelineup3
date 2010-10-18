@@ -1,3 +1,3 @@
 class TravelCard < ActiveRecord::Base
-  has_one :practice_member
+  belongs_to :practice_member
 end

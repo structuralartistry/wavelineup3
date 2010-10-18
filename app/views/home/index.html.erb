@@ -1,1 +1,20 @@
-<h1>Home Page</h1>
+
+<h1>WaveLinup: a community driven system</h1>
+
+The further growth and development (as well as the ability to keep it at a reasonable cost for all!) depends on you!
+The next phase of development will add the Visit Tracking feature. To begin this phase we need to meet the following goals.
+<br />
+There are <%= Practice.all.size %> practices signed up on WaveLinup. Before we begin to add Visit Tracking we need to have 10 practices signed up.
+<br />
+There are <%= PracticeMember.all.size %> Practice Members in the system. We need 100 Practice Members to initiate the next phase!
+<br />
+Please invite someone to the system!
+
+To invite someone to the system, please enter their email address here:
+<br />
+
+
+<% if current_user.practice %>
+  <h1><%= current_user.practice.name %> Practice</h1>
+  You have <%= current_user.practice.practice_members.size %> Practice Members in your Practice!
+<% end %>

@@ -8,7 +8,7 @@ Feature: Allow user to reset their password
     Then I should see "Forgot Password?"
     
     # retrieve password
-    When I click "Forgot Password?" within a selector cell
+    When I press "Forgot Password?"
     Then I should see "Reset Password" within "h1"
     Then I should see "Please enter your email and press submit." within "p"
     And I should see "Email" within "label"
@@ -52,3 +52,16 @@ Feature: Allow user to reset their password
     Given I am logged in in a "practice user" user role for the practice "Demo Practice"
     When I go to the reset password page
     Then I should see "Can't reset your password: you are already logged in to the system"
+    
+    
+  Scenario: Start reseting the password and then cancel
+    Given I am a registered and activated user with the email "practice@structuralartistry.com"
+    Given I am not logged in
+    When I go to the login page
+    When I press "Forgot Password?"
+    Then I should see "Reset Password" within "h1"
+    Then I should see "Please enter your email and press submit." within "p"
+    And I should see "Email" within "label"
+    When I press "Cancel"
+    Then I should see "Login" within "h1"
+    

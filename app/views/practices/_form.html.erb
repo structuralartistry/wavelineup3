@@ -1,45 +1,54 @@
-<%= form_for(@practice) do |f| %>
-  <% if @practice.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@practice.errors.count, "error") %> prohibited this practice from being saved:</h2>
-
-      <ul>
-      <% @practice.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<table>
+  <tr>
+    <td valign="top">
+      <%= form_for(@practice) do |f| %>
+        <% if @practice.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@practice.errors.count, "error") %> prohibited this practice from being saved:</h2>
+      
+            <ul>
+            <% @practice.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        
+        <br />
+      
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name %>
+        </div>
+        
+        <% if action_name != 'edit' %>
+          <p>Create your login</p>
+          <p>You will be able to create more users for your practice once your registration is complete.</p>
+          <%= f.fields_for :users do |u| %>
+            <div class="field">
+              <%= u.label :email %><br />
+              <%= u.text_field :email %>
+            </div>
+            <div class="field">
+              <%= u.label :password %><br />
+              <%= u.password_field :password %>
+            </div>
+            <div class="field">
+              <%= u.label :password_confirmation %><br />
+              <%= u.password_field :password_confirmation %>
+            </div>
+          <% end %>
+        <% end %>
+        
+        <div class="actions">
+          <%= f.submit 'Submit', :class => 'selector_cell_save' %>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  
-  <% if action_name != 'edit' %>
-    <p>Create your login</p>
-    <p>You will be able to create more users for your practice once your registration is complete.</p>
-    <%= f.fields_for :users do |u| %>
-      <div class="field">
-        <%= u.label :email %><br />
-        <%= u.text_field :email %>
-      </div>
-      <div class="field">
-        <%= u.label :password %><br />
-        <%= u.password_field :password %>
-      </div>
-      <div class="field">
-        <%= u.label :password_confirmation %><br />
-        <%= u.password_field :password_confirmation %>
-      </div>
+    </td>
+    <% if action_name == 'edit' %>
+    <td>
+      <%= render :partial => '/users/index' %>
+    </td>
     <% end %>
-  <% end %>
-  
-  <div class="actions">
-    <%= f.submit 'Submit', :class => 'selector_cell_save' %>
-  </div>
-<% end %>
 
-<% if action_name == 'edit' %>
-  <%= render :partial => '/users/index' %>
-<% end %>
+

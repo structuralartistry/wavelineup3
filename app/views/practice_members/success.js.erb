@@ -7,3 +7,5 @@ $('#identity_selector').html("<%= escape_javascript(render :partial => 'layouts/
 // must show the find button, this is done by modifying a var in _left_column.html.erb and running a function there
 identity_selector_available = true;
 set_left_column_buttons();
+
+$('#main_frame).html("<%= escape_javascript(render :partial => 'travel_cards/form') %>")
