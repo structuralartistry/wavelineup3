@@ -5,7 +5,6 @@ Feature: Allow user to reset their password
     Given I am a registered and activated user with the email "practice@structuralartistry.com"
     Given I am not logged in
     When I go to the login page
-    Then I should see "Forgot Password?"
     
     # retrieve password
     When I press "Forgot Password?"
@@ -29,7 +28,6 @@ Feature: Allow user to reset their password
     
     # confirmation
     Then I should see "Password successfully updated"
-    And I should see "Home Page"
     And I should see "practice@structuralartistry.com" within a selector cell
     
     # validate new password is good

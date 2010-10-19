@@ -80,7 +80,6 @@ Feature: User Management
     
     # verify
     Then I should see "User profile successfully updated"
-    And I should see "Home Page"
     When I go to the user profile page
     Then the "user_email" field should contain "sasha@gmail.com"
     

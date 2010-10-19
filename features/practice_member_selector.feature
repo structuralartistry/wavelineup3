@@ -38,7 +38,7 @@ Feature: Practice Member Selector
     When I click "Find" within a selector cell
     When I click "Travel Card" within a selector cell
     And I click "Kahn, David N" within a selector cell
-    Then I should see "Travel Card" within "h1"
+    Then I should see "Kahn, David N" within "h1"
     
      
   @javascript
