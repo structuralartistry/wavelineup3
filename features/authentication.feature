@@ -12,7 +12,6 @@ Feature: Log in and log out
     Then I should see "Email" within "label"
     And I should see "Password" within "label"
     And I should see "Create My Practice" within a selector cell
-    And I should see "Forgot Password?" within a selector cell
     And I should not see "Logout"
     And I should not see "Login" within "td.selector_cell_nav"
     

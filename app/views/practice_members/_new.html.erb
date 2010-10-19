@@ -1,4 +1,4 @@
-<%= form_for(@practice_member) do |f| %>
+<%= form_for(@practice_member, :html => { :class => "ajax_form"}) do |f| %>
   <% if @practice_member.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@practice_member.errors.count, "error") %> prohibited this practice_member from being saved:</h2>

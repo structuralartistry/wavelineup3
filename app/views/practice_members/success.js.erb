@@ -1,11 +1,13 @@
-$('p#flash_notice').html('<%= flash[:notice] %>')
-set_new_practice_member();
+$('p#flash_notice').html('<%= flash[:notice] %>');
+
 
 // must reload the practice member selector
-$('#identity_selector').html("<%= escape_javascript(render :partial => 'layouts/identity_selector') %>");
+$('#practice_member_selector').html("<%= escape_javascript(render :partial => 'layouts/practice_member_selector') %>");
 
-// must show the find button, this is done by modifying a var in _left_column.html.erb and running a function there
-identity_selector_available = true;
+$('#main_frame').html("<%= escape_javascript(render :partial => 'travel_cards/form') %>");
+
+set_new_practice_member();
+
+initialize_page();
+
 set_left_column_buttons();
-
-$('#main_frame).html("<%= escape_javascript(render :partial => 'travel_cards/form') %>")

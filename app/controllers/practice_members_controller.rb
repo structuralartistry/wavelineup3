@@ -18,11 +18,11 @@ class PracticeMembersController < ApplicationController
 
     respond_to do |format|
       if @practice_member.save
-        travel_card_id = TravelCard.find_by_practice_member_id(@practice_member.id).id
+        @travel_card = TravelCard.find_by_practice_member_id(@practice_member.id)
         flash[:notice] = 'Practice Member successfully created'
-        format.html { redirect_to edit_travel_card_path(travel_card_id)}
+        format.js { render 'success' }
       else
-        format.html { render :partial => 'new', :layout => "application" }
+        format.js { render 'new' }
       end
     end
   end

@@ -3,7 +3,7 @@ $(document).ready(function() {
   // determine if each button should be visible
   
   <% if current_user.practice && current_user.practice.practice_members.size > 0 %>
-    identity_selector_available = true;
+    practice_member_selector_available = true;
   <% end %>
   
   <% if current_user.can_create_a_practice_member? %>
@@ -13,15 +13,15 @@ $(document).ready(function() {
   set_left_column_buttons();
 });
 
-var identity_selector_available;
+var practice_member_selector_available;
 var new_practice_member_form_available;
 
 function set_left_column_buttons() {
   if(new_practice_member_form_available) {
     $('#new_practice_member_show_selector_cell').show();
   }
-  if(identity_selector_available) {
-    $('#identity_selector_show_selector_cell').show();
+  if(practice_member_selector_available) {
+    $('#practice_member_selector_show_selector_cell').show();
   }
   
   if($('#new_practice_member').is(':visible')) {
@@ -31,11 +31,11 @@ function set_left_column_buttons() {
     $('#new_practice_member_show_selector_cell').removeClass('current_selected');
   }
   
-  if($('#identity_selector').is(':visible')) {
-    $('#identity_selector_show_selector_cell').addClass('current_selected');
+  if($('#practice_member_selector').is(':visible')) {
+    $('#practice_member_selector_show_selector_cell').addClass('current_selected');
   }
   else {
-    $('#identity_selector_show_selector_cell').removeClass('current_selected');
+    $('#practice_member_selector_show_selector_cell').removeClass('current_selected');
   }
 }
 
@@ -59,20 +59,21 @@ function set_new_practice_member() {
   else is_showing_now = false;
 
   $('.selector').hide();
-  if(!is_showing_now) $('#new_practice_member').show('slide');
+  if(is_showing_now) $('#new_practice_member').hide();
+  else $('#new_practice_member').show('slide');
   set_left_column_buttons();
 }
 
-function show_identity_selector() {
+function show_practice_member_selector() {
   // determine if need is to show or hide before we close all selectors
-  if($('#identity_selector').is(':visible')==true) is_showing_now = true;
+  if($('#practice_member_selector').is(':visible')==true) is_showing_now = true;
   else is_showing_now = false;
   
   $('.selector').hide();
   $('#new_practice_member_show_selector_cell').removeClass('current_selected');
   $(this).toggleClass('current_selected');
-  if(is_showing_now) $('#identity_selector').hide();
-  else $('#identity_selector').show('slide');
+  if(!is_showing_now) $('#practice_member_selector').show('slide');
+  set_left_column_buttons();
 }
 </script>
 
@@ -85,6 +86,6 @@ function show_identity_selector() {
     </td>
   </tr>
   <tr><td id="new_practice_member_show_selector_cell" class="bold selector_cell selector_cell_add hidden" onclick="load_new_practice_member_form();">New Practice Member</td></tr>
-  <tr><td id="identity_selector_show_selector_cell" class="bold selector_cell selector_cell_add hidden" onclick="show_identity_selector();">Find</td></tr>
+  <tr><td id="practice_member_selector_show_selector_cell" class="bold selector_cell selector_cell_add hidden" onclick="show_practice_member_selector();">Find</td></tr>
 </table>
 
