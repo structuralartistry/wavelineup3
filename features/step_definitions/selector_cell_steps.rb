@@ -24,7 +24,7 @@ Then /^I should not see "([^\"]*)" within a selector cell$/ do |text|
   element_found = nil
   begin
     # this fails fatally if element does not exist
-    element_found = page.find(:xpath,"//*[( contains(concat(' ',normalize-space(@class),' '),' selector_cell ') or contains(concat(' ',normalize-space(@class),' '),' selector_cell_nav ') ) and text()='#{(text)}']", :visible => false)
+    element_found = page.find(:xpath,"//*[( contains(concat(' ',normalize-space(@class),' '),' selector_cell ') or contains(concat(' ',normalize-space(@class),' '),' selector_cell_nav ') ) and text()='#{(text)}']", :visible => true)
   rescue
   end
   

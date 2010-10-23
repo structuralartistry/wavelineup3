@@ -6,10 +6,11 @@ Feature: Practice Member Selector
     Given there is a Practice Member in my practice named "Hello Kitty Practice" by the name of "Kahn, David N"
     Given there is a Practice Member in my practice named "Hello Kitty Practice" by the name of "Apple, John"
     Given I am on the home page
-    Then I should not see "Travel Card" within a selector cell
-    Then I should not see "Edit Personal Info" within a selector cell
-    Then I should not see "Kahn, David N" within a selector cell
-    Then I should not see "Apple, John" within a selector cell
+    # verify that selector is hidden
+    Then I should not see "Travel Card" within "td"
+    Then I should not see "Edit Personal Info" within "td"
+    Then I should not see "Kahn, David N" within "td"
+    Then I should not see "Apple, John" within "td"
     
   @javascript
   Scenario: The Practice Member Selector shows when I click find and closes when I click close
