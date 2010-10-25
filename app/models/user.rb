@@ -27,8 +27,12 @@ class User < ActiveRecord::Base
   end
    
   def deliver_activation_instructions!
-    reset_perishable_token!
-    SystemMailer.user_activation_instructions(self).deliver
+    begin
+      reset_perishable_token!
+      SystemMailer.user_activation_instructions(self).deliver
+    rescue
+      
+    end
   end
   
   def activate!
@@ -37,13 +41,21 @@ class User < ActiveRecord::Base
   end
   
   def deliver_welcome!
+    begin
       reset_perishable_token!
       SystemMailer.user_welcome_email(self).deliver
+    rescue
+      
+    end
   end
    
-  def deliver_password_reset_instructions!  
-    reset_perishable_token!  
-    SystemMailer.password_reset_instructions(self).deliver  
+  def deliver_password_reset_instructions!
+    begin
+      reset_perishable_token!  
+      SystemMailer.password_reset_instructions(self).deliver
+    rescue
+      
+    end
   end
   
   def can_create_a_practice_member?
