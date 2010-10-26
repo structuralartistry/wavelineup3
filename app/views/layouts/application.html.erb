@@ -7,6 +7,9 @@
   <%= javascript_include_tag 'jquery-1.4.2.min' %>
   <%= javascript_include_tag 'jquery-ui-1.8.5.custom.min' %>
   <%= javascript_include_tag 'jquery.utils.min' %>
+  <%= javascript_include_tag 'bindows_gauges/bindows_gauges.js' %>
+  <%= javascript_include_tag 'bindows_gauges/gauge2.ie.js' %>
+  <%= javascript_include_tag 'bindows_gauges/gauge2.js' %>
   <%= javascript_include_tag 'ajax' %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag 'travel_card'%>
@@ -51,13 +54,13 @@
     		  <% end %>
         </td>
         <td style="width: 98%;">        
-          <div id="new_practice_member" class="selector hidden">
+          <div id="new_practice_member" class="selector hidden" style="display: none;">
           </div>
-          <div id="practice_member_selector" class="selector hidden">
+          <div id="practice_member_selector" class="selector hidden" style="display: none;">
             <%= render :partial => "layouts/practice_member_selector" %>
      	    </div>
      	    <div id="notices">
-     	      <p id="flash_notice" style="color: green"><%= flash[:notice] %></p>
+     	      <p id="flash_notice"><%= flash[:notice] %></p>
      	    </div>
      	    <div id="main_frame">
             <%= yield %>

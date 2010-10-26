@@ -1,20 +1,122 @@
-
-<h1>WaveLinup: a community driven system</h1>
-
-The further growth and development (as well as the ability to keep it at a reasonable cost for all!) depends on you!
-The next phase of development will add the Visit Tracking feature. To begin this phase we need to meet the following goals.
-<br />
-There are <%= Practice.all.size %> practices signed up on WaveLinup. Before we begin to add Visit Tracking we need to have 10 practices signed up.
-<br />
-There are <%= PracticeMember.all.size %> Practice Members in the system. We need 100 Practice Members to initiate the next phase!
-<br />
-Please invite someone to the system!
-
-To invite someone to the system, please enter their email address here:
-<br />
+<%= javascript_include_tag 'http://www.google.com/jsapi' %>
 
 
-<% if current_user.practice %>
-  <h1><%= current_user.practice.name %> Practice</h1>
-  You have <%= current_user.practice.practice_members.size %> Practice Members in your Practice!
-<% end %>
+
+<h3><span class="wavelineup">WaveLinup:</span> a community driven system</h1><br>
+
+<script type='text/javascript'>
+  google.load('visualization', '1', {packages:['gauge']});
+  google.setOnLoadCallback(draw_stats);
+
+  function draw_stats(){
+    
+    // global practice members
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Label');
+    data.addColumn('number', 'Value');
+    data.addRows(1);
+    data.setValue(0, 0, 'Practice Members');
+    data.setValue(0, 1, <%= PracticeMember.all.size %>);
+    var chart = new google.visualization.Gauge(document.getElementById('global_practice_members_gauge'));
+    var options = {
+      width: 400, 
+      height: 200, 
+      min: 0,
+      max: 120,
+      redFrom: 100, 
+      redTo: 120, 
+      minorTicks: 5};
+    chart.draw(data, options);
+    
+    // global practices
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Label');
+    data.addColumn('number', 'Value');
+    data.addRows(1);
+    data.setValue(0, 0, 'Practices');
+    data.setValue(0, 1, <%= Practice.all.size %>);
+
+    var chart = new google.visualization.Gauge(document.getElementById('global_practices_gauge'));
+    var options = {
+      width: 400, 
+      height: 200, 
+      min: 0,
+      max: 15,
+      redFrom: 10, 
+      redTo: 15, 
+      minorTicks: 5};
+    chart.draw(data, options);
+       
+    // local practice members
+    <% if current_user.practice %>
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Label');
+    data.addColumn('number', 'Value');
+    data.addRows(1);
+    data.setValue(0, 0, 'Practice Members');
+    data.setValue(0, 1, <%= current_user.practice.practice_members.size %>);
+
+    var chart = new google.visualization.Gauge(document.getElementById('local_practice_members_gauge'));
+    var options = {
+      width: 400, 
+      height: 200, 
+      min: 0,
+      max:  <%= current_user.practice.practice_members.size + 20 %>, 
+      minorTicks: 5};
+    chart.draw(data, options);
+    <% end %>
+  }
+
+</script>
+
+<table>
+  <tr>
+    <td>
+      <table class="wavelineup_menu" border="0" style="border-width: 1px; border-color: lightgreen; border-style: solid;">
+        <tr>
+          <th colspan="2" class="lightgreen">
+            Systemwide
+          </th>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            Growth and expansion of this system depends on you!<br>
+            We will add the Visit Tracking feature next.<br>
+            To start this we need to reach the 'RED' zones!
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <div id="global_practice_members_gauge"></div>
+          </td>
+          <td align="center">
+            <div id="global_practices_gauge"></div>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td style="width: 0.25in"></td>
+    <td valign="top">
+      <table class="wavelineup_menu" border="0" style="border-width: 1px; border-color: lightpink; border-style: solid;">
+        <tr>
+          <th class="lightpink">
+            <%= current_user.practice.name%>
+          </th>
+        </tr>
+        <tr>
+          <td valign="top" align="center">
+            These are stats for your<br>practice. More to come as<br>the system grows!
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <div id="local_practice_members_gauge" style="clear: left;"></div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+
+

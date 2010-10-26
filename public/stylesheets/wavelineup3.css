@@ -40,7 +40,9 @@
   list-style: square;
 }
 
-
+#flash_notice {
+  color: green;
+}
 
 
 
@@ -268,6 +270,14 @@ div#past_visits {
 div#travel_card {
   padding: 5px;
   background: lightgreen;
+}
+
+.lightgreen {
+  background: lightgreen;
+}
+
+.lightpink {
+  background: lightpink;
 }
 
 div#processing_message {
