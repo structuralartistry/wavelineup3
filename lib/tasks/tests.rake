@@ -11,7 +11,7 @@ task :cukes_no_tc do
 end
 
 task :cukes_tc_only do
- sh "cucumber -f pretty -n 'Travel Card'"
+ sh "cucumber features/travel_card.feature -f pretty"
 end
 
 task :cukes_all do
