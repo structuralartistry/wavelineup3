@@ -24,8 +24,7 @@
       min: 0,
       max: 120,
       redFrom: 100, 
-      redTo: 120, 
-      minorTicks: 5};
+      redTo: 120};
     chart.draw(data, options);
     
     // global practices
@@ -43,8 +42,7 @@
       min: 0,
       max: 15,
       redFrom: 10, 
-      redTo: 15, 
-      minorTicks: 5};
+      redTo: 15};
     chart.draw(data, options);
        
     // local practice members
@@ -61,8 +59,7 @@
       width: 400, 
       height: 200, 
       min: 0,
-      max:  <%= current_user.practice.practice_members.size + 20 %>, 
-      minorTicks: 5};
+      max:  <%= current_user.practice.practice_members.size + 20 %>};
     chart.draw(data, options);
     <% end %>
   }

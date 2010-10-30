@@ -1,4 +1,34 @@
 Wavelineup3::Application.routes.draw do
+  
+    # 
+    # resources :travel_cards
+    # 
+    # resources :practice_members
+    # 
+    # match 'activations/new', :as => 'resend_activation_link'
+    # match 'activations/:activation_code' => 'activations#create', :as => 'activations'
+    # 
+    # resources :practices
+    # 
+    # match 'login' => 'user_sessions#new', :as => 'login'
+    # match 'logout' => 'user_sessions#destroy', :as => 'logout'
+    # match 'register' => 'users#new', :as => 'register'
+    # match 'user_profile' => 'users#edit', :as => 'user_profile'
+    # 
+    # match 'reset_password' => 'password_resets#new', :as => 'reset_password'
+    # 
+    # resources :password_resets
+    # resources :user_sessions
+    # 
+    # resources :users
+    # 
+    # match 'home/index', :as => 'home'
+    # 
+    # root :to => "home#index"
+  
+  
+  
+  
 
   resources :travel_cards
 
