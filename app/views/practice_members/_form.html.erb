@@ -23,8 +23,11 @@
     <%= f.label :name_middle, "Middle Name" %><br />
     <%= f.text_field :name_middle %>
   </div>
-  <div class="actions">
+  <div class="actions" style="float: left;">
     <%= f.submit 'Submit', :class => 'selector_cell_save' %>
+  </div>
+  <div style="width: 1.75in; float: left;">
+    &nbsp;
   </div>
 <% end %>
 <!-- this has to be outside the form else the submit action picks up the delete method -- >
