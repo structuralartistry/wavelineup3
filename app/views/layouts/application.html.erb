@@ -30,7 +30,6 @@
                   <td class='selector_cell_nav' onmousedown='location.href="<%= edit_practice_url(current_user.practice.id) %>"'><%= current_user.practice.name %></td>
                 <% end %>
                 <td class='selector_cell_nav' onmousedown='location.href="<%= edit_user_url(:current) %>"'><%= current_user.email %></td>
-                <td class='selector_cell_nav' onmousedown='location.href="<%= edit_user_url(:current) %>"'><%= current_user.email %></td>
                 <td class='selector_cell_nav' onmousedown='location.href="<%= logout_url %>"'>Logout</td>
               <% else %>
                 <% if !(controller_name=='practices' && action_name=='new') %>

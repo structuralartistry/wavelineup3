@@ -97,7 +97,7 @@
       <table class="wavelineup_menu" border="0" style="border-width: 1px; border-color: lightpink; border-style: solid;">
         <tr>
           <th class="lightpink">
-            <%= current_user.practice.name%>
+            <%= current_user.practice.name if current_user.practice %>
           </th>
         </tr>
         <tr>

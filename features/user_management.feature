@@ -11,17 +11,9 @@ Feature: User Management
     
     Then I should see "Manage Practice"
     Then I should see "Practice One"
-    And I should see "Users" within "h1"
+    And I should see "Users" within "th"
     And I should see "practice_user@structuralartistry.com"
     And I should see "Manage Practice"
-    
-    # load form and test cancel route
-    When I press "New User"
-    Then I should see "Email"
-    And I should see "Password"
-    And I should see "Password confirmation"
-    When I press "Cancel"
-    Then I should see "Manage Practice"
     
     # add a user
     When I press "New User"
@@ -32,7 +24,6 @@ Feature: User Management
     
     # verify added
     Then I should see "Practice One"
-    And I should see "Users" within "h1"
     And I should see "practice1@structuralartistry.com"
     # all users right now aside from the user which creates the practice will be 'practice user'
     # where the original user is 'practice admin'
