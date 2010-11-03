@@ -1,41 +1,63 @@
+/* original blue: #00A4FF; */
+
+
+body { background-color: #fff; color: #333; }
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; }
+a:visited { color: #666; }
+a:hover { color: #fff; background-color:#000; }
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+
+
 /* ERRORS/VALIDATION */
 #form_error_messages {
   position: absolute;
   right: 0;
 }
 
-.fieldWithErrors {
+.field_with_errors {
   padding: 2px;
-  background-color: red;
+  background-color: lightpink;
   display: table;
 }
 
-#errorExplanation {
-  width: 400px;
-  border: 2px solid red;
+#error_explanation {
+  width: 450px;
+  border: 2px solid lightpink;
   padding: 7px;
-  padding-bottom: 12px;
+  padding-bottom: 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
 
-#errorExplanation h2 {
+#error_explanation h2 {
   text-align: left;
   font-weight: bold;
   padding: 5px 5px 5px 15px;
   font-size: 12px;
   margin: -7px;
-  background-color: #c00;
-  color: #fff;
+  margin-bottom: 0px;
+  background-color: lightpink;
+  color: #000033;
 }
 
-#errorExplanation p {
-  color: #333;
-  margin-bottom: 0;
-  padding: 5px;
-}
-
-#errorExplanation ul li {
+#error_explanation ul li {
   font-size: 12px;
   list-style: square;
 }
@@ -140,7 +162,7 @@ select,
 div.selector {
   /* to hold coloring but not location */
   /*background-color: aqua;*/
-  background-color: lightblue;
+  background-color: lightgray;
   z-index: 100;
   position: absolute;
   border: 2px solid #000033;
@@ -184,7 +206,7 @@ span.section_internal_label {
 }
 
 .current_selected {
-  background-color: aqua;
+  background-color: #50A0EB;
 }
 
 
@@ -209,7 +231,7 @@ span.section_internal_label {
 .wavelineup {
   font-weight: bold;
 
-  color: #00A4FF;
+  color: #4684EE;
   font-size: 18px;
 }
 
@@ -237,7 +259,7 @@ div#practice_member_header {
 }
 
 div#footer {
-  background-color: aqua;
+  background-color: #4684EE;
 }
 
 div#selected_visit {
@@ -306,7 +328,7 @@ div#processing_message {
 
 div#cal_event_selector {
   width: 650px;
-  border: 10px solid aqua;
+  border: 10px solid #4684EE;
   background-color: #ffffff;
 }
 
@@ -360,5 +382,5 @@ background-color: #e0e0e0; /*#c0e0f0;*/ /*#C5ECEC;*/
 
 
 .ui-datepicker {
-  background-color: aqua;
+  background-color: #4684EE;
 }

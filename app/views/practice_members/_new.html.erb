@@ -1,42 +1,63 @@
 <%= form_for(@practice_member, :html => { :class => "ajax_form"}) do |f| %>
-  <% if @practice_member.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@practice_member.errors.count, "error") %> prohibited this practice_member from being saved:</h2>
-
-      <ul>
-      <% @practice_member.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <table>
     <tr>
       <th align='left' colspan='4'><h1>New Practice Member</h1></th>
     </tr>
+    
+    <% if @practice_member.errors.any? %>
+      <tr>
+        <td colspan="4">
+        <br \>
+        <div id="error_explanation">
+          <h2><%= pluralize(@practice_member.errors.count, "error") %> prohibited this practice_member from being saved:</h2>
+
+          <ul>
+          <% @practice_member.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+        </td>
+      </tr>
+    <% end %>
+    
     <tr>
       <td>
         <div class="field">
           <%= f.label :name_last, "Last Name" %><br />
-          <%= f.text_field :name_last, :size => 15 %>
         </div>
       </td>
       <td>
         <div class="field">
           <%= f.label :name_first, "First Name" %><br />
-          <%= f.text_field :name_first, :size => 15  %>
         </div>
       </td>
       <td>
         <div class="field">
           <%= f.label :name_middle, "Middle Name" %><br />
+        </div>
+      </td>
+      <td>
+      </td>
+    </tr>    
+    <tr>
+      <td>
+        <div class="field">
+          <%= f.text_field :name_last, :size => 15 %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
+          <%= f.text_field :name_first, :size => 15  %>
+        </div>
+      </td>
+      <td>
+        <div class="field">
           <%= f.text_field :name_middle, :size => 10  %>
         </div>
       </td>
       <td>
         <div class="actions">
-          &nbsp;<br />
           <%= f.submit 'Submit', :class => 'selector_cell_save' %>            
         </div>
       </td>

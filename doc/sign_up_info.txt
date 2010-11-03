@@ -1,0 +1,10 @@
+
+All data communications on Wavelineup are processed through a secure 256bit SSL. Non-secure connections are not permitted.
+
+User email addresses and any other information gathered will be used solely for the purposes of the Wavelineup system and its communications. They will not be given or sold to a third party except in the case of acquisition of the Wavelineup system by another party.
+
+Practice Member information is only visible to authorized users belonging to the creating practice. It is the responsibility of the Practice owner to administer their users and to remove users as required. 
+
+The Wavelineup system requires that each user utilize a strong password for authentication to the system.
+
+Currently information such as Social Security Numbers and Dates of Birth are not available fields in the system. If at any point these or similarly highly sensitive fields are added, the information within will be encrypted at rest in the system database. 
