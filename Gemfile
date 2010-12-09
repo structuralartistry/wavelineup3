@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0'
+gem 'rails', '3.0.3'
 
 gem 'pg'
 
@@ -12,9 +12,8 @@ unless $heroku
   group :development, :test do
     gem 'ruby-debug19'
     gem 'cucumber-rails'
-    gem 'cucumber', '>=0.8.5'
     gem 'capybara'
-    gem 'rspec-rails', '>=2.0.0.beta.20'
+    gem 'rspec-rails'
     gem 'factory_girl_rails'
     gem 'webrat', '>=0.4.3'
     gem 'heroku'

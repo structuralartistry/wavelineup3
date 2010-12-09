@@ -9,13 +9,13 @@ Feature: Administer system
     Then I should see "Demo Practice"
     
     
-  Scenario: A "practice admin" role can not see the practice list
+  Scenario: A "practice admin" role can not administer practices
     Given I am logged in in a "practice admin" user role for the practice "Demo Practice"
     When I go to the practices page
     Then I should see "This page is not permitted per your access rights"
     
     
-  Scenario: A "practice user" role can not see the practice list
+  Scenario: A "practice user" role can not administer practices
     Given I am logged in in a "practice user" user role for the practice "Demo Practice"
     When I go to the practices page
     Then I should see "This page is not permitted per your access rights"

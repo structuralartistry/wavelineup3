@@ -9,6 +9,11 @@ class PracticeMember < ActiveRecord::Base
   
   before_save :normalize_input
   after_create :create_travel_card_record
+  
+  def self.practice_members_global_count
+    # global roster, no Demo Practice members included
+    PracticeMember.includes("practice").where("practices.name<>'Demo Practice'").size
+  end
     
   def validate_practice_member_full_name_does_not_exist_for_practice
     if self.practice_id # dont bother if no practice id.... its a lost cause and the sql here will break
@@ -40,7 +45,7 @@ class PracticeMember < ActiveRecord::Base
   end
   
   def full_name_last_comma_first_middle
-    (self.name_last + ', ' + self.name_first + ' ' + self.name_middle).strip
+    "#{self.name_last}, #{self.name_first} #{self.name_middle}".strip
   end
   
   private

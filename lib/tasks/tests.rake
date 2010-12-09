@@ -1,3 +1,7 @@
+task :play_sound do
+  `afplay config/deploy/deploy_sound.aiff &`
+end
+
 task :cukes_no_js do
   sh "cucumber -f pretty -t ~@javascript"
 end

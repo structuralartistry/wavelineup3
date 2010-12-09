@@ -12,9 +12,8 @@ describe Practice do
     user1 = Factory.create(:practice_admin_user, :practice_id => @practice.id)
     user2 = Factory.create(:practice_user, :practice_id => @practice.id)
     User.count.should == 2
-    
   end
-  
+    
   it "deletes all associated users when it is deleted" do
     @practice.destroy
     Practice.count.should == 0

@@ -2,6 +2,8 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'rspec/core'
+require 'rspec/matchers'
 require 'ruby-debug'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -49,4 +51,6 @@ def logout_user
   @controller.stub!(:current_user).and_return(@logged_in_user)
   @logged_in_user
 end
+
+
 

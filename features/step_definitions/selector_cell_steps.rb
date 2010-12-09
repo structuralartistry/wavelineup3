@@ -20,6 +20,7 @@ Then /^I should see "([^\"]*)" within the "([^\"]*)" selector cell$/ do |text, i
 end
 
 Then /^I should not see "([^\"]*)" within a selector cell$/ do |text|
+  pending # NOTE: change element found code to: page.has_xpath? and page.has_no_xpath?
   msg = "No selector_cell found with the content of '#{text}'" 
   element_found = nil
   begin

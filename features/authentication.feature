@@ -8,12 +8,7 @@ Feature: Log in and log out
   Scenario: I can get to the login page
     Given I am not logged in
     When I go to the login page
-    Then I should see "Login" within "h1"
-    Then I should see "Email" within "label"
-    And I should see "Password" within "label"
-    And I should see "Create My Practice" within a selector cell
-    And I should not see "Logout"
-    And I should not see "Login" within "td.selector_cell_nav"
+		Then I should see the login fields
     
     
   Scenario: When I am logged in and I go to the login page I am redirected to the home page
@@ -21,27 +16,21 @@ Feature: Log in and log out
     When I go to the login page
     And I should see "Logout" within a selector cell
     
-    
   @javascript
   Scenario: When I am logged in and I click the logout link I am sent to the login page
     Given I am logged in in a "practice user" user role for the practice "Demo Practice"
     When I click "Logout" within a selector cell
     Then I should see "Successfully logged out"
-    And I should see "Login" within "h1"
-    And I should see "Email" within "label"
-    And I should see "Password" within "label"
-    And I should not see "Logout" within "td.selector_cell_nav"
+    Then I should see the login fields
         
   
   # log in scenarios
-  
+	  @javascript
     Scenario: Authentication succeeds when good information provided
       Given there are no registered practices or users
       Given I am on the login page
-      Given I am a registered and activated user with the email "practice@structuralartistry.com"
-      When I fill in "user_session_email" with "practice@structuralartistry.com"
-      And I fill in "user_session_password" with "password1"
-      When I press "Submit"
+      Given I am a registered and activated "practice" user with the email "practice@structuralartistry.com"
+			When I login with email "practice@structuralartistry.com" and password "password1"
       Then I should see "practice@structuralartistry.com" within a selector cell
   
   

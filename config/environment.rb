@@ -17,5 +17,6 @@ ActionMailer::Base.smtp_settings = {
 }
 
 RESTRICTED_PAGE_NOTICE = "This page is not permitted per your access rights"
+LOGIN_NOTICE = "Please log in"
 
 

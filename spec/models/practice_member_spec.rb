@@ -2,6 +2,21 @@ require 'spec_helper'
 
 describe PracticeMember do
   
+  it "can get global practice member count not including Demo Practice" do
+    assert_equal PracticeMember.practice_members_global_count, 0
+
+    practice = Factory.create(:practice_one)
+    
+    practice_member = Factory.create(:practice_member)
+    practice_member.practice_id = practice.id
+    practice_member.save
+    practice_member = Factory.create(:practice_member)
+    practice_member.practice_id = practice.id
+    practice_member.save
+
+    assert_equal PracticeMember.practice_members_global_count, 2
+  end
+  
   describe "practice member list text" do
     it "should format in Last Name, First Name Middle Name format" do
       practice_member = PracticeMember.new
@@ -27,7 +42,8 @@ describe PracticeMember do
       assert practice_member.save
       practice_member.errors.count.should == 0
       
-      practice_member = Factory.build(:practice_member, :practice_id => practice.id)
+      practice_member = practice_member.dup # create another pm with same name
+      practice_member.id = nil
       assert !practice_member.save
       practice_member.errors.count.should == 1
       practice_member.errors[:practice_member_name].should == ["already exists in your Practice"]

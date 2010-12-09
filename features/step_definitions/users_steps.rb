@@ -1,16 +1,23 @@
-Given /^I am a registered and activated user with the email "([^\"]*)"$/ do |email|
-  
+Given /^I am a registered and activated "([^\"]*)" user with the email "([^\"]*)"$/ do |role, email|
   Factory.create(:sysadmin_role)
   Factory.create(:practice_admin_role)
   Factory.create(:practice_user_role)
   
   practice = Factory.create(:practice_one)
   
-  user = Factory.build(:user)
+  case role
+  when "sysadmin"
+    user = Factory.build(:sysadmin_user)
+  when "practice_admin"
+    user = Factory.build(:practice_admin_user)
+  when "practice"
+    user = Factory.build(:practice_user)
+  end
+  
   user.email = email
   user.active = true
-  user.practice_id = practice.id
-  user.save
+  user.practice_id = practice.id  
+  user.save  
 end
 
 Given /^I am an inactive user with the email "([^\"]*)"$/ do |email|
@@ -57,6 +64,5 @@ end
 # 
 # When /^I try to activate my user with email address "([^\"]*)"$/ do |email|
 #   user = User.find_by_email(email)
-# debugger
 #   visit(activations_url(user.perishable_token))
 # end

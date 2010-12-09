@@ -10,131 +10,139 @@ describe User do
   
    
   describe "user authorization - guest role" do
-    user = User.new
-    user.authorize('activations', 'create')[:success].should == true
-    user.authorize('home', 'index')[:success].should == false
-    user.authorize('password_resets', 'new')[:success].should == true
-    user.authorize('password_resets', 'create')[:success].should == true
-    user.authorize('password_resets', 'edit')[:success].should == true
-    user.authorize('password_resets', 'update')[:success].should == true
-    user.authorize('practice_members', 'index')[:success].should == false
-    user.authorize('practice_members', 'new')[:success].should == false
-    user.authorize('practice_members', 'edit')[:success].should == false
-    user.authorize('practice_members', 'create')[:success].should == false
-    user.authorize('practice_members', 'update')[:success].should == false
-    user.authorize('practice_members', 'destroy')[:success].should == false
-    user.authorize('practices', 'index')[:success].should == false
-    user.authorize('practices', 'new')[:success].should == true
-    user.authorize('practices', 'edit')[:success].should == false
-    user.authorize('practices', 'create')[:success].should == true
-    user.authorize('practices', 'update')[:success].should == false
-    user.authorize('practices', 'destroy')[:success].should == false
-    user.authorize('travel_cards', 'edit')[:success].should == false
-    user.authorize('travel_cards', 'update')[:success].should == false
-    user.authorize('user_sessions', 'new')[:success].should == true
-    user.authorize('user_sessions', 'create')[:success].should == true
-    user.authorize('user_sessions', 'destroy')[:success].should == false
-    user.authorize('users', 'new')[:success].should == false
-    user.authorize('users', 'edit')[:success].should == false
-    user.authorize('users', 'create')[:success].should == false
-    user.authorize('users', 'update')[:success].should == false
-    user.authorize('users', 'destroy')[:success].should == false
+    it "is authorized to access certain pages only" do
+      user = User.new
+      user.authorize('activations', 'create')[:success].should == true
+      user.authorize('home', 'index')[:success].should == false
+      user.authorize('password_resets', 'new')[:success].should == true
+      user.authorize('password_resets', 'create')[:success].should == true
+      user.authorize('password_resets', 'edit')[:success].should == true
+      user.authorize('password_resets', 'update')[:success].should == true
+      user.authorize('practice_members', 'index')[:success].should == false
+      user.authorize('practice_members', 'new')[:success].should == false
+      user.authorize('practice_members', 'edit')[:success].should == false
+      user.authorize('practice_members', 'create')[:success].should == false
+      user.authorize('practice_members', 'update')[:success].should == false
+      user.authorize('practice_members', 'destroy')[:success].should == false
+      user.authorize('practices', 'index')[:success].should == false
+      user.authorize('practices', 'new')[:success].should == true
+      user.authorize('practices', 'edit')[:success].should == false
+      user.authorize('practices', 'create')[:success].should == true
+      user.authorize('practices', 'update')[:success].should == false
+      user.authorize('practices', 'destroy')[:success].should == false
+      user.authorize('travel_cards', 'edit')[:success].should == false
+      user.authorize('travel_cards', 'update')[:success].should == false
+      user.authorize('user_sessions', 'new')[:success].should == true
+      user.authorize('user_sessions', 'create')[:success].should == true
+      user.authorize('user_sessions', 'destroy')[:success].should == false
+      user.authorize('users', 'new')[:success].should == false
+      user.authorize('users', 'edit')[:success].should == false
+      user.authorize('users', 'create')[:success].should == false
+      user.authorize('users', 'update')[:success].should == false
+      user.authorize('users', 'destroy')[:success].should == false
+    end
   end
 
   describe "user authorization - sysadmin role" do
-    user = Factory.create(:sysadmin_user)
-    user.authorize('activations', 'create')[:success].should == false
-    user.authorize('home', 'index')[:success].should == true
-    user.authorize('password_resets', 'new')[:success].should == false
-    user.authorize('password_resets', 'create')[:success].should == false
-    user.authorize('password_resets', 'edit')[:success].should == false
-    user.authorize('password_resets', 'update')[:success].should == false
-    user.authorize('practice_members', 'index')[:success].should == true
-    user.authorize('practice_members', 'new')[:success].should == true
-    user.authorize('practice_members', 'edit')[:success].should == true
-    user.authorize('practice_members', 'create')[:success].should == true
-    user.authorize('practice_members', 'update')[:success].should == true
-    user.authorize('practice_members', 'destroy')[:success].should == true
-    user.authorize('practices', 'index')[:success].should == true
-    user.authorize('practices', 'new')[:success].should == false
-    user.authorize('practices', 'edit')[:success].should == true
-    user.authorize('practices', 'create')[:success].should == false
-    user.authorize('practices', 'update')[:success].should == true
-    user.authorize('practices', 'destroy')[:success].should == true
-    user.authorize('travel_cards', 'edit')[:success].should == true
-    user.authorize('travel_cards', 'update')[:success].should == true
-    user.authorize('user_sessions', 'new')[:success].should == false
-    user.authorize('user_sessions', 'create')[:success].should == false
-    user.authorize('user_sessions', 'destroy')[:success].should == true
-    user.authorize('users', 'new')[:success].should == true
-    user.authorize('users', 'edit')[:success].should == true
-    user.authorize('users', 'create')[:success].should == true
-    user.authorize('users', 'update')[:success].should == true
-    user.authorize('users', 'destroy')[:success].should == true
+    it "is authorized to access certain pages only" do
+      user = Factory.create(:sysadmin_user)
+      user.authorize('activations', 'create')[:success].should == false
+      user.authorize('home', 'index')[:success].should == true
+      user.authorize('password_resets', 'new')[:success].should == false
+      user.authorize('password_resets', 'create')[:success].should == false
+      user.authorize('password_resets', 'edit')[:success].should == false
+      user.authorize('password_resets', 'update')[:success].should == false
+      user.authorize('practice_members', 'index')[:success].should == true
+      user.authorize('practice_members', 'new')[:success].should == true
+      user.authorize('practice_members', 'edit')[:success].should == true
+      user.authorize('practice_members', 'create')[:success].should == true
+      user.authorize('practice_members', 'update')[:success].should == true
+      user.authorize('practice_members', 'destroy')[:success].should == true
+      user.authorize('practices', 'index')[:success].should == true
+      user.authorize('practices', 'new')[:success].should == false
+      user.authorize('practices', 'edit')[:success].should == true
+      user.authorize('practices', 'create')[:success].should == false
+      user.authorize('practices', 'update')[:success].should == true
+      user.authorize('practices', 'destroy')[:success].should == true
+      user.authorize('travel_cards', 'edit')[:success].should == true
+      user.authorize('travel_cards', 'update')[:success].should == true
+      user.authorize('user_sessions', 'new')[:success].should == false
+      user.authorize('user_sessions', 'create')[:success].should == false
+      user.authorize('user_sessions', 'destroy')[:success].should == true
+      user.authorize('users', 'new')[:success].should == true
+      user.authorize('users', 'edit')[:success].should == true
+      user.authorize('users', 'create')[:success].should == true
+      user.authorize('users', 'update')[:success].should == true
+      user.authorize('users', 'destroy')[:success].should == true
+    end
   end
   
   describe "user authorization - practice admin role" do
-    user = Factory.create(:practice_admin_user)
-    user.authorize('activations', 'create')[:success].should == false
-    user.authorize('home', 'index')[:success].should == true
-    user.authorize('password_resets', 'new')[:success].should == false
-    user.authorize('password_resets', 'create')[:success].should == false
-    user.authorize('password_resets', 'edit')[:success].should == false
-    user.authorize('password_resets', 'update')[:success].should == false
-    user.authorize('practice_members', 'index')[:success].should == true
-    user.authorize('practice_members', 'new')[:success].should == true
-    user.authorize('practice_members', 'edit')[:success].should == true
-    user.authorize('practice_members', 'create')[:success].should == true
-    user.authorize('practice_members', 'update')[:success].should == true
-    user.authorize('practice_members', 'destroy')[:success].should == true
-    user.authorize('practices', 'index')[:success].should == false
-    user.authorize('practices', 'new')[:success].should == false
-    user.authorize('practices', 'edit')[:success].should == true
-    user.authorize('practices', 'create')[:success].should == false
-    user.authorize('practices', 'update')[:success].should == true
-    user.authorize('practices', 'destroy')[:success].should == false
-    user.authorize('travel_cards', 'edit')[:success].should == true
-    user.authorize('travel_cards', 'update')[:success].should == true
-    user.authorize('user_sessions', 'new')[:success].should == false
-    user.authorize('user_sessions', 'create')[:success].should == false
-    user.authorize('user_sessions', 'destroy')[:success].should == true
-    user.authorize('users', 'new')[:success].should == true
-    user.authorize('users', 'edit')[:success].should == true
-    user.authorize('users', 'create')[:success].should == true
-    user.authorize('users', 'update')[:success].should == true
-    user.authorize('users', 'destroy')[:success].should == true
+    it "is authorized to access certain pages only" do
+      user = Factory.create(:practice_admin_user)
+      user.authorize('activations', 'create')[:success].should == false
+      user.authorize('home', 'index')[:success].should == true
+      user.authorize('password_resets', 'new')[:success].should == false
+      user.authorize('password_resets', 'create')[:success].should == false
+      user.authorize('password_resets', 'edit')[:success].should == false
+      user.authorize('password_resets', 'update')[:success].should == false
+      user.authorize('practice_members', 'index')[:success].should == true
+      user.authorize('practice_members', 'new')[:success].should == true
+      user.authorize('practice_members', 'edit')[:success].should == true
+      user.authorize('practice_members', 'create')[:success].should == true
+      user.authorize('practice_members', 'update')[:success].should == true
+      user.authorize('practice_members', 'destroy')[:success].should == true
+      user.authorize('practices', 'index')[:success].should == false
+      user.authorize('practices', 'new')[:success].should == false
+      user.authorize('practices', 'edit')[:success].should == true
+      user.authorize('practices', 'create')[:success].should == false
+      user.authorize('practices', 'update')[:success].should == true
+      user.authorize('practices', 'destroy')[:success].should == false
+      user.authorize('travel_cards', 'edit')[:success].should == true
+      user.authorize('travel_cards', 'update')[:success].should == true
+      user.authorize('user_sessions', 'new')[:success].should == false
+      user.authorize('user_sessions', 'create')[:success].should == false
+      user.authorize('user_sessions', 'destroy')[:success].should == true
+      user.authorize('users', 'new')[:success].should == true
+      user.authorize('users', 'edit')[:success].should == true
+      user.authorize('users', 'create')[:success].should == true
+      user.authorize('users', 'update')[:success].should == true
+      user.authorize('users', 'destroy')[:success].should == true
+    end
   end
   
   describe "user authorization - practice user role" do
-    user = Factory.create(:practice_user)
-    user.authorize('activations', 'create')[:success].should == false
-    user.authorize('home', 'index')[:success].should == true
-    user.authorize('password_resets', 'new')[:success].should == false
-    user.authorize('password_resets', 'create')[:success].should == false
-    user.authorize('password_resets', 'edit')[:success].should == false
-    user.authorize('password_resets', 'update')[:success].should == false
-    user.authorize('practice_members', 'index')[:success].should == true
-    user.authorize('practice_members', 'new')[:success].should == true
-    user.authorize('practice_members', 'edit')[:success].should == true
-    user.authorize('practice_members', 'create')[:success].should == true
-    user.authorize('practice_members', 'update')[:success].should == true
-    user.authorize('practice_members', 'destroy')[:success].should == true
-    user.authorize('practices', 'index')[:success].should == false
-    user.authorize('practices', 'new')[:success].should == false
-    user.authorize('practices', 'edit')[:success].should == true
-    user.authorize('practices', 'create')[:success].should == false
-    user.authorize('practices', 'update')[:success].should == true
-    user.authorize('practices', 'destroy')[:success].should == false
-    user.authorize('travel_cards', 'edit')[:success].should == true
-    user.authorize('travel_cards', 'update')[:success].should == true
-    user.authorize('user_sessions', 'new')[:success].should == false
-    user.authorize('user_sessions', 'create')[:success].should == false
-    user.authorize('user_sessions', 'destroy')[:success].should == true
-    user.authorize('users', 'new')[:success].should == true
-    user.authorize('users', 'edit')[:success].should == true
-    user.authorize('users', 'create')[:success].should == true
-    user.authorize('users', 'update')[:success].should == true
-    user.authorize('users', 'destroy')[:success].should == true
+    it "is authorized to access certain pages only" do
+      user = Factory.create(:practice_user)
+      user.authorize('activations', 'create')[:success].should == false
+      user.authorize('home', 'index')[:success].should == true
+      user.authorize('password_resets', 'new')[:success].should == false
+      user.authorize('password_resets', 'create')[:success].should == false
+      user.authorize('password_resets', 'edit')[:success].should == false
+      user.authorize('password_resets', 'update')[:success].should == false
+      user.authorize('practice_members', 'index')[:success].should == true
+      user.authorize('practice_members', 'new')[:success].should == true
+      user.authorize('practice_members', 'edit')[:success].should == true
+      user.authorize('practice_members', 'create')[:success].should == true
+      user.authorize('practice_members', 'update')[:success].should == true
+      user.authorize('practice_members', 'destroy')[:success].should == true
+      user.authorize('practices', 'index')[:success].should == false
+      user.authorize('practices', 'new')[:success].should == false
+      user.authorize('practices', 'edit')[:success].should == true
+      user.authorize('practices', 'create')[:success].should == false
+      user.authorize('practices', 'update')[:success].should == true
+      user.authorize('practices', 'destroy')[:success].should == false
+      user.authorize('travel_cards', 'edit')[:success].should == true
+      user.authorize('travel_cards', 'update')[:success].should == true
+      user.authorize('user_sessions', 'new')[:success].should == false
+      user.authorize('user_sessions', 'create')[:success].should == false
+      user.authorize('user_sessions', 'destroy')[:success].should == true
+      user.authorize('users', 'new')[:success].should == true
+      user.authorize('users', 'edit')[:success].should == true
+      user.authorize('users', 'create')[:success].should == true
+      user.authorize('users', 'update')[:success].should == true
+      user.authorize('users', 'destroy')[:success].should == true
+    end
   end
   
   

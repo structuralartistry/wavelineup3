@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
     
     when 'home'
       if current_role == 'guest'
-        return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
+        return set_autorize_failure_value(LOGIN_NOTICE)
       end
       return authorize_success_message
       
@@ -96,7 +96,7 @@ class User < ActiveRecord::Base
       
     when 'practice_members'
       if current_role == 'guest'
-        return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
+        return set_autorize_failure_value(LOGIN_NOTICE)
       end
       return authorize_success_message
       
@@ -104,7 +104,7 @@ class User < ActiveRecord::Base
       case current_role
       when 'guest'
         if action_name != 'new' && action_name != 'create'
-          return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
+          return set_autorize_failure_value(LOGIN_NOTICE)
         end
         return authorize_success_message
       else
@@ -129,7 +129,7 @@ class User < ActiveRecord::Base
       case current_role
       when 'guest'
         if action_name != 'new' && action_name != 'create'
-          return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
+          return set_autorize_failure_value(LOGIN_NOTICE)
         end
       end
       return authorize_success_message
@@ -150,7 +150,7 @@ class User < ActiveRecord::Base
 
     when 'users'
       if current_role == 'guest'
-        return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
+        return set_autorize_failure_value(LOGIN_NOTICE)
       end
       return authorize_success_message
       
