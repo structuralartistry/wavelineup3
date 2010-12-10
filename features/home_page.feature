@@ -8,15 +8,11 @@ Feature: Show Home Page
   Scenario: Home page when not logged in
     # should redirect to login page
     When I go to the home page
-    Then I should see "Login" within "h1"
-    And I should see "Create My Practice" within a selector cell
-    And I should not see "Home" within "td.selector_cell_nav"
-    And I should not see "Login" within "td.selector_cell_nav"
-    And I should not see "Logout"
-    
+		Then I should be on the login page
+		And I should see the login fields
     # should not see button to create a new practice member
     And I should not see "New Practice Member" within a selector cell
-    
+
     
   @javascript
   Scenario: Home page when logged in in the "sysadmin" role

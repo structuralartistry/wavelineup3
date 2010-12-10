@@ -22,7 +22,7 @@ describe Practice do
   
   it "has a roster of practice members" do
     practice_member_one = Factory.create(:practice_member, :practice_id => @practice.id)
-    @practice.practice_members.size.should == 1
+    @practice.my_practice_members.size.should == 1
   end
   
 end

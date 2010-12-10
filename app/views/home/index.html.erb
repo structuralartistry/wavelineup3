@@ -16,7 +16,7 @@
     data.addColumn('number', 'Value');
     data.addRows(1);
     data.setValue(0, 0, 'Practice Members');
-    data.setValue(0, 1, <%= Practice.practice_members.size %>);
+    data.setValue(0, 1, <%= PracticeMember.practice_members_global_count.size %>);
     var chart = new google.visualization.Gauge(document.getElementById('global_practice_members_gauge'));
     var options = {
       width: 400, 
@@ -52,7 +52,7 @@
     data.addColumn('number', 'Value');
     data.addRows(1);
     data.setValue(0, 0, 'Practice Members');
-    data.setValue(0, 1, <%= current_user.practice.practice_members.size %>);
+    data.setValue(0, 1, <%= current_user.practice.my_practice_members.size %>);
 
     var chart = new google.visualization.Gauge(document.getElementById('local_practice_members_gauge'));
     var options = {

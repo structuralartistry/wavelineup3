@@ -2,7 +2,7 @@ Feature: Allow user to reset their password
   
   @javascript
   Scenario: A registered user resets their password
-    Given I am a registered and activated user with the email "practice@structuralartistry.com"
+    Given I am a registered and activated "practice" user with the email "practice@structuralartistry.com"
     Given I am not logged in
     When I go to the login page
     
@@ -53,7 +53,7 @@ Feature: Allow user to reset their password
     
     
   Scenario: Start reseting the password and then cancel
-    Given I am a registered and activated user with the email "practice@structuralartistry.com"
+    Given I am a registered and activated "practice" user with the email "practice@structuralartistry.com"
     Given I am not logged in
     When I go to the login page
     When I press "Forgot Password?"

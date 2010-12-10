@@ -16,7 +16,7 @@ Feature: Log in and log out
     When I go to the login page
     And I should see "Logout" within a selector cell
     
-  @javascript
+	@javascript
   Scenario: When I am logged in and I click the logout link I am sent to the login page
     Given I am logged in in a "practice user" user role for the practice "Demo Practice"
     When I click "Logout" within a selector cell
@@ -25,7 +25,6 @@ Feature: Log in and log out
         
   
   # log in scenarios
-	  @javascript
     Scenario: Authentication succeeds when good information provided
       Given there are no registered practices or users
       Given I am on the login page
