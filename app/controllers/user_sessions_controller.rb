@@ -14,7 +14,6 @@ class UserSessionsController < ApplicationController
 
   def create
     @user_session = UserSession.new(params[:user_session])
-
     respond_to do |format|
       if @user_session.save
         flash[:notice] = "Welcome to WaveLineup #{@user_session.email}!"
