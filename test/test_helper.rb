@@ -17,17 +17,22 @@ end
 
 # for using Capybara in tests -- taken from the tartare-rails gem
 require 'capybara/rails'
+require 'database_cleaner'
 
 module ActionController
 
   class IntegrationTest
     include Capybara
 
+    Capybara.register_driver :rack_test do |app|
+      Capybara::Driver::RackTest.new(app)
+    end
+    
     Capybara.register_driver :selenium do |app|
       Capybara::Driver::Selenium.new(app, :browser => :firefox)
     end
-
-    Capybara.default_driver = :selenium
+    
+    Capybara.default_driver = :rack_test
     Capybara.ignore_hidden_elements = true 
 
     self.use_transactional_fixtures = false
@@ -38,7 +43,6 @@ module ActionController
       require helper_file.gsub(/test\//, '')  
     end
     
-    require 'database_cleaner'
     DatabaseCleaner.strategy = :truncation
     
   end

@@ -16,6 +16,7 @@ end
 
 # sysadmin gets own step as only sysadmin should not have a practice... all other 'role' based login steps should define a practice name
 Given /^I am logged in in a "sysadmin" user role$/ do
+  debugger
   Factory.create(:sysadmin_role)
 
   user = Factory.create( :sysadmin_user, :email => "sysadmin_user@structuralartistry.com" )
