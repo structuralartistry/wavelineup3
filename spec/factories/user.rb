@@ -1,6 +1,6 @@
 Factory.define :user do |u|
-  u.password 'password1'
-  u.password_confirmation 'password1'
+  u.password TEST_PASSWORD
+  u.password_confirmation TEST_PASSWORD
   u.role { |a| a.association(:role) }  
   u.sequence(:email) {|n| "user#{n}@structuralartistry.com" }
   u.active true

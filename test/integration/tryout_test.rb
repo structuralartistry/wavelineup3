@@ -22,7 +22,6 @@ class TryoutTest < ActionDispatch::IntegrationTest
     user.role_id = Role.find_by_name('practice admin').id
     user.active = true
     user.save
-debugger
 
 
     # how to tell Rails to use the test environment -- how to tell Capybara to spin up a webserver with test environment to hit
@@ -65,8 +64,7 @@ end
 # class GenericTest < ActionController::IntegrationTest
 #   include Capybara
 #   
-#   def test_this
-#  debugger   
+#   def test_this   
 #     thread = Thread.new { %x[rails server -p 3002 --environment=test] }
 #     sleep(5)
 #     

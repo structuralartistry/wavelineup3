@@ -35,6 +35,8 @@ Wavelineup3::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 end
+
+TEST_PASSWORD = "password1"
   
 
 

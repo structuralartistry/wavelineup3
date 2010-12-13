@@ -9,7 +9,8 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  # Add more helper methods to be used by all tests here... 
+  
 end
 
 
@@ -27,13 +28,19 @@ module ActionController
     end
 
     Capybara.default_driver = :selenium
-    
     Capybara.ignore_hidden_elements = true 
 
     self.use_transactional_fixtures = false
     
+    # load integration test helpers
     Dir.glob("test/integration/helpers/*.rb").each do |helper_file|
       # for some reason the Dir.glob starts at rails root but when requiring, it starts within test/*
       require helper_file.gsub(/test\//, '')  
     end
+    
+    require 'database_cleaner'
+    DatabaseCleaner.strategy = :truncation
+    
   end
+  
+end

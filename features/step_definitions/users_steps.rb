@@ -1,5 +1,4 @@
 Given /^I am a registered and activated "([^\"]*)" user with the email "([^\"]*)"$/ do |role, email|
-debugger
   Factory.create(:sysadmin_role)
   Factory.create(:practice_admin_role)
   Factory.create(:practice_user_role)

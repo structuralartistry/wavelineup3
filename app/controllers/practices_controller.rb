@@ -34,7 +34,6 @@ class PracticesController < ApplicationController
   end
 
   def create
-debugger
     @practice = Practice.new(params[:practice])
     @practice.users[0].role_id = Role.find_by_name('practice admin').id
 
