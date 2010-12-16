@@ -21,7 +21,7 @@ Wavelineup3::Application.routes.draw do
 
   resources :users
   
-  match 'home/index', :as => 'home'
+  match 'home' => 'home#index', :as => 'home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
