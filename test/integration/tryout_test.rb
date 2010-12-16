@@ -3,6 +3,14 @@ require 'test_helper'
 class TryoutTest < ActionDispatch::IntegrationTest
   fixtures :all
   
+  def setup
+    Capybara.current_driver = :rack_test
+  end
+  
+  def teardown
+    log_out
+  end
+  
   def test_this
     # Factory.create(:practice_admin_role)
     # Factory.create(:practice_user_role)

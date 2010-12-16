@@ -37,3 +37,7 @@ def log_in_as_email_and_password?(email, password)
   return page.has_content?('Logout') 
 end
 
+def log_out
+  visit('/logout')
+end
+

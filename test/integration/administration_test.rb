@@ -4,8 +4,12 @@ class AdministrationTest < ActionDispatch::IntegrationTest
   
   def setup
     DatabaseCleaner.clean
-    Capybara.current_driver = :selenium
     create_practice('First Practice') 
+    Capybara.current_driver = :rack_test
+  end
+  
+  def teardown
+    log_out
   end
   
   def test_sysadmin_role_can_see_practice_list
@@ -22,7 +26,7 @@ class AdministrationTest < ActionDispatch::IntegrationTest
   end
   
   def test_practice_user_role_can_not_see_practice_list
-    # Capybara.current_driver = :selenium
+    Capybara.current_driver = :selenium
     logged_in_as_role(:practice_user)
     visit('/practices')
     assert page.has_no_content?('First Practice')

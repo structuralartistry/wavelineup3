@@ -15,8 +15,9 @@ unless $heroku
     gem 'capybara'
     gem 'rspec-rails'
     gem 'factory_girl_rails'
-    gem 'webrat', '>=0.4.3'
     gem 'heroku'
     gem 'database_cleaner'
+		gem 'shoulda'
+		gem 'steak'
   end
 end
