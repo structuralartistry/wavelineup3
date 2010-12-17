@@ -21,7 +21,7 @@ feature "Authentication Feature", %q{
       confirm_login_page_loaded
   
       # try to go to home page, should redirect to login
-      visit('home/index')
+      visit('/home')
       confirm_login_page_loaded
     end
     
