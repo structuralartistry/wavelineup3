@@ -23,7 +23,7 @@ describe PracticeMember do
       practice_member.name_last = "Kahn"
       practice_member.name_first = "David"
       practice_member.name_middle = "Nathan"
-      practice_member.full_name_last_comma_first_middle.should == "Kahn, David Nathan"
+      practice_member.full_name_last_comma_first_middle_initial.should == "Kahn, David N"
     end
     
     it "should strip empty characters from start and end" do
@@ -31,7 +31,7 @@ describe PracticeMember do
       practice_member.name_last = "Kahn"
       practice_member.name_first = "David"
       practice_member.name_middle = ""
-      practice_member.full_name_last_comma_first_middle.should == "Kahn, David"      
+      practice_member.full_name_last_comma_first_middle_initial.should == "Kahn, David"      
     end
   end
   

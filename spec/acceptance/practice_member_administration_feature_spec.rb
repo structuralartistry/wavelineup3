@@ -1,83 +1,149 @@
-# require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
-# 
-# feature "Administration Feature", %q{
-#   In order to ...
-#   As a ...
-#   I want to ...
-# } do
-#     
-#   scenario "As a practice user I can create a new practice member from the home page" do
-#     logged_in_as_role_for_practice(:practice_admin_user, "StructuralArtistry practice")
-#     visit('/home')
-#     click_selector_cell('New Practice Member')
-#     
-#   end
-# 
-#   
-#   
-# end
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# Feature: Practice member administration
-# 
-#   Background:
-#     Given I am logged in in a "practice admin" user role for the practice "Hello Kitty Practice"
-# 
-#   @javascript
-#   Scenario: As a practice user I can open and close the New Practice Member section
-#     Given I am on the home page
-#     When I click "New Practice Member" within a selector cell
-#     Then I should see the selector cell "New Practice Member" as selected
-#     Then I should see "New Practice Member" within "th"
-#     When I click "New Practice Member" within a selector cell
-#     Then I should see the selector cell "Find" as not selected
-#     Then I should not see "New Practice Member" within "th"
-# 
-#   @javascript
-#   Scenario: As a practice user I want to add a new Practice Member to the system
-#     Given I am on the home page
-#     When I click "New Practice Member" within a selector cell
-#     When I fill in "practice_member_name_last" with "Kahn" within "form#new_practice_member"
-#     And I fill in "practice_member_name_first" with "David" within "form#new_practice_member"
-#     And I fill in "practice_member_name_middle" with "N" within "form#new_practice_member"
-#     And I press "Submit" within "form#new_practice_member"
-#     Then I should see "Practice Member successfully created"
-#     When I click "Find" within a selector cell
-#     Then I should see "Kahn, David N" within a selector cell
-#     
-#   @javascript
-#   Scenario: If I add a new practice member to the system and the same name exists already in this practice I can not save it
-#     Given there is a Practice Member in my practice named "Hello Kitty Practice" by the name of "Kahn, David N"
-#     Given I am on the home page
-#     When I click "New Practice Member" within a selector cell
-#     When I fill in "practice_member_name_last" with "Kahn" within "form#new_practice_member"
-#     And I fill in "practice_member_name_first" with "David" within "form#new_practice_member"
-#     And I fill in "practice_member_name_middle" with "N" within "form#new_practice_member"
-#     And I press "Submit" within "form#new_practice_member"
-#     Then I should see "Practice member name already exists in your Practice"
-#     And I fill in "practice_member_name_first" with "Johanna" within "form#new_practice_member"
-#     And I press "Submit" within "form#new_practice_member"
-#     Then I should see "Practice Member successfully created"
-#       
-#   @javascript
-#   Scenario: When I have the New Practice Member form open and I click on Find, the New Practice Member form should close
-#     Given there is a Practice Member in my practice named "Hello Kitty Practice" by the name of "Kahn, David N"
-#     Given I am on the home page
-#     When I click "New Practice Member" within a selector cell
-#     Then I should see "New Practice Member" within "th"
-#     When I click "Find" within a selector cell
-#     Then I should not see "New Practice Member" within "th"
-#     And I should see "Travel Card" within a selector cell
-#     
+require File.expand_path(File.dirname(__FILE__) + '/acceptance_helper')
+
+def new_practice_member_dialog_present?
+  return selector_cell_selected?('New Practice Member') && has_text?('New Practice Member', 'h1')
+end
+
+def find_dialog_present?
+  return selector_cell_selected?('Find') && has_text?('All', 'td') && has_text?('0-9', 'td')
+end
+
+feature "Practice Member Administration Feature", %q{
+  In order to ...
+  As a ...
+  I want to ...
+} do
+  
+  context "Selector dialog operations - New Practice Member and Find", :js => true do
+    before(:each) do
+      logged_in_as_role_for_practice(:practice_admin_user, "StructuralArtistry practice")
+      create_practice_member("Kahn, David N", "StructuralArtistry practice")
+      visit('/home')
+    end
+    
+    scenario "Show and hide the New Practice Member dialog" do   
+      assert !new_practice_member_dialog_present?  
+
+      click_selector_cell('New Practice Member')
+      assert new_practice_member_dialog_present? 
+
+      click_selector_cell('New Practice Member')
+      assert !selector_cell_selected?('New Practice Member')
+      assert !has_text?('New Practice Member', 'h1')
+    end
+    
+    scenario "Show and hide the Find dialog" do
+      assert !find_dialog_present?
+      click_selector_cell('Find')
+      assert find_dialog_present?
+      click_selector_cell('Find')
+      assert !find_dialog_present?
+    end
+    
+    scenario "New Practice Member and Find dialogs cancel eachother" do
+      click_selector_cell('New Practice Member')
+      assert new_practice_member_dialog_present? 
+      click_selector_cell('Find')
+      assert !new_practice_member_dialog_present? 
+      assert find_dialog_present?
+      click_selector_cell('New Practice Member')
+      assert !find_dialog_present?
+      assert new_practice_member_dialog_present? 
+    end
+    
+  end
+  
+  scenario "Create a New Practice Member", :js => true do
+    logged_in_as_role_for_practice(:practice_admin_user, "StructuralArtistry practice")
+    visit('/home')
+    click_selector_cell('New Practice Member')
+    fill_in('Last Name', :with => 'Kahn')
+    fill_in('First Name', :with => 'David')
+    fill_in('Middle Name', :with => 'Nathan')
+    click_selector_cell('Submit')
+
+    assert has_text?('Practice Member successfully created')
+  end
+  
+  context "Existing Practice Member life cycle", :js => true do
+    
+    before(:each) do
+      logged_in_as_role_for_practice(:practice_admin_user, "StructuralArtistry practice")
+      create_practice_member("Kahn, David N", "StructuralArtistry practice")
+      visit('/home')
+    end
+        
+    scenario "Return validation errors" do
+      click_selector_cell('New Practice Member')
+      fill_in('Last Name', :with => 'Kahn')
+      fill_in('First Name', :with => 'David')
+      fill_in('Middle Name', :with => 'N')
+      click_selector_cell('Submit')
+
+      assert has_text?('Practice member name already exists in your Practice')
+    end
+    
+    scenario "Find and Edit an Existing Practice Member" do
+      click_selector_cell('Find')
+      click_selector_cell('Edit Personal Info')
+      click_selector_cell('Kahn, David N')
+      assert has_text?('Edit Practice Member', 'h1')
+    end
+    
+    scenario "Delete a Practice Member" do
+      click_selector_cell('Find')
+      click_selector_cell('Edit Personal Info')
+      click_selector_cell('Kahn, David N')
+      assert has_text?('Edit Practice Member', 'h1')
+      
+      tell_brower_toauto_accept_delete
+      click_selector_cell('Delete')
+      assert has_text?('Practice Member successfully deleted')
+      
+    end
+    
+  end
+    
+  # scenario "Creating and Finding a Practice Member", :js => true do
+  #   logged_in_as_role_for_practice(:practice_admin_user, "StructuralArtistry practice")
+  #   visit('/home')
+  #   
+  #   assert !has_text?('New Practice Member', 'h1')
+  #   
+  #   click_selector_cell('New Practice Member')
+  #   assert selector_cell_selected?('New Practice Member')
+  #   assert has_text?('New Practice Member', 'h1')
+  #   
+  #   click_selector_cell('New Practice Member')
+  #   assert !selector_cell_selected?('New Practice Member')
+  #   assert !has_text?('New Practice Member', 'h1')
+  #   
+  #   click_selector_cell('New Practice Member')
+  #   fill_in('Last Name', :with => 'Kahn')
+  #   fill_in('First Name', :with => 'David')
+  #   fill_in('Middle Name', :with => 'Nathan')
+  #   click_selector_cell('Submit')
+  #   
+  #   assert has_text?('Practice Member successfully created')
+  #   
+  #   click_selector_cell('Find')
+  #   assert selector_cell_is_present?('Kahn, David N')
+  #   
+  #   click_selector_cell('New Practice Member')
+  #   fill_in('Last Name', :with => 'Kahn')
+  #   fill_in('First Name', :with => 'David')
+  #   fill_in('Middle Name', :with => 'Nathan')
+  #   click_selector_cell('Submit')
+  #   
+  #   assert has_text?('Practice member name already exists in your Practice')
+  #   click_selector_cell('Find')
+  #   assert !selector_cell_is_present?('Kahn, David N')
+  # end
+    
+  
+end
+
+
 #   @javascript
 #   Scenario: As a practice user I want to modify an existing Practice Member in the system
 #     Given there is a Practice Member in my practice named "Hello Kitty Practice" by the name of "Kahn, David N"

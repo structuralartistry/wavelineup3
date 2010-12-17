@@ -44,8 +44,8 @@ class PracticeMember < ActiveRecord::Base
     end
   end
   
-  def full_name_last_comma_first_middle
-    "#{self.name_last}, #{self.name_first} #{self.name_middle}".strip
+  def full_name_last_comma_first_middle_initial
+    "#{self.name_last}, #{self.name_first} #{self.name_middle[0,1] if self.name_middle.length>=1}".strip
   end
   
   private

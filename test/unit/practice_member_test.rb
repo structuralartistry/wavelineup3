@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class PracticeMemberTest < Test::Unit::TestCase 
-debugger
+
   context "practice member" do     
     should "get global practice member count not including Demo Practice" do
       assert_equal PracticeMember.practice_members_global_count, 0
