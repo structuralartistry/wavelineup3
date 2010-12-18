@@ -54,6 +54,7 @@ feature "Travel Card Feature", %q{
         click_selector_cell(lr_selector_cell_id)
         get_selector_cell_text(lr_selector_cell_id).should == 'R'
       end
+      
     end
   
     scenario "Spot check autosave functionality" do
@@ -79,6 +80,7 @@ feature "Travel Card Feature", %q{
       click_selector_cell('2C')
       get_selector_cell_text('level_of_care').should == '2C'
       
+      # verify autosave
       visit(@travel_card_page)
       get_selector_cell_text('level_of_care').should == '2C'
     end
@@ -88,6 +90,7 @@ feature "Travel Card Feature", %q{
       click_selector_cell('full_respiratory_wave')
       get_selector_cell_text('full_respiratory_wave').should == 'X'
       
+      # verify autosave
       visit(@travel_card_page)
       get_selector_cell_text('full_respiratory_wave').should == 'X'
       
@@ -127,6 +130,7 @@ feature "Travel Card Feature", %q{
       get_selector_cell_text('leading_bme_strategy').should == 'E'
       get_selector_cell_text('third_bme_strategy').should == 'M'
       
+      # verify autosave
       visit(@travel_card_page)
       get_selector_cell_text('leading_bme_strategy').should == 'E'
       get_selector_cell_text('second_bme_strategy').should == 'B'
@@ -139,178 +143,62 @@ feature "Travel Card Feature", %q{
       click_selector_cell('Tension Levels')
       has_text?('Tension', 'td').should == true
       selector_cell_selected?('Tension Levels').should == true
+      
+      # toggle
+      click_selector_cell('Tension Levels')
+      sleep(1) # for whatever reason, Capybara/Selenium do not wait for this div to disappear... probably b/c using jQuery slider
+      has_text?('Tension', 'td').should == false
+      selector_cell_selected?('Tension Levels').should == false
+      
+      click_selector_cell('Tension Levels')
+      
+      tension_level_selector_cell_ids = %w(
+      passive_c1_c7_tension_level
+      passive_t1_t12_tension_level
+      passive_l1_l5_tension_level
+      passive_s1_cx_tension_level
+      active_c1_c7_tension_level
+      active_t1_t12_tension_level
+      active_l1_l5_tension_level
+      active_s1_cx_tension_level)
+      
+      value_to_set = 0 # selector has 0 to 5 as choices so want to mix up the values we are setting
+      tension_level_selector_cell_ids.each do |tension_level_selector_cell_id|     
+        get_selector_cell_text(tension_level_selector_cell_id).should == ''
+        click_selector_cell(tension_level_selector_cell_id)
+        click_selector_cell("tension_level_#{value_to_set}")
+        get_selector_cell_text(tension_level_selector_cell_id).should == value_to_set.to_s
+        value_to_set += 1
+        value_to_set = 0 if value_to_set > 5
+      end
+            
+      # verify autosave
+      visit(@travel_card_page)
+      click_selector_cell('Tension Levels')
+      
+      tension_level_selector_cell_ids = %w(
+      passive_c1_c7_tension_level
+      passive_t1_t12_tension_level
+      passive_l1_l5_tension_level
+      passive_s1_cx_tension_level
+      active_c1_c7_tension_level
+      active_t1_t12_tension_level
+      active_l1_l5_tension_level
+      active_s1_cx_tension_level)
+      
+      set_value = 0 # selector has 0 to 5 as choices so want to mix up the values we are setting
+      tension_level_selector_cell_ids.each do |tension_level_selector_cell_id|     
+        get_selector_cell_text(tension_level_selector_cell_id).should == set_value.to_s
+        set_value += 1
+        set_value = 0 if set_value > 5
+      end
+      
     end
   
   end
   
   
 end
-
-# 
-#       # passive_c1_c7_tension_level
-#       Then I should see "" within "#passive_c1_c7_tension_level"
-#       Then I should not see "0" within "#tension_level_0"
-#       Then I should not see "1" within "#tension_level_1"
-#       Then I should not see "2" within "#tension_level_2"
-#       Then I should not see "3" within "#tension_level_3"
-#       Then I should not see "4" within "#tension_level_4"
-#       Then I should not see "5" within "#tension_level_5"
-#       When I click the selector cell "passive_c1_c7_tension_level"
-#       Then I should see "0" within "#tension_level_0"
-#       Then I should see "1" within "#tension_level_1"
-#       Then I should see "2" within "#tension_level_2"
-#       Then I should see "3" within "#tension_level_3"
-#       Then I should see "4" within "#tension_level_4"
-#       Then I should see "5" within "#tension_level_5"
-#       When I click the selector cell "tension_level_2"
-#       Then I should see "2" within "#passive_c1_c7_tension_level"
-# 
-#       # passive_t1_t12_tension_level
-#       Then I should see "" within "#passive_t1_t12_tension_level"
-#       Then I should not see "0" within "#tension_level_0"
-#       Then I should not see "1" within "#tension_level_1"
-#       Then I should not see "2" within "#tension_level_2"
-#       Then I should not see "3" within "#tension_level_3"
-#       Then I should not see "4" within "#tension_level_4"
-#       Then I should not see "5" within "#tension_level_5"
-#       When I click the selector cell "passive_t1_t12_tension_level"
-#       Then I should see "0" within "#tension_level_0"
-#       Then I should see "1" within "#tension_level_1"
-#       Then I should see "2" within "#tension_level_2"
-#       Then I should see "3" within "#tension_level_3"
-#       Then I should see "4" within "#tension_level_4"
-#       Then I should see "5" within "#tension_level_5"
-#       When I click the selector cell "tension_level_1"
-#       Then I should see "1" within "#passive_t1_t12_tension_level"
-# 
-#       # passive_l1_l5_tension_level
-#       Then I should see "" within "#passive_l1_l5_tension_level"
-#       Then I should not see "0" within "#tension_level_0"
-#       Then I should not see "1" within "#tension_level_1"
-#       Then I should not see "2" within "#tension_level_2"
-#       Then I should not see "3" within "#tension_level_3"
-#       Then I should not see "4" within "#tension_level_4"
-#       Then I should not see "5" within "#tension_level_5"
-#       When I click the selector cell "passive_l1_l5_tension_level"
-#       Then I should see "0" within "#tension_level_0"
-#       Then I should see "1" within "#tension_level_1"
-#       Then I should see "2" within "#tension_level_2"
-#       Then I should see "3" within "#tension_level_3"
-#       Then I should see "4" within "#tension_level_4"
-#       Then I should see "5" within "#tension_level_5"
-#       When I click the selector cell "tension_level_3"
-#       Then I should see "3" within "#passive_l1_l5_tension_level"
-# 
-#       # passive_s1_cx_tension_level
-#       Then I should see "" within "#passive_s1_cx_tension_level"
-#       Then I should not see "0" within "#tension_level_0"
-#       Then I should not see "1" within "#tension_level_1"
-#       Then I should not see "2" within "#tension_level_2"
-#       Then I should not see "3" within "#tension_level_3"
-#       Then I should not see "4" within "#tension_level_4"
-#       Then I should not see "5" within "#tension_level_5"
-#       When I click the selector cell "passive_s1_cx_tension_level"
-#       Then I should see "0" within "#tension_level_0"
-#       Then I should see "1" within "#tension_level_1"
-#       Then I should see "2" within "#tension_level_2"
-#       Then I should see "3" within "#tension_level_3"
-#       Then I should see "4" within "#tension_level_4"
-#       Then I should see "5" within "#tension_level_5"
-#       When I click the selector cell "tension_level_5"
-#       Then I should see "5" within "#passive_s1_cx_tension_level"
-# 
-# 
-#       # active_c1_c7_tension_level
-#       Then I should see "" within "#active_c1_c7_tension_level"
-#       Then I should not see "0" within "#tension_level_0"
-#       Then I should not see "1" within "#tension_level_1"
-#       Then I should not see "2" within "#tension_level_2"
-#       Then I should not see "3" within "#tension_level_3"
-#       Then I should not see "4" within "#tension_level_4"
-#       Then I should not see "5" within "#tension_level_5"
-#       When I click the selector cell "active_c1_c7_tension_level"
-#       Then I should see "0" within "#tension_level_0"
-#       Then I should see "1" within "#tension_level_1"
-#       Then I should see "2" within "#tension_level_2"
-#       Then I should see "3" within "#tension_level_3"
-#       Then I should see "4" within "#tension_level_4"
-#       Then I should see "5" within "#tension_level_5"
-#       When I click the selector cell "tension_level_4"
-#       Then I should see "4" within "#active_c1_c7_tension_level"
-# 
-#       # active_t1_t12_tension_level
-#       Then I should see "" within "#active_t1_t12_tension_level"
-#       Then I should not see "0" within "#tension_level_0"
-#       Then I should not see "1" within "#tension_level_1"
-#       Then I should not see "2" within "#tension_level_2"
-#       Then I should not see "3" within "#tension_level_3"
-#       Then I should not see "4" within "#tension_level_4"
-#       Then I should not see "5" within "#tension_level_5"
-#       When I click the selector cell "active_t1_t12_tension_level"
-#       Then I should see "0" within "#tension_level_0"
-#       Then I should see "1" within "#tension_level_1"
-#       Then I should see "2" within "#tension_level_2"
-#       Then I should see "3" within "#tension_level_3"
-#       Then I should see "4" within "#tension_level_4"
-#       Then I should see "5" within "#tension_level_5"
-#       When I click the selector cell "tension_level_3"
-#       Then I should see "3" within "#active_t1_t12_tension_level"
-# 
-#       # active_l1_l5_tension_level
-#       Then I should see "" within "#active_l1_l5_tension_level"
-#       Then I should not see "0" within "#tension_level_0"
-#       Then I should not see "1" within "#tension_level_1"
-#       Then I should not see "2" within "#tension_level_2"
-#       Then I should not see "3" within "#tension_level_3"
-#       Then I should not see "4" within "#tension_level_4"
-#       Then I should not see "5" within "#tension_level_5"
-#       When I click the selector cell "active_l1_l5_tension_level"
-#       Then I should see "0" within "#tension_level_0"
-#       Then I should see "1" within "#tension_level_1"
-#       Then I should see "2" within "#tension_level_2"
-#       Then I should see "3" within "#tension_level_3"
-#       Then I should see "4" within "#tension_level_4"
-#       Then I should see "5" within "#tension_level_5"
-#       When I click the selector cell "tension_level_1"
-#       Then I should see "1" within "#active_l1_l5_tension_level"
-# 
-#       # active_s1_cx_tension_level
-#       Then I should see "" within "#active_s1_cx_tension_level"
-#       Then I should not see "0" within "#tension_level_0"
-#       Then I should not see "1" within "#tension_level_1"
-#       Then I should not see "2" within "#tension_level_2"
-#       Then I should not see "3" within "#tension_level_3"
-#       Then I should not see "4" within "#tension_level_4"
-#       Then I should not see "5" within "#tension_level_5"
-#       When I click the selector cell "active_s1_cx_tension_level"
-#       Then I should see "0" within "#tension_level_0"
-#       Then I should see "1" within "#tension_level_1"
-#       Then I should see "2" within "#tension_level_2"
-#       Then I should see "3" within "#tension_level_3"
-#       Then I should see "4" within "#tension_level_4"
-#       Then I should see "5" within "#tension_level_5"
-#       When I click the selector cell "tension_level_2"
-#       Then I should see "2" within "#active_s1_cx_tension_level"
-# 
-#     # hide section
-#     When I click "Tension Levels" within a selector cell
-#     Then I should see the selector cell "Tension Levels" as not selected
-#     Then I should not see "Tension" within "td"
-# 
-#     # verify autosave
-#     When I go to the edit travel card page for Practice Member "Kahn, David N"
-#     
-#     When I click "Tension Levels" within a selector cell
-#     Then I should see "2" within "#passive_c1_c7_tension_level"
-#     Then I should see "1" within "#passive_t1_t12_tension_level"
-#     Then I should see "3" within "#passive_l1_l5_tension_level"
-#     Then I should see "5" within "#passive_s1_cx_tension_level"
-# 
-#     Then I should see "4" within "#active_c1_c7_tension_level"
-#     Then I should see "3" within "#active_t1_t12_tension_level"
-#     Then I should see "1" within "#active_l1_l5_tension_level"
-#     Then I should see "2" within "#active_s1_cx_tension_level"
-# 
 # 
 #   @javascript
 #   Scenario: Verify SRI section
