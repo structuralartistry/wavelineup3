@@ -6,7 +6,7 @@ feature "Travel Card Feature", %q{
   I want to ...
 } do
   
-  context "Verify Travel Card Javascript", :js => true do
+  context "Verify Travel Card Javascript", :js => true, :travel_card => true do
     before(:each) do
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
@@ -70,132 +70,82 @@ feature "Travel Card Feature", %q{
       visit(@travel_card_page)
       get_selector_cell_text('gateway_c6_c5').should == 'R'
     end
+    
+    scenario "Verify LOC" do
+      selector_cell_is_present?('1A').should == false
+      get_selector_cell_text('level_of_care').should == ''
+      click_selector_cell('level_of_care')
+      selector_cell_is_present?('1A').should == true
+      click_selector_cell('2C')
+      get_selector_cell_text('level_of_care').should == '2C'
+      
+      visit(@travel_card_page)
+      get_selector_cell_text('level_of_care').should == '2C'
+    end
+    
+    scenario "Verify Respiratory Wave" do
+      get_selector_cell_text('full_respiratory_wave').should == ''
+      click_selector_cell('full_respiratory_wave')
+      get_selector_cell_text('full_respiratory_wave').should == 'X'
+      
+      visit(@travel_card_page)
+      get_selector_cell_text('full_respiratory_wave').should == 'X'
+      
+      click_selector_cell('full_respiratory_wave')
+      get_selector_cell_text('full_respiratory_wave').should == ''
+    end
+    
+    scenario "Verify BME strategy" do
+      # note - using id to click the selector cell for BME otherwise if use text, 
+      # is confusion as B can be a set value or the B in the BME selector
+      selector_cell_is_present?('B').should == false
+      
+      get_selector_cell_text('leading_bme_strategy').should == ''
+      get_selector_cell_text('second_bme_strategy').should == ''
+      get_selector_cell_text('third_bme_strategy').should == ''
+      
+      # set leading to B
+      click_selector_cell('leading_bme_strategy')
+      click_selector_cell('bme_selector_b')
+      get_selector_cell_text('leading_bme_strategy').should == 'B'
+      
+      # set second to M, third becomes E
+      click_selector_cell('second_bme_strategy')
+      click_selector_cell('bme_selector_m')
+      get_selector_cell_text('second_bme_strategy').should == 'M'
+      get_selector_cell_text('third_bme_strategy').should == 'E'
+      
+      # change second to B, leading becomes ''
+      click_selector_cell('second_bme_strategy')
+      click_selector_cell('bme_selector_b')
+      get_selector_cell_text('second_bme_strategy').should == 'B'
+      get_selector_cell_text('leading_bme_strategy').should == ''
+      
+      # set leading to E, third becomes M
+      click_selector_cell('leading_bme_strategy')
+      click_selector_cell('bme_selector_e')
+      get_selector_cell_text('leading_bme_strategy').should == 'E'
+      get_selector_cell_text('third_bme_strategy').should == 'M'
+      
+      visit(@travel_card_page)
+      get_selector_cell_text('leading_bme_strategy').should == 'E'
+      get_selector_cell_text('second_bme_strategy').should == 'B'
+      get_selector_cell_text('third_bme_strategy').should == 'M'
+    end
+    
+    scenario "Verify Tension Levels" do
+      has_text?('Tension', 'td').should == false
+      selector_cell_selected?('Tension Levels').should == false
+      click_selector_cell('Tension Levels')
+      has_text?('Tension', 'td').should == true
+      selector_cell_selected?('Tension Levels').should == true
+    end
   
   end
   
   
 end
 
-
-
-#   @javascript
-#   Scenario: Spot check the autosave functionality for L/R fields
-#     Given I am logged in in a "practice user" user role for the practice "Demo Practice"
-#     Given there is a Practice Member in my practice named "Demo Practice" by the name of "Kahn, David N"
-#     When I go to the edit travel card page for Practice Member "Kahn, David N"
-# 
-#     Then I should see "" within "#dominant_occiput"
-#     When I click the selector cell "dominant_occiput"
-#     Then I should see "L" within "#dominant_occiput"
-# 
-#     When I go to the edit travel card page for Practice Member "Kahn, David N"
-#     Then I should see "L" within "#dominant_occiput"
-# 
-#     Then I should see "" within "#gateway_c6_c5"
-#     When I click the selector cell "gateway_c6_c5"
-#     When I click the selector cell "gateway_c6_c5"
-#     Then I should see "R" within "#gateway_c6_c5"
-# 
-#     When I go to the edit travel card page for Practice Member "Kahn, David N"
-#     Then I should see "R" within "#gateway_c6_c5"
-# 
-#     
-#   @javascript
-#   Scenario: Verify non L/R main travel card fields
-#     Given I am logged in in a "practice user" user role for the practice "Demo Practice"
-#     Given there is a Practice Member in my practice named "Demo Practice" by the name of "Kahn, David N"
-#     When I go to the edit travel card page for Practice Member "Kahn, David N"
-# 
-#     # level of care
-#     Then I should not see "1A" within a selector cell
-#     Then I should see "" within "#level_of_care"
-#     When I click the selector cell "level_of_care"
-#     Then I should see "1A" within a selector cell
-#     When I click "2C" within a selector cell
-#     Then I should see "2C" within "#level_of_care"
-# 
-#     # respiratory wave
-#     Then I should see "" within "#full_respiratory_wave"
-#     When I click the selector cell "full_respiratory_wave"
-#     Then I should see "X" within "#full_respiratory_wave"
-#     When I click the selector cell "full_respiratory_wave"
-#     Then I should see "" within "#full_respiratory_wave"
-#     When I click the selector cell "full_respiratory_wave"
-#     Then I should see "X" within "#full_respiratory_wave"
-# 
-#     # bme strategy
-#       # no selector
-#       Then I should not see "B" within a selector cell
-#       Then I should not see "M" within a selector cell
-#       Then I should not see "E" within a selector cell
-# 
-#       # no values
-#       Then I should see "" within "#leading_bme_strategy"
-#       Then I should see "" within "#second_bme_strategy"
-#       Then I should see "" within "#third_bme_strategy"
-# 
-#       # set leading as B
-#       When I click the selector cell "leading_bme_strategy"
-#       Then I should see "B" within a selector cell
-#       Then I should see "M" within a selector cell
-#       Then I should see "E" within a selector cell
-#       When I click the selector cell "bme_selector_b"
-#       Then I should see "B" within "#leading_bme_strategy"
-# 
-#       # set second as M
-#       When I click the selector cell "second_bme_strategy"
-#       Then I should see "B" within a selector cell
-#       Then I should see "M" within a selector cell
-#       Then I should see "E" within a selector cell
-#       When I click the selector cell "bme_selector_m"
-#       Then I should see "M" within "#second_bme_strategy"
-# 
-#       # verify third should autoset as E
-#       Then I should see "E" within "#third_bme_strategy"
-# 
-#       # change second to B and verify leading reset
-#       When I click the selector cell "second_bme_strategy"
-#       When I click the selector cell "bme_selector_b"
-#       Then I should see "B" within "#second_bme_strategy"
-#       Then I should see "" within "#leading_bme_strategy"
-# 
-#       # set the leading to E
-#       When I click the selector cell "leading_bme_strategy"
-#       When I click the selector cell "bme_selector_e"
-#       Then I should see "E" within "#leading_bme_strategy"
-# 
-#       # verify third should autoset to M
-#       Then I should see "M" within "#third_bme_strategy"
-# 
-# 
-#     # verify autosave
-#     When I go to the edit travel card page for Practice Member "Kahn, David N"
-# 
-#     Then I should see "2C" within "#level_of_care"
-# 
-#     Then I should see "X" within "#full_respiratory_wave"
-# 
-#     Then I should see "E" within "#leading_bme_strategy"
-#     Then I should see "B" within "#second_bme_strategy"
-#     Then I should see "M" within "#third_bme_strategy"
-#     
-#     
-#       
-#       
-#   @javascript
-#   Scenario: Verify Tension Levels fields
-#     Given I am logged in in a "practice user" user role for the practice "Demo Practice"
-#     Given there is a Practice Member in my practice named "Demo Practice" by the name of "Kahn, David N"
-#     When I go to the edit travel card page for Practice Member "Kahn, David N"
-# 
-#     # show section
-#     Then I should not see "Tension" within "td"
-#     Then I should see the selector cell "Tension Levels" as not selected
-#     When I click "Tension Levels" within a selector cell
-#     Then I should see the selector cell "Tension Levels" as selected
-#     Then I should see "Tension" within "td"
-# 
-#     # operate on section
 # 
 #       # passive_c1_c7_tension_level
 #       Then I should see "" within "#passive_c1_c7_tension_level"
