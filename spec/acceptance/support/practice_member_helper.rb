@@ -13,4 +13,5 @@ def create_practice_member(practice_member_name, practice_name)
   practice_id = Practice.find_by_name(practice_name).id
   practice_member.practice_id = practice_id
   practice_member.save  
+  practice_member
 end

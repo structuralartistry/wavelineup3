@@ -191,7 +191,6 @@ function set_third_bme_strategy() {
   }  
 }
 
-
 function autosave(control_id, value) {
   
   $('#transmitting').show();
