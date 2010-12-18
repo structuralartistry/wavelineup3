@@ -20,7 +20,7 @@ class ActivationsController < ApplicationController
         end 
       end       
     else
-      flash[:notice] = "User does not exist"
+      flash[:notice] = "User does not exist or has already been activated. Please try to log in to the system."
       redirect_to login_path
     end
   end

@@ -99,33 +99,5 @@ Feature: User Management
     When I press "Delete" within "tr#practice1"
     Then I should see "User successfully deleted"
 
-# purgatory: removed    
-  # @javascript
-  # Scenario: I can edit a user from the Practice Management page
-  #   Given I am logged in in a "practice user" user role for the practice "Practice One"
-  #   Given there is an active user "another@gmail.com" in the practice "Practice One"
-  #   
-  #   # get to the practice management page
-  #   When I click "Practice One" within a selector cell
-  #   Then I should see "another@gmail.com" within "tr#another"
-  #   
-  #   # edit user
-  #   When I press "Edit" within "tr#another"
-  #   Then I should see "Editing user" within "h1"
-  #   
-  #   # cancel edit and return
-  #   When I press "Cancel"
-  #   Then I should see "Manage Practice" within "h1"
-  #   
-  #   # edit the email
-  #   When I press "Edit" within "tr#another"
-  #   Then I should see "Editing user" within "h1"
-  #   When I fill in "user_email" with "another_one@gmail.com"
-  #   When I press "Submit"
-  #   
-  #   # verify change
-  #   Then I should see "Manage Practice"
-  #   And I should see "another_one@gmail.com" within "tr#another_one"
-    
     
   

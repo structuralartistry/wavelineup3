@@ -6,7 +6,7 @@ feature "Password Reset Feature", %q{
           
   scenario "A registered user resets their password" do
     user_email = "practice@structuralartistry.com"
-    register_and_activate(:practice_user, user_email)
+    register_and_activate_user(user_email, 'Practice One', :practice_user)
     visit('/login')
     click_selector_cell("Forgot Password?")
 
@@ -39,7 +39,7 @@ feature "Password Reset Feature", %q{
     assert selector_cell_is_present?(user.email)
     
     visit('/logout')
-    assert log_in_as_email_and_password?(user.email, new_password)
+    assert login_as_email_and_password?(user.email, new_password)
     confirm_home_page_loaded
   end
   

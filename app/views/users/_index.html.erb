@@ -6,7 +6,7 @@
   </tr>
   
 <% @users.each do |user| %>
-  <tr id="<%= user.email.gsub(/@.*/, '') %>">
+  <tr id="<%= user.email %>">
     <td><%= user.email %></td>  
     <td><%= button_to 'Delete', user, :confirm => "Are you sure?", :method => :delete, :class => 'selector_cell_delete' %></td>
   </tr>

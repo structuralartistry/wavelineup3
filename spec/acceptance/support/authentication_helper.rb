@@ -26,10 +26,11 @@ def logged_in_as_role_for_practice(role, practice_name)
   fill_in('Password', :with => 'password1')
   click_button('Submit')
   assert selector_cell_is_present?('Logout') 
+  practice
 end
 
 
-def log_in_as_email_and_password?(email, password)
+def login_as_email_and_password?(email, password)
   visit('/login')
   fill_in('Email', :with => email)
   fill_in('Password', :with => password)

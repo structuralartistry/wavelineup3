@@ -56,7 +56,7 @@ feature "Practice Member Administration Feature", %q{
       click_selector_cell('Kahn, David N')
       assert has_text?('Edit Practice Member', 'h1')
       
-      tell_brower_toauto_accept_delete
+      tell_brower_to_auto_accept_delete
       click_selector_cell('Delete')
       assert has_text?('Practice Member successfully deleted')
     end

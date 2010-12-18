@@ -53,24 +53,24 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     end
   
     should "not be able to access system with missing or incomplete login info" do
-      log_in_as_email_and_password?("","")
+      login_as_email_and_password?("","")
       confirm_login_page_loaded
       assert page.has_content?("Authentication failed")
     
       practice = create_practice("Someones Practice")
  
       # good email only
-      log_in_as_email_and_password?(practice.users[0].email,"")
+      login_as_email_and_password?(practice.users[0].email,"")
       confirm_login_page_loaded
       assert page.has_content?("Authentication failed")
     
       # good password only
-      log_in_as_email_and_password?("", 'password1')
+      login_as_email_and_password?("", 'password1')
       confirm_login_page_loaded
       assert page.has_content?("Authentication failed")
     
       # success
-      log_in_as_email_and_password?(practice.users[0].email, 'password1')
+      login_as_email_and_password?(practice.users[0].email, 'password1')
       confirm_home_page_loaded
     end
     
