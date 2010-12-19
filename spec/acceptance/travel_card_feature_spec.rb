@@ -194,86 +194,46 @@ feature "Travel Card Feature", %q{
       end
       
     end
+    
+    scenario "Verify SRI section" do
+      has_text?('SRI P1 Aware', 'td').should == false
+      selector_cell_selected?('SRI').should == false
+      click_selector_cell('SRI')
+      has_text?('SRI P1 Aware', 'td').should == true
+      selector_cell_selected?('SRI').should == true
+      
+      
+      sri_selector_cell_ids = %w(
+      sri_position_1_level_of_awareness
+      sri_position_2_level_of_awareness
+      sri_position_3_level_of_awareness)
+      
+      iteration = 1
+      sri_selector_cell_ids.each do |sri_selector_cell_id|
+        get_selector_cell_text(sri_selector_cell_id).should == ''
+        click_selector_cell("sri_position_#{iteration}_level_of_awareness")
+        click_selector_cell("sri_level_of_awareness_#{iteration}")
+        get_selector_cell_text("sri_position_#{iteration}_level_of_awareness").should == iteration.to_s
+        iteration += 1
+      end
+      
+      
+      # sri safety position
+      get_selector_cell_text('sri_safety_position').should == ''
+      click_selector_cell('sri_safety_position')
+      click_selector_cell("sri_position_3")
+      get_selector_cell_text('sri_safety_position').should == '3'
+      
+      # buzz words
+      get_element_text('travel_card_buzz_words_for_sri').should == ''
+      fill_in('travel_card_buzz_words_for_sri', :with => 'I want my mommy!')
+      get_element_text('travel_card_buzz_words_for_sri').should == 'I want my mommy!'
+    end
   
   end
   
   
 end
-# 
-#   @javascript
-#   Scenario: Verify SRI section
-#     Given I am logged in in a "practice user" user role for the practice "Demo Practice"
-#     Given there is a Practice Member in my practice named "Demo Practice" by the name of "Kahn, David N"
-#     When I go to the edit travel card page for Practice Member "Kahn, David N"
-# 
-#     # show section
-#     Then I should not see "SRI P1 Aware" within "td"
-#     Then I should see the selector cell "SRI" as not selected
-#     When I click "SRI" within a selector cell
-#     Then I should see the selector cell "SRI" as selected
-#     Then I should see "SRI P1 Aware" within "td"
-# 
-#     # operate on section
-# 
-#       # sri_position_1_level_of_awareness
-#       Then I should see "" within "#sri_position_1_level_of_awareness"
-#       Then I should not see "0" within "#sri_level_of_awareness_0"
-#       Then I should not see "1" within "#sri_level_of_awareness_1"
-#       Then I should not see "2" within "#sri_level_of_awareness_2"
-#       Then I should not see "3" within "#sri_level_of_awareness_3"
-#       When I click the selector cell "sri_position_1_level_of_awareness"
-#       Then I should see "0" within "#sri_level_of_awareness_0"
-#       Then I should see "1" within "#sri_level_of_awareness_1"
-#       Then I should see "2" within "#sri_level_of_awareness_2"
-#       Then I should see "3" within "#sri_level_of_awareness_3"
-#       When I click the selector cell "sri_level_of_awareness_3"
-#       Then I should see "3" within "#sri_position_1_level_of_awareness"
-# 
-#       # sri_position_2_level_of_awareness
-#       Then I should see "" within "#sri_position_2_level_of_awareness"
-#       Then I should not see "0" within "#sri_level_of_awareness_0"
-#       Then I should not see "1" within "#sri_level_of_awareness_1"
-#       Then I should not see "2" within "#sri_level_of_awareness_2"
-#       Then I should not see "3" within "#sri_level_of_awareness_3"
-#       When I click the selector cell "sri_position_2_level_of_awareness"
-#       Then I should see "0" within "#sri_level_of_awareness_0"
-#       Then I should see "1" within "#sri_level_of_awareness_1"
-#       Then I should see "2" within "#sri_level_of_awareness_2"
-#       Then I should see "3" within "#sri_level_of_awareness_3"
-#       When I click the selector cell "sri_level_of_awareness_2"
-#       Then I should see "2" within "#sri_position_2_level_of_awareness"
-# 
-#       # sri_position_3_level_of_awareness
-#       Then I should see "" within "#sri_position_3_level_of_awareness"
-#       Then I should not see "0" within "#sri_level_of_awareness_0"
-#       Then I should not see "1" within "#sri_level_of_awareness_1"
-#       Then I should not see "2" within "#sri_level_of_awareness_2"
-#       Then I should not see "3" within "#sri_level_of_awareness_3"
-#       When I click the selector cell "sri_position_3_level_of_awareness"
-#       Then I should see "0" within "#sri_level_of_awareness_0"
-#       Then I should see "1" within "#sri_level_of_awareness_1"
-#       Then I should see "2" within "#sri_level_of_awareness_2"
-#       Then I should see "3" within "#sri_level_of_awareness_3"
-#       When I click the selector cell "sri_level_of_awareness_1"
-#       Then I should see "1" within "#sri_position_3_level_of_awareness"
-# 
-#       # sri_safety_position
-#       Then I should see "" within "#sri_safety_position"
-#       Then I should not see "1" within "#sri_position_1"
-#       Then I should not see "2" within "#sri_position_2"
-#       Then I should not see "3" within "#sri_position_3"
-#       Then I should not see "4" within "#sri_position_4"
-#       Then I should not see "5" within "#sri_position_5"
-#       Then I should not see "6" within "#sri_position_6"
-#       When I click the selector cell "sri_safety_position"
-#       Then I should see "1" within "#sri_position_1"
-#       Then I should see "2" within "#sri_position_2"
-#       Then I should see "3" within "#sri_position_3"
-#       Then I should see "4" within "#sri_position_4"
-#       Then I should see "5" within "#sri_position_5"
-#       Then I should see "6" within "#sri_position_6"
-#       When I click the selector cell "sri_position_4"
-#       Then I should see "4" within "#sri_safety_position"
 # 
 #       # travel_card_buzz_words_for_sri
 #       Then I should see "" within "#travel_card_buzz_words_for_sri"
