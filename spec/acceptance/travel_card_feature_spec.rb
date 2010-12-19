@@ -173,17 +173,7 @@ feature "Travel Card Feature", %q{
       # verify autosave
       visit(@travel_card_page)
       click_selector_cell('Tension Levels')
-      
-      tension_level_selector_cell_ids = %w(
-      passive_c1_c7_tension_level
-      passive_t1_t12_tension_level
-      passive_l1_l5_tension_level
-      passive_s1_cx_tension_level
-      active_c1_c7_tension_level
-      active_t1_t12_tension_level
-      active_l1_l5_tension_level
-      active_s1_cx_tension_level)
-      
+            
       set_value = 0 # selector has 0 to 5 as choices so want to mix up the values we are setting
       tension_level_selector_cell_ids.each do |tension_level_selector_cell_id|     
         get_selector_cell_text(tension_level_selector_cell_id).should == set_value.to_s
@@ -239,11 +229,6 @@ feature "Travel Card Feature", %q{
       click_selector_cell('SRI')
       
       # sri levels of awareness
-      sri_selector_cell_ids = %w(
-      sri_position_1_level_of_awareness
-      sri_position_2_level_of_awareness
-      sri_position_3_level_of_awareness)
-      
       iteration = 1
       sri_selector_cell_ids.each do |sri_selector_cell_id|
         get_selector_cell_text("sri_position_#{iteration}_level_of_awareness").should == iteration.to_s
@@ -257,46 +242,68 @@ feature "Travel Card Feature", %q{
       get_element_text('travel_card_buzz_words_for_sri').should == 'I want my mommy!'
 
     end
+    
+    scenario "Verify Programs/Education section" do
+      
+      # section showing?
+      has_text?('Programs', 'td').should == false
+      selector_cell_selected?('Programs/Education').should == false
+      click_selector_cell('Programs/Education')
+      has_text?('Programs', 'td').should == true
+      selector_cell_selected?('Programs/Education').should == true
+      
+      programs_input_ids = %w(
+      travel_card_number_gate
+      travel_card_number_sri
+      travel_card_number_hip
+      travel_card_number_ultima
+      travel_card_number_ultimatum
+      )
+      
+      iteration = 0
+      programs_input_ids.each do |input_id|
+        get_input_value(input_id).should == ''
+        fill_in(input_id, :with => iteration.to_s)
+        get_input_value(input_id).should == iteration.to_s
+      end
+      
+      programs_checkboxes_ids = %w(
+      travel_card_book_12_stages
+      travel_card_book_healing_magic
+      )
+
+      programs_checkboxes_ids.each do |checkbox_id|
+        checked?(checkbox_id).should == false
+        check(checkbox_id)
+        checked?(checkbox_id).should == true
+      end
+      
+      # toggle section
+      click_selector_cell('Programs/Education')
+      wait_until{ has_text?('Programs', 'td') }
+      selector_cell_selected?('Programs/Education').should == false
+      
+      # verify autosave
+      visit(@travel_card_page)
+      click_selector_cell('Programs/Education')
+      
+      iteration = 0
+      programs_input_ids.each do |input_id|
+        get_input_value(input_id).should == iteration.to_s
+      end     
+      
+      programs_checkboxes_ids.each do |checkbox_id|
+        checked?(checkbox_id).should == true
+      end 
+
+    end
+    
   
   end
   
   
 end
-# 
-#       # travel_card_buzz_words_for_sri
-#       Then I should see "" within "#travel_card_buzz_words_for_sri"
-#       Then I fill in "travel_card_buzz_words_for_sri" with "I want my mommy!"
-# 
-#     # hide section
-#     When I click "SRI" within a selector cell
-#     Then I should see the selector cell "SRI" as not selected
-#     Then I should not see "SRI P1 Aware" within "td"
-# 
-#     # verify autosave
-#     When I go to the edit travel card page for Practice Member "Kahn, David N"
-#     When I click "SRI" within a selector cell
-#     Then I should see "3" within "#sri_position_1_level_of_awareness"
-#     Then I should see "2" within "#sri_position_2_level_of_awareness"
-#     Then I should see "1" within "#sri_position_3_level_of_awareness"
-#     Then I should see "4" within "#sri_safety_position" 
-#     Then I should see "I want my mommy!" within "#travel_card_buzz_words_for_sri"
-# 
-# 
-# 
-# 
-#   @javascript
-#   Scenario: Verify Programs/Education section
-#     Given I am logged in in a "practice user" user role for the practice "Demo Practice"
-#     Given there is a Practice Member in my practice named "Demo Practice" by the name of "Kahn, David N"
-#     When I go to the edit travel card page for Practice Member "Kahn, David N"
-# 
-#     # show section
-#     Then I should not see "Programs" within "td"
-#     Then I should see the selector cell "Programs/Education" as not selected
-#     When I click "Programs/Education" within a selector cell
-#     Then I should see the selector cell "Programs/Education" as selected
-#     Then I should see "Programs" within "td"
-# 
+
 #     # operate on section
 #     Then I should see "" within "#travel_card_number_gate"
 #     Then I should see "" within "#travel_card_number_sri"

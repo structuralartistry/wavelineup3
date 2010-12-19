@@ -8,14 +8,18 @@ def has_text?(text, selector='*')
 end
 
 def get_element_text(element_id)
-  page.find(:xpath, "//*[@id='#{element_id}']").value
+  page.has_xpath?(:xpath, "//*[@id='#{element_id}']").value
 end
 
+def get_input_value(input_id)
+  page.find(:xpath, "//input[@id='#{input_id}']").value
+end
 
-# def input_has_text?(text)
-#   page.has_xpath?("//input[@value='#{text}']")
-#   page.has_xpath?
-# end
+def checked?(checkbox_id)
+  return_value = page.find(:xpath, "//input[@id='#{checkbox_id}' and @type='checkbox']")['checked']
+  return true if return_value == 'true'
+  false
+end
 
 def tell_brower_to_auto_accept_delete
   page.evaluate_script('window.confirm = function() { return true; }')
