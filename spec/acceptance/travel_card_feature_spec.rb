@@ -144,14 +144,6 @@ feature "Travel Card Feature", %q{
       has_text?('Tension', 'td').should == true
       selector_cell_selected?('Tension Levels').should == true
       
-      # toggle
-      click_selector_cell('Tension Levels')
-      sleep(1) # for whatever reason, Capybara/Selenium do not wait for this div to disappear... probably b/c using jQuery slider
-      has_text?('Tension', 'td').should == false
-      selector_cell_selected?('Tension Levels').should == false
-      
-      click_selector_cell('Tension Levels')
-      
       tension_level_selector_cell_ids = %w(
       passive_c1_c7_tension_level
       passive_t1_t12_tension_level
@@ -171,6 +163,12 @@ feature "Travel Card Feature", %q{
         value_to_set += 1
         value_to_set = 0 if value_to_set > 5
       end
+      
+      # toggle section
+      click_selector_cell('Tension Levels')
+      wait_until{ has_text?('Tension', 'td') == false }
+      selector_cell_selected?('Tension Levels').should == false
+      
             
       # verify autosave
       visit(@travel_card_page)
@@ -196,13 +194,15 @@ feature "Travel Card Feature", %q{
     end
     
     scenario "Verify SRI section" do
+      
+      # section showing?
       has_text?('SRI P1 Aware', 'td').should == false
       selector_cell_selected?('SRI').should == false
       click_selector_cell('SRI')
       has_text?('SRI P1 Aware', 'td').should == true
       selector_cell_selected?('SRI').should == true
       
-      
+      # sri levels of awareness
       sri_selector_cell_ids = %w(
       sri_position_1_level_of_awareness
       sri_position_2_level_of_awareness
@@ -228,6 +228,34 @@ feature "Travel Card Feature", %q{
       get_element_text('travel_card_buzz_words_for_sri').should == ''
       fill_in('travel_card_buzz_words_for_sri', :with => 'I want my mommy!')
       get_element_text('travel_card_buzz_words_for_sri').should == 'I want my mommy!'
+      
+      # toggle section
+      click_selector_cell('SRI')
+      wait_until{ has_text?('SRI P1 Aware', 'td') == false }
+      selector_cell_selected?('SRI').should == false
+      
+      # verify autosave
+      visit(@travel_card_page)
+      click_selector_cell('SRI')
+      
+      # sri levels of awareness
+      sri_selector_cell_ids = %w(
+      sri_position_1_level_of_awareness
+      sri_position_2_level_of_awareness
+      sri_position_3_level_of_awareness)
+      
+      iteration = 1
+      sri_selector_cell_ids.each do |sri_selector_cell_id|
+        get_selector_cell_text("sri_position_#{iteration}_level_of_awareness").should == iteration.to_s
+        iteration += 1
+      end
+      
+      # sri safety position
+      get_selector_cell_text('sri_safety_position').should == '3'
+      
+      # buzz words
+      get_element_text('travel_card_buzz_words_for_sri').should == 'I want my mommy!'
+
     end
   
   end
