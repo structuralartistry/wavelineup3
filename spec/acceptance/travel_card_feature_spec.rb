@@ -298,46 +298,36 @@ feature "Travel Card Feature", %q{
 
     end
     
+    scenario "Verify Notes section" do
+      # section showing?
+      page.has_xpath?('//textarea[@id=\'travel_card_notes\']', :visible => true).should == false
+      has_text?('Notes', 'td.label').should == false
+      selector_cell_selected?('Notes').should == false
+      click_selector_cell('Notes')
+      page.has_xpath?('//textarea[@id=\'travel_card_notes\']', :visible => true).should == true
+      selector_cell_selected?('Notes').should == true
+      
+      get_element_text('travel_card_notes').should == ''
+      fill_in('travel_card_notes', :with => 'This is the note, right here...')
+      get_element_text('travel_card_notes').should == 'This is the note, right here...'
+      
+      # toggle section
+      click_selector_cell('Notes')
+      wait_until{ page.has_xpath?('//textarea[@id=\'travel_card_notes\']', :visible => true) == false }
+      selector_cell_selected?('Notes').should == false
+      
+      # verify autosave
+      visit(@travel_card_page)
+      click_selector_cell('Notes')
+            
+      get_element_text('travel_card_notes').should == 'This is the note, right here...'    
+    end
+    
   
   end
   
   
 end
-
-#     # operate on section
-#     Then I should see "" within "#travel_card_number_gate"
-#     Then I should see "" within "#travel_card_number_sri"
-#     Then I should see "" within "#travel_card_number_hip"
-#     Then I should see "" within "#travel_card_number_ultima"
-#     Then I should see "" within "#travel_card_number_ultimatum"
-#     Then the "travel_card_book_12_stages" checkbox should not be checked
-#     Then the "travel_card_book_healing_magic" checkbox should not be checked
-#     
-#     Then I fill in "travel_card_number_gate" with "5"
-#     Then I fill in "travel_card_number_sri" with "4"
-#     Then I fill in "travel_card_number_hip" with "3"
-#     Then I fill in "travel_card_number_ultima" with "2"
-#     Then I fill in "travel_card_number_ultimatum" with "1"
-#     Then I check "travel_card_book_12_stages"
-#     Then I check "travel_card_book_healing_magic"
-# 
-#     # hide section
-#     When I click "Programs/Education" within a selector cell
-#     Then I should see the selector cell "Programs/Education" as not selected
-#     Then I should not see "Programs" within "td"
-# 
-#     # verify autosave
-#     When I go to the edit travel card page for Practice Member "Kahn, David N"
-#     When I click "Programs/Education" within a selector cell
-#     Then the "travel_card_number_gate" input field should contain "5"
-#     Then the "travel_card_number_sri" input field should contain "4"
-#     Then the "travel_card_number_hip" input field should contain "3"
-#     Then the "travel_card_number_ultima" input field should contain "2"
-#     Then the "travel_card_number_ultimatum" input field should contain "1"
-#     Then the "travel_card_book_12_stages" checkbox should be checked
-#     Then the "travel_card_book_healing_magic" checkbox should be checked 
-# 
-# 
 #   @javascript
 #   Scenario: Verify Notes section
 #     Given I am logged in in a "practice user" user role for the practice "Demo Practice"
