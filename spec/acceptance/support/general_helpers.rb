@@ -8,7 +8,7 @@ def has_text?(text, selector='*')
 end
 
 def get_element_text(element_id)
-  page.has_xpath?(:xpath, "//*[@id='#{element_id}']").value
+  page.find(:xpath, "//*[@id='#{element_id}']").value
 end
 
 def get_input_value(input_id)
