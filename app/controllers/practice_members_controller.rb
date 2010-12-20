@@ -1,12 +1,12 @@
 class PracticeMembersController < ApplicationController
 
-  def new
-    @practice_member = PracticeMember.new
-
-    respond_to do |format|
-      format.js {render 'new'}
-    end
-  end
+  # def new
+  #   @practice_member = PracticeMember.new
+  # 
+  #   respond_to do |format|
+  #     format.js {render 'new'}
+  #   end
+  # end
 
   def edit
     @practice_member = PracticeMember.find(params[:id])

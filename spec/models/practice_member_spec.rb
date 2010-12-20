@@ -23,6 +23,10 @@ describe PracticeMember do
     new_practice_member.valid?
     new_practice_member.errors[:first_name][0].should == 'has already been taken in combination with this middle and last name.'
     
+    new_practice_member = @practice_member.dup
+    new_practice_member.valid?
+    new_practice_member.errors[:first_name][0].should == 'has already been taken in combination with this middle and last name.'
+    
     second_practice = Factory.create(:practice_two)
     new_practice_member.practice_id = second_practice.id
     new_practice_member.valid?.should == true
