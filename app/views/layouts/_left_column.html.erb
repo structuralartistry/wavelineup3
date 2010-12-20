@@ -39,7 +39,7 @@ function set_left_column_buttons() {
   }
 }
 
-function load_new_practice_member_form() {
+function show_new_practice_member_form() {
   // if form already showing dont need to load, just need to toggle off
   if(!$('#new_practice_member_show_selector_cell').hasClass('current_selected')) {
 
@@ -85,7 +85,7 @@ function show_practice_member_selector() {
       </div>
     </td>
   </tr>
-  <tr><td id="new_practice_member_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" onclick="load_new_practice_member_form();">New Practice Member</td></tr>
+  <tr><td id="new_practice_member_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" onclick="show_new_practice_member_form();">New Practice Member</td></tr>
   <tr><td id="practice_member_selector_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" onclick="show_practice_member_selector();">Find</td></tr>
 </table>
 
