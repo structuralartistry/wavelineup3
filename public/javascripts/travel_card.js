@@ -2,6 +2,8 @@ function travel_card_set_values_from_hidden_fields() {
   // get values from hidden fields and write the inner html of selectors
   // this is called on page load in body tag of application layout
 
+	$('#level_of_care').html($('#travel_card_level_of_care').val());
+
 	// L/R selectors
 	$('#dominant_occiput').html($('#travel_card_dominant_occiput').val()).addClass($('#travel_card_dominant_occiput').val());
 	// gateways
