@@ -2,7 +2,7 @@ def get_edit_form_name_for_model_record_value(model, record_value)
   case model
   when "PracticeMember"
     # expecting if form "Kahn, David N" to define record
-    record_id = PracticeMember.where("name_last='#{record_value.split[0].gsub(/,/, '')}' and name_first='#{record_value.split[1]}'").first.id
+    record_id = PracticeMember.where("last_name='#{record_value.split[0].gsub(/,/, '')}' and first_name='#{record_value.split[1]}'").first.id
     edit_form_name = "edit_practice_member_#{record_id}"
   when "User"
     # expecting email address
@@ -19,7 +19,7 @@ When /^I fill in "([^"]*)" with "([^"]*)" within the edit "([^"]*)" form for "([
   # case model
   #   when "PracticeMember"
   #     # expecting if form "Kahn, David N" to define record
-  #     record_id = PracticeMember.where("name_last='#{record.split[0].gsub(/,/, '')}' and name_first='#{record.split[1]}'").first.id
+  #     record_id = PracticeMember.where("last_name='#{record.split[0].gsub(/,/, '')}' and first_name='#{record.split[1]}'").first.id
   #     edit_form_name = "edit_practice_member_#{record_id}"
   #   end
    

@@ -68,7 +68,7 @@
           <tr>
           <% counter = 0 %>
         <% end %>
-        <td style="width: 200px;" class="selector_cell selector_cell_text_three_character practice_member_list practice_member_list_group_<%= practice_member.name_last.first %>" onmousedown="selected_practice_member_id=<%= practice_member.id %>; navigate_now();"><%= truncate(practice_member.full_name_last_comma_first_middle_initial, :length => 30) %></td>
+        <td style="width: 200px;" class="selector_cell selector_cell_text_three_character practice_member_list practice_member_list_group_<%= practice_member.last_name.first %>" onmousedown="selected_practice_member_id=<%= practice_member.id %>; navigate_now();"><%= truncate(practice_member.full_name_last_comma_first_middle_initial, :length => 30) %></td>
         <% counter = counter + 1 %>
       <% end %> 
     </tr>    

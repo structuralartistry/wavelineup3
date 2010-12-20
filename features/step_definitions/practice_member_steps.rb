@@ -1,10 +1,10 @@
-def parse_practice_member_formal_name(name_last_comma_name_first_name_middle)
+def parse_practice_member_formal_name(last_name_comma_first_name_middle_name)
   # returns a practice member with the name assigned
-  # expects input: NAME_LAST, NAME_FIRST NAME_MIDDLE
+  # expects input: last_name, NAME_FIRST NAME_MIDDLE
   practice_member = PracticeMember.new
-  practice_member.name_last = name_last_comma_name_first_name_middle.gsub(/,/, '').split[0]
-  practice_member.name_first = name_last_comma_name_first_name_middle.gsub(/,/, '').split[1]
-  practice_member.name_middle = name_last_comma_name_first_name_middle.gsub(/,/, '').split[2] || ''
+  practice_member.last_name = last_name_comma_first_name_middle_name.gsub(/,/, '').split[0]
+  practice_member.first_name = last_name_comma_first_name_middle_name.gsub(/,/, '').split[1]
+  practice_member.middle_name = last_name_comma_first_name_middle_name.gsub(/,/, '').split[2] || ''
   practice_member
 end
 

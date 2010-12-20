@@ -3,9 +3,13 @@ class PracticeMember < ActiveRecord::Base
   has_many :travel_cards
   
   validates_presence_of :practice_id
-  validates_presence_of :name_last
-  validates_presence_of :name_first
-  validates_uniqueness_of :name_first, :scope => [:name_first, :name_last]
+  validates_presence_of :last_name
+  validates_presence_of :first_name
+  validates_uniqueness_of :first_name, :scope => [:first_name, :last_name, :middle_name]
+  
+  validates_format_of :last_name, :with => /^[a-zA-Z -]*$/
+  validates_format_of :first_name, :with => /^[a-zA-Z -]*$/
+  validates_format_of :middle_name, :with => /^[a-zA-Z -]*$/
   
   before_save :normalize_input
   after_create :create_travel_card_record
@@ -34,15 +38,15 @@ class PracticeMember < ActiveRecord::Base
   end
   
   def full_name_last_comma_first_middle_initial
-    "#{self.name_last}, #{self.name_first} #{self.name_middle[0,1] if self.name_middle.length>=1}".strip
+    "#{self.last_name}, #{self.first_name} #{self.middle_name[0,1] if self.middle_name.length>=1}".strip
   end
   
   private
   
     def normalize_input
-      self.name_first.capitalize!
-      self.name_last.capitalize!
-      self.name_middle.capitalize! if self.name_middle
+      self.first_name.capitalize!
+      self.last_name.capitalize!
+      self.middle_name.capitalize! if self.middle_name
     end
 
     def create_travel_card_record

@@ -14,9 +14,9 @@ ActiveRecord::Schema.define(:version => 20101012201000) do
 
   create_table "practice_members", :force => true do |t|
     t.integer  "practice_id"
-    t.string   "name_last"
-    t.string   "name_first"
-    t.string   "name_middle"
+    t.string   "last_name"
+    t.string   "first_name"
+    t.string   "middle_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

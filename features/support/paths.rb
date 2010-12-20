@@ -19,7 +19,7 @@ module NavigationHelpers
     
     when /^the edit travel card page for Practice Member "([^"]*)"$/
       practice_member = parse_practice_member_formal_name($1)
-      practice_member = PracticeMember.where("name_last='#{practice_member.name_last}' and name_first='#{practice_member.name_first}' and name_middle='#{practice_member.name_middle}'").first
+      practice_member = PracticeMember.where("last_name='#{practice_member.last_name}' and first_name='#{practice_member.first_name}' and middle_name='#{practice_member.middle_name}'").first
       travel_card = TravelCard.find_by_practice_member_id(practice_member.id)
       "/travel_cards/#{travel_card.id}/edit"
 

@@ -17,9 +17,9 @@ Feature: Practice member administration
   Scenario: As a practice user I want to add a new Practice Member to the system
     Given I am on the home page
     When I click "New Practice Member" within a selector cell
-    When I fill in "practice_member_name_last" with "Kahn" within "form#new_practice_member"
-    And I fill in "practice_member_name_first" with "David" within "form#new_practice_member"
-    And I fill in "practice_member_name_middle" with "N" within "form#new_practice_member"
+    When I fill in "practice_member_last_name" with "Kahn" within "form#new_practice_member"
+    And I fill in "practice_member_first_name" with "David" within "form#new_practice_member"
+    And I fill in "practice_member_middle_name" with "N" within "form#new_practice_member"
     And I press "Submit" within "form#new_practice_member"
     Then I should see "Practice Member successfully created"
     When I click "Find" within a selector cell
@@ -30,12 +30,12 @@ Feature: Practice member administration
     Given there is a Practice Member in my practice named "Hello Kitty Practice" by the name of "Kahn, David N"
     Given I am on the home page
     When I click "New Practice Member" within a selector cell
-    When I fill in "practice_member_name_last" with "Kahn" within "form#new_practice_member"
-    And I fill in "practice_member_name_first" with "David" within "form#new_practice_member"
-    And I fill in "practice_member_name_middle" with "N" within "form#new_practice_member"
+    When I fill in "practice_member_last_name" with "Kahn" within "form#new_practice_member"
+    And I fill in "practice_member_first_name" with "David" within "form#new_practice_member"
+    And I fill in "practice_member_middle_name" with "N" within "form#new_practice_member"
     And I press "Submit" within "form#new_practice_member"
     Then I should see "Practice member name already exists in your Practice"
-    And I fill in "practice_member_name_first" with "Johanna" within "form#new_practice_member"
+    And I fill in "practice_member_first_name" with "Johanna" within "form#new_practice_member"
     And I press "Submit" within "form#new_practice_member"
     Then I should see "Practice Member successfully created"
       
@@ -57,8 +57,8 @@ Feature: Practice member administration
     When I click "Edit Personal Info" within a selector cell
     When I click "Kahn, David N" within a selector cell
     Then I should see "Edit Practice Member" within "h1"
-    When I fill in "practice_member_name_first" with "Michael" within the edit "PracticeMember" form for "Kahn, David N"
-    When I fill in "practice_member_name_middle" with "Louis" within the edit "PracticeMember" form for "Kahn, David N"
+    When I fill in "practice_member_first_name" with "Michael" within the edit "PracticeMember" form for "Kahn, David N"
+    When I fill in "practice_member_middle_name" with "Louis" within the edit "PracticeMember" form for "Kahn, David N"
   When I press "Submit" within the edit "PracticeMember" form for "Kahn, David N"
     Then I should see "Practice Member successfully updated"
     When I click "Find" within a selector cell

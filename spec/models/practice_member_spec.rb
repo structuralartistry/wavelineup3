@@ -14,11 +14,23 @@ describe PracticeMember do
   it { should have_many(:travel_cards) }
   
   it { should validate_presence_of(:practice_id) }
-  it { should validate_presence_of(:name_last) }
-  it { should validate_presence_of(:name_first) }
+  it { should validate_presence_of(:last_name) }
+  it { should validate_presence_of(:first_name) }
 
-  it { should validate_uniqueness_of(:name_first).scoped_to(:name_last) }
+  it { should validate_uniqueness_of(:first_name).scoped_to(:last_name, :middle_name) }
   
+  %w(Billy bob Billy-Bob).each do |good_name|
+    it { should allow_value(good_name).for(:first_name) }
+    it { should allow_value(good_name).for(:last_name) }
+    it { should allow_value(good_name).for(:middle_name) }
+  end
+  
+  %w(Billy1 bob& Billy*Bob).each do |bad_name|
+    it { should_not allow_value(bad_name).for(:first_name) }
+    it { should_not allow_value(bad_name).for(:last_name) }
+    it { should_not allow_value(bad_name).for(:middle_name) }
+  end
+    
   it "can get global practice member count not including Demo Practice" do
     assert_equal PracticeMember.practice_members_global_count, 1
   end
@@ -26,17 +38,17 @@ describe PracticeMember do
   describe "practice member list text" do
     it "should format in Last Name, First Name Middle Name format" do
       practice_member = PracticeMember.new
-      practice_member.name_last = "Kahn"
-      practice_member.name_first = "David"
-      practice_member.name_middle = "Nathan"
+      practice_member.last_name = "Kahn"
+      practice_member.first_name = "David"
+      practice_member.middle_name = "Nathan"
       practice_member.full_name_last_comma_first_middle_initial.should == "Kahn, David N"
     end
     
     it "should strip empty characters from start and end" do
       practice_member = PracticeMember.new
-      practice_member.name_last = "Kahn"
-      practice_member.name_first = "David"
-      practice_member.name_middle = ""
+      practice_member.last_name = "Kahn"
+      practice_member.first_name = "David"
+      practice_member.middle_name = ""
       practice_member.full_name_last_comma_first_middle_initial.should == "Kahn, David"      
     end
   end

@@ -7,6 +7,6 @@ class Practice < ActiveRecord::Base
   validates_presence_of :name
     
   def my_practice_members
-    PracticeMember.where("practice_id=#{self.id}").order("name_last, name_first").all
+    PracticeMember.where("practice_id=#{self.id}").order("last_name, first_name").all
   end
 end

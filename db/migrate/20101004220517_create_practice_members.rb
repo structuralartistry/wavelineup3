@@ -2,9 +2,9 @@ class CreatePracticeMembers < ActiveRecord::Migration
   def self.up
     create_table :practice_members do |t|
       t.integer :practice_id
-      t.string :name_last
-      t.string :name_first
-      t.string :name_middle
+      t.string :last_name
+      t.string :first_name
+      t.string :middle_name
 
       t.timestamps
     end
