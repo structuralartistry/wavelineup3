@@ -19,13 +19,13 @@ describe PracticeMember do
 
   it { should validate_uniqueness_of(:first_name).scoped_to(:last_name, :middle_name) }
   
-  %w(Billy bob Billy-Bob).each do |good_name|
+  ['Billy', 'bob', 'Billy-Bob', 'billy bob'].each do |good_name|
     it { should allow_value(good_name).for(:first_name) }
     it { should allow_value(good_name).for(:last_name) }
     it { should allow_value(good_name).for(:middle_name) }
   end
   
-  %w(Billy1 bob& Billy*Bob).each do |bad_name|
+  ['Billy1', 'bob#', 'Billy*Bob', 'billy. bob'].each do |bad_name|
     it { should_not allow_value(bad_name).for(:first_name) }
     it { should_not allow_value(bad_name).for(:last_name) }
     it { should_not allow_value(bad_name).for(:middle_name) }

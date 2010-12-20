@@ -8,6 +8,19 @@ describe User do
     Factory.create(:practice_user_role)      
   end
   
+  before(:each) do
+    practice = Factory.create(:practice_one)
+    Factory.create(:practice_admin_user, :practice_id => practice.id)
+  end
+  
+  it { should belong_to(:practice) }
+  it { should belong_to(:role) }
+  
+  it { should validate_presence_of(:role) }
+  it { should validate_uniqueness_of(:email) }
+  it { should allow_value('david.nathan_kahn@gmail.com.mx').for(:email) }
+  it { should_not allow_value('david nathan kahn at gmail dot com').for(:email) }
+  
    
   describe "user authorization - guest role" do
     it "is authorized to access certain pages only" do
