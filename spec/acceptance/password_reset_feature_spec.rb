@@ -9,7 +9,7 @@ feature "Password Reset Feature", %q{
     register_and_activate_user(user_email, 'Practice One', :practice_user)
     visit('/login')
     click_selector_cell("Forgot Password?")
-
+    
     assert has_text?('Reset Password', 'h1')
     assert has_text?('Email', 'label')
     assert selector_cell_is_present?('Submit')

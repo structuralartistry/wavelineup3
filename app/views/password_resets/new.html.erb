@@ -6,10 +6,9 @@
     <%= f.text_field :email %>
   </div>
   <div class="actions">
-    <%= f.submit 'Submit', :class => 'selector_cell_save' %>
+    <%= f.submit 'Submit', :class => 'selector_cell_save', :style => 'float: left;' %>
   </div>
 <% end %>
 
-
-<%= button_to 'Cancel', login_path, :method => 'get', :class => 'selector_cell_cancel' %>
+<%= button_to 'Cancel', login_path, :method => 'get', :class => 'selector_cell_cancel', :style => 'float: left;' %>
 

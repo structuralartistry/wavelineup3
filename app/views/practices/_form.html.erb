@@ -13,13 +13,15 @@
   
   <br />
 
+	<p class='label'>Practice Information</p>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
+		<%= f.submit 'Submit', :class => 'selector_cell_save' if action_name == 'edit' %>
   </div>
   
   <% if action_name != 'edit' %>
-    <p>Create your login</p>
+    <p class='label'>Create your login</p>
     <p>You will be able to create more users for your practice once your registration is complete.</p>
     <%= f.fields_for :users do |u| %>
       <div class="field">
@@ -35,16 +37,21 @@
         <%= u.password_field :password_confirmation %>
       </div>
     <% end %>
+		<div class="actions">
+	    <%= f.submit 'Submit', :class => 'selector_cell_save', :style => 'float: left' %>
+	  </div>
   <% end %>
   
-  <div class="actions">
-    <%= f.submit 'Submit', :class => 'selector_cell_save' %>
-  </div>
 <% end %>
 
 <% if action_name == 'edit' %>
-  <br \>
+  <p class='label'>Manage Users</p>
   <%= render :partial => '/users/index' %>
 <% end %>
+
+<% if action_name != 'edit' %>
+	<%= button_to 'Cancel', login_path, :method => :get, :class => 'selector_cell_edit', :style => 'float: left;' %>
+<% end %>
+
 
 
