@@ -12,8 +12,8 @@ Role.create(:name => 'practice user')
 
 user = User.new
 user.email = 'sysadmin@structuralartistry.com'
-user.password = 'password1'
-user.password_confirmation = 'password1'
+user.password = 'Password1'
+user.password_confirmation = 'Password1'
 user.role_id = Role.find_by_name('sysadmin').id
 user.active = true
 user.save
@@ -26,8 +26,8 @@ puts ""
 practice = Practice.create(:name => "Demo Practice")
 user = User.new
 user.email = 'dk.kahn@gmail.com'
-user.password = 'password1'
-user.password_confirmation = 'password1'
+user.password = 'Password1'
+user.password_confirmation = 'Password1'
 user.practice_id = practice.id
 user.role_id = Role.find_by_name('practice admin').id
 user.active = true
@@ -35,8 +35,8 @@ user.save
 
 user = User.new
 user.email = 'dnathankahn@yahoo.com'
-user.password = 'password1'
-user.password_confirmation = 'password1'
+user.password = 'Password1'
+user.password_confirmation = 'Password1'
 user.practice_id = practice.id
 user.role_id = Role.find_by_name('practice user').id
 user.active = true

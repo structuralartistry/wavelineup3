@@ -5,7 +5,7 @@ class PracticeMember < ActiveRecord::Base
   validates_presence_of :practice_id
   validates_presence_of :last_name
   validates_presence_of :first_name
-  validates_uniqueness_of :first_name, :scope => [:first_name, :last_name, :middle_name]
+  validates_uniqueness_of :first_name, :scope => [:first_name, :last_name, :middle_name, :practice_id], :message => 'has already been taken in combination with this middle and last name.'
   
   validates_format_of :last_name, :with => /^[a-zA-Z -]*$/
   validates_format_of :first_name, :with => /^[a-zA-Z -]*$/

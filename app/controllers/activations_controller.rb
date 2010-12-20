@@ -16,7 +16,7 @@ class ActivationsController < ApplicationController
           redirect_to home_path
         else
           flash[:notice] = "User failed to be activated. We are sending a new activation link to #{@user.email}. If you continue to recieve this message with the new link, please contact support."
-          render :partial => 'activations/reactivate', :layout => 'application', :locals => { :email => @user.email }
+          render 'activations/reactivate'
         end 
       end       
     else

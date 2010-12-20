@@ -17,7 +17,16 @@ describe PracticeMember do
   it { should validate_presence_of(:last_name) }
   it { should validate_presence_of(:first_name) }
 
-  it { should validate_uniqueness_of(:first_name).scoped_to(:last_name, :middle_name) }
+  # it { should validate_uniqueness_of(:first_name).scoped_to(:last_name, :middle_name).message('first_name has already been taken in combination with this middle and last name.') }
+  it "should have a name combination unique to the practice" do
+    new_practice_member = @practice_member.dup
+    new_practice_member.valid?
+    new_practice_member.errors[:first_name][0].should == 'has already been taken in combination with this middle and last name.'
+    
+    second_practice = Factory.create(:practice_two)
+    new_practice_member.practice_id = second_practice.id
+    new_practice_member.valid?.should == true
+  end
   
   ['Billy', 'bob', 'Billy-Bob', 'billy bob'].each do |good_name|
     it { should allow_value(good_name).for(:first_name) }

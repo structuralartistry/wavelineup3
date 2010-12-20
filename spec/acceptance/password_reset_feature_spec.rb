@@ -30,7 +30,7 @@ feature "Password Reset Feature", %q{
     assert has_text?('Password', 'label')
     assert has_text?('Password confirmation', 'label')
     
-    new_password = 'newpassword1'
+    new_password = 'newPassword1'
     fill_in('Password', :with => new_password)
     fill_in('Password confirmation', :with => new_password)
     click_button('Submit')

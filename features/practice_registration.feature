@@ -21,8 +21,8 @@ Feature: Practice registration
     And I should see "Cancel" within "a"
     When I fill in "practice_name" with "Practice One"
     And I fill in "practice_users_attributes_0_email" with "practice@structuralartistry.com"
-    And I fill in "practice_users_attributes_0_password" with "password1"
-    And I fill in "practice_users_attributes_0_password_confirmation" with "password1"
+    And I fill in "practice_users_attributes_0_password" with "Password1"
+    And I fill in "practice_users_attributes_0_password_confirmation" with "Password1"
     When I press "Submit"
     Then I should see "Practice was successfully created. Please check your email for the activation link."
     
@@ -46,8 +46,8 @@ Feature: Practice registration
     When I go to the new practice page
     When I fill in "practice_name" with "Practice One"
     And I fill in "practice_users_attributes_0_email" with "practice@structuralartistry.com"
-    And I fill in "practice_users_attributes_0_password" with "password1"
-    And I fill in "practice_users_attributes_0_password_confirmation" with "password1"
+    And I fill in "practice_users_attributes_0_password" with "Password1"
+    And I fill in "practice_users_attributes_0_password_confirmation" with "Password1"
     When I press "Submit"
     Then I should see "Practice name has already been taken"
     

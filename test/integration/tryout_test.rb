@@ -24,8 +24,8 @@ class TryoutTest < ActionDispatch::IntegrationTest
     practice = Practice.create(:name => "Demo Practice")
     user = User.new
     user.email = 'dk.kahn@gmail.com'
-    user.password = 'password1'
-    user.password_confirmation = 'password1'
+    user.password = 'Password1'
+    user.password_confirmation = 'Password1'
     user.practice_id = practice.id
     user.role_id = Role.find_by_name('practice admin').id
     user.active = true
@@ -36,7 +36,7 @@ class TryoutTest < ActionDispatch::IntegrationTest
     
     visit "/login"
     fill_in('Email', :with => user.email)
-    fill_in('Password', :with => 'password1')
+    fill_in('Password', :with => 'Password1')
     click_button('Submit')
     assert page.has_content?('Logout')
   end
@@ -88,7 +88,7 @@ end
 #     debugger
 #     
 #     fill_in('Email', :with => user.email)
-#     fill_in('Password', :with => 'password1')
+#     fill_in('Password', :with => 'Password1')
 #     click_button('Submit')
 #     assert page.has_content?('Logout')
 #   end
@@ -103,7 +103,7 @@ end
   #   
   #   visit "http://localhost:3000/login"
   #   fill_in('Email', :with => user.email)
-  #   fill_in('Password', :with => 'password1')
+  #   fill_in('Password', :with => 'Password1')
   #   click_button('Submit')
   #   assert page.has_content?('Logout')
   # 

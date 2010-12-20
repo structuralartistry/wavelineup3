@@ -305,6 +305,10 @@ div#travel_card {
   background: lightpink;
 }
 
+
+.L { background-color: blue;}
+.R { background-color: red;}
+
 div#processing_message {
   display: none;
   width: 100%;

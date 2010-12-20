@@ -12,7 +12,7 @@ describe User do
     practice = Factory.create(:practice_one)
     Factory.create(:practice_admin_user, :practice_id => practice.id)
   end
-  
+    
   it { should belong_to(:practice) }
   it { should belong_to(:role) }
   
@@ -20,6 +20,12 @@ describe User do
   it { should validate_uniqueness_of(:email) }
   it { should allow_value('david.nathan_kahn@gmail.com.mx').for(:email) }
   it { should_not allow_value('david nathan kahn at gmail dot com').for(:email) }
+  
+  it { should allow_value('Passwor1').for(:password) }
+  it { should_not allow_value('passwor1').for(:password)}
+  it { should_not allow_value('password').for(:password)}
+  it { should_not allow_value('pass').for(:password)}
+  it { should_not allow_value('11111111').for(:password)}
   
    
   describe "user authorization - guest role" do

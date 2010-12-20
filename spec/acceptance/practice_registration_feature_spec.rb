@@ -23,13 +23,13 @@ feature "Practice Registration Feature", %q{
     fill_in('Practice name', :with => 'Practice One')
     user_email = 'practice@structuralartistry.com'
     fill_in('Email', :with => user_email)
-    fill_in('Password', :with => 'password1')
-    fill_in('Password confirmation', :with => 'password1')
+    fill_in('Password', :with => 'Password1')
+    fill_in('Password confirmation', :with => 'Password1')
     click_button('Submit')
     
     assert has_text?('Practice was successfully created. Please check your email for the activation link.')
     
-    activate_existing_user?(user_email).should == true
+    activate_user?(user_email).should == true
   end
   
   scenario "Can not register an existing practice name" do
@@ -41,8 +41,8 @@ feature "Practice Registration Feature", %q{
     
     fill_in('Practice name', :with => 'Practice One')
     fill_in('Email', :with => 'practice@structuralartistry.com')
-    fill_in('Password', :with => 'password1')
-    fill_in('Password confirmation', :with => 'password1')
+    fill_in('Password', :with => 'Password1')
+    fill_in('Password confirmation', :with => 'Password1')
     click_button('Submit')
     
     assert has_text?('Practice name has already been taken')

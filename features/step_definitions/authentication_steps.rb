@@ -22,7 +22,7 @@ Given /^I am logged in in a "sysadmin" user role$/ do
 
   visit('/login')
   fill_in('Email', :with => user.email)
-  fill_in('Password', :with => 'password1')
+  fill_in('Password', :with => 'Password1')
   click_button('Submit')
   page.should have_content('Logout')
 end
@@ -40,7 +40,7 @@ Given /^I am logged in in a "([^"]*)" user role for the practice "([^"]*)"$/ do 
 
   visit('/login')
   fill_in('Email', :with => user.email)
-  fill_in('Password', :with => 'password1')
+  fill_in('Password', :with => 'Password1')
   click_button('Submit')
   page.should have_content('Logout')
 end
@@ -60,7 +60,7 @@ Given /^I am logged in with the email "([^"]*)"$/ do |email|
 
   visit('/login')
   fill_in('Email', :with => user.email)
-  fill_in('Password', :with => 'password1')
+  fill_in('Password', :with => 'Password1')
   click_button('Submit')
   page.should have_content('Logout')
 end

@@ -42,25 +42,25 @@ feature "User Management Feature", %q{
     
     new_user_email = 'new_user@gmail.com'
     fill_in('Email', :with => new_user_email)
-    fill_in('Password', :with => 'password1')
-    fill_in('Password confirmation', :with => 'password1')
+    fill_in('Password', :with => 'Password1')
+    fill_in('Password confirmation', :with => 'Password1')
     click_selector_cell('Submit')
     
     has_text?('User was successfully created. Please check email for new_user@gmail.com for the activation link.').should == true
     has_text?(new_user_email, 'td')
 
     # cant activate while logged in
-    activate_existing_user?(new_user_email).should == false
+    activate_user?(new_user_email).should == false
     has_text?('You are already logged in to the system. If you are activating a new user please log out first and try again.').should == true
 
     # log out and activate
     click_selector_cell('Logout')
-    activate_existing_user?(new_user_email).should == true
+    activate_user?(new_user_email).should == true
     confirm_home_page_loaded
     
     # can not resubmit activation
     click_selector_cell('Logout')
-    activate_existing_user?(new_user_email).should == false
+    activate_user?(new_user_email).should == false
     has_text?('This user is already active. You have been logged in to the system.').should == true
     confirm_home_page_loaded
   end
@@ -73,7 +73,7 @@ feature "User Management Feature", %q{
     has_text?('Password confirmation').should == true
     
     new_user_email = 'jockey@kong.com'
-    new_user_password = 'password2'
+    new_user_password = 'Password2'
     fill_in('Email', :with => new_user_email)
     fill_in('Password', :with => new_user_password)
     fill_in('Password confirmation', :with => new_user_password)

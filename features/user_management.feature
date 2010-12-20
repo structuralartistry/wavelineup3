@@ -18,8 +18,8 @@ Feature: User Management
     # add a user
     When I press "New User"
     When I fill in "user_email" with "practice1@structuralartistry.com"
-    And I fill in "user_password" with "password1"
-    And I fill in "user_password_confirmation" with "password1"
+    And I fill in "user_password" with "Password1"
+    And I fill in "user_password_confirmation" with "Password1"
     When I press "Submit" within "form#new_user"
     
     # verify added
@@ -89,8 +89,8 @@ Feature: User Management
     # create a new user
     When I press "New User"
     And I fill in "user_email" with "practice1@structuralartistry.com"
-    And I fill in "user_password" with "password1"
-    And I fill in "user_password_confirmation" with "password1"
+    And I fill in "user_password" with "Password1"
+    And I fill in "user_password_confirmation" with "Password1"
     And I press "Submit" within "form#new_user"
     Then I should see "User was successfully created. Please check email for practice1@structuralartistry.com for the activation link."
     

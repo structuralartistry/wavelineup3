@@ -33,7 +33,7 @@ feature "Practice Member Administration Feature", %q{
       fill_in('Middle Name', :with => 'N')
       click_selector_cell('Submit')
 
-      assert has_text?('Practice member name already exists in your Practice')
+      assert has_text?('First name has already been taken in combination with this middle and last name.')
     end
     
     scenario "Find and Edit an Existing Practice Member" do

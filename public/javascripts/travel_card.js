@@ -1,34 +1,15 @@
 function travel_card_set_values_from_hidden_fields() {
   // get values from hidden fields and write the inner html of selectors
   // this is called on page load in body tag of application layout
-  $('#dominant_occiput').html($('#travel_card_dominant_occiput').val());
-  $('#level_of_care').html($('#travel_card_level_of_care').val());
-  $('#gateway_occ_c1').html($('#travel_card_gateway_occ_c1').val());
-  $('#gateway_c1_occ').html($('#travel_card_gateway_c1_occ').val());
-  $('#gateway_c1_c2').html($('#travel_card_gateway_c1_c2').val());
-  $('#gateway_c2_c1').html($('#travel_card_gateway_c2_c1').val());
-  $('#gateway_c2_c3').html($('#travel_card_gateway_c2_c3').val());
-  $('#gateway_c3_c2').html($('#travel_card_gateway_c3_c2').val());
-  $('#gateway_c3_c4').html($('#travel_card_gateway_c3_c4').val());
-  $('#gateway_c4_c3').html($('#travel_card_gateway_c4_c3').val());
-  $('#gateway_c4_c5').html($('#travel_card_gateway_c4_c5').val());
-  $('#gateway_c5_c4').html($('#travel_card_gateway_c5_c4').val());
-  $('#gateway_c5_c6').html($('#travel_card_gateway_c5_c6').val());
-  $('#gateway_c6_c5').html($('#travel_card_gateway_c6_c5').val());
-  $('#gateway_c6_c7').html($('#travel_card_gateway_c6_c7').val());
-  $('#gateway_c7_c6').html($('#travel_card_gateway_c7_c6').val());
-  $('#gateway_c7_t1').html($('#travel_card_gateway_c7_t1').val());
-  $('#gateway_t1_c7').html($('#travel_card_gateway_t1_c7').val());
-  $('#gateway_t1_t2').html($('#travel_card_gateway_t1_t2').val());
-  $('#gateway_t2_t1').html($('#travel_card_gateway_t2_t1').val());
-  $('#gateway_t2_t3').html($('#travel_card_gateway_t2_t3').val());
-  $('#gateway_t3_t2').html($('#travel_card_gateway_t3_t2').val());
-  $('#gateway_s1').html($('#travel_card_gateway_s1').val());
-  $('#gateway_s2').html($('#travel_card_gateway_s2').val());
-  $('#gateway_s3').html($('#travel_card_gateway_s3').val());
-  $('#gateway_s4').html($('#travel_card_gateway_s4').val());
-  $('#gateway_s5').html($('#travel_card_gateway_s5').val());
-  $('#gateway_cx').html($('#travel_card_gateway_cx').val());
+
+	// L/R selectors
+	$('#dominant_occiput').html($('#travel_card_dominant_occiput').val()).addClass($('#travel_card_dominant_occiput').val());
+	// gateways
+	lr_selectors = new Array('occ_c1', 'c1_occ', 'c1_c2', 'c2_c1', 'c2_c3', 'c3_c2', 'c3_c4', 'c4_c3', 'c4_c5', 'c5_c4', 'c5_c6', 'c6_c5', 'c6_c7', 'c7_c6', 'c7_t1', 't1_c7', 't1_t2', 't2_t1', 't2_t3', 't3_t2', 's1', 's2', 's3', 's4', 's5', 'cx')
+  for (key in lr_selectors) {
+		value = $('#travel_card_gateway_' + lr_selectors[key]).val();
+		$('#gateway_' + lr_selectors[key]).html(value).addClass(value); // add class which is the color for the selected gateway
+	}
 
   $('#leading_bme_strategy').html($('#travel_card_leading_bme_strategy').val());
   $('#second_bme_strategy').html($('#travel_card_second_bme_strategy').val());
@@ -109,17 +90,23 @@ function boolean_toggle_selected_value(object) {
   current_value = $(object).html();
   if(current_value=="X") $(object).html("");
   else $(object).html("X");
-  
+
   set_selected_value(object);
 }
 
 function left_right_toggle_selected_value(object) {
   current_value = $(object).html();
-  if(current_value=="") $(object).html("L");
-  else if(current_value=="L") $(object).html("R");
-  else $(object).html("");
-  
+
+  if(current_value=="") $(object).html("L").addClass('L');
+  else if(current_value=="L") $(object).html("R").addClass('R');
+  else $(object).html('').removeClass('L').removeClass('R');
+
   set_selected_value(object);
+}
+
+function add_color_class_to_gateway(id, gateway_setting) {
+	if(gateway_setting == 'L') $(object).addClass('left');
+	else if (gateway_setting == 'R') $(object).addClass('right');
 }
 
 function set_selected_value(object) {

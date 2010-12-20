@@ -44,12 +44,12 @@ feature "Authentication Feature", %q{
       assert page.has_content?("Authentication failed")
   
       # good password only
-      login_as_email_and_password?("", 'password1')
+      login_as_email_and_password?("", 'Password1')
       confirm_login_page_loaded
       assert page.has_content?("Authentication failed")
   
       # success
-      login_as_email_and_password?(practice.users[0].email, 'password1')
+      login_as_email_and_password?(practice.users[0].email, 'Password1')
       confirm_home_page_loaded
     end
     

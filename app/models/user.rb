@@ -5,8 +5,14 @@ class User < ActiveRecord::Base
   
   validates_presence_of :role
   
+  validates_format_of :password, :with => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/, :if => :password_present?
+  
   attr_accessible :email, :password, :password_confirmation, :perishable_token, :persistence_token, :practice_id, :role_id
    
+  # password not always present if updating a user, etc...anything beyond new user creation
+  def password_present?
+    return self.password
+  end
     
   def self.get_all_restricted_by_user(requesting_user)
     return nil if !requesting_user

@@ -22,8 +22,8 @@ Feature: Allow user to reset their password
     And I should see "User: practice@structuralartistry.com" within "label"
     And I should see "Password" within "label"
     And I should see "Password confirmation" within "label"
-    Then I fill in "Password" with "newpassword1"
-    And I fill in "Password confirmation" with "newpassword1"
+    Then I fill in "Password" with "newPassword1"
+    And I fill in "Password confirmation" with "newPassword1"
     When I press "Submit"
     
     # confirmation
@@ -33,7 +33,7 @@ Feature: Allow user to reset their password
     # validate new password is good
     When I click "Logout" within a selector cell
     Then I fill in "Email" with "practice@structuralartistry.com"
-    And I fill in "Password" with "newpassword1"
+    And I fill in "Password" with "newPassword1"
     When I press "Submit"
     Then I should see "practice@structuralartistry.com"
 

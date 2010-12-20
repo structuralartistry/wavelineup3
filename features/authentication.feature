@@ -29,7 +29,7 @@ Feature: Log in and log out
       Given there are no registered practices or users
       Given I am on the login page
       Given I am a registered and activated "practice" user with the email "practice@structuralartistry.com"
-			When I login with email "practice@structuralartistry.com" and password "password1"
+			When I login with email "practice@structuralartistry.com" and password "Password1"
       Then I should see "practice@structuralartistry.com" within a selector cell
   
   

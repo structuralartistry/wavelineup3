@@ -16,7 +16,7 @@ def register_and_activate_user(email, practice_name, role)
   user.save  
 end
 
-def activate_existing_user?(email)
+def activate_user?(email)
   user = User.where("email='#{email}'").first
   visit("/activations/#{user.perishable_token}") 
   return has_text?('Your account has been activated') 
