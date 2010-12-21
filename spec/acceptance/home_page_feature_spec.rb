@@ -9,7 +9,7 @@ feature "Home Page Feature", %q{
 } do
     
   context "access rights and basic page load" do
-
+    
     scenario "Home page when not logged in" do
       visit('/home')
       confirm_login_page_loaded
@@ -33,6 +33,21 @@ feature "Home Page Feature", %q{
       confirm_home_page_loaded
     end
     
+    scenario "There is a form on the home page to send an invitation to a new practice/user" do
+      logged_in_as_role(:practice_user)
+      visit('/home')
+    end
+    
+  end
+  
+  scenario "Send an invitation to another Practitioner" do
+    logged_in_as_role(:practice_user)
+    visit('/home')
+    invitee_email = 'practitioner@gmail.com'
+    fill_in('Email address', :with => invitee_email)
+    click_selector_cell('Send Invite!')
+    
+    has_text?("Your invitation has been sent to #{invitee_email}")
   end
 
 end

@@ -15,6 +15,7 @@ describe User do
     
   it { should belong_to(:practice) }
   it { should belong_to(:role) }
+  it { should have_many(:invitations) }
   
   it { should validate_presence_of(:role) }
   it { should validate_uniqueness_of(:email) }
@@ -27,12 +28,19 @@ describe User do
   it { should_not allow_value('pass').for(:password)}
   it { should_not allow_value('11111111').for(:password)}
   
+  
+  
+  # at some point maybe turn the below into a matrix using this format:
+  # controller action guest sysadmin admin pruser
+  # 'activations', 'create', true, false, false, false
    
   describe "user authorization - guest role" do
     it "is authorized to access certain pages only" do
       user = User.new
       user.authorize('activations', 'create')[:success].should == true
       user.authorize('home', 'index')[:success].should == false
+      user.authorize('invitations', 'new')[:success].should == false
+      user.authorize('invitations', 'create')[:success].should == false
       user.authorize('password_resets', 'new')[:success].should == true
       user.authorize('password_resets', 'create')[:success].should == true
       user.authorize('password_resets', 'edit')[:success].should == true
@@ -67,6 +75,8 @@ describe User do
       user = Factory.create(:sysadmin_user)
       user.authorize('activations', 'create')[:success].should == false
       user.authorize('home', 'index')[:success].should == true
+      user.authorize('invitations', 'new')[:success].should == false
+      user.authorize('invitations', 'create')[:success].should == false
       user.authorize('password_resets', 'new')[:success].should == false
       user.authorize('password_resets', 'create')[:success].should == false
       user.authorize('password_resets', 'edit')[:success].should == false
@@ -101,6 +111,8 @@ describe User do
       user = Factory.create(:practice_admin_user)
       user.authorize('activations', 'create')[:success].should == false
       user.authorize('home', 'index')[:success].should == true
+      user.authorize('invitations', 'new')[:success].should == true
+      user.authorize('invitations', 'create')[:success].should == true
       user.authorize('password_resets', 'new')[:success].should == false
       user.authorize('password_resets', 'create')[:success].should == false
       user.authorize('password_resets', 'edit')[:success].should == false
@@ -135,6 +147,8 @@ describe User do
       user = Factory.create(:practice_user)
       user.authorize('activations', 'create')[:success].should == false
       user.authorize('home', 'index')[:success].should == true
+      user.authorize('invitations', 'new')[:success].should == true
+      user.authorize('invitations', 'create')[:success].should == true
       user.authorize('password_resets', 'new')[:success].should == false
       user.authorize('password_resets', 'create')[:success].should == false
       user.authorize('password_resets', 'edit')[:success].should == false

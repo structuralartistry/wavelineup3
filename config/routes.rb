@@ -1,5 +1,7 @@
 Wavelineup3::Application.routes.draw do
   
+  resources :invitations
+
   resources :travel_cards
 
   resources :practice_members

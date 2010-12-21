@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   acts_as_authentic
   belongs_to :practice
   belongs_to :role
+  has_many :invitations, :foreign_key => 'referring_user_id'
   
   validates_presence_of :role
   
@@ -90,6 +91,12 @@ class User < ActiveRecord::Base
     
     when 'home'
       if current_role == 'guest'
+        return set_autorize_failure_value(LOGIN_NOTICE)
+      end
+      return authorize_success_message
+      
+    when 'invitations'
+      if current_role == 'guest' || current_role == 'sysadmin'
         return set_autorize_failure_value(LOGIN_NOTICE)
       end
       return authorize_success_message
