@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   
   validates_presence_of :role
   
-  validates_format_of :password, :with => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/, :if => :password_present?
+  validates_format_of :password, :with => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/, :if => :password_present?, :message => 'must be at least 8 characters and contain at least one uppercase letter and one number'
   
   attr_accessible :email, :password, :password_confirmation, :perishable_token, :persistence_token, :practice_id, :role_id
    
