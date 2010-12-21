@@ -89,6 +89,12 @@ class User < ActiveRecord::Base
         return set_autorize_failure_value("You are already logged in to the system. If you are activating a new user please log out first and try again.")
       end
       return authorize_success_message
+      
+    when 'feedback_supports'
+      if current_role == 'guest' || current_role == 'sysadmin'
+        return set_autorize_failure_value(LOGIN_NOTICE)
+      end
+      return authorize_success_message
     
     when 'home'
       if current_role == 'guest'

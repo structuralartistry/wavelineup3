@@ -37,6 +37,13 @@ function set_left_column_buttons() {
   else {
     $('#practice_member_selector_show_selector_cell').removeClass('current_selected');
   }
+
+  if($('#feedback_support').is(':visible')) {
+    $('#feedback_support_show_selector_cell').addClass('current_selected');
+  }
+  else {
+    $('#feedback_support_show_selector_cell').removeClass('current_selected');
+  }
 }
 
 function show_new_practice_member_form() {
@@ -75,6 +82,32 @@ function show_practice_member_selector() {
   if(!is_showing_now) $('#practice_member_selector').show('slide');
   set_left_column_buttons();
 }
+
+function show_feedback_support_form() {
+  // if form already showing dont need to load, just need to toggle off
+  if(!$('#feedback_support_show_selector_cell').hasClass('current_selected')) {
+
+		<% @feedback_support = FeedbackSupport.new %>
+		$('#feedback_support').html("<%= escape_javascript(render :partial => 'feedback_supports/feedback_support') %>");
+		initialize_page();
+		set_feedback_support();
+		set_left_column_buttons();
+  }
+  else {
+    set_feedback_support();
+  }
+}
+function set_feedback_support() {
+  // determine if need is to show or hide before we close all selectors
+  if($('#feedback_support').is(':visible')==true) is_showing_now = true;
+  else is_showing_now = false;
+
+  $('.selector').hide();
+  if(is_showing_now) $('#feedback_support').hide();
+  else $('#feedback_support').show('slide');
+  set_left_column_buttons();
+}
+
 </script>
 
 <table class="selector_table" width="150px">
@@ -87,5 +120,7 @@ function show_practice_member_selector() {
   </tr>
   <tr><td id="new_practice_member_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" onclick="show_new_practice_member_form();">New Practice Member</td></tr>
   <tr><td id="practice_member_selector_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" onclick="show_practice_member_selector();">Find</td></tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr><td id="feedback_support_show_selector_cell" class="bold selector_cell selector_cell_nav" onclick="show_feedback_support_form();">Feedback/Support</td></tr>
 </table>
 

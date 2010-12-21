@@ -40,7 +40,7 @@ describe User do
       user = User.new
       user.authorize('activations', 'create')[:success].should == true
       user.authorize('home', 'index')[:success].should == false
-      user.authorize('invitations', 'new')[:success].should == false
+      user.authorize('feedback_supports', 'create')[:success].should == false
       user.authorize('invitations', 'create')[:success].should == false
       user.authorize('password_resets', 'new')[:success].should == true
       user.authorize('password_resets', 'create')[:success].should == true
@@ -76,7 +76,7 @@ describe User do
       user = Factory.create(:sysadmin_user)
       user.authorize('activations', 'create')[:success].should == false
       user.authorize('home', 'index')[:success].should == true
-      user.authorize('invitations', 'new')[:success].should == false
+      user.authorize('feedback_supports', 'create')[:success].should == false
       user.authorize('invitations', 'create')[:success].should == false
       user.authorize('password_resets', 'new')[:success].should == false
       user.authorize('password_resets', 'create')[:success].should == false
@@ -112,7 +112,7 @@ describe User do
       user = Factory.create(:practice_admin_user)
       user.authorize('activations', 'create')[:success].should == false
       user.authorize('home', 'index')[:success].should == true
-      user.authorize('invitations', 'new')[:success].should == true
+      user.authorize('feedback_supports', 'create')[:success].should == true
       user.authorize('invitations', 'create')[:success].should == true
       user.authorize('password_resets', 'new')[:success].should == false
       user.authorize('password_resets', 'create')[:success].should == false
@@ -148,7 +148,7 @@ describe User do
       user = Factory.create(:practice_user)
       user.authorize('activations', 'create')[:success].should == false
       user.authorize('home', 'index')[:success].should == true
-      user.authorize('invitations', 'new')[:success].should == true
+      user.authorize('feedback_supports', 'create')[:success].should == true
       user.authorize('invitations', 'create')[:success].should == true
       user.authorize('password_resets', 'new')[:success].should == false
       user.authorize('password_resets', 'create')[:success].should == false
