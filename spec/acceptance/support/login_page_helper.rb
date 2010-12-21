@@ -6,5 +6,5 @@ def confirm_login_page_loaded
   assert selector_cell_present?("Create My Practice")
   assert !selector_cell_present?('Logout')
 
-  assert page.has_no_xpath?("//td[(@class='selector_cell_nav') and (text()='Login')]")
+  assert page.has_no_xpath?("//td[(@class='selector_cell_submit') and (text()='Login')]")
 end

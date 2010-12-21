@@ -19,7 +19,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     assert selector_cell_present?("Create My Practice")
     assert page.has_no_content?("Logout")
 
-    assert page.has_no_xpath?("//td[(@class='selector_cell_nav') and (text()='Login')]")
+    assert page.has_no_xpath?("//td[(@class='selector_cell_submit') and (text()='Login')]")
   end
   
   def confirm_home_page_loaded

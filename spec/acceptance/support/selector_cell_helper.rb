@@ -1,14 +1,14 @@
 # general finder method for a selector cell
 def selector_cell_xpath(selector_cell_text, selected=nil)
   xpath_selected_clause = "and ( contains(concat(' ',normalize-space(@class),' '),' current_selected ') )" if selected
-  
-  # xpath_selector_cell = "//*[( contains(concat(' ',normalize-space(@class),' '),' selector_cell ') or contains(concat(' ',normalize-space(@class),' '),' selector_cell_nav ') ) and text()='#{(selector_cell_text)}']"
-  
+    
   xpath_selector_cell = "//*[
     ( 
       contains(concat(' ',normalize-space(@class),' '),' selector_cell ') 
       or 
       contains(concat(' ',normalize-space(@class),' '),' selector_cell_nav ') 
+      or 
+      contains(concat(' ',normalize-space(@class),' '),' selector_cell_submit ')
     ) 
     #{xpath_selected_clause} 
     and text()='#{(selector_cell_text)}']"

@@ -156,6 +156,13 @@ select,
   text-align: center;
 }
 
+.selector_cell_submit {
+  background-color: #e0e0e0; /*#ECE0A1;*/
+  color: #000033;
+  font-weight: bold;
+  text-align: center;
+}
+
 div.selector {
   /* to hold coloring but not location */
   /*background-color: aqua;*/

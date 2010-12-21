@@ -14,7 +14,7 @@
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-		<%= f.submit 'Submit', :class => 'selector_cell_nav' if action_name == 'edit' || action_name == 'update' %>
+		<%= f.submit 'Submit', :class => 'selector_cell_submit' if action_name == 'edit' || action_name == 'update' %>
   </div>
  
   <% if action_name != 'edit' && action_name != 'update' %>
@@ -33,7 +33,7 @@
       </div>
     <% end %>
 		<div class="actions">
-	    <%= f.submit 'Submit', :class => 'selector_cell_nav', :style => 'float: left' %>
+	    <%= f.submit 'Submit', :class => 'selector_cell_submit', :style => 'float: left' %>
 	  </div>
   <% end %>
   
@@ -45,7 +45,7 @@
 <% end %>
 
 <% if action_name != 'edit' && action_name != 'update' %>
-	<%= button_to 'Cancel', login_path, :method => :get, :class => 'selector_cell_nav', :style => 'float: left;' %>
+	<%= button_to 'Cancel', login_path, :method => :get, :class => 'selector_cell_submit', :style => 'float: left;' %>
 <% end %>
 
 

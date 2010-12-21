@@ -8,10 +8,10 @@
 <% @users.each do |user| %>
   <tr id="<%= user.email %>">
     <td><%= user.email %></td>  
-    <td><%= button_to 'Delete', user, :confirm => "Are you sure?", :method => :delete, :class => 'selector_cell_nav' %></td>
+    <td><%= button_to 'Delete', user, :confirm => "Are you sure?", :method => :delete, :class => 'selector_cell_submit' %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-<%= button_to 'New User', new_user_path, :method => :get, :class => 'selector_cell_nav' %>
+<%= button_to 'New User', new_user_path, :method => :get, :class => 'selector_cell_submit' %>

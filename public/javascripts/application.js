@@ -21,6 +21,7 @@ function initialize_page() {
   $("label").addClass("noSelect");
   $("input[type=submit]").addClass("noSelect");
   $(".selector_cell_nav").addClass("noSelect");
+	$(".selector_cell_submit").addClass("noSelect");
   $(".selector_cell").addClass("noSelect");
   $(".label").addClass("noSelect");
   $("#notices").addClass("noSelect");
@@ -51,13 +52,17 @@ function initialize_page() {
     $(this).addClass("item_highlight");
   });
   // for web - highlight on mouse over
-  $('.selector_cell, .selector_cell_nav').mouseover(function() {
+  $('.selector_cell, .selector_cell_nav, .selector_cell_submit').mouseover(function() {
     $(this).addClass("item_highlight");
     $(this).css("cursor", "pointer");
   });
-  $('.selector_cell, .selector_cell_nav').mouseout(function() {
+  $('.selector_cell, .selector_cell_nav, .selector_cell_submit').mouseout(function() {
     $(this).removeClass("item_highlight");
   });
+
+	$('.selector_cell_submit').mousedown(function() {
+		$(this).addClass('L');
+	});
 
 	setTimeout(hide_flash_messages, 10000);
 }
