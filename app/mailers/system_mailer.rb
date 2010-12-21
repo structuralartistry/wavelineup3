@@ -19,5 +19,9 @@ class SystemMailer < ActionMailer::Base
     @url = edit_password_reset_url(user.perishable_token)
     mail(:to => user.email, :subject => 'Password Reset for WaveLineup')    
   end
+  
+  def wavelineup_invitation(invitation)
+    mail(:to => invitation.email, :subject => "Invitation to WaveLineup from #{invitation.referring_user.email}")
+  end
 
 end

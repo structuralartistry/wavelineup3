@@ -1,7 +1,8 @@
-<%= form_for(@invitation) do |f| %>
+<p class='label'>Invite another Practitioner!</p>
+<%= form_for(@invitation, :html => { :class => "ajax_form"}) do |f| %>
   <% if @invitation.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@invitation.errors.count, "error") %> prohibited this invitation from being saved:</h2>
+      <h2><%= pluralize(@invitation.errors.count, "error") %> prohibited this @invitation from being saved:</h2>
 
       <ul>
       <% @invitation.errors.full_messages.each do |msg| %>
@@ -14,12 +15,6 @@
   <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :referring_user_id %><br />
-    <%= f.text_field :referring_user_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+		<%= f.submit 'Send!', :class => 'selector_cell_save' %>
   </div>
 <% end %>

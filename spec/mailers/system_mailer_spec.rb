@@ -36,5 +36,19 @@ describe SystemMailer do
     email.subject.should == "Password Reset for WaveLineup"
     email.encoded.should =~ /Please follow this link to reset your password:/
   end
+  
+  it "successful sends an Invite to a potential Pratitioner" do
+    invitation = Invitation.new
+    invitation.email = 'dk.kahn@gmail.com'
+    user = Factory.create(:practice_user)
+    invitation.referring_user_id = user.id
+    
+    email = SystemMailer.wavelineup_invitation(invitation).deliver
+    ActionMailer::Base.deliveries.size.should == 1
+    
+    email.to.should == [invitation.email]
+    email.subject.should == "Invitation to WaveLineup from #{invitation.referring_user.email}"
+    email.encoded.should =~ /WaveLineup is a free Travel Card and Visit tracking system for NSA practitioners./
+  end
 
 end

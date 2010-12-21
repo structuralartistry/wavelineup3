@@ -44,10 +44,10 @@ feature "Home Page Feature", %q{
     logged_in_as_role(:practice_user)
     visit('/home')
     invitee_email = 'practitioner@gmail.com'
-    fill_in('Email address', :with => invitee_email)
-    click_selector_cell('Send Invite!')
+    fill_in('Email', :with => invitee_email)
+    click_selector_cell('Send!')
     
-    has_text?("Your invitation has been sent to #{invitee_email}")
+    has_text?("An invite has been sent to #{invitee_email}")
   end
 
 end

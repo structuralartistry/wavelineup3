@@ -1,25 +1,16 @@
 class InvitationsController < ApplicationController
   
-  def new
-    @invitation = Invitation.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @invitation }
-    end
-  end
-
   def create
     @invitation = Invitation.new(params[:invitation])
+    @invitation.referring_user_id = current_user.id
 
     respond_to do |format|
       if @invitation.save
-        format.html { redirect_to(@invitation, :notice => 'Invitation was successfully created.') }
-        format.xml  { render :xml => @invitation, :status => :created, :location => @invitation }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @invitation.errors, :status => :unprocessable_entity }
+        SystemMailer.wavelineup_invitation(@invitation).deliver
+        flash[:notice] = "An invite has been sent to #{@invitation.email}"
+        @invitation = Invitation.new # create new one, as we are returning now a new invite form to the page in js
       end
+      format.js { render 'response' }
     end
   end
 
