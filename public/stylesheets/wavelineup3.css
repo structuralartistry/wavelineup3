@@ -78,7 +78,7 @@ div.field, div.actions {
 }
 
 #flash_notice {
-  color: lightpink;
+  color: red;
 	font-weight: bold;
 }
 

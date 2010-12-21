@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   before_filter :redirect_to_https, :authorize
-    
+      
   private
   
     def redirect_to_https
@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
         end
       end
     end
-      
+          
     def current_user_session
       return @current_user_session if defined?(@current_user_session)
       @current_user_session = UserSession.find

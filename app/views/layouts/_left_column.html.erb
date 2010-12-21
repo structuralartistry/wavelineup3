@@ -111,16 +111,17 @@ function set_feedback_support() {
 </script>
 
 <table class="selector_table" width="150px">
-  <tr>
-    <td align="center">
-      <div id="transmitting" class="hidden">
-        <%= image_tag "transmitting.png", :size => "40x40" %>
-      </div>
-    </td>
-  </tr>
   <tr><td id="new_practice_member_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" onclick="show_new_practice_member_form();">New Practice Member</td></tr>
   <tr><td id="practice_member_selector_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" onclick="show_practice_member_selector();">Find</td></tr>
 	<tr><td>&nbsp;</td></tr>
 	<tr><td id="feedback_support_show_selector_cell" class="bold selector_cell selector_cell_nav" onclick="show_feedback_support_form();">Feedback/Support</td></tr>
+	<tr>
+    <td align="center">
+      <div id="transmitting" class="hidden">
+        <%= image_tag "transmitting.png", :size => "40x40" %>
+      </div>
+			<div id="notices"><p id="flash_notice"><%= flash[:notice] %></p></div>
+    </td>
+  </tr>
 </table>
 

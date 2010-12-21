@@ -6,6 +6,8 @@ $(document).ready(function() {
 
 
 function initialize_page() {
+	$('#flash_notice').show();
+	
   ajax_links_and_forms();
   
   $('.hidden').hide();
@@ -56,4 +58,10 @@ function initialize_page() {
   $('.selector_cell, .selector_cell_nav').mouseout(function() {
     $(this).removeClass("item_highlight");
   });
+
+	setTimeout(hide_flash_messages, 10000);
+}
+
+function hide_flash_messages() {
+  $('#flash_notice').fadeOut(5000);
 }
