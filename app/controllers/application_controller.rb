@@ -4,6 +4,36 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   before_filter :redirect_to_https, :authorize
+  
+  rescue_from Exception, :with => :rescue_all_exceptions if Rails.env == 'production'
+  def rescue_all_exceptions(exception)
+    case exception
+      when ActiveRecord::RecordNotFound
+        render :text => "<h1>The requested record was not found</h1>", :layout => "application", :status => :not_found
+      when ActionController::RoutingError, ActionController::UnknownController, ActionController::UnknownAction
+        render :text => "<h1>The request made was invalid</h1>", :layout => "application", :status => :not_found
+      else
+        begin
+          SystemError.new(:user_id => nil,
+                          :error => "Undefined exception", 
+                          :incidentals => { "controller_name" => controller_name || "",
+                                            "action_name" => action_name || "",
+                                            "request.request_uri" => request.request_uri || "",
+                                            "request.method" => request.method || "",
+                                            "request.path" => request.path || "",
+                                            "request.parameters.inspect" => request.parameters.inspect || "",
+                                            "exception.message" => exception.message || "",
+                                            "exception.clean_backtrace" => exception.clean_backtrace || "" }
+                          ).save
+        rescue
+          # worst case we save it to the error logger
+          logger.error( "\nWhile processing a #{request.method} request on #{request.path}\n
+          parameters: #{request.parameters.inspect}\n
+          #{exception.message}\n#{exception.backtrace.join( "\n" )}\n\n" )  
+        end
+        render :text => "<h1>An internal error occurred. Sorry for the inconvenience</h1>", :layout => "application", :status => :internal_server_error
+    end
+  end
       
   private
   

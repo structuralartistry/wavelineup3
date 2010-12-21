@@ -50,5 +50,18 @@ describe SystemMailer do
     email.subject.should == "Invitation to WaveLineup from #{invitation.referring_user.email}"
     email.encoded.should =~ /WaveLineup is a free Travel Card and Visit tracking system for NSA practitioners./
   end
+  
+  it "successful sends a generic email" do
+    recipients = 'dk.kahn@gmail.com'
+    subject = 'Generic email'
+    body_content = 'Generic content'
+    
+    email = SystemMailer.generic_email(recipients, subject, body_content).deliver
+    ActionMailer::Base.deliveries.size.should == 1
+    
+    email.to.should == [recipients]
+    email.subject.should == "Generic email"
+    email.encoded.should =~ /Generic content/
+  end
 
 end
