@@ -14,10 +14,10 @@
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-		<%= f.submit 'Submit', :class => 'selector_cell_save' if action_name == 'edit' %>
+		<%= f.submit 'Submit', :class => 'selector_cell_nav' if action_name == 'edit' || action_name == 'update' %>
   </div>
-  
-  <% if action_name != 'edit' %>
+ 
+  <% if action_name != 'edit' && action_name != 'update' %>
     <%= f.fields_for :users do |u| %>
       <div class="field">
         <%= u.label :email %><br />
@@ -31,22 +31,21 @@
         <%= u.label :password_confirmation %><br />
         <%= u.password_field :password_confirmation %>
       </div>
-			<p>You will be able to add additional users to your practice after you register.</p>
     <% end %>
 		<div class="actions">
-	    <%= f.submit 'Submit', :class => 'selector_cell_save', :style => 'float: left' %>
+	    <%= f.submit 'Submit', :class => 'selector_cell_nav', :style => 'float: left' %>
 	  </div>
   <% end %>
   
 <% end %>
 
-<% if action_name == 'edit' %>
+<% if action_name == 'edit' && action_name != 'update' %>
 	<br>
   <%= render :partial => '/users/index' %>
 <% end %>
 
-<% if action_name != 'edit' %>
-	<%= button_to 'Cancel', login_path, :method => :get, :class => 'selector_cell_edit', :style => 'float: left;' %>
+<% if action_name != 'edit' && action_name != 'update' %>
+	<%= button_to 'Cancel', login_path, :method => :get, :class => 'selector_cell_nav', :style => 'float: left;' %>
 <% end %>
 
 

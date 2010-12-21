@@ -13,12 +13,11 @@ gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => '
 
 group :development, :test do
   gem 'ruby-debug19'
-  gem 'cucumber-rails'
   gem 'capybara'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'heroku'
   gem 'database_cleaner'
-gem 'shoulda'
-gem 'steak'
+	gem 'shoulda'
+	gem 'steak'
 end

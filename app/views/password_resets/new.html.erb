@@ -1,14 +1,14 @@
 <h1>Reset Password</h1>
 <%= form_for(@user, :url => password_resets_path) do |f| %>
-  <p>Please enter your email and press submit.</p>
+  <p>Please enter your email and submit.</p>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
   <div class="actions">
-    <%= f.submit 'Submit', :class => 'selector_cell_save', :style => 'float: left;' %>
+    <%= f.submit 'Submit', :class => 'selector_cell_nav', :style => 'float: left;' %>
   </div>
 <% end %>
 
-<%= button_to 'Cancel', login_path, :method => 'get', :class => 'selector_cell_cancel', :style => 'float: left;' %>
+<%= button_to 'Cancel', login_path, :method => 'get', :class => 'selector_cell_nav', :style => 'float: left;' %>
 

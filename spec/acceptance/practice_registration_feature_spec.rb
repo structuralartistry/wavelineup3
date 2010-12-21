@@ -13,7 +13,6 @@ feature "Practice Registration Feature", %q{
     click_selector_cell('Create My Practice')
     assert has_text?('Create Practice', 'h1')
     assert has_text?('Practice name', 'label')
-    assert has_text?('You will be able to add additional users to your practice after you register.')
     assert has_text?('Email', 'label')
     assert has_text?('Password', 'label')
     assert has_text?('Password confirmation', 'label')

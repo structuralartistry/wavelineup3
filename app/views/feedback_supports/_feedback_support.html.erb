@@ -18,13 +18,16 @@
   <% end %>
 	<tr>
 		<td>
-			<p>Let us know how it is going or if you need some help!</p>
+			<%= f.label :message, 'Let us know how it is going or if you need some help!'%>
+		</td>
+	</tr>
+		<td>
 	    <%= f.text_area :message, :style => "width: 6in; height: 1in;" %>
 		</td>
 	</tr>
 	<tr>
 		<td>
-		  <%= f.submit 'Send', :style => 'float: right;', :class => 'selector_cell_save' %>
+		  <%= f.submit 'Send', :style => 'float: right;', :class => 'selector_cell_nav' %>
 		</td>
 	</tr>
 </table>

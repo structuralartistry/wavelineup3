@@ -67,7 +67,7 @@ feature "User Management Feature", %q{
   
   scenario "I can change my user profile - email address and password" do
     click_selector_cell(@practice.users[0].email)
-    has_text?('Editing User', 'h1').should == true
+    has_text?('Edit User', 'h1').should == true
     has_text?('Email', 'label').should == true
     has_text?('Password', 'label').should == true
     has_text?('Password confirmation').should == true

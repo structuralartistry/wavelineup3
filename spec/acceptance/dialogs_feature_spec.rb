@@ -55,7 +55,7 @@ feature "New Practice Member and Find dialog feature", %q{
       selector_cell_selected?('Feedback/Support').should == true
 
       has_text?('Feedback & Support', 'h1').should == true
-      fill_in('feedback_support_message', :with => 'A comment provided')
+      fill_in('Let us know how it is going or if you need some help!', :with => 'A comment provided')
       click_selector_cell('Send')
 
       has_text?('Thanks for your message. We will respond promptly!', 'p')

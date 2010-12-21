@@ -98,7 +98,7 @@ h5 {
 
 h1 {
 	font-size: 18px;
-	color: #4684EE;
+	color: #003F87;
 }
 
 
@@ -156,37 +156,13 @@ select,
   text-align: center;
 }
 
-.selector_cell_edit {
-  font-size: 18px;
-}
-
-.selector_cell_add {
-  /*background-color: green;*/
-  font-size: 18px;
-}
-.selector_cell_delete {
-  /*background-color: red;*/
-  font-size: 18px;
-}
-
-.selector_cell_save {
-  /*background-color: yellow;*/
-  font-size: 18px;
-}
-
-.selector_cell_cancel {
-  /*background-color: orange;*/
-  font-size: 18px;
-}
-
-
 div.selector {
   /* to hold coloring but not location */
   /*background-color: aqua;*/
-  background-color: lightpink;
+  background-color: lightyellow;
   z-index: 100;
   position: absolute;
-  border: 2px solid #000033;
+  border: 3px solid #e0e0e0;
 }
 
 input,
@@ -251,9 +227,19 @@ span.section_internal_label {
 
 .wavelineup {
   font-weight: bold;
-	background-color: #4684EE;
+	/*background-color: #4684EE;*/
+	background-color: #003F87;
   color: #FFFFFF;
   font-size: 18px;
+}
+
+.app_color {
+	color: #003F87;
+	font-weight: bold;
+}
+
+.home_intro {
+	font-size: 18px;
 }
 
 /* this is left column of page */
@@ -272,7 +258,9 @@ div#communication {
   right: 0;
 }
 
-
+div#main_frame {
+	padding: 15px;
+}
 
 div#practice_member_header {
   background: #000030;
@@ -280,7 +268,7 @@ div#practice_member_header {
 }
 
 div#footer {
-  background-color: #4684EE;
+  background-color: #003F87;
 }
 
 div#selected_visit {
@@ -353,7 +341,7 @@ div#processing_message {
 
 div#cal_event_selector {
   width: 650px;
-  border: 10px solid #4684EE;
+  border: 10px solid #003F87;
   background-color: #ffffff;
 }
 
