@@ -20,7 +20,7 @@ def selector_cell_xpath(selector_cell_text, selected=nil)
   return xpath_selector_cell + ' | ' + xpath_input_button
 end
 
-def selector_cell_is_present?(selector_cell_text)
+def selector_cell_present?(selector_cell_text)
   page.has_xpath?(selector_cell_xpath(selector_cell_text), :visible => true)
 end
 

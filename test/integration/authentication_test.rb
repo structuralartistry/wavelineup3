@@ -16,16 +16,16 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
     assert page.has_xpath?("//h1[text()='Login']")
     assert page.has_xpath?("//label[text()='Email']")
     assert page.has_xpath?("//label[text()='Password']") 
-    assert selector_cell_is_present?("Create My Practice")
+    assert selector_cell_present?("Create My Practice")
     assert page.has_no_content?("Logout")
 
     assert page.has_no_xpath?("//td[(@class='selector_cell_nav') and (text()='Login')]")
   end
   
   def confirm_home_page_loaded
-    assert selector_cell_is_present?('Logout')
+    assert selector_cell_present?('Logout')
     assert page.has_content?("a community driven system")
-    assert selector_cell_is_present?("New Practice Member")
+    assert selector_cell_present?("New Practice Member")
   end
   
   context "users should be able to authenticate and redirect properly" do

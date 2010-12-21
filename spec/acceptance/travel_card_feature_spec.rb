@@ -73,10 +73,10 @@ feature "Travel Card Feature", %q{
     end
     
     scenario "Verify LOC" do
-      selector_cell_is_present?('1A').should == false
+      selector_cell_present?('1A').should == false
       get_selector_cell_text('level_of_care').should == ''
       click_selector_cell('level_of_care')
-      selector_cell_is_present?('1A').should == true
+      selector_cell_present?('1A').should == true
       click_selector_cell('2C')
       get_selector_cell_text('level_of_care').should == '2C'
       
@@ -101,7 +101,7 @@ feature "Travel Card Feature", %q{
     scenario "Verify BME strategy" do
       # note - using id to click the selector cell for BME otherwise if use text, 
       # is confusion as B can be a set value or the B in the BME selector
-      selector_cell_is_present?('B').should == false
+      selector_cell_present?('B').should == false
       
       get_selector_cell_text('leading_bme_strategy').should == ''
       get_selector_cell_text('second_bme_strategy').should == ''

@@ -12,8 +12,8 @@ feature "Password Reset Feature", %q{
     
     assert has_text?('Reset Password', 'h1')
     assert has_text?('Email', 'label')
-    assert selector_cell_is_present?('Submit')
-    assert selector_cell_is_present?('Cancel')
+    assert selector_cell_present?('Submit')
+    assert selector_cell_present?('Cancel')
 
     fill_in('Email', :with => user_email)
     click_button('Submit')
@@ -36,7 +36,7 @@ feature "Password Reset Feature", %q{
     click_button('Submit')
           
     assert has_text?('Password successfully updated')
-    assert selector_cell_is_present?(user.email)
+    assert selector_cell_present?(user.email)
     
     visit('/logout')
     assert login_as_email_and_password?(user.email, new_password)

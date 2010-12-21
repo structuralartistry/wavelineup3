@@ -40,14 +40,19 @@ feature "Home Page Feature", %q{
     
   end
   
-  scenario "Send an invitation to another Practitioner" do
-    logged_in_as_role(:practice_user)
+  scenario "Send an invitation to another Practitioner", :js => true do
+    practice_name = 'SA Practice'
+    logged_in_as_role_for_practice(:practice_user, practice_name)
+    create_practice_member("Kahn, David N", practice_name)
     visit('/home')
     invitee_email = 'practitioner@gmail.com'
     fill_in('Email', :with => invitee_email)
     click_selector_cell('Send!')
     
-    has_text?("An invite has been sent to #{invitee_email}")
+    has_text?("An invite has been sent to #{invitee_email}", 'p')
+    selector_cell_present?('New Practice Member').should == true # page gets reinitialized to reset the form and the send button as a selector cell, so make sure these are present
+    selector_cell_present?('Find').should == true
+    selector_cell_present?('Feedback/Support').should == true
   end
 
 end

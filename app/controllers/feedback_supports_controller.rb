@@ -7,10 +7,10 @@ class FeedbackSupportsController < ApplicationController
 
     respond_to do |format|
       if @feedback_support.save
-        format.html { redirect_to(@feedback_support, :notice => 'Feedback support was successfully created.') }
-      else
-        format.html { render :action => "new" }
+        flash[:notice] = 'Thanks for your message. We will respond promptly!'
+        @feedback_support = FeedbackSupport.new
       end
+      format.js { render 'response' }
     end
   end
   

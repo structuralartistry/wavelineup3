@@ -13,7 +13,7 @@ feature "User Management Feature", %q{
   end
   
   scenario "I can change the name of my practice" do
-    selector_cell_is_present?(@practice.name).should == true
+    selector_cell_present?(@practice.name).should == true
     click_selector_cell(@practice.name)
     
     has_text?('Manage Practice', 'h1').should == true
@@ -26,7 +26,7 @@ feature "User Management Feature", %q{
     click_selector_cell('Submit')
     
     has_text?('Practice was successfully updated').should == true
-    selector_cell_is_present?(new_practice_name)
+    selector_cell_present?(new_practice_name)
   end
 
   scenario "I can add a user to my practice and activate the user" do 

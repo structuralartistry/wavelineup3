@@ -8,7 +8,7 @@ def logged_in_as_role(role)
   fill_in('Email', :with => user.email)
   fill_in('Password', :with => 'Password1')
   click_button('Submit')
-  assert selector_cell_is_present?('Logout')
+  assert selector_cell_present?('Logout')
 end
 
 
@@ -25,7 +25,7 @@ def logged_in_as_role_for_practice(role, practice_name)
   fill_in('Email', :with => user.email)
   fill_in('Password', :with => 'Password1')
   click_button('Submit')
-  assert selector_cell_is_present?('Logout') 
+  assert selector_cell_present?('Logout') 
   practice
 end
 
@@ -35,7 +35,7 @@ def login_as_email_and_password?(email, password)
   fill_in('Email', :with => email)
   fill_in('Password', :with => password)
   click_button('Submit')
-  return selector_cell_is_present?('Logout')
+  return selector_cell_present?('Logout')
 end
 
 def log_out

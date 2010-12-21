@@ -1,9 +1,9 @@
 def confirm_home_page_loaded
-  assert selector_cell_is_present?('Logout')
+  assert selector_cell_present?('Logout')
   assert page.has_content?("a community driven system")
-  assert selector_cell_is_present?("New Practice Member")
+  assert selector_cell_present?("New Practice Member")
   
   has_text?('Invite another Practitioner!', 'p')
-  selector_cell_is_present?('Send!')
+  selector_cell_present?('Send!')
   has_text?('Email address', 'label')
 end

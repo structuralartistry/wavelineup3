@@ -1,2 +1,6 @@
 $('#invitation').html("<%= escape_javascript(render 'invitation') %>");
+<% if flash[:notice] %>
+	$('#flash_notice').html('<%= flash[:notice] %>');
+<% end %>
 initialize_page();
+set_left_column_buttons();
