@@ -18,7 +18,7 @@ feature "User Management Feature", %q{
     
     has_text?('Manage Practice', 'h1').should == true
     has_text?('Practice name', 'label').should == true
-    has_text?('Users', 'th').should == true
+    has_text?('Practice Users', 'th').should == true
     has_text?(@practice.users[0].email).should == true
 
     new_practice_name = 'New Practice Name'

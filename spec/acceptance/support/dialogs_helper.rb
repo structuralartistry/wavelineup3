@@ -7,5 +7,5 @@ def find_dialog_present?
 end
 
 def feedback_support_dialog_present?
-  return selector_cell_selected?('Feedback/Support') && has_text?('Let us know how it is going or if you need some help!')
+  return selector_cell_selected?('Feedback/Support') && has_text?('Feedback & Support', 'h1')
 end

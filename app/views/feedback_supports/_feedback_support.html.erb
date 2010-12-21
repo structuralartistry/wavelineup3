@@ -1,3 +1,4 @@
+<h1>Feedback & Support</h1>
 <%= form_for(@feedback_support, :html => { :class => "ajax_form"}) do |f| %>
 <table>
   <% if @feedback_support.errors.any? %>
@@ -17,8 +18,8 @@
   <% end %>
 	<tr>
 		<td>
-	    <%= f.label :message, 'Let us know how it is going or if you need some help!' %><br />
-	    <%= f.text_area :message %>
+			<p>Let us know how it is going or if you need some help!</p>
+	    <%= f.text_area :message, :style => "width: 6in; height: 1in;" %>
 		</td>
 	</tr>
 	<tr>

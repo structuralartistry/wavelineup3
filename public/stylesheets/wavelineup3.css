@@ -30,7 +30,7 @@ input[type=password] {
 input[type=submit] {
   height: 0.5in;
   width: 1.0in;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 
@@ -78,7 +78,8 @@ div.field, div.actions {
 }
 
 #flash_notice {
-  color: green;
+  color: lightpink;
+	font-weight: bold;
 }
 
 
@@ -93,6 +94,11 @@ h4,
 h5 {
   padding:0px;
   margin:0px;
+}
+
+h1 {
+	font-size: 18px;
+	color: #4684EE;
 }
 
 
@@ -177,7 +183,7 @@ select,
 div.selector {
   /* to hold coloring but not location */
   /*background-color: aqua;*/
-  background-color: lightgray;
+  background-color: lightpink;
   z-index: 100;
   position: absolute;
   border: 2px solid #000033;
@@ -245,8 +251,8 @@ span.section_internal_label {
 
 .wavelineup {
   font-weight: bold;
-
-  color: #4684EE;
+	background-color: #4684EE;
+  color: #FFFFFF;
   font-size: 18px;
 }
 

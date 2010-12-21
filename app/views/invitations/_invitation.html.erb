@@ -1,20 +1,33 @@
-<p class='label'>Invite another Practitioner!</p>
 <%= form_for(@invitation, :html => { :class => "ajax_form"}) do |f| %>
+	<table class="wavelineup_menu" border="0" style="border-width: 3px; border-color: #e0e0e0; border-style: solid;">
+		<tr>
+			<td>
+				<h1>Invite another Practitioner!</h1>
+			</td>
+		</tr>
   <% if @invitation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@invitation.errors.count, "error") %> prohibited this @invitation from being saved:</h2>
+		<tr>
+			<td>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@invitation.errors.count, "error") %> prohibited this @invitation from being saved:</h2>
 
-      <ul>
-      <% @invitation.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+		      <ul>
+		      <% @invitation.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+			</td>
+		</tr>
   <% end %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-		<%= f.submit 'Send!', :class => 'selector_cell_save' %>
-  </div>
+		<tr>
+			<td>
+			  <div class="field">
+			    <%= f.label :email %><br />
+			    <%= f.text_field :email %>
+					<%= f.submit 'Send!', :class => 'selector_cell_save' %>
+			  </div>
+			</td>
+		</tr>
+	</table>
 <% end %>
