@@ -6,7 +6,24 @@ feature "New Practice Member and Find dialog feature", %q{
   I want to ...
 } do
   
-  context "dialog operations", :js => true do
+  context "Feedback and Support dialog operations" do
+    practice = logged_in_as_role_for_practice(:practice_admin_user, "StructuralArtistry practice")
+    user = practice.users[0]
+    
+    visit('/home')
+    has_text?('Let us know how it is going!').should == false
+    selector_cell_selected?('Feedback/Support').should == false
+    click_selector_cell('Feedback/Support')
+    selector_cell_selected?('Feedback/Support').should == true
+    
+    has_text?('Let us know how it is going!').should == true
+    fill_in('Let us know how it is going!', :with => 'A comment provided')
+    click_selector_cell('Send')
+    
+    has_text?('Thanks for your message. We will respond promptly!')
+  end
+  
+  context "New Practice Member and Find dialog operations", :js => true do
   
     before(:each) do
       logged_in_as_role_for_practice(:practice_admin_user, "StructuralArtistry practice")

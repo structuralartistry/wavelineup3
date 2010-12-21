@@ -1,0 +1,29 @@
+<%= form_for(@feedback_support) do |f| %>
+  <% if @feedback_support.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@feedback_support.errors.count, "error") %> prohibited this feedback_support from being saved:</h2>
+
+      <ul>
+      <% @feedback_support.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :message %><br />
+    <%= f.text_area :message %>
+  </div>
+  <div class="field">
+    <%= f.label :location_in_application %><br />
+    <%= f.text_field :location_in_application %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

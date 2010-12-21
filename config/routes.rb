@@ -1,5 +1,7 @@
 Wavelineup3::Application.routes.draw do
   
+  resources :feedback_supports
+
   resources :invitations
 
   resources :travel_cards
