@@ -1,8 +1,4 @@
 $('#new_practice_member').html("<%= escape_javascript(render 'new') %>");
-<% if @practice_member.errors.empty? %>
-  set_new_practice_member();
-<% else %>
-  $('#new_practice_member').slideToggle();
-<% end %>
+$('#new_practice_member').removeClass('hidden');
 initialize_page();
 set_left_column_buttons();

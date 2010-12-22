@@ -1,47 +1,37 @@
 $(document).ready(function() {
-  
-  initialize_page();
-  
+  initialize_page();  	
 });
 
-
 function initialize_page() {
-	$('#flash_notice').show();
-	
   ajax_links_and_forms();
   
   $('.hidden').hide();
   
-  // $('a').button();
-  // $('a').removeClass('ui-corner-all') // take off the rounded corners
-
-  // noSelect - all objects which should not be selectable
-  // these must go before the disableTestSelect function addition below
-  $("h1").addClass("noSelect");
-  $("label").addClass("noSelect");
-  $("input[type=submit]").addClass("noSelect");
-  $(".selector_cell_nav").addClass("noSelect");
-	$(".selector_cell_submit").addClass("noSelect");
-  $(".selector_cell").addClass("noSelect");
-  $(".label").addClass("noSelect");
-  $("#notices").addClass("noSelect");
-  $(".wavelineup").addClass("noSelect");
-
   // no select - this makes the text of any element with this class not selectable
-  $(function(){
-  	$.extend($.fn.disableTextSelect = function() {
-  		return this.each(function(){
-  			if($.browser.mozilla){//Firefox
-  				$(this).css('MozUserSelect','none');
-  			}else if($.browser.msie){//IE
-  				$(this).bind('selectstart',function(){return false;});
-  			}else{//Opera, etc.
-  				$(this).mousedown(function(){return false;});
-  			}
-  		});
-  	});
-  	$('.noSelect').disableTextSelect();//No text selection on elements with a class of 'noSelect'
-  });
+	$(function(){
+		$.extend($.fn.disableTextSelect = function() {
+			return this.each(function(){
+				if($.browser.mozilla){//Firefox
+					$(this).css('MozUserSelect','none');
+				}else if($.browser.msie){//IE
+					$(this).bind('selectstart',function(){return false;});
+				}else{//Opera, etc.
+					$(this).mousedown(function(){return false;});
+				}
+			});
+		});
+	});
+
+  $('h1').disableTextSelect();
+  $('label').disableTextSelect();
+	$('span').disableTextSelect();
+  $('input[type=submit]').disableTextSelect();
+  $('.selector_cell_nav').disableTextSelect();
+	$('.selector_cell_submit').disableTextSelect();
+  $('.selector_cell').disableTextSelect();
+  $('.label').disableTextSelect();
+  $('#notices').disableTextSelect();
+  $('.wavelineup').disableTextSelect();
 
   $('.autosave').delayedObserver(function() {
       autosave(this.attr('id'), this.val());
@@ -63,10 +53,4 @@ function initialize_page() {
 	$('.selector_cell_submit').mousedown(function() {
 		$(this).addClass('L');
 	});
-
-	setTimeout(hide_flash_messages, 10000);
-}
-
-function hide_flash_messages() {
-  $('#flash_notice').fadeOut(5000);
 }

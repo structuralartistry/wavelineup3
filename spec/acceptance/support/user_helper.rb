@@ -19,5 +19,5 @@ end
 def activate_user?(email)
   user = User.where("email='#{email}'").first
   visit("/activations/#{user.perishable_token}") 
-  return has_text?('Your account has been activated') 
+  return has_flash_notice?('Your account has been activated') 
 end

@@ -25,7 +25,7 @@ feature "User Management Feature", %q{
     fill_in('Practice name', :with => new_practice_name)
     click_selector_cell('Submit')
     
-    has_text?('Practice was successfully updated').should == true
+    has_flash_notice?('Practice was successfully updated').should == true
     selector_cell_present?(new_practice_name)
   end
 
@@ -46,12 +46,12 @@ feature "User Management Feature", %q{
     fill_in('Password confirmation', :with => 'Password1')
     click_selector_cell('Submit')
     
-    has_text?('User was successfully created. Please check email for new_user@gmail.com for the activation link.').should == true
+    has_flash_notice?('User was successfully created. Please check email for new_user@gmail.com for the activation link.').should == true
     has_text?(new_user_email, 'td')
 
     # cant activate while logged in
     activate_user?(new_user_email).should == false
-    has_text?('You are already logged in to the system. If you are activating a new user please log out first and try again.').should == true
+    has_flash_notice?('You are already logged in to the system. If you are activating a new user please log out first and try again.').should == true
 
     # log out and activate
     click_selector_cell('Logout')
@@ -61,7 +61,7 @@ feature "User Management Feature", %q{
     # can not resubmit activation
     click_selector_cell('Logout')
     activate_user?(new_user_email).should == false
-    has_text?('This user is already active. You have been logged in to the system.').should == true
+    has_flash_notice?('This user is already active. You have been logged in to the system.').should == true
     confirm_home_page_loaded
   end
   
@@ -78,7 +78,7 @@ feature "User Management Feature", %q{
     fill_in('Password', :with => new_user_password)
     fill_in('Password confirmation', :with => new_user_password)
     click_selector_cell('Submit')
-    has_text?('User profile successfully updated').should == true
+    has_flash_notice?('User profile successfully updated').should == true
     
     click_selector_cell('Logout')
     login_as_email_and_password?(new_user_email, new_user_password).should == true
@@ -93,7 +93,7 @@ feature "User Management Feature", %q{
     has_text?(new_user_email, 'td')
     # tell_brower_to_auto_accept_delete
     page.find(:xpath, "//tr[@id='#{new_user_email}']//input[@value='Delete']").click
-    has_text?('User successfully deleted').should == true
+    has_flash_notice?('User successfully deleted').should == true
     
     has_text?(new_user_email, 'td').should == false
   end
@@ -101,8 +101,7 @@ feature "User Management Feature", %q{
   scenario "The current user can not be deleted" do
     click_selector_cell(@practice.name)
     page.find(:xpath, "//tr[@id='#{@logged_in_user.email}']//input[@value='Delete']").click
-    
-    has_text?('Can not delete the current user').should == true
+    has_flash_notice?('Can not delete the current user').should == true
   end
   
 end

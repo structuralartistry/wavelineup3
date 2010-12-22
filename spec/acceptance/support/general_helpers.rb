@@ -21,6 +21,11 @@ def checked?(checkbox_id)
   false
 end
 
+def has_flash_notice?(message)
+  return true if page.body =~ /<div id=.*?class=.*?#{message}<\/div>/
+  false
+end
+
 def tell_brower_to_auto_accept_delete
   page.evaluate_script('window.confirm = function() { return true; }')
 end

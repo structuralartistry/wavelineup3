@@ -9,8 +9,9 @@ class FeedbackSupportsController < ApplicationController
       if @feedback_support.save
         flash[:notice] = 'Thanks for your message. We will respond promptly!'
         @feedback_support = FeedbackSupport.new
+        format.js { render 'success' }
       end
-      format.js { render 'response' }
+      format.js { render 'new' }
     end
   end
   

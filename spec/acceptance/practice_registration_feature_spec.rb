@@ -25,7 +25,7 @@ feature "Practice Registration Feature", %q{
     fill_in('Password confirmation', :with => 'Password1')
     click_button('Submit')
     
-    assert has_text?('Practice was successfully created. Please check your email for the activation link.')
+    has_flash_notice?('Practice was successfully created. Please check your email for the activation link.')
     
     activate_user?(user_email).should == true
   end

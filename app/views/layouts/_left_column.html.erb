@@ -23,104 +23,69 @@ function set_left_column_buttons() {
   if(practice_member_selector_available) {
     $('#practice_member_selector_show_selector_cell').show();
   }
-  
-  if($('#new_practice_member').is(':visible')) {
-    $('#new_practice_member_show_selector_cell').addClass('current_selected');
-  }
-  else {
-    $('#new_practice_member_show_selector_cell').removeClass('current_selected');
-  }
-  
-  if($('#practice_member_selector').is(':visible')) {
-    $('#practice_member_selector_show_selector_cell').addClass('current_selected');
-  }
-  else {
-    $('#practice_member_selector_show_selector_cell').removeClass('current_selected');
-  }
-
-  if($('#feedback_support').is(':visible')) {
-    $('#feedback_support_show_selector_cell').addClass('current_selected');
-  }
-  else {
-    $('#feedback_support_show_selector_cell').removeClass('current_selected');
-  }
+	
+	selectors = new Array('#new_practice_member', '#practice_member_selector', '#feedback_support');
+	for (key in selectors) {
+		value = selectors[key]
+		if($(value).is(':visible')) {
+	    $(value + '_show_selector_cell').addClass('current_selected');
+	  }
+	  else {
+	    $(value + '_show_selector_cell').removeClass('current_selected');
+	  }
+	}
 }
 
-function show_new_practice_member_form() {
-  // if form already showing dont need to load, just need to toggle off
-  if(!$('#new_practice_member_show_selector_cell').hasClass('current_selected')) {
+function new_practice_member_form() {
+	<% @practice_member = PracticeMember.new %>
+	return "<%= escape_javascript(render :partial => 'practice_members/new') %>"
+}
 
-		<% @practice_member = PracticeMember.new %>
-		$('#new_practice_member').html("<%= escape_javascript(render :partial => 'practice_members/new') %>");
+function feedback_support_form() {
+	<% @feedback_support = FeedbackSupport.new %>
+	return "<%= escape_javascript(render :partial => 'feedback_supports/new') %>"
+}
+
+function show_dialog(dialog_id) {
+  // if form already showing dont need to load, just need to toggle off
+  if( !$('#' + dialog_id + '_show_selector_cell').hasClass('current_selected') ) {
+
+		switch(dialog_id) {
+			case 'new_practice_member': $('#' + dialog_id).html(new_practice_member_form()); break;
+			case 'feedback_support': $('#' + dialog_id).html(feedback_support_form()); break;
+		}
 		initialize_page();
-		set_new_practice_member();
+		toggle_dialog(dialog_id);
 		set_left_column_buttons();
   }
   else {
-    set_new_practice_member();
-  }
+    toggle_dialog(dialog_id);
+  }	
 }
-function set_new_practice_member() {
-  // determine if need is to show or hide before we close all selectors
-  if($('#new_practice_member').is(':visible')==true) is_showing_now = true;
+
+function toggle_dialog(dialog_id) {
+	// determine if need is to show or hide before we close all selectors
+  if($('#' + dialog_id).is(':visible')==true) is_showing_now = true;
   else is_showing_now = false;
 
   $('.selector').hide();
-  if(is_showing_now) $('#new_practice_member').hide();
-  else $('#new_practice_member').show('slide');
+  if(is_showing_now) $('#' + dialog_id).hide();
+  else $('#' + dialog_id).show('slide');
   set_left_column_buttons();
 }
-
-function show_practice_member_selector() {
-  // determine if need is to show or hide before we close all selectors
-  if($('#practice_member_selector').is(':visible')==true) is_showing_now = true;
-  else is_showing_now = false;
-  
-  $('.selector').hide();
-  $('#new_practice_member_show_selector_cell').removeClass('current_selected');
-  $(this).toggleClass('current_selected');
-  if(!is_showing_now) $('#practice_member_selector').show('slide');
-  set_left_column_buttons();
-}
-
-function show_feedback_support_form() {
-  // if form already showing dont need to load, just need to toggle off
-  if(!$('#feedback_support_show_selector_cell').hasClass('current_selected')) {
-
-		<% @feedback_support = FeedbackSupport.new %>
-		$('#feedback_support').html("<%= escape_javascript(render :partial => 'feedback_supports/feedback_support') %>");
-		initialize_page();
-		set_feedback_support();
-		set_left_column_buttons();
-  }
-  else {
-    set_feedback_support();
-  }
-}
-function set_feedback_support() {
-  // determine if need is to show or hide before we close all selectors
-  if($('#feedback_support').is(':visible')==true) is_showing_now = true;
-  else is_showing_now = false;
-
-  $('.selector').hide();
-  if(is_showing_now) $('#feedback_support').hide();
-  else $('#feedback_support').show('slide');
-  set_left_column_buttons();
-}
-
 </script>
 
 <table class="selector_table" width="150px">
-  <tr><td id="new_practice_member_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" onclick="show_new_practice_member_form();">New Practice Member</td></tr>
-  <tr><td id="practice_member_selector_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" onclick="show_practice_member_selector();">Find</td></tr>
+  <tr><td id="new_practice_member_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" onclick="show_dialog('new_practice_member');">New Practice Member</td></tr>
+  <tr><td id="practice_member_selector_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" onclick="toggle_dialog('practice_member_selector');">Find</td></tr>
 	<tr><td>&nbsp;</td></tr>
-	<tr><td id="feedback_support_show_selector_cell" class="bold selector_cell selector_cell_nav" onclick="show_feedback_support_form();">Feedback/Support</td></tr>
+	<tr><td id="feedback_support_show_selector_cell" class="bold selector_cell selector_cell_nav" onclick="show_dialog('feedback_support');">Feedback/Support</td></tr>
 	<tr>
     <td align="center">
       <div id="transmitting" class="hidden">
         <%= image_tag "transmitting.png", :size => "40x40" %>
       </div>
-			<div id="notices"><p id="flash_notice"><%= flash[:notice] %></p></div>
+			<div id="notices"></div>
     </td>
   </tr>
 </table>

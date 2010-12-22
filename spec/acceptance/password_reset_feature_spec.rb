@@ -19,7 +19,7 @@ feature "Password Reset Feature", %q{
     click_button('Submit')
 
     assert has_text?('Login', 'h1')
-    assert has_text?('Instructions to reset your password have been emailed to you. Please check your email.')
+    has_flash_notice?('Instructions to reset your password have been emailed to you. Please check your email.')
 
     user = User.find_by_email(user_email)
     visit("/password_resets/#{user.perishable_token}/edit")
@@ -35,7 +35,7 @@ feature "Password Reset Feature", %q{
     fill_in('Password confirmation', :with => new_password)
     click_button('Submit')
           
-    assert has_text?('Password successfully updated')
+    has_flash_notice?('Password successfully updated')
     assert selector_cell_present?(user.email)
     
     visit('/logout')
