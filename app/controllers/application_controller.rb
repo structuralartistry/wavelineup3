@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
   
-  before_filter :redirect_to_https, :authorize
+  before_filter :redirect_to_https, :authorize, :prohibit_internet_explorer
   
   rescue_from Exception, :with => :rescue_all_exceptions if Rails.env == 'production'
   def rescue_all_exceptions(exception)
@@ -57,6 +57,13 @@ class ApplicationController < ActionController::Base
         else
           redirect_to login_path
         end
+      end
+    end
+    
+    def prohibit_internet_explorer
+      request.fullpath =~ /internet_explorer/
+      if !$&
+        redirect_to '/internet_explorer' if request.user_agent =~ /MSIE/
       end
     end
           

@@ -76,13 +76,11 @@ function show_selector(selector_name, calling_object, _element_to_update_inner_h
         set_phase_and_gateway_currently_working();
       }
 
-        
-        
       eleOffset = $(calling_object).offset();
       left = eleOffset.left + 'px';
-      top = eleOffset.top + 'px';
+      topp = eleOffset.top + 'px';
       $(".selector").hide();
-      $('#' + selector_name).css("left",left).css("top",top).css("position","absolute");
+      $('#' + selector_name).css("left",left).css("top",topp).css("position","absolute");
       $('#' + selector_name).show('fast');
       break;
   }

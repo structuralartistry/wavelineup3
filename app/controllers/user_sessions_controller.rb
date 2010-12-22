@@ -34,4 +34,8 @@ class UserSessionsController < ApplicationController
       format.html { redirect_to(login_path) }
     end
   end
+  
+  def internet_explorer
+    render 'internet_explorer', :layout => 'bare'
+  end
 end

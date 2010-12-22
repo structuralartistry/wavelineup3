@@ -22,6 +22,7 @@ Wavelineup3::Application.routes.draw do
 
   resources :password_resets
   resources :user_sessions
+  match 'internet_explorer' => 'user_sessions#internet_explorer', :as => 'internet_explorer'
 
   resources :users
   
