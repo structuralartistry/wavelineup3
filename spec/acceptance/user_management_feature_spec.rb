@@ -13,8 +13,8 @@ feature "User Management Feature", %q{
   end
   
   scenario "I can change the name of my practice" do
-    selector_cell_present?(@practice.name).should == true
-    click_selector_cell(@practice.name)
+    title_contains?(@practice.name)
+    click_selector_cell('Edit Practice')
     
     has_text?('Manage Practice', 'h1').should == true
     has_text?('Practice name', 'label').should == true
@@ -26,13 +26,13 @@ feature "User Management Feature", %q{
     click_selector_cell('Submit')
     
     has_flash_notice?('Practice was successfully updated').should == true
-    selector_cell_present?(new_practice_name)
+    title_contains?(new_practice_name)
   end
 
   scenario "I can add a user to my practice and activate the user" do 
     Factory.create(:practice_user)
     
-    click_selector_cell(@practice.name)
+    click_selector_cell('Edit Practice')
     click_selector_cell('New User')
     
     has_text?('New User', 'h1').should == true
@@ -66,7 +66,7 @@ feature "User Management Feature", %q{
   end
   
   scenario "I can change my user profile - email address and password" do
-    click_selector_cell(@practice.users[0].email)
+    click_selector_cell('Edit User')
     has_text?('Edit User', 'h1').should == true
     has_text?('Email', 'label').should == true
     has_text?('Password', 'label').should == true
@@ -88,7 +88,7 @@ feature "User Management Feature", %q{
   scenario "I can delete a user from my practice" do
     new_user_email = 'another@gmail.com'
     register_and_activate_user(new_user_email, @practice.name, :practice_user)
-    click_selector_cell(@practice.name)
+    click_selector_cell('Edit Practice')
    
     has_text?(new_user_email, 'td')
     # tell_brower_to_auto_accept_delete
@@ -99,7 +99,7 @@ feature "User Management Feature", %q{
   end
   
   scenario "The current user can not be deleted" do
-    click_selector_cell(@practice.name)
+    click_selector_cell('Edit Practice')
     page.find(:xpath, "//tr[@id='#{@logged_in_user.email}']//input[@value='Delete']").click
     has_flash_notice?('Can not delete the current user').should == true
   end

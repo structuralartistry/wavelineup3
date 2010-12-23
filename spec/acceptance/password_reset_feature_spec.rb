@@ -36,7 +36,7 @@ feature "Password Reset Feature", %q{
     click_button('Submit')
           
     has_flash_notice?('Password successfully updated')
-    assert selector_cell_present?(user.email)
+    assert selector_cell_present?('Edit User')
     
     visit('/logout')
     assert login_as_email_and_password?(user.email, new_password)

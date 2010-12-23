@@ -26,6 +26,11 @@ def has_flash_notice?(message)
   false
 end
 
+def title_contains?(text)
+  return true if page.body =~ /<title>.*?#{text}.*?<\/title>/
+  false
+end
+
 def tell_brower_to_auto_accept_delete
   page.evaluate_script('window.confirm = function() { return true; }')
 end

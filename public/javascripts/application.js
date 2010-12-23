@@ -3,9 +3,9 @@ $(document).ready(function() {
 });
 
 function initialize_page() {
+	$('.hidden').hide();
+	
   ajax_links_and_forms();
-  
-  $('.hidden').hide();
   
   // no select - this makes the text of any element with this class not selectable
 	$(function(){

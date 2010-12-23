@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Wavelineup3</title>
+  <title>Wavelineup3 : <%= current_user.practice.name if current_user && current_user.practice %> : <%= current_user.email if current_user %></title>
   <%= stylesheet_link_tag :all %>
   
   <%= javascript_include_tag 'jquery-1.4.2.min' %>
@@ -39,9 +39,9 @@
               <% if current_user %>
 								<td><%= button_to 'Home', home_url, :method => :get, :class => 'bold selector_cell selector_cell_submit', :style => 'width: 2.0in;' %></td>
                 <% if current_user.practice %>
-									<td><%= button_to current_user.practice.name, edit_practice_url(current_user.practice.id), :method => :get, :class => 'bold selector_cell selector_cell_submit', :style => 'width: 2.0in;' %></td>
+									<td><%= button_to 'Edit Practice', edit_practice_url(current_user.practice.id), :method => :get, :class => 'bold selector_cell selector_cell_submit', :style => 'width: 2.0in;' %></td>
                 <% end %>
-								<td><%= button_to current_user.email, edit_user_url(:current), :method => :get, :class => 'bold selector_cell selector_cell_submit', :style => 'width: 2.0in;' %></td>
+								<td><%= button_to 'Edit User', edit_user_url(:current), :method => :get, :class => 'bold selector_cell selector_cell_submit', :style => 'width: 2.0in;' %></td>
                 <td><%= button_to 'Logout', logout_url, :method => :get, :class => 'bold selector_cell selector_cell_submit', :style => 'width: 2.0in;' %></td>
               <% else %>
                 <% if !(controller_name=='practices' && action_name=='new') %>
@@ -64,8 +64,8 @@
         <td style="width: 98%;">        
           <div id="new_practice_member" class="selector hidden">
           </div>
-          <div id="practice_member_selector" class="selector hidden">
-            <%= render :partial => "layouts/practice_member_selector" %>
+          <div id="practice_member_selector" class="selector hidden" style='display: none;'>
+						<%= render :partial => "layouts/practice_member_selector" %>
      	    </div>
 					<div id="feedback_support" class="selector hidden"></div>
 					<% if !current_user %>
