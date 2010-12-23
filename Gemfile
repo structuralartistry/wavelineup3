@@ -20,4 +20,7 @@ group :development, :test do
   gem 'database_cleaner'
 	gem 'shoulda'
 	gem 'steak'
+	gem 'yui-compressor'
+	gem 'jammit'
+	
 end
