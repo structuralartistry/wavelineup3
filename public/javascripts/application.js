@@ -54,3 +54,72 @@ function initialize_page() {
 		$(this).addClass('L');
 	});
 }
+
+
+// left column methods
+var practice_member_selector_available;
+var new_practice_member_form_available;
+
+function set_left_column_buttons() {
+  if(new_practice_member_form_available) {
+    $('#new_practice_member_show_selector_cell').show();
+  }
+  if(practice_member_selector_available) {
+    $('#practice_member_selector_show_selector_cell').show();
+  }
+	
+	selectors = new Array('#new_practice_member', '#practice_member_selector', '#feedback_support');
+	for (key in selectors) {
+		value = selectors[key]
+		if($(value).is(':visible')) {
+	    $(value + '_show_selector_cell').addClass('current_selected');
+	  }
+	  else {
+	    $(value + '_show_selector_cell').removeClass('current_selected');
+	  }
+	}
+}
+
+function show_dialog(dialog_id) {
+  // if form already showing dont need to load, just need to toggle off
+  if( !$('#' + dialog_id + '_show_selector_cell').hasClass('current_selected') ) {
+
+		switch(dialog_id) {
+			case 'new_practice_member': $('#' + dialog_id).html(new_practice_member_form()); break;
+			case 'feedback_support': $('#' + dialog_id).html(feedback_support_form()); break;
+		}
+		initialize_page();
+		toggle_dialog(dialog_id);
+		set_left_column_buttons();
+  }
+  else {
+    toggle_dialog(dialog_id);
+  }	
+}
+
+function toggle_dialog(dialog_id) {
+	// determine if need is to show or hide before we close all selectors
+  if($('#' + dialog_id).is(':visible')==true) is_showing_now = true;
+  else is_showing_now = false;
+
+  $('.selector').hide();
+  if(is_showing_now) $('#' + dialog_id).hide();
+  else $('#' + dialog_id).show('slide');
+  set_left_column_buttons();
+}
+
+selected_practice_member_id = '';
+
+// practice member selector
+function navigate_now() {
+  selected_page_name = $('.page_selector.current_selected').html();
+  switch(selected_page_name) {
+    case 'Edit Personal Info': 
+      nav_url = '/practice_members/' + selected_practice_member_id + '/edit';
+      break;
+    case 'Travel Card': 
+      nav_url = '/travel_cards/' + selected_practice_member_id + '/edit';
+      break;
+  }
+  window.location.href=nav_url
+}

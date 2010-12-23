@@ -31,17 +31,8 @@
       </tr>
       <tr valign="top">
         <td valign="top" style="width: 15px;">
-          <% if current_user %>
-    		    <%= render :partial => "layouts/left_column" %>
-    		  <% end %>
         </td>
         <td style="width: 98%;">        
-          <div id="new_practice_member" class="selector hidden" style="display: none;">
-          </div>
-          <div id="practice_member_selector" class="selector hidden" style="display: none;">
-            <%= render :partial => "layouts/practice_member_selector" %>
-     	    </div>
-					<div id="feedback_support" class="selector hidden" style="display: none;"></div>
      	    <div id="main_frame">
             <%= yield %>
           </div>

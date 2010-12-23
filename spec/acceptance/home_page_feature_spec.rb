@@ -13,29 +13,28 @@ feature "Home Page Feature", %q{
     scenario "Home page when not logged in" do
       visit('/home')
       confirm_login_page_loaded
+      title_contains?("WaveLineup").should == true
     end
   
     scenario "Home page logged in as sysadmin" do
-      logged_in_as_role(:sysadmin_user)
+      practice = logged_in_as_role(:sysadmin_user)
       visit('/home')
       confirm_home_page_loaded
+      title_contains?("WaveLineup ::: #{practice.name} ::: #{practice.users[0].email}")
     end
   
     scenario "Home page logged in as a practice admin user" do
-      logged_in_as_role(:practice_admin_user)
+      practice = logged_in_as_role(:practice_admin_user)
       visit('/home')
       confirm_home_page_loaded
+      title_contains?("WaveLineup ::: #{practice.name} ::: #{practice.users[0].email}")
     end
   
     scenario "Home page logged in as a practice user" do
-      logged_in_as_role(:practice_user)
+      practice = logged_in_as_role(:practice_user)
       visit('/home')
       confirm_home_page_loaded
-    end
-    
-    scenario "There is a form on the home page to send an invitation to a new practice/user" do
-      logged_in_as_role(:practice_user)
-      visit('/home')
+      title_contains?("WaveLineup ::: #{practice.name} ::: #{practice.users[0].email}")
     end
     
   end

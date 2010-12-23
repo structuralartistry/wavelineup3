@@ -7,6 +7,8 @@ body, p, ol, ul, td {
   line-height: 18px;
 }
 
+.hidden { display: none; }
+
 pre {
   background-color: #eee;
   padding: 10px;
@@ -259,13 +261,6 @@ div#left_menu {
   /* border: 1px solid black; */
 }
 
-div#communication {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
 div#main_frame {
 	padding: 15px;
 }
@@ -290,23 +285,21 @@ div#past_visits {
 }
 
 #past_visit_detail {
-  display: none;
 }
 
 #sri_detail {
-  display: none;
 }
 
 #tension_level_detail {
-  display: none;
+  ;
 }
 
 #notes_detail {
-  display: none;
+  
 }
 
 #programs_education_detail {
-  display: none;
+
 }
 
 div#travel_card {
@@ -327,7 +320,7 @@ div#travel_card {
 .R { background-color: red;}
 
 div#processing_message {
-  display: none;
+  
   width: 100%;
   height: 100%;
 }

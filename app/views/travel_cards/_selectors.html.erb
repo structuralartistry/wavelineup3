@@ -1,7 +1,7 @@
 <!-- SELECTORS -->
 
   <!-- level of care selector -->
-  <div id="level_of_care_selector" class="selector" style="display: none;">
+  <div id="level_of_care_selector" class="selector hidden">
     <table class="selector_table">
       <td class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">1A</td>
       <td class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">1B</td>
@@ -18,7 +18,7 @@
   </div>
 
   <!-- bme strategy selector -->
-  <div id="bme_strategy_selector" class="selector" style="display: none">
+  <div id="bme_strategy_selector" class="selector hidden">
     <table class="selector_table">
       <td id="bme_selector_b" class="selector_cell selector_cell_text_single_character" onMouseDown="set_bme_strategy('B');">B</td>
       <td id="bme_selector_m" class="selector_cell selector_cell_text_single_character" onMouseDown="set_bme_strategy('M');">M</td>
@@ -28,7 +28,7 @@
   </div>
 
   <!-- sri level of awareness selector -->
-  <div id="sri_level_of_awareness_selector" class="selector" style="display: none">
+  <div id="sri_level_of_awareness_selector" class="selector hidden">
     <table class="selector_table">
       <td id="sri_level_of_awareness_0" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">0</td>
       <td id="sri_level_of_awareness_1" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">1</td>
@@ -39,7 +39,7 @@
   </div>
 
   <!-- sri position selector -->
-  <div id="sri_position_selector" class="selector" style="display: none">
+  <div id="sri_position_selector" class="selector hidden">
     <table class="selector_table">
       <td id="sri_position_1" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">1</td>
       <td id="sri_position_2" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">2</td>
@@ -52,7 +52,7 @@
   </div>
 
   <!-- phase selector -->
-  <div id="phase_selector" class="selector" style="display: none">
+  <div id="phase_selector" class="selector hidden">
     <table class="selector_table">
       <td class="selector_cell selector_cell_text_three_character" onMouseDown="set_phase('1 &#062; 2 C1'); ">1 &#062; 2 C1</td>
       <td class="selector_cell selector_cell_text_three_character" onMouseDown="set_phase('1 &#062; 2 C5'); ">1 &#062; 2 C5</td>
@@ -70,7 +70,7 @@
   
   <!-- gateway selector -->
   <% if @travel_card %> 
-    <div id="phase_gateway_selector" class="selector" style="display: none">
+    <div id="phase_gateway_selector" class="selector hidden">
       <table class="selector_table">
         <tr>
           <td id="select_gateway_occ" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.dominant_occiput %></span>OCC</td> 
@@ -113,7 +113,7 @@
   <% end %>
   
   <!-- direction selector -->
-  <div id="phase_direction_selector" class="selector" style="display: none">
+  <div id="phase_direction_selector" class="selector hidden">
     <table class="selector_table">
       <td id="phase_1_direction_F_E" class="selector_cell selector_cell_text_single_character" onMouseDown="set_phase_direction('F/E');">F/E</td>
       <td id="phase_1_direction_L_B" class="selector_cell selector_cell_text_single_character" onMouseDown="set_phase_direction('L/B');">L/B</td>
@@ -125,7 +125,7 @@
   
   <!-- SRI -->
   <!-- sri stage selector -->
-  <div id="sri_stage_selector" class="selector" style="display: none">
+  <div id="sri_stage_selector" class="selector hidden">
     <table class="selector_table">
       <td class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">1</td>
       <td class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">2</td>
@@ -144,7 +144,7 @@
   </div>
 
   <!-- organizing field selector -->
-  <div id="organizing_field_selector" class="selector" style="display: none">
+  <div id="organizing_field_selector" class="selector hidden">
     <table class="selector_table">
       <td class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">H1</td>
       <td class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">H2</td>
@@ -157,7 +157,7 @@
   </div>
   
   <!-- short leg amount -->
-  <div id="short_leg_amount_selector" class="selector" style="display: none">
+  <div id="short_leg_amount_selector" class="selector hidden">
     <table class="selector_table">
       <td class="selector_cell selector_cell_text_three_character" onMouseDown="set_selected_value(this);">0-0.5</td>
       <td class="selector_cell selector_cell_text_three_character" onMouseDown="set_selected_value(this);">0.5-1</td>
@@ -169,7 +169,7 @@
   </div>
   
   <!-- tension level selector -->
-  <div id="tension_level_selector" class="selector" style="display: none">
+  <div id="tension_level_selector" class="selector hidden">
     <table class="selector_table">
       <td id="tension_level_0" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">0</td>
       <td id="tension_level_1" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">1</td>

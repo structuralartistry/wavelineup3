@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Wavelineup3 : <%= current_user.practice.name if current_user && current_user.practice %> : <%= current_user.email if current_user %></title>
+  <title>WaveLineup3<%= ' ::: ' + current_user.practice.name if current_user && current_user.practice %><%= ' ::: ' + current_user.email if current_user %></title>
   <%= stylesheet_link_tag :all %>
   
   <%= javascript_include_tag 'jquery-1.4.2.min' %>
@@ -17,7 +17,6 @@
   <%= javascript_include_tag 'rails' %>
   <%= csrf_meta_tag %>
 	
-	
 	<% if flash[:notice] %>
 	<script language='javascript'>
 		$(document).ready(function() {
@@ -25,7 +24,6 @@
 		});
 	</script>
 	<% end %>
-	
 
 </head>
 <body>
@@ -64,7 +62,7 @@
         <td style="width: 98%;">        
           <div id="new_practice_member" class="selector hidden">
           </div>
-          <div id="practice_member_selector" class="selector hidden" style='display: none;'>
+          <div id="practice_member_selector" class="selector hidden">
 						<%= render :partial => "layouts/practice_member_selector" %>
      	    </div>
 					<div id="feedback_support" class="selector hidden"></div>

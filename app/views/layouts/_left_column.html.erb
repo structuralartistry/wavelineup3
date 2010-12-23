@@ -13,29 +13,6 @@ $(document).ready(function() {
   set_left_column_buttons();
 });
 
-var practice_member_selector_available;
-var new_practice_member_form_available;
-
-function set_left_column_buttons() {
-  if(new_practice_member_form_available) {
-    $('#new_practice_member_show_selector_cell').show();
-  }
-  if(practice_member_selector_available) {
-    $('#practice_member_selector_show_selector_cell').show();
-  }
-	
-	selectors = new Array('#new_practice_member', '#practice_member_selector', '#feedback_support');
-	for (key in selectors) {
-		value = selectors[key]
-		if($(value).is(':visible')) {
-	    $(value + '_show_selector_cell').addClass('current_selected');
-	  }
-	  else {
-	    $(value + '_show_selector_cell').removeClass('current_selected');
-	  }
-	}
-}
-
 function new_practice_member_form() {
 	<% @practice_member = PracticeMember.new %>
 	return "<%= escape_javascript(render :partial => 'practice_members/new') %>"
@@ -44,34 +21,6 @@ function new_practice_member_form() {
 function feedback_support_form() {
 	<% @feedback_support = FeedbackSupport.new %>
 	return "<%= escape_javascript(render :partial => 'feedback_supports/new') %>"
-}
-
-function show_dialog(dialog_id) {
-  // if form already showing dont need to load, just need to toggle off
-  if( !$('#' + dialog_id + '_show_selector_cell').hasClass('current_selected') ) {
-
-		switch(dialog_id) {
-			case 'new_practice_member': $('#' + dialog_id).html(new_practice_member_form()); break;
-			case 'feedback_support': $('#' + dialog_id).html(feedback_support_form()); break;
-		}
-		initialize_page();
-		toggle_dialog(dialog_id);
-		set_left_column_buttons();
-  }
-  else {
-    toggle_dialog(dialog_id);
-  }	
-}
-
-function toggle_dialog(dialog_id) {
-	// determine if need is to show or hide before we close all selectors
-  if($('#' + dialog_id).is(':visible')==true) is_showing_now = true;
-  else is_showing_now = false;
-
-  $('.selector').hide();
-  if(is_showing_now) $('#' + dialog_id).hide();
-  else $('#' + dialog_id).show('slide');
-  set_left_column_buttons();
 }
 </script>
 
@@ -82,8 +31,8 @@ function toggle_dialog(dialog_id) {
 	<tr><td id="feedback_support_show_selector_cell" class="bold selector_cell selector_cell_nav" onclick="show_dialog('feedback_support');">Feedback/Support</td></tr>
 	<tr>
     <td align="center">
-      <div id="transmitting" class="hidden">
-        <%= image_tag "transmitting.png", :size => "40x40" %>
+      <div id="transmitting" class="flash_notice hidden">
+        Transmitting...
       </div>
 			<div id="notices"></div>
     </td>

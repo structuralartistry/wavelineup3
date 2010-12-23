@@ -4,8 +4,6 @@
   });
 </script>
 
-
-
 <div id="travel_card" style='width: 7in;>
 <table>
   <tr>
@@ -107,7 +105,7 @@
           <td colspan="10" class="half_height">&nbsp;</td>
         </tr>
       </table>
-      <table id="tension_level_detail" class="selector_table">
+      <table id="tension_level_detail" class="selector_table hidden">
         <tr>
           <td class="half_height label">Tension</td>
           <td class="half_height label">C1-7</td>
@@ -133,7 +131,7 @@
           <td id="active_s1_cx_tension_level" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('tension_level_selector', this, 'active_s1_cx_tension_level', 'travel_card_active_s1_cx_tension_level');"></td>
         </tr>
       </table>
-      <table id="sri_detail" >
+      <table id="sri_detail" class="hidden">
         <tr>
           <td valign="top">
             <table class="selector_table">
@@ -157,7 +155,7 @@
           </td>
         </tr>       
       </table>
-      <table id="programs_education_detail">
+      <table id="programs_education_detail" class="hidden">
         <tr>
           <td class="label" colspan="5">Programs</td>
           <td class="label" colspan="2">Books</td>
@@ -196,7 +194,7 @@
         </tr>
       </table>
       
-      <table id="notes_detail">
+      <table id="notes_detail" class="hidden">
         <tr>
           <td class="label">Notes</td>
         </tr>

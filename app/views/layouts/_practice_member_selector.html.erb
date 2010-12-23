@@ -1,22 +1,4 @@
 <% if current_user && current_user.practice && current_user.practice.practice_members.size > 0 %>
-
-  <script language='javascript'>
-    selected_practice_member_id = '';
-
-    function navigate_now() {
-      selected_page_name = $('.page_selector.current_selected').html();
-      switch(selected_page_name) {
-        case 'Edit Personal Info': 
-          nav_url = '/practice_members/' + selected_practice_member_id + '/edit';
-          break;
-        case 'Travel Card': 
-          nav_url = '/travel_cards/' + selected_practice_member_id + '/edit';
-          break;
-      }
-      window.location.href=nav_url
-    }
-  </script>
-
   <table class="selector_table"> 
     <tr>
       <td id='travel_card_page_selector' style="width: 1.5in;" class="selector_cell selector_cell_text_six_character page_selector current_selected" onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');">Travel Card</td>      
