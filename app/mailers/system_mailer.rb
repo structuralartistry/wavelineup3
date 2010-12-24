@@ -34,7 +34,7 @@ class SystemMailer < ActionMailer::Base
   
   def wavelineup_invitation(invitation)
     begin
-      mail(:to => invitation.email, :subject => "Invitation to WaveLineup from #{invitation.referring_user.email}")
+      mail(:to => invitation.email, :subject => 'Invitation to WaveLineup Travel Card System for Network practitioners')
     rescue Exception => e
       SystemError.new(:user_id => nil, :error => 'Mailer error: wavelineup_invitation', :incidentals => [:exception => e.to_s])
     end

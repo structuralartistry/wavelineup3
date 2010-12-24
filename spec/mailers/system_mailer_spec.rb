@@ -10,7 +10,7 @@ describe SystemMailer do
     
     email.to.should == [user.email]
     email.subject.should == 'User activation for WaveLineup'
-    email.encoded.should =~ /To activate your user for WaveLineup please follow this link/ 
+    email.encoded.should =~ /<p>To activate your user for WaveLineup please follow this link:<\/p>/ 
     email.encoded.should =~ /#{activations_url(user.perishable_token)}/
   end
     
@@ -47,7 +47,7 @@ describe SystemMailer do
     ActionMailer::Base.deliveries.size.should == 1
     
     email.to.should == [invitation.email]
-    email.subject.should == "Invitation to WaveLineup from #{invitation.referring_user.email}"
+    email.subject.should == "Invitation to WaveLineup Travel Card System for Network practitioners"
     email.encoded.should =~ /WaveLineup is a free Travel Card and Visit tracking system for NSA practitioners./
   end
   

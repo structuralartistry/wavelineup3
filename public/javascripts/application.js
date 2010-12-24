@@ -51,7 +51,7 @@ function initialize_page() {
   });
 
 	$('.selector_cell_submit').mousedown(function() {
-		$(this).addClass('L');
+		$(this).addClass('current_selected');
 	});
 }
 
