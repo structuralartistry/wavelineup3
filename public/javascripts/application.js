@@ -25,6 +25,9 @@ function initialize_page() {
   $('h1').disableTextSelect();
   $('label').disableTextSelect();
 	$('span').disableTextSelect();
+	$('th').disableTextSelect();
+	$('p').disableTextSelect();
+	$('li').disableTextSelect();
   $('input[type=submit]').disableTextSelect();
   $('.selector_cell_nav').disableTextSelect();
 	$('.selector_cell_submit').disableTextSelect();

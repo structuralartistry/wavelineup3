@@ -18,7 +18,7 @@ feature "Password Reset Feature", %q{
     fill_in('Email', :with => user_email)
     click_button('Submit')
 
-    assert has_text?('Login', 'h1')
+    assert has_text?('Login', 'th')
     has_flash_notice?('Instructions to reset your password have been emailed to you. Please check your email.')
 
     user = User.find_by_email(user_email)

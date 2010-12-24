@@ -103,6 +103,43 @@ h1 {
 	color: #000033;
 }
 
+table.gray_border {
+	border-width: 3px; 
+	border-color: #e0e0e0; 
+	border-style: solid;
+}
+
+table.light_pink {
+	border-width: 1px; 
+	border-color: lightpink; 
+	border-style: solid;
+}
+
+table.light_pink th {
+	background-color: lightpink;
+}
+
+
+table.light_green {
+	border-width: 1px; 
+	border-color: lightgreen; 
+	border-style: solid;
+}
+
+table.light_green th {
+	background-color: lightgreen;
+}
+
+table.blue {
+	border-width: 1px; 
+	border-color: #000033; 
+	border-style: solid;
+}
+
+table.blue th {
+	background-color: #000033;
+	color: white;
+}
 
 /* full calendar overrides */
 #calendar {
@@ -375,19 +412,6 @@ background-color: #e0e0e0; /*#c0e0f0;*/ /*#C5ECEC;*/
 .detail_table .header {
   background-color: #e0e0e0;
   color: black;
-}
-
-.wavelineup_menu table {
-  background-color: #e0e0e0; /*#c0e0f0;*/ /*#C5ECEC;*/
-}
-
-.wavelineup_menu .header {
-  background-color: #000033;
-  color: white;
-}
-
-.wavelineup_menu table td {
-  padding:5px 10px;
 }
 
 .detail_table tr {

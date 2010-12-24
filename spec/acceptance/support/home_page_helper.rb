@@ -5,5 +5,5 @@ def confirm_home_page_loaded
   
   has_text?('Invite another Practitioner!', 'p')
   selector_cell_present?('Send!')
-  has_text?('Email address', 'label')
+  has_text?("Email", 'label')
 end

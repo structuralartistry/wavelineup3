@@ -1,4 +1,5 @@
 class SystemMailer < ActionMailer::Base
+  layout 'system_mailer'
   default :from => "wavelineup@structuralartistry.com"
   
   

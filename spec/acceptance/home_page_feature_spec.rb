@@ -45,7 +45,7 @@ feature "Home Page Feature", %q{
     create_practice_member("Kahn, David N", practice_name)
     visit('/home')
     invitee_email = 'practitioner@gmail.com'
-    fill_in('Email', :with => invitee_email)
+    fill_in("Email", :with => invitee_email)
     click_selector_cell('Send!')
     
     has_text?("An invite has been sent to #{invitee_email}", 'p')
