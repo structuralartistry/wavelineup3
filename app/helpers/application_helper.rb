@@ -7,7 +7,7 @@ module ApplicationHelper
     notice_id = rand.to_s.gsub(/\./, '')
     notice = <<-EOF
       $('#notices').append("<div id='#{notice_id}' class='flash_notice'>#{flash[:notice]}</div>");
-      $("##{notice_id}").fadeOut(5000);
+      $("##{notice_id}").fadeOut(10000);
     EOF
     notice.html_safe
   end
