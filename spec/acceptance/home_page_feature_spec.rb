@@ -39,6 +39,18 @@ feature "Home Page Feature", %q{
     
   end
   
+  scenario "(prospective) user can view the Terms of Service" do
+    visit('/terms_of_service')
+    has_text?('WaveLineup Terms of Service').should == true
+    has_content?('StructuralArtistry reserves the right to update and change the Terms of Service from time to time without notice').should == true
+  end
+  
+  scenario "(prospective) user can view Privacy Policy" do
+    visit('/privacy_policy')
+    has_text?('WaveLineup Privacy Policy').should == true
+    has_content?('We collect the e-mail addresses of those who communicate with us').should == true
+  end
+    
   scenario "Send an invitation to another Practitioner", :js => true do
     practice_name = 'SA Practice'
     logged_in_as_role_for_practice(:practice_user, practice_name)

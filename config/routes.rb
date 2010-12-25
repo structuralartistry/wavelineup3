@@ -1,5 +1,8 @@
 Wavelineup3::Application.routes.draw do
   
+  match 'activations/new', :as => 'resend_activation_link'
+  match 'activations/:activation_code' => 'activations#create', :as => 'activations'
+  
   resources :feedback_supports
 
   resources :invitations
@@ -7,9 +10,6 @@ Wavelineup3::Application.routes.draw do
   resources :travel_cards
 
   resources :practice_members
-
-  match 'activations/new', :as => 'resend_activation_link'
-  match 'activations/:activation_code' => 'activations#create', :as => 'activations'
 
   resources :practices
 
@@ -27,6 +27,8 @@ Wavelineup3::Application.routes.draw do
   resources :users
   
   match 'home' => 'home#index', :as => 'home'
+  match 'terms_of_service' => 'home#terms_of_service', :as => 'terms_of_service'
+  match 'privacy_policy' => 'home#privacy_policy', :as => 'privacy_policy'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
