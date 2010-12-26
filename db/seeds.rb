@@ -20,7 +20,7 @@ user.save
 
 puts ""
 puts "WARNING: Sysadmin has an unsecure password, '#{user.password}'. Change before production!"
-puts ""
+puts "It will be down root"
 
 # create a demo practice and user
 practice = Practice.create(:name => "Demo Practice")
