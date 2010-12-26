@@ -17,6 +17,7 @@ feature "Practice Registration Feature", %q{
     assert has_text?('Password', 'label')
     assert has_text?('Password confirmation', 'label')
     selector_cell_present?('Cancel')
+    has_content?("By clicking 'Submit' you agree to")
     
     fill_in('Practice name', :with => 'Practice One')
     user_email = 'practice@structuralartistry.com'

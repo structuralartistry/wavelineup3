@@ -12,10 +12,10 @@ Wavelineup3::Application.routes.draw do
   resources :practice_members
 
   resources :practices
+  match 'register' => 'practices#new', :as => 'register'
 
   match 'login' => 'user_sessions#new', :as => 'login'
   match 'logout' => 'user_sessions#destroy', :as => 'logout'
-  match 'register' => 'users#new', :as => 'register'
   match 'user_profile' => 'users#edit', :as => 'user_profile'
   
   match 'reset_password' => 'password_resets#new', :as => 'reset_password'

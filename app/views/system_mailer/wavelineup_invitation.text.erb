@@ -1,2 +1,6 @@
-WaveLineup is a free Travel Card and Visit tracking system for NSA practitioners.
-Please visit https://wavelineup.structuralartistry.com/login to register.
+WaveLineup is a free Travel Card and Visit tracking system
+You have been sent this email because <%= @referring_user.email %> at <%= @referring_user.practice.name %> thought this system would interest you.
+
+<%= render :partial => 'why_wavelineup' %>
+
+Please visit <%= APP_URL %>/register to register.

@@ -17,7 +17,7 @@ class SystemMailer < ActionMailer::Base
     begin
       @user = user 
       @url = self.root_url
-      mail(:to => user.email,  :subject => 'Welcome to WaveLineup')  
+      mail(:to => user.email,  :subject => 'Welcome to WaveLineup!')  
     rescue Exception => e
       SystemError.new(:user_id => user.id, :error => 'Mailer error: user_welcome_email', :incidentals => [:exception => e.to_s])
     end

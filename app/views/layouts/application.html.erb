@@ -23,7 +23,7 @@
         <td colspan="2">
           <table class="nav_table">
             <tr>
-              <td class='wavelineup'><span class='wavelineup'>&nbsp;WaveLineup&nbsp;</span></td>
+							<td><%= image_tag 'wavelineup_logo.gif' %></td>
               <% if current_user %>
 								<td><%= button_to 'Home', home_url, :method => :get, :class => 'bold selector_cell selector_cell_submit', :style => 'width: 2.0in;' %></td>
                 <% if current_user.practice %>

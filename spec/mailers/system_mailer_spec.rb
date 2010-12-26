@@ -10,7 +10,7 @@ describe SystemMailer do
     
     email.to.should == [user.email]
     email.subject.should == 'User activation for WaveLineup'
-    email.encoded.should =~ /<p>To activate your user for WaveLineup please follow this link:<\/p>/ 
+    email.encoded.should =~ /To activate your user please follow this link:<\/p>/ 
     email.encoded.should =~ /#{activations_url(user.perishable_token)}/
   end
     
@@ -21,8 +21,8 @@ describe SystemMailer do
     ActionMailer::Base.deliveries.size.should == 1
     
     email.to.should == [user.email]
-    email.subject.should == 'Welcome to WaveLineup'
-    email.encoded.should =~ /Welcome to WaveLineup, #{user.email}/ 
+    email.subject.should == 'Welcome to WaveLineup!'
+    email.encoded.should =~ /If you have forgotten your password, don't worry, you can reset it from the login page.<\/p>/ 
   end
   
   it "successfully sends password reset instructions to the requesting user" do
@@ -40,7 +40,11 @@ describe SystemMailer do
   it "successful sends an Invite to a potential Pratitioner" do
     invitation = Invitation.new
     invitation.email = 'dk.kahn@gmail.com'
+    
+    practice = Factory.create(:practice_one)
     user = Factory.create(:practice_user)
+    user.practice_id = practice.id
+    user.save
     invitation.referring_user_id = user.id
     
     email = SystemMailer.wavelineup_invitation(invitation).deliver
@@ -48,7 +52,7 @@ describe SystemMailer do
     
     email.to.should == [invitation.email]
     email.subject.should == "Invitation to WaveLineup Travel Card System for Network practitioners"
-    email.encoded.should =~ /WaveLineup is a free Travel Card and Visit tracking system for NSA practitioners./
+    email.encoded.should =~ /WaveLineup is a free Travel Card and Visit tracking system/
   end
   
   it "successful sends a generic email" do
@@ -58,7 +62,7 @@ describe SystemMailer do
     
     email = SystemMailer.generic_email(recipients, subject, body_content).deliver
     ActionMailer::Base.deliveries.size.should == 1
-    
+  
     email.to.should == [recipients]
     email.subject.should == "Generic email"
     email.encoded.should =~ /Generic content/
