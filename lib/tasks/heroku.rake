@@ -1,22 +1,13 @@
 task :heroku_deploy do
-  print ''
-  print 'Packaging assets with Jammit!'
-  print ''
+  puts 'Packaging assets with Jammit!'
   require 'jammit'
   Jammit.package!  # packages assets to public/assets directory
-  print ''
-  print 'Updating and committing local git'
-  print ''
+  puts 'Updating and committing local git'
   `git add .`
   `git commit -am 'packaged assets prior to heroku push'`
-  print ''
-  print 'Pushing git origin master'
-  print ''
+  puts 'Pushing git origin master'
   `git push origin master`
-  print ''
-  print 'Pushing to Heroku'
-  print ''
+  puts 'Pushing to Heroku'
   `git push heroku master`
-  print ''
-  print 'Complete'
+  puts 'Complete'
 end
