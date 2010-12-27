@@ -1,7 +1,22 @@
-<p><%= params[:visible_section] %> for <%= @practice_member.full_name_last_comma_first_middle_initial %></p>
+<table>
+	<tr>
+		<td valign='top'>
+			<%= render :partial => 'practice_room_selector' %>
+		</td>
+		<td valign='top'>
+			<div id='practice_room_visit' class='hidden'>
+				<p>visit for <%= @practice_member.full_name_last_comma_first_middle_initial %></p>
+			</div>
 
-<% if params[:visible_section] == 'travel_card' %>
-	<%= render :partial => 'travel_cards/travel_card' %>
-<% end %>
+			<div id='practice_room_visit_list' class='hidden'>
+				<p>visit list for <%= @practice_member.full_name_last_comma_first_middle_initial %></p>
+			</div>
+
+			<div id='practice_room_travel_card' class='hidden'>
+				<%= render :partial => 'travel_cards/travel_card' %>
+			</div>
+		</td>
+	</tr>
+</table>
 
 

@@ -9,7 +9,7 @@ class PracticeRoomController < ApplicationController
       a = 1
     when 'visit'
       a = 1
-    when 'visits'
+    when 'visit_list'
       a = 1
     else
       flash[:notice] = 'The requested action was invalid'

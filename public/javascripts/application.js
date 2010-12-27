@@ -70,7 +70,7 @@ function set_left_column_buttons() {
   if(practice_member_selector_available) {
     $('#practice_member_selector_show_selector_cell').show();
   }
-	
+
 	selectors = new Array('#new_practice_member', '#practice_member_selector', '#feedback_support');
 	for (key in selectors) {
 		value = selectors[key]
@@ -127,7 +127,7 @@ function navigate_now() {
       nav_url = '/practice_room/' + selected_practice_member_id + '/visit';
       break;
     case 'Visit List': 
-      nav_url = '/practice_room/' + selected_practice_member_id + '/visits';
+      nav_url = '/practice_room/' + selected_practice_member_id + '/visit_list';
       break;
   }
   window.location.href=nav_url
