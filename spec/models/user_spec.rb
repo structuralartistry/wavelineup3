@@ -54,6 +54,7 @@ describe User do
       user.authorize('practice_members', 'create')[:success].should == false
       user.authorize('practice_members', 'update')[:success].should == false
       user.authorize('practice_members', 'destroy')[:success].should == false
+      user.authorize('practice_room', 'main')[:success].should == false
       user.authorize('practices', 'index')[:success].should == false
       user.authorize('practices', 'new')[:success].should == true
       user.authorize('practices', 'edit')[:success].should == false
@@ -92,6 +93,7 @@ describe User do
       user.authorize('practice_members', 'create')[:success].should == true
       user.authorize('practice_members', 'update')[:success].should == true
       user.authorize('practice_members', 'destroy')[:success].should == true
+      user.authorize('practice_room', 'main')[:success].should == false
       user.authorize('practices', 'index')[:success].should == true
       user.authorize('practices', 'new')[:success].should == false
       user.authorize('practices', 'edit')[:success].should == true
@@ -130,6 +132,7 @@ describe User do
       user.authorize('practice_members', 'create')[:success].should == true
       user.authorize('practice_members', 'update')[:success].should == true
       user.authorize('practice_members', 'destroy')[:success].should == true
+      user.authorize('practice_room', 'main')[:success].should == true
       user.authorize('practices', 'index')[:success].should == false
       user.authorize('practices', 'new')[:success].should == false
       user.authorize('practices', 'edit')[:success].should == true
@@ -168,6 +171,7 @@ describe User do
       user.authorize('practice_members', 'create')[:success].should == true
       user.authorize('practice_members', 'update')[:success].should == true
       user.authorize('practice_members', 'destroy')[:success].should == true
+      user.authorize('practice_room', 'main')[:success].should == true
       user.authorize('practices', 'index')[:success].should == false
       user.authorize('practices', 'new')[:success].should == false
       user.authorize('practices', 'edit')[:success].should == true

@@ -1,7 +1,4 @@
 class TravelCardsController < ApplicationController
-  def edit
-    @travel_card = TravelCard.find(params[:id])
-  end
 
   def update
     @travel_card = TravelCard.find(params[:id])
@@ -16,4 +13,5 @@ class TravelCardsController < ApplicationController
       end
     end
   end
+  
 end

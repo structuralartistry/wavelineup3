@@ -120,6 +120,12 @@ class User < ActiveRecord::Base
       end
       return authorize_success_message
       
+    when 'practice_room'
+      if current_role == 'guest' || current_role == 'sysadmin'
+        return set_autorize_failure_value(LOGIN_NOTICE)
+      end
+      return authorize_success_message
+      
     when 'practices'
       case current_role
       when 'guest'

@@ -1,0 +1,7 @@
+<p><%= params[:visible_section] %> for <%= @practice_member.full_name_last_comma_first_middle_initial %></p>
+
+<% if params[:visible_section] == 'travel_card' %>
+	<%= render :partial => 'travel_cards/travel_card' %>
+<% end %>
+
+

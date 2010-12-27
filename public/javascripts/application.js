@@ -117,11 +117,17 @@ selected_practice_member_id = '';
 function navigate_now() {
   selected_page_name = $('.page_selector.current_selected').html();
   switch(selected_page_name) {
-    case 'Edit Personal Info': 
+    case 'Personal Info': 
       nav_url = '/practice_members/' + selected_practice_member_id + '/edit';
       break;
     case 'Travel Card': 
-      nav_url = '/travel_cards/' + selected_practice_member_id + '/edit';
+      nav_url = '/practice_room/' + selected_practice_member_id + '/travel_card';
+      break;
+    case 'Visit': 
+      nav_url = '/practice_room/' + selected_practice_member_id + '/visit';
+      break;
+    case 'Visit List': 
+      nav_url = '/practice_room/' + selected_practice_member_id + '/visits';
       break;
   }
   window.location.href=nav_url

@@ -12,7 +12,7 @@ feature "Travel Card Feature", %q{
       logged_in_as_role_for_practice(:practice_user, practice_name)
       practice_member = create_practice_member('Kahn, David Nathan', practice_name)
       travel_card_id = TravelCard.where("practice_member_id=#{practice_member.id}").first.id
-      @travel_card_page = "/travel_cards/#{travel_card_id}/edit"
+      @travel_card_page = "/practice_room/#{practice_member.id}/travel_card"
       visit(@travel_card_page)
       has_text?('Kahn, David N', 'h1')    
     end

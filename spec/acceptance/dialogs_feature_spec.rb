@@ -10,6 +10,8 @@ feature "New Practice Member and Find dialog feature", %q{
   
     before(:each) do
       logged_in_as_role_for_practice(:practice_admin_user, "StructuralArtistry practice")
+      @practice_member_name_one = "Kahn, David N"
+      @practice_member_name_two = "Apple, Johnny R"
       create_practice_member("Kahn, David N", "StructuralArtistry practice")
       create_practice_member("Apple, Johnny R", "StructuralArtistry practice")
       visit('/home')
@@ -40,11 +42,46 @@ feature "New Practice Member and Find dialog feature", %q{
   
     scenario "I can click on the 'K' alphabet key and only see practice members whose last name starts with 'K'" do
       click_selector_cell('Find')
-      assert selector_cell_present?('Kahn, David N')
-      assert selector_cell_present?('Apple, Johnny R')
+      assert selector_cell_present?(@practice_member_name_one)
+      assert selector_cell_present?(@practice_member_name_two)
       click_selector_cell('K')
-      assert selector_cell_present?('Kahn, David N')
-      assert !selector_cell_present?('Apple, Johnny R')
+      assert selector_cell_present?(@practice_member_name_one)
+      assert !selector_cell_present?(@practice_member_name_two)
+    end
+    
+    scenario "Find dialog page selectors toggle correctly" do
+      click_selector_cell('Find')
+      
+      page_selectors = ['Visit', 'Travel Card', 'Visit List', 'Personal Info']
+      page_selectors.each do |page_selector_cell|
+        click_selector_cell(page_selector_cell)
+        selector_cell_selected?(page_selector_cell).should == true
+        filtered_page_selectors = ['Visit', 'Travel Card', 'Visit List', 'Personal Info']
+        filtered_page_selectors.delete(page_selector_cell)
+        filtered_page_selectors.each {|selector| selector_cell_selected?(selector).should == false}
+      end
+    end
+    
+    scenario "Find dialog navigation" do
+      click_selector_cell('Find')            
+      click_selector_cell(@practice_member_name_one)
+      has_text?("visit for #{@practice_member_name_one}").should == true
+      
+      click_selector_cell('Find')  
+      click_selector_cell('Travel Card')
+      click_selector_cell(@practice_member_name_one)
+      has_text?('Kahn, David N', 'h1')
+      confirm_travel_card_loaded
+      
+      click_selector_cell('Find')  
+      click_selector_cell('Visit List')
+      click_selector_cell(@practice_member_name_one)
+      has_text?("visits for #{@practice_member_name_one}").should == true
+      
+      click_selector_cell('Find')  
+      click_selector_cell('Personal Info')
+      click_selector_cell(@practice_member_name_one)
+      assert has_text?('Edit Practice Member', 'h1')
     end
     
     scenario "Feedback and Support dialog operations", :js => true do

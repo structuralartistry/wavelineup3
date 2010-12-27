@@ -35,24 +35,10 @@ feature "Practice Member Administration Feature", %q{
 
       assert has_text?('First name has already been taken in combination with this middle and last name.')
     end
-    
-    scenario "Find and Edit an Existing Practice Member" do
-      click_selector_cell('Find')
-      click_selector_cell('Edit Personal Info')
-      click_selector_cell('Kahn, David N')
-      assert has_text?('Edit Practice Member', 'h1')
-    end
-    
-    scenario "Find and Edit a Existing Practice Member Travel Card" do
-      click_selector_cell('Find')
-      click_selector_cell('Travel Card')
-      click_selector_cell('Kahn, David N')
-      assert has_text?('Rsp Wv', 'td')
-    end
-    
+            
     scenario "Delete a Practice Member" do
       click_selector_cell('Find')
-      click_selector_cell('Edit Personal Info')
+      click_selector_cell('Personal Info')
       click_selector_cell('Kahn, David N')
       assert has_text?('Edit Practice Member', 'h1')
       
