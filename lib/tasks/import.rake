@@ -336,11 +336,7 @@ task :illuminare_seed => :environment do
   
   illuminare_pms = PracticeMember.where("practice_id = 3")
   puts "After import Illuminare now has #{illuminare_pms.size} pms"
-  
-  PracticeMember.where("practice_id = 3").each do |pm|
-    pm.send(:create_travel_card_record)
-  end
-  
+    
   illuminare_tcs = TravelCard.includes(:practice_member).where("practice_members.practice_id = 3")
   puts "After import Illuminare now has #{illuminare_tcs.size} Travel Cards"
   
