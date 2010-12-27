@@ -32,7 +32,7 @@ describe PracticeMember do
     new_practice_member.valid?.should == true
   end
   
-  ['Billy', 'bob', 'Billy-Bob', 'billy bob'].each do |good_name|
+  ['Billy', 'bob', 'Billy-Bob', 'billy bob', "O'Kelley"].each do |good_name|
     it { should allow_value(good_name).for(:first_name) }
     it { should allow_value(good_name).for(:last_name) }
     it { should allow_value(good_name).for(:middle_name) }
