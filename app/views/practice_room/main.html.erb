@@ -6,15 +6,15 @@
 	</tr>
 	<tr>
 		<td valign='top'>
-			<div id='practice_room_visit' class='hidden'>
+			<div id='practice_room_visit' style='display: none;'>
 				<%= render :partial => 'practice_member_visits/practice_member_visit' %>
 			</div>
 
-			<div id='practice_room_visit_list' class='hidden'>
+			<div id='practice_room_visit_list' style='display: none;'>
 				<p>visit list for <%= @practice_member.full_name_last_comma_first_middle_initial %></p>
 			</div>
 
-			<div id='practice_room_travel_card' class='hidden'>
+			<div id='practice_room_travel_card' style='display: none;'>
 				<%= render :partial => 'travel_cards/travel_card' %>
 			</div>
 		</td>

@@ -9,7 +9,7 @@ feature "Practice Member Administration Feature", %q{
   scenario "Create a New Practice Member", :js => true do
     logged_in_as_role_for_practice(:practice_admin_user, "StructuralArtistry practice")
     visit('/home')
-    click_selector_cell('New Practice Member')
+    click_selector_cell('New PM')
     fill_in('Last Name', :with => 'Kahn')
     fill_in('First Name', :with => 'David')
     fill_in('Middle Name', :with => 'Nathan')
@@ -27,7 +27,7 @@ feature "Practice Member Administration Feature", %q{
     end
         
     scenario "Return validation errors" do
-      click_selector_cell('New Practice Member')
+      click_selector_cell('New PM')
       fill_in('Last Name', :with => 'Kahn')
       fill_in('First Name', :with => 'David')
       fill_in('Middle Name', :with => 'N')

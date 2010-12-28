@@ -190,7 +190,7 @@ function autosave(control_id, value) {
   if(control_id.indexOf("travel_card")>=0) {
     controller = "travel_cards";
     qualified_field = "travel_card[" + control_id.replace("travel_card_", "") + "]";
-    record_id = $("#travel_card_practice_member_id").val();
+    record_id = $("#travel_card_id").val();
     update_field_to_server(controller, record_id, qualified_field, value);
     return;
   }

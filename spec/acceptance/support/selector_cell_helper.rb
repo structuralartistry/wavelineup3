@@ -13,10 +13,8 @@ def selector_cell_xpath(selector_cell_text, selected=nil)
     #{xpath_selected_clause} 
     and text()='#{(selector_cell_text)}']"
   
-  xpath_input_button = "//input[@value='#{(selector_cell_text)}']"
+  xpath_input_button = "//input[@value='#{(selector_cell_text)}' #{xpath_selected_clause}]"
   
-  # input buttons can not be selected so add the input button matcher only if not looking for selected
-  return xpath_selector_cell if selected 
   return xpath_selector_cell + ' | ' + xpath_input_button
 end
 

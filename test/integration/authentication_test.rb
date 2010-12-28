@@ -25,7 +25,7 @@ class AuthenticationTest < ActionDispatch::IntegrationTest
   def confirm_home_page_loaded
     assert selector_cell_present?('Logout')
     assert page.has_content?("a community driven system")
-    assert selector_cell_present?("New Practice Member")
+    assert selector_cell_present?("New PM")
   end
   
   context "users should be able to authenticate and redirect properly" do

@@ -1,10 +1,5 @@
 <%= fading_flash_notice %>
+// load the practice room page... easier to just load the page than try to update everything with ajax (have to update 3 different partials)... could do later
+// this also allows the pm selector 'Find' to get updated on the new page load vs also doing that in ajax
+window.location.href='/practice_room/<%= @practice_member.id %>/visit';
 
-// must reload the practice member selector
-$('#practice_member_selector').html("<%= escape_javascript(render :partial => 'layouts/practice_member_selector') %>");
-// set the main frame to show the new practice member's travel card
-$('#main_frame').html("<%= escape_javascript(render :partial => 'travel_cards/travel_card') %>");
-toggle_dialog('new_practice_member');
-initialize_page();
-practice_member_selector_available=true;
-set_left_column_buttons();

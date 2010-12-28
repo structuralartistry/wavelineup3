@@ -61,7 +61,7 @@ feature "Home Page Feature", %q{
     click_selector_cell('Send!')
     
     has_text?("An invite has been sent to #{invitee_email}", 'p')
-    selector_cell_present?('New Practice Member').should == true # page gets reinitialized to reset the form and the send button as a selector cell, so make sure these are present
+    selector_cell_present?('New PM').should == true # page gets reinitialized to reset the form and the send button as a selector cell, so make sure these are present
     selector_cell_present?('Find').should == true
     selector_cell_present?('Feedback/Support').should == true
   end

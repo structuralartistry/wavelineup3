@@ -19,7 +19,7 @@ feature "New Practice Member and Find dialog feature", %q{
   
     scenario "New Practice Member, Find and Feedback Support dialogs show, hide and cancel eachother" do
       
-      click_selector_cell('New Practice Member')
+      click_selector_cell('New PM')
       new_practice_member_dialog_present?.should == true
       find_dialog_present?.should == false
       feedback_support_dialog_present?.should == false
@@ -34,7 +34,7 @@ feature "New Practice Member and Find dialog feature", %q{
       find_dialog_present?.should == false
       feedback_support_dialog_present?.should == true
       
-      click_selector_cell('New Practice Member')
+      click_selector_cell('New PM')
       new_practice_member_dialog_present?.should == true
       find_dialog_present?.should == false
       feedback_support_dialog_present?.should == false
@@ -97,7 +97,7 @@ feature "New Practice Member and Find dialog feature", %q{
 
       has_text?('Thanks for your message. We will respond promptly!', 'p')
       
-      selector_cell_present?('New Practice Member').should == true # page gets reinitialized to reset the form and the send button as a selector cell, so make sure these are present
+      selector_cell_present?('New PM').should == true # page gets reinitialized to reset the form and the send button as a selector cell, so make sure these are present
       selector_cell_present?('Find').should == true
       selector_cell_present?('Feedback/Support').should == true
     end

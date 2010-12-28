@@ -1,5 +1,5 @@
 def new_practice_member_dialog_present?
-  return selector_cell_selected?('New Practice Member') && has_text?('New Practice Member', 'h1')
+  return selector_cell_selected?('New PM') && has_text?('New Practice Member', 'h1')
 end
 
 def find_dialog_present?
