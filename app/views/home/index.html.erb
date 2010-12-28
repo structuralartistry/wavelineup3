@@ -12,24 +12,7 @@
 
   function draw_stats(){
     
-    // global practice members
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Label');
-    data.addColumn('number', 'Value');
-    data.addRows(1);
-    data.setValue(0, 0, 'Practice Members');
-    data.setValue(0, 1, <%= PracticeMember.practice_members_global_count %>);
-    var chart = new google.visualization.Gauge(document.getElementById('global_practice_members_gauge'));
-    var options = {
-      width: 400, 
-      height: 200, 
-      min: 0,
-      max: 120,
-      redFrom: 100, 
-      redTo: 120};
-    chart.draw(data, options);
-    
-    // global practices
+		// global practices
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Label');
     data.addColumn('number', 'Value');
@@ -42,9 +25,22 @@
       width: 400, 
       height: 200, 
       min: 0,
-      max: 15,
-      redFrom: 10, 
-      redTo: 15};
+      max: 15};
+    chart.draw(data, options);
+
+    // global practice members
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Label');
+    data.addColumn('number', 'Value');
+    data.addRows(1);
+    data.setValue(0, 0, 'Practice Members');
+    data.setValue(0, 1, <%= PracticeMember.practice_members_global_count %>);
+    var chart = new google.visualization.Gauge(document.getElementById('global_practice_members_gauge'));
+    var options = {
+      width: 400, 
+      height: 200, 
+      min: 0,
+      max: 120};
     chart.draw(data, options);
        
     // local practice members
@@ -84,11 +80,11 @@
           </td>
         </tr>
         <tr>
-          <td align="center">
-            <div id="global_practice_members_gauge"></div>
+					<td align="center">
+            <div id="global_practices_gauge"></div>
           </td>
           <td align="center">
-            <div id="global_practices_gauge"></div>
+            <div id="global_practice_members_gauge"></div>
           </td>
         </tr>
       </table>

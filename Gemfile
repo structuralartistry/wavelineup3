@@ -22,4 +22,6 @@ group :development, :test do
   gem 'database_cleaner'
 	gem 'shoulda'
 	gem 'steak'	
+	gem 'sqlite3-ruby', '1.2.5'
+	gem 'taps'
 end
