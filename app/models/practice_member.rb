@@ -1,6 +1,7 @@
 class PracticeMember < ActiveRecord::Base
   belongs_to :practice
   has_many :travel_cards
+  has_many :visits
   
   validates_presence_of :practice_id
   validates_presence_of :last_name

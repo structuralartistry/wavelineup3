@@ -312,9 +312,9 @@ div#footer {
   background-color: #000033;
 }
 
-div#selected_visit {
+div#practice_member_visit {
   padding: 5px;
-  background: pink;
+  background: lightpink;
 }
 
 div#past_visits {
@@ -514,6 +514,27 @@ textarea {
 
 .half_height_vertical_spacer {
   height: 12px;
+}
+
+
+div#mini_travel_card {
+  padding: 5px;
+  background: lightgreen;
+}
+
+#mini_travel_card {
+	width: 3.0in;
+	position: relative;
+}
+
+#mini_travel_card td {
+	width: 0.2in;
+	height: 0.2in;	
+	font-size: 7px;
+}
+
+.mini_cell {
+	background-color: #e0e0e0;
 }
 
 

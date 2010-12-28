@@ -3,9 +3,11 @@
 		<td valign='top'>
 			<%= render :partial => 'practice_room_selector' %>
 		</td>
+	</tr>
+	<tr>
 		<td valign='top'>
 			<div id='practice_room_visit' class='hidden'>
-				<p>visit for <%= @practice_member.full_name_last_comma_first_middle_initial %></p>
+				<%= render :partial => 'practice_member_visits/practice_member_visit' %>
 			</div>
 
 			<div id='practice_room_visit_list' class='hidden'>

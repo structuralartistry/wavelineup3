@@ -36,4 +36,6 @@ Wavelineup3::Application.configure do
   config.active_support.deprecation = :stderr
 end
 
+APP_URL = 'http://localhost:3000'
+
 

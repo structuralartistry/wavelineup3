@@ -65,7 +65,7 @@ feature "New Practice Member and Find dialog feature", %q{
     scenario "Find dialog navigation" do
       click_selector_cell('Find')            
       click_selector_cell(@practice_member_name_one)
-      has_text?("visit for #{@practice_member_name_one}").should == true
+      confirm_visit_loaded
       
       click_selector_cell('Find')  
       click_selector_cell('Travel Card')

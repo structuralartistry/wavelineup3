@@ -1,0 +1,2 @@
+module PracticeMemberVisitsHelper
+end

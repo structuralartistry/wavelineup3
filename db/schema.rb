@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101221210611) do
+ActiveRecord::Schema.define(:version => 20101227230211) do
 
   create_table "feedback_supports", :force => true do |t|
     t.integer  "user_id"
@@ -23,6 +23,44 @@ ActiveRecord::Schema.define(:version => 20101221210611) do
   create_table "invitations", :force => true do |t|
     t.string   "email"
     t.integer  "referring_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "practice_member_visits", :force => true do |t|
+    t.integer  "practice_member_id"
+    t.date     "date"
+    t.string   "phase_1"
+    t.string   "phase_1_gateway_1"
+    t.string   "phase_1_gateway_2"
+    t.string   "phase_1_gateway_1_affecting"
+    t.string   "phase_1_gateway_2_affecting"
+    t.string   "phase_1_level_of_care"
+    t.string   "phase_1_direction"
+    t.string   "phase_2"
+    t.string   "phase_2_gateway_1"
+    t.string   "phase_2_gateway_2"
+    t.string   "phase_2_gateway_1_affecting"
+    t.string   "phase_2_gateway_2_affecting"
+    t.string   "phase_2_level_of_care"
+    t.string   "phase_2_direction"
+    t.string   "sri_stage"
+    t.string   "sri_position"
+    t.string   "sri_level_of_care"
+    t.string   "sri_organizing_field"
+    t.string   "short_leg_side"
+    t.string   "short_leg_amount"
+    t.string   "heel_tension_level"
+    t.string   "eversion_tension_level"
+    t.string   "abduction_tension_level"
+    t.string   "adduction_tension_level"
+    t.string   "ingression_organizing_field"
+    t.string   "egression_organizing_field"
+    t.string   "long_lever_arm"
+    t.string   "short_lever_arm"
+    t.string   "crest"
+    t.string   "diagnosis"
+    t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

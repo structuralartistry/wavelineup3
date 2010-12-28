@@ -11,7 +11,7 @@ feature "Practice Room Feature", %q{
     
   scenario "when I go to the practice_room/visit I see the visit area" do
     visit("/practice_room/#{@practice_member.id}/visit")
-    has_text?("visit for #{@practice_member.full_name_last_comma_first_middle_initial}").should == true
+    confirm_visit_loaded
   end
   
   scenario "when I go to practice_room/travel_card I see the travel card" do

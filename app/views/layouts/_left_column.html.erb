@@ -25,6 +25,7 @@ function feedback_support_form() {
 </script>
 
 <table class="selector_table" width="150px">
+	<tr><td><%= image_tag 'wavelineup_logo.gif' %></td></tr>
   <tr><td id="new_practice_member_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" onclick="show_dialog('new_practice_member');">New Practice Member</td></tr>
   <tr><td id="practice_member_selector_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" onclick="toggle_dialog('practice_member_selector');">Find</td></tr>
 	<tr><td>&nbsp;</td></tr>
@@ -37,5 +38,22 @@ function feedback_support_form() {
 			<div id="notices"></div>
     </td>
   </tr>
+  <% if current_user %>
+		<tr><td><%= button_to 'Home', home_url, :method => :get, :class => 'bold selector_cell selector_cell_nav', :style => 'width: 1.5in;' %></td></tr>
+		<% if current_user.practice %>
+			<tr><td><%= button_to 'Edit Practice', edit_practice_url(current_user.practice.id), :method => :get, :class => 'bold selector_cell selector_cell_nav', :style => 'width: 1.5in;' %></td></tr>
+    <% end %>
+		<tr><td><%= button_to 'Edit User', edit_user_url(:current), :method => :get, :class => 'bold selector_cell selector_cell_nav', :style => 'width: 1.5in;' %></td></tr>
+    <tr><td><%= button_to 'Logout', logout_url, :method => :get, :class => 'bold selector_cell selector_cell_nav', :style => 'width: 1.5in;' %></td></tr>
+  <% else %>
+    <% if !(controller_name=='practices' && action_name=='new') %>
+			<tr><td><%= button_to 'Create My Practice', new_practice_url, :method => :get, :class => 'bold selector_cell selector_cell_nav', :style => 'width: 1.5in;' %></td></tr>
+    <% end %>
+    <% if controller_name != 'user_sessions' && action_name != 'new' %> 
+		<tr><td><%= button_to 'Login', login_url, :method => :get, :class => 'bold selector_cell selector_cell_nav', :style => 'width: 1.5in;' %></td></tr>
+    <% end %>
+  <% end %>
 </table>
+
+
 

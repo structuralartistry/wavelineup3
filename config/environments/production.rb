@@ -49,3 +49,5 @@ Wavelineup3::Application.configure do
   config.active_support.deprecation = :notify
 end
 
+APP_URL = 'https://wavelineup.heroku.com'
+
