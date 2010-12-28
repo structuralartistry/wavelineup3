@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Wavelineup3</title>
-  <%= stylesheet_link_tag :all %>
+  <title>WaveLineup3<%= ' ::: ' + current_user.practice.name if current_user && current_user.practice %><%= ' ::: ' + current_user.email if current_user %></title>
   
-  <%= javascript_include_tag 'jquery-1.4.2.min' %>
-  <%= javascript_include_tag 'jquery-ui-1.8.5.custom.min' %>
-  <%= javascript_include_tag 'jquery.utils.min' %>
-	<%= javascript_include_tag 'jquery.blockUI' %>
-  <%= javascript_include_tag 'bindows_gauges/bindows_gauges.js' %>
-  <%= javascript_include_tag 'bindows_gauges/gauge2.ie.js' %>
-  <%= javascript_include_tag 'bindows_gauges/gauge2.js' %>
-  <%= javascript_include_tag 'ajax' %>
-  <%= javascript_include_tag 'application' %>
-  <%= javascript_include_tag 'travel_card'%>
-  <%= javascript_include_tag 'rails' %>
+	<%= include_stylesheets :common %>
+	<%= include_javascripts :common %>
   <%= csrf_meta_tag %>
 </head>
 <body>

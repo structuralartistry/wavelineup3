@@ -12,7 +12,7 @@ class PracticesController < ApplicationController
     1.times { @practice.users.build }
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render 'new', :layout => 'guest' }
     end
   end
 
@@ -42,7 +42,7 @@ class PracticesController < ApplicationController
         @practice.users[0].deliver_activation_instructions!
         format.html { redirect_to(login_path, :notice => 'Practice was successfully created. Please check your email for the activation link.') }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :layout => 'guest' }
       end
     end
   end

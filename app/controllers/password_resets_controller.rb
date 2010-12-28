@@ -3,7 +3,7 @@ class PasswordResetsController < ApplicationController
 
   def new
     @user = User.new
-    render 'new'
+    render 'new', :layout => 'guest'
   end
 
   def create
@@ -17,7 +17,7 @@ class PasswordResetsController < ApplicationController
       else 
         @user = User.new 
         flash[:notice] = "No user was found with that email address"  
-        format.html { render 'new'  }
+        format.html { render 'new', :layout => 'guest'  }
       end  
     end
   end

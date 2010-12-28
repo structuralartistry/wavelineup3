@@ -5,7 +5,7 @@ class UserSessionsController < ApplicationController
 
     respond_to do |format|
       if !current_user
-        format.html # new.html.erb
+        format.html { render 'new', :layout => 'guest' }
       else
         format.html { redirect_to home_path }
       end
@@ -20,7 +20,7 @@ class UserSessionsController < ApplicationController
         format.html { redirect_to(home_path) }
       else       
         flash[:notice] = "Authentication failed"
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :layout => 'guest' }
       end
     end
   end

@@ -6,7 +6,7 @@
 	<%= include_stylesheets :common %>
 	<%= include_javascripts :common %>
   <%= csrf_meta_tag %>
-	
+
 	<% if flash[:notice] %>
 	<script language='javascript'>
 		$(document).ready(function() {
@@ -14,24 +14,27 @@
 		});
 	</script>
 	<% end %>
-
 </head>
 <body>
   <div id='container'>
   	<table style='width: 800px;'>
+      <tr>
+        <td colspan="2">
+          <table class="nav_table">
+            <tr>
+              <td><%= image_tag 'wavelineup_logo.gif' %></td>
+							<% if controller_name=='user_sessions' %>
+								<td><%= button_to 'Create My Practice', new_practice_url, :method => :get, :class => 'bold selector_cell selector_cell_nav', :style => 'width: 3.0in;' %></td>
+					    <% end %>
+        	  </tr>
+        	</table>
+      	</td>
+      </tr>
       <tr valign="top">
         <td valign="top" style="width: 15px;">
-          <% if current_user %>
-    		    <%= render :partial => "layouts/left_column" %>
-    		  <% end %>
         </td>
-        <td style="width: 98%;">        
-          <div id="new_practice_member" class="selector hidden">
-          </div>
-          <div id="practice_member_selector" class="selector hidden">
-						<%= render :partial => "layouts/practice_member_selector" %>
-     	    </div>
-					<div id="feedback_support" class="selector hidden"></div>
+        <td style="width: 98%;"> 
+					<div id="notices"></div>
      	    <div id="main_frame">
             <%= yield %>
           </div>
