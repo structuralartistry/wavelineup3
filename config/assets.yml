@@ -9,8 +9,9 @@ javascripts:
     - public/javascripts/ajax.js
     - public/javascripts/application.js
     
-  travel_card:
+  practice_room:
     - public/javascripts/travel_card.js
+    - public/javascripts/visit.js
 
 stylesheets:
   common:

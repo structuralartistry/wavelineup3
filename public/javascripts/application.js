@@ -32,6 +32,7 @@ function initialize_page() {
   $('.selector_cell_nav').disableTextSelect();
 	$('.selector_cell_submit').disableTextSelect();
   $('.selector_cell').disableTextSelect();
+	$('.mini_travel_card_cell').disableTextSelect();
   $('.label').disableTextSelect();
   $('#notices').disableTextSelect();
   $('.wavelineup').disableTextSelect();

@@ -1,8 +1,6 @@
-<%= include_javascripts :travel_card %>
-
 <script language='javascript'>
   $(document).ready(function() {
-    travel_card_set_values_from_hidden_fields();
+    travel_card_set_values_from_hidden_fields(false);
   });
 </script>
 
@@ -257,6 +255,3 @@
     </td>
   </tr>
 </table>
-
-
-<%= render :partial => 'travel_cards/selectors' %>

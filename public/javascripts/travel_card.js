@@ -157,7 +157,7 @@ function set_bme_strategy(bme_strategy) {
   autosave('travel_card_second_bme_strategy', $('#travel_card_second_bme_strategy').val());
   
   // set the third strategy inner html if first two set
-  set_third_bme_strategy();
+  set_third_bme_strategy(false);
 
   // clear and hide
   element_to_update_inner_html='';
@@ -165,7 +165,12 @@ function set_bme_strategy(bme_strategy) {
   $('#bme_strategy_selector').hide('fast');
 }
 
-function set_third_bme_strategy() {
+function set_third_bme_strategy(mini_travel_card) {
+	mini_tc_prefix = '';
+	if(mini_travel_card==true) {
+		mini_tc_prefix = 'mini_travel_card_';
+	}
+	
   leading_strategy = $('#travel_card_leading_bme_strategy').val();
   second_strategy = $('#travel_card_second_bme_strategy').val();
   
@@ -174,7 +179,7 @@ function set_third_bme_strategy() {
     remaining_strategy = "BME";
     remaining_strategy = remaining_strategy.replace(leading_strategy,'');
     remaining_strategy = remaining_strategy.replace(second_strategy,'');
-    if(remaining_strategy.length == 1) $('#third_bme_strategy').html(remaining_strategy);
+    if(remaining_strategy.length == 1) $('#' + mini_tc_prefix + 'third_bme_strategy').html(remaining_strategy);
   }  
 }
 
@@ -192,6 +197,8 @@ function autosave(control_id, value) {
     qualified_field = "travel_card[" + control_id.replace("travel_card_", "") + "]";
     record_id = $("#travel_card_id").val();
     update_field_to_server(controller, record_id, qualified_field, value);
+		$('#' + control_id).val(value);
+
     return;
   }
   

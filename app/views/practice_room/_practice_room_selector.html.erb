@@ -25,7 +25,7 @@
 
 <table class="selector_table" style="width: 7in;">
   <tr>
-	  <td id="practice_room_visit_show_selector_cell" class="bold selector_cell selector_cell_nav selector_cell_text_single_character current_selected" style='width: 0.5in;' onclick="set_practice_room_section_and_buttons('practice_room_visit');">V</td>
+	  <td id="practice_room_visit_show_selector_cell" class="bold selector_cell selector_cell_nav selector_cell_text_single_character current_selected" style='width: 0.5in;' onclick="set_practice_room_section_and_buttons('practice_room_visit'); travel_card_set_values_from_hidden_fields(true); set_third_bme_strategy(true);">V</td>
 	  <td id="practice_room_travel_card_show_selector_cell" class="bold selector_cell selector_cell_nav selector_cell_text_single_character" style='width: 0.5in;' onclick="set_practice_room_section_and_buttons('practice_room_travel_card');">TC</td>
 		<td id="practice_room_visit_list_show_selector_cell" class="bold selector_cell selector_cell_nav selector_cell_text_single_character" style='width: 0.5in;' onclick="set_practice_room_section_and_buttons('practice_room_visit_list');">VL</td>
 		<td align='right' style='width: 5.5in;'><h1><%= @practice_member.full_name_last_comma_first_middle_initial %></h1></td>

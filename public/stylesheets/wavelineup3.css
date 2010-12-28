@@ -256,8 +256,9 @@ span.section_internal_label {
 
 .highlighted {
   /*background-color: #60a0e0;*/
-  background-color: #D38B85;
+/*  background-color: #D38B85;*/
   /* background-color: #804060; */
+	border: 3px solid yellow;
 }
 
 .gateway_selector_side_highlight {
@@ -530,11 +531,15 @@ div#mini_travel_card {
 #mini_travel_card td {
 	width: 0.2in;
 	height: 0.2in;	
-	font-size: 7px;
+	font-size: 8px;
+	font-weight: bold;
+  text-align: center;
 }
 
-.mini_cell {
-	background-color: #e0e0e0;
+.mini_travel_card_cell {
+	background-color: #e0e0e0; /*#ECE0A1;*/
+  color: #000033;
+  border: 2px solid #f0f0f0;
 }
 
 
