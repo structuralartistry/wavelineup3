@@ -10,6 +10,7 @@ javascripts:
     - public/javascripts/application.js
     
   practice_room:
+    - public/javascripts/autosave.js
     - public/javascripts/travel_card.js
     - public/javascripts/visit.js
 

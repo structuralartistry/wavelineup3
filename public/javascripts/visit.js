@@ -78,8 +78,6 @@ function practice_member_visit_set_values_from_hidden_fields() {
 
 /* these are class variables which hold which control is currently under
    modification so that we can use these universal functions */
-var element_to_update_inner_html;
-var control_to_update;
 var visit_phase_currently_working;
 var visit_gateway_currently_working;
 
@@ -189,12 +187,15 @@ function clear_available_gateways() {
 // PHASE
 // not using universal functions here to show/set/clear as there is special logic needed
 function set_phase(selected_phase) {
+	
+	set_selected_value_manual('selected_phase_' + visit_phase_currently_working, 'practice_member_visit_phase_' + visit_phase_currently_working, selected_phase);
+	
 
-  $('#practice_member_visit_phase_' + visit_phase_currently_working).val(selected_phase);
+  // $('#practice_member_visit_phase_' + visit_phase_currently_working).val(selected_phase);
   
   set_visible_fields_per_selected_phase(selected_phase, visit_phase_currently_working);
     
-  $('#selected_phase_' + visit_phase_currently_working).html(selected_phase); 
+  // $('#selected_phase_' + visit_phase_currently_working).html(selected_phase); 
   $('#phase_' + visit_phase_currently_working + '_selector').hide();
   
   // clear selectors which are dependant on phase 

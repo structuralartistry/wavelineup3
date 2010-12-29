@@ -33,7 +33,7 @@ feature "Practice Room Feature", %q{
   scenario "the practice room selector at top of page allows toggle between Visit, Travel Card and Visit List", :js => true do 
     visit("/practice_room/#{@practice_member.id}/visit")
 
-    practice_room_selector_is_present?.should == true
+    confirm_practice_room_selector_loaded
 
     selector_cell_selected?('V').should == true
     selector_cell_selected?('TC').should == false
