@@ -15,69 +15,110 @@ feature "Visit Feature", %q{
       confirm_visit_loaded   
     end
     
-    scenario "I can set Phase 1 values and they autosave" do     
+    scenario "I can set Phase 1 and 2 values and they autosave and that affected gateway selectors show for phase 1" do  
+      # phase 1   
       get_selector_cell_text('selected_phase_1').should == ''
       click_selector_cell('selected_phase_1')
-
-      selector_cell_present?('select_phase_1_2_C1').should == true
-      selector_cell_present?('select_phase_1_2_C5').should == true
-      selector_cell_present?('select_phase_1_3').should == true
-      selector_cell_present?('select_phase_1_4').should == true
-      selector_cell_present?('select_phase_1_5').should == true
-      selector_cell_present?('select_phase_2_C1').should == true
-      selector_cell_present?('select_phase_2_C5').should == true
-      selector_cell_present?('select_phase_3').should == true
-      selector_cell_present?('select_phase_4').should == true
-      selector_cell_present?('select_phase_5').should == true
-
-      click_selector_cell('select_phase_3')
-      get_selector_cell_text('selected_phase_1').should == '3'
+      click_selector_cell('select_phase_1_2_c5')
+      get_selector_cell_text('selected_phase_1').should == '1 > 2 C5'
 
       get_selector_cell_text('selected_phase_1_gateway_1').should == ''
       click_selector_cell('selected_phase_1_gateway_1')
-
-      selector_cell_present?('select_gateway_s1').should == true
-      selector_cell_present?('select_gateway_s2').should == true
-      selector_cell_present?('select_gateway_s3').should == true
-      selector_cell_present?('select_gateway_s4').should == true
-      selector_cell_present?('select_gateway_s5').should == true
-      selector_cell_present?('select_gateway_cx').should == true
-
       click_selector_cell('select_gateway_s1')
       get_selector_cell_text('selected_phase_1_gateway_1').should == 'S1'
+      
+      get_selector_cell_text('selected_phase_1_gateway_1_affecting').should == ''
+      click_selector_cell('selected_phase_1_gateway_1_affecting')
+      click_selector_cell('select_gateway_c3_c4')
+      get_selector_cell_text('selected_phase_1_gateway_1_affecting').should == 'C3/C4'
 
       get_selector_cell_text('selected_phase_1_gateway_2').should == ''
       click_selector_cell('selected_phase_1_gateway_2')
-
-      selector_cell_present?('select_gateway_s1').should == false
-      selector_cell_present?('select_gateway_s2').should == true
-      selector_cell_present?('select_gateway_s3').should == true
-      selector_cell_present?('select_gateway_s4').should == true
-      selector_cell_present?('select_gateway_s5').should == true
-      selector_cell_present?('select_gateway_cx').should == true
-      selector_cell_present?('select_gateway_apex').should == true
-
-      click_selector_cell('select_gateway_apex')
-      get_selector_cell_text('selected_phase_1_gateway_2').should == 'APEX'
+      selector_cell_present?('select_gateway_s1').should == false # second gateway can not be set to value of first
+      click_selector_cell('select_gateway_s2')
+      get_selector_cell_text('selected_phase_1_gateway_2').should == 'S2'
       
-      get_selector_cell_text('selected_phase_1_direction').should == 'L/B' # auto set
-
+      get_selector_cell_text('selected_phase_1_gateway_2_affecting').should == ''
+      click_selector_cell('selected_phase_1_gateway_2_affecting')
+      selector_cell_present?('select_gateway_c3_c4').should == false
+      click_selector_cell('select_gateway_c4_c3')
+      get_selector_cell_text('selected_phase_1_gateway_2_affecting').should == 'C4/C3'
+      
+      get_selector_cell_text('selected_phase_1_direction').should == ''
+      click_selector_cell('selected_phase_1_direction')
+      click_selector_cell('select_direction_f_e')
+      get_selector_cell_text('selected_phase_1_direction').should == 'F/E'
+ 
       get_selector_cell_text('selected_phase_1_level_of_care').should == ''
-      click_selector_cell('selected_phase_1_level_of_care')
-      
-      selector_cell_present?('select_level_of_care_1a').should == true
-      selector_cell_present?('select_level_of_care_1b').should == true
-      selector_cell_present?('select_level_of_care_1c').should == true
-      selector_cell_present?('select_level_of_care_2a').should == true
-      selector_cell_present?('select_level_of_care_2b').should == true
-      selector_cell_present?('select_level_of_care_2c').should == true
-      selector_cell_present?('select_level_of_care_3a').should == true
-      selector_cell_present?('select_level_of_care_3b').should == true
-      selector_cell_present?('select_level_of_care_3c').should == true
-      selector_cell_present?('select_level_of_care_4').should == true
-      
+      click_selector_cell('selected_phase_1_level_of_care')   
       click_selector_cell('select_level_of_care_3a')
       get_selector_cell_text('selected_phase_1_level_of_care').should == '3A'
+      
+      
+      # phase 2
+      click_selector_cell('work_second_phase_button')
+      
+      get_selector_cell_text('selected_phase_2').should == ''
+      click_selector_cell('selected_phase_2')
+      click_selector_cell('select_phase_1_2_c5')
+      get_selector_cell_text('selected_phase_2').should == '1 > 2 C5'
+
+      get_selector_cell_text('selected_phase_2_gateway_1').should == ''
+      click_selector_cell('selected_phase_2_gateway_1')
+      click_selector_cell('select_gateway_s1')
+      get_selector_cell_text('selected_phase_2_gateway_1').should == 'S1'
+      
+      get_selector_cell_text('selected_phase_2_gateway_1_affecting').should == ''
+      click_selector_cell('selected_phase_2_gateway_1_affecting')
+      click_selector_cell('select_gateway_c3_c4')
+      get_selector_cell_text('selected_phase_2_gateway_1_affecting').should == 'C3/C4'
+
+      get_selector_cell_text('selected_phase_2_gateway_2').should == ''
+      click_selector_cell('selected_phase_2_gateway_2')
+      selector_cell_present?('select_gateway_s1').should == false # second gateway can not be set to value of first
+      click_selector_cell('select_gateway_s2')
+      get_selector_cell_text('selected_phase_2_gateway_2').should == 'S2'
+      
+      get_selector_cell_text('selected_phase_2_gateway_2_affecting').should == ''
+      click_selector_cell('selected_phase_2_gateway_2_affecting')
+      selector_cell_present?('select_gateway_c3_c4').should == false
+      click_selector_cell('select_gateway_c4_c3')
+      get_selector_cell_text('selected_phase_2_gateway_2_affecting').should == 'C4/C3'
+      
+      get_selector_cell_text('selected_phase_2_direction').should == ''
+      click_selector_cell('selected_phase_2_direction')
+      click_selector_cell('select_direction_f_e')
+      get_selector_cell_text('selected_phase_2_direction').should == 'F/E'
+ 
+      get_selector_cell_text('selected_phase_2_level_of_care').should == ''
+      click_selector_cell('selected_phase_2_level_of_care')   
+      click_selector_cell('select_level_of_care_3a')
+      get_selector_cell_text('selected_phase_2_level_of_care').should == '3A'
+      
+      
+      # verify autosave
+      visit(@practice_room_visit_page)
+      # phase 1   
+      get_selector_cell_text('selected_phase_1').should == '1 > 2 C5'
+      get_selector_cell_text('selected_phase_1_gateway_1').should == 'S1'
+      get_selector_cell_text('selected_phase_1_gateway_1_affecting').should == 'C3/C4'
+      get_selector_cell_text('selected_phase_1_gateway_2').should == 'S2'
+      get_selector_cell_text('selected_phase_1_gateway_2_affecting').should == 'C4/C3'
+      get_selector_cell_text('selected_phase_1_direction').should == 'F/E'
+      get_selector_cell_text('selected_phase_1_level_of_care').should == '3A'
+      
+      
+      # phase 2
+      click_selector_cell('work_second_phase_button')
+      
+      get_selector_cell_text('selected_phase_2').should == '1 > 2 C5'
+      get_selector_cell_text('selected_phase_2_gateway_1').should == 'S1'
+      get_selector_cell_text('selected_phase_2_gateway_1_affecting').should == 'C3/C4'
+      get_selector_cell_text('selected_phase_2_gateway_2').should == 'S2'
+      get_selector_cell_text('selected_phase_2_gateway_2_affecting').should == 'C4/C3'
+      get_selector_cell_text('selected_phase_2_direction').should == 'F/E'
+      get_selector_cell_text('selected_phase_2_level_of_care').should == '3A'
+            
     end
     
     scenario "selected phase 3 should autopopulate direction" do
@@ -94,59 +135,7 @@ feature "Visit Feature", %q{
       get_selector_cell_text('selected_phase_2').should == '3'
       get_selector_cell_text('selected_phase_2_direction').should == 'L/B'
     end
-    
-    scenario "selected phase 1 > x should make available affected gateway selectors" do
-      # phase 1
-      has_text?('Aff', 'td').should == false
-      selector_cell_present?('selected_phase_1_gateway_1_affecting').should == false
-      click_selector_cell('selected_phase_1')
-      click_selector_cell('select_phase_1_2_C1')
-      get_selector_cell_text('selected_phase_1').should == '1 > 2 C1'
-      
-      has_text?('Aff', 'td').should == true
-      
-      # gw aff 1
-      selector_cell_present?('selected_phase_1_gateway_1_affecting').should == true
-      get_selector_cell_text('selected_phase_1_gateway_1_affecting').should == ''
-      click_selector_cell('selected_phase_1_gateway_1_affecting')
-      selector_cell_present?('select_gateway_c1_occ').should == true
-      selector_cell_present?('select_gateway_c1_c2').should == true
-      click_selector_cell('select_gateway_c1_c2')
-      get_selector_cell_text('selected_phase_1_gateway_1_affecting').should == 'C1/C2'
-      # gw aff 2
-      selector_cell_present?('selected_phase_1_gateway_2_affecting').should == true
-      get_selector_cell_text('selected_phase_1_gateway_2_affecting').should == ''
-      click_selector_cell('selected_phase_1_gateway_2_affecting')
-      selector_cell_present?('select_gateway_c1_occ').should == true
-      selector_cell_present?('select_gateway_c1_c2').should == false # limited out of list based on first selection
-      click_selector_cell('select_gateway_c1_occ')
-      get_selector_cell_text('selected_phase_1_gateway_2_affecting').should == 'C1/OCC'
-      
-      
-      # phase 2
-      click_selector_cell('work_second_phase_button')
-      selector_cell_present?('selected_phase_2_gateway_1_affecting').should == false
-      click_selector_cell('selected_phase_2')
-      click_selector_cell('select_phase_1_2_C1')
-      get_selector_cell_text('selected_phase_2').should == '1 > 2 C1'
-    
-      # gw aff 1
-      selector_cell_present?('selected_phase_2_gateway_1_affecting').should == true
-      get_selector_cell_text('selected_phase_2_gateway_1_affecting').should == ''
-      click_selector_cell('selected_phase_2_gateway_1_affecting')
-      selector_cell_present?('select_gateway_c1_occ').should == true
-      selector_cell_present?('select_gateway_c1_c2').should == true
-      click_selector_cell('select_gateway_c1_c2')
-      get_selector_cell_text('selected_phase_2_gateway_1_affecting').should == 'C1/C2'
-      # gw aff 2
-      selector_cell_present?('selected_phase_2_gateway_2_affecting').should == true
-      get_selector_cell_text('selected_phase_2_gateway_2_affecting').should == ''
-      click_selector_cell('selected_phase_2_gateway_2_affecting')
-      selector_cell_present?('select_gateway_c1_occ').should == true
-      selector_cell_present?('select_gateway_c1_c2').should == false # limited out of list based on first selection
-      click_selector_cell('select_gateway_c1_occ')
-      get_selector_cell_text('selected_phase_2_gateway_2_affecting').should == 'C1/OCC'
-    end
+
     
     scenario "selected phase 5 has no direction" do
       # phase 1
@@ -166,8 +155,11 @@ feature "Visit Feature", %q{
       
       has_text?('Dir', 'td').should == false
     end
-    
-  
+    # 
+    # scenario "gateway side should show on gateway selector in red" do
+    #   
+    # end 
+    #   
     # # move this to travel card
     #  scenario "travel card shows the right gateways with the right coloring" do 
     #  

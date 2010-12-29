@@ -52,7 +52,10 @@ function visit_set_values_from_hidden_fields() {
   $('#selected_phase_2_level_of_care').html($('#visit_phase_2_level_of_care').val());
   // determine if we hide phase 2
   if(phase_2=='') $('.phase_2').hide();
-  else $("#work_second_phase_button").hide(); // hide button if 2nd phase is showing
+	else {
+		$('.phase_2').show();
+		$("#work_second_phase_button").hide();
+	}
 
   $('#abduction_tension_level').html($('#visit_abduction_tension_level').val());
   $('#adduction_tension_level').html($('#visit_adduction_tension_level').val());
@@ -186,16 +189,11 @@ function clear_available_gateways() {
 
 // PHASE
 // not using universal functions here to show/set/clear as there is special logic needed
-function set_phase(selected_phase) {
-	
+function set_phase(selected_phase) {	
 	set_selected_value_manual('selected_phase_' + visit_phase_currently_working, 'visit_phase_' + visit_phase_currently_working, selected_phase);
-	
-
-  // $('#visit_phase_' + visit_phase_currently_working).val(selected_phase);
   
   set_visible_fields_per_selected_phase(selected_phase, visit_phase_currently_working);
     
-  // $('#selected_phase_' + visit_phase_currently_working).html(selected_phase); 
   $('#phase_' + visit_phase_currently_working + '_selector').hide();
   
   // clear selectors which are dependant on phase 
@@ -272,17 +270,16 @@ function add_span_to_gateway_html(hidden_field_gateway_value) {
 
 function remove_span_from_gateway_html(raw_gateway_value) {
   // remove <span class="gateway_selector_side_highlight">...</span> from the gateway_value
-  raw_gateway_value = raw_gateway_value.replace("<span class=\"gateway_selector_side_highlight\">","");
-  raw_gateway_value = raw_gateway_value.replace("</span>","");
-  return raw_gateway_value;
+  return raw_gateway_value.replace(/<span.*>.*<\/span>/i, '')
 }
 
 function set_phase_gateway(calling_object) {
   gateway_value = $(calling_object).html();
-  //gateway_value = remove_span_from_gateway_html($(calling_object).html());
-  
-  $('#visit_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working).val(remove_span_from_gateway_html(gateway_value));
+	value_to_save = remove_span_from_gateway_html(gateway_value);
+  $('#visit_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working).val(value_to_save);
   $('#selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working).html(gateway_value); 
+	autosave('visit_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working, value_to_save);
+
   $('#phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working + '_selector').hide();
     
   // if gateway 2 is set to same as what has been selected for this gateway, clear gateway 2
@@ -575,9 +572,8 @@ function set_phase_gateway_selector_choices(selected_phase) {
 // DIRECTION
 // not using universal functions here to show/set/clear as there is special logic needed
 function set_phase_direction(direction) {
-  $('#visit_phase_' + visit_phase_currently_working + '_direction').val(direction);
-  $('#selected_phase_' + visit_phase_currently_working + '_direction').html(direction); 
-  $('.selector').hide();
+	set_selected_value_manual('selected_phase_' + visit_phase_currently_working + '_direction', 'visit_phase_' + visit_phase_currently_working + '_direction', direction);
+	$('.selector').hide();
 }
 
 function clear_phase_direction(visit_phase) {

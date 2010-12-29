@@ -27,7 +27,7 @@ function autosave(control_id, value) {
   controller = "";
   record_id = "";
   field = "";
-      
+    
   if(control_id.indexOf("travel_card")>=0) {
     controller = "travel_cards";
     qualified_field = "travel_card[" + control_id.replace("travel_card_", "") + "]";

@@ -9,8 +9,6 @@
   });
 </script>
 
-<%= javascript_include_tag "wavelineup/visit.js" %>
-
 <div id="visit" style='width: 7in;'>
 
 <% if !@visit %> 
@@ -39,7 +37,7 @@
 							<td colspan='3' class="half_height label">Notes</td>
 						</tr>
 						<tr>
-				      <td colspan='3'><%= f.text_area :notes, :style => "width: 300px; height: 50px" %></td>
+				      <td colspan='3'><%= f.text_area :notes, :style => "width: 300px; height: 50px", :class => 'autosave' %></td>
 			      </tr>
 					</table>
 				</td>
@@ -137,7 +135,7 @@
         <td id="sri_level_of_care" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('level_of_care_selector', this, 'sri_level_of_care', 'visit_sri_level_of_care');"></td>    
         <td id="sri_organizing_field" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('organizing_field_selector', this, 'sri_organizing_field', 'visit_sri_organizing_field');"></td>    
         <td>&nbsp;&nbsp;</td>
-        <td colspan="5"><%= f.text_area :diagnosis, :style => "width: 300px; height: 50px" %></td>    
+        <td colspan="5"><%= f.text_area :diagnosis, :style => "width: 300px; height: 50px", :class => 'autosave' %></td>    
       </tr>
     </table>
 
