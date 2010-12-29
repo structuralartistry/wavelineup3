@@ -26,13 +26,12 @@ def selector_cell_xpath_by_id(selector_cell_id)
       contains(concat(' ',normalize-space(@class),' '),' selector_cell_nav ') 
       or 
       contains(concat(' ',normalize-space(@class),' '),' selector_cell_submit ')
-    )"
+    )]"
 end
 
 def selector_cell_present?(selector_cell_text_or_id)
   return true if page.has_xpath?(selector_cell_xpath(selector_cell_text_or_id), :visible => true)
   # check for the id.... sometimes we want to pass the id in
-debugger
   page.has_xpath?(selector_cell_xpath_by_id(selector_cell_text_or_id), :visible => true)
 end
 

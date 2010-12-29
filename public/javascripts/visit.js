@@ -189,7 +189,7 @@ function clear_available_gateways() {
 // PHASE
 // not using universal functions here to show/set/clear as there is special logic needed
 function set_phase(selected_phase) {
-  
+
   $('#practice_member_visit_phase_' + visit_phase_currently_working).val(selected_phase);
   
   set_visible_fields_per_selected_phase(selected_phase, visit_phase_currently_working);
@@ -207,7 +207,10 @@ function set_phase(selected_phase) {
   $("#visit_stats_phase_" + visit_phase_currently_working).html("");
   
   // set available gateways
-  highlight_available_gateways();
+  highlight_available_gateways();	
+
+	// set the direction choices -- this is mainly for phase 3 where there is one choice and we want to autopopulate it
+	set_phase_direction_selector_choices(visit_phase_currently_working, selected_phase);
 }
 
 function set_visible_fields_per_selected_phase(phase, visit_phase) {
@@ -616,7 +619,8 @@ function set_phase_direction_selector_choices(visit_phase, phase) {
       break;
       
     case "3":   
-      $('#phase_' + visit_phase + '_direction_L_B').show();
+			// since only one direction set it in the field -- no selector
+			$('#selected_phase_' + visit_phase + '_direction').html('L/B');
       break;
       
     case "5":
