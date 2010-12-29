@@ -23,3 +23,9 @@ end
 def confirm_visit_list_loaded
   page.has_content?('visit list for').should == true
 end
+
+def practice_room_selector_is_present
+  selector_cell_present?('V').should == true
+  selector_cell_present?('TC').should == true
+  selector_cell_present?('VL').should == true 
+end
