@@ -1,7 +1,7 @@
 Wavelineup3::Application.routes.draw do
   
   
-  resources :practice_member_visits
+  resources :visits
 
   match 'practice_room/:id/:visible_section' => 'practice_room#main'
 

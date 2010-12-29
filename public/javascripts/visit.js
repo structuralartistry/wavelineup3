@@ -27,49 +27,49 @@ function mini_travel_card_set_values_from_hidden_fields() {
 
 
 // GENERAL
-function practice_member_visit_set_values_from_hidden_fields() {
+function visit_set_values_from_hidden_fields() {
   // get values from hidden fields and write the inner html of selectors
   // this is called on page load in body tag of application layout
-  phase_1 = $('#practice_member_visit_phase_1').val();
+  phase_1 = $('#visit_phase_1').val();
   $('#selected_phase_1').html(phase_1);
   set_visible_fields_per_selected_phase(phase_1, "1");
-  $('#selected_phase_1_gateway_1').html(add_span_to_gateway_html($('#practice_member_visit_phase_1_gateway_1').val()));
-  $('#selected_phase_1_gateway_1_affecting').html(add_span_to_gateway_html($('#practice_member_visit_phase_1_gateway_1_affecting').val()));
-  $('#selected_phase_1_gateway_2').html(add_span_to_gateway_html($('#practice_member_visit_phase_1_gateway_2').val()));
-  $('#selected_phase_1_gateway_2_affecting').html(add_span_to_gateway_html($('#practice_member_visit_phase_1_gateway_2_affecting').val()));
-  $('#selected_phase_1_direction').html($('#practice_member_visit_phase_1_direction').val());
-  $('#selected_phase_1_level_of_care').html($('#practice_member_visit_phase_1_level_of_care').val());
+  $('#selected_phase_1_gateway_1').html(add_span_to_gateway_html($('#visit_phase_1_gateway_1').val()));
+  $('#selected_phase_1_gateway_1_affecting').html(add_span_to_gateway_html($('#visit_phase_1_gateway_1_affecting').val()));
+  $('#selected_phase_1_gateway_2').html(add_span_to_gateway_html($('#visit_phase_1_gateway_2').val()));
+  $('#selected_phase_1_gateway_2_affecting').html(add_span_to_gateway_html($('#visit_phase_1_gateway_2_affecting').val()));
+  $('#selected_phase_1_direction').html($('#visit_phase_1_direction').val());
+  $('#selected_phase_1_level_of_care').html($('#visit_phase_1_level_of_care').val());
 
 
-  phase_2 = $('#practice_member_visit_phase_2').val();
+  phase_2 = $('#visit_phase_2').val();
   $('#selected_phase_2').html(phase_2);
   set_visible_fields_per_selected_phase(phase_2, "2");
-  $('#selected_phase_2_gateway_1').html(add_span_to_gateway_html($('#practice_member_visit_phase_2_gateway_1').val()));
-  $('#selected_phase_2_gateway_1_affecting').html(add_span_to_gateway_html($('#practice_member_visit_phase_2_gateway_1_affecting').val()));
-  $('#selected_phase_2_gateway_2').html(add_span_to_gateway_html($('#practice_member_visit_phase_2_gateway_2').val()));
-  $('#selected_phase_2_gateway_2_affecting').html(add_span_to_gateway_html($('#practice_member_visit_phase_2_gateway_2_affecting').val()));
-  $('#selected_phase_2_direction').html($('#practice_member_visit_phase_2_direction').val());
-  $('#selected_phase_2_level_of_care').html($('#practice_member_visit_phase_2_level_of_care').val());
+  $('#selected_phase_2_gateway_1').html(add_span_to_gateway_html($('#visit_phase_2_gateway_1').val()));
+  $('#selected_phase_2_gateway_1_affecting').html(add_span_to_gateway_html($('#visit_phase_2_gateway_1_affecting').val()));
+  $('#selected_phase_2_gateway_2').html(add_span_to_gateway_html($('#visit_phase_2_gateway_2').val()));
+  $('#selected_phase_2_gateway_2_affecting').html(add_span_to_gateway_html($('#visit_phase_2_gateway_2_affecting').val()));
+  $('#selected_phase_2_direction').html($('#visit_phase_2_direction').val());
+  $('#selected_phase_2_level_of_care').html($('#visit_phase_2_level_of_care').val());
   // determine if we hide phase 2
   if(phase_2=='') $('.phase_2').hide();
   else $("#work_second_phase_button").hide(); // hide button if 2nd phase is showing
 
-  $('#abduction_tension_level').html($('#practice_member_visit_abduction_tension_level').val());
-  $('#adduction_tension_level').html($('#practice_member_visit_adduction_tension_level').val());
-  $('#heel_tension_level').html($('#practice_member_visit_heel_tension_level').val());
-  $('#eversion_tension_level').html($('#practice_member_visit_eversion_tension_level').val());
-  $('#sri_stage').html($('#practice_member_visit_sri_stage').val());
-  $('#sri_position').html($('#practice_member_visit_sri_position').val());
-  $('#sri_level_of_care').html($('#practice_member_visit_sri_level_of_care').val());
-  $('#sri_organizing_field').html($('#practice_member_visit_sri_organizing_field').val());
-  $('#ingression_organizing_field').html($('#practice_member_visit_ingression_organizing_field').val());
-  $('#egression_organizing_field').html($('#practice_member_visit_egression_organizing_field').val());
-  $('#long_lever_arm').html($('#practice_member_visit_long_lever_arm').val());
-  $('#short_lever_arm').html($('#practice_member_visit_short_lever_arm').val());
-  $('#crest').html($('#practice_member_visit_crest').val());
-  $('#short_leg_side').html($('#practice_member_visit_short_leg_side').val());
-  $('#short_leg_amount').html($('#practice_member_visit_short_leg_amount').val());
-  $('#diagnosis').html($('#practice_member_visit_diagnosis').val());
+  $('#abduction_tension_level').html($('#visit_abduction_tension_level').val());
+  $('#adduction_tension_level').html($('#visit_adduction_tension_level').val());
+  $('#heel_tension_level').html($('#visit_heel_tension_level').val());
+  $('#eversion_tension_level').html($('#visit_eversion_tension_level').val());
+  $('#sri_stage').html($('#visit_sri_stage').val());
+  $('#sri_position').html($('#visit_sri_position').val());
+  $('#sri_level_of_care').html($('#visit_sri_level_of_care').val());
+  $('#sri_organizing_field').html($('#visit_sri_organizing_field').val());
+  $('#ingression_organizing_field').html($('#visit_ingression_organizing_field').val());
+  $('#egression_organizing_field').html($('#visit_egression_organizing_field').val());
+  $('#long_lever_arm').html($('#visit_long_lever_arm').val());
+  $('#short_lever_arm').html($('#visit_short_lever_arm').val());
+  $('#crest').html($('#visit_crest').val());
+  $('#short_leg_side').html($('#visit_short_leg_side').val());
+  $('#short_leg_amount').html($('#visit_short_leg_amount').val());
+  $('#diagnosis').html($('#visit_diagnosis').val());
 
   highlight_available_gateways();
 }
@@ -98,7 +98,7 @@ function highlight_available_gateways() {
   clear_available_gateways();
 
   // get the phase selected on the visit
-  current_phase = $('#practice_member_visit_phase_' + visit_phase_currently_working).val();
+  current_phase = $('#visit_phase_' + visit_phase_currently_working).val();
   
   switch(current_phase)
   {
@@ -188,10 +188,10 @@ function clear_available_gateways() {
 // not using universal functions here to show/set/clear as there is special logic needed
 function set_phase(selected_phase) {
 	
-	set_selected_value_manual('selected_phase_' + visit_phase_currently_working, 'practice_member_visit_phase_' + visit_phase_currently_working, selected_phase);
+	set_selected_value_manual('selected_phase_' + visit_phase_currently_working, 'visit_phase_' + visit_phase_currently_working, selected_phase);
 	
 
-  // $('#practice_member_visit_phase_' + visit_phase_currently_working).val(selected_phase);
+  // $('#visit_phase_' + visit_phase_currently_working).val(selected_phase);
   
   set_visible_fields_per_selected_phase(selected_phase, visit_phase_currently_working);
     
@@ -281,14 +281,14 @@ function set_phase_gateway(calling_object) {
   gateway_value = $(calling_object).html();
   //gateway_value = remove_span_from_gateway_html($(calling_object).html());
   
-  $('#practice_member_visit_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working).val(remove_span_from_gateway_html(gateway_value));
+  $('#visit_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working).val(remove_span_from_gateway_html(gateway_value));
   $('#selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working).html(gateway_value); 
   $('#phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working + '_selector').hide();
     
   // if gateway 2 is set to same as what has been selected for this gateway, clear gateway 2
   // we only want to do this if not working gateway 2
   if(visit_gateway_currently_working=="1") {
-    selected_phase_gateway_2 = $('#practice_member_visit_phase_' + visit_phase_currently_working + '_gateway_2').val();
+    selected_phase_gateway_2 = $('#visit_phase_' + visit_phase_currently_working + '_gateway_2').val();
     if(selected_phase_gateway_2==gateway_value) {
       // clear the second gateway as are putting the same value into gateway 1
       clear_phase_gateway(visit_phase_currently_working,"2");
@@ -297,7 +297,7 @@ function set_phase_gateway(calling_object) {
   
   // do the same as above for gateway 2 affecting 
   if(visit_gateway_currently_working=="1_affecting") {
-    selected_phase_gateway_2_affecting = $('#practice_member_visit_phase_' + visit_phase_currently_working + '_gateway_2_affecting').val();
+    selected_phase_gateway_2_affecting = $('#visit_phase_' + visit_phase_currently_working + '_gateway_2_affecting').val();
     if(selected_phase_gateway_2_affecting==gateway_value) {
       // clear the second gateway as are putting the same value into gateway 1
       clear_phase_gateway(visit_phase_currently_working,"2_affecting");
@@ -317,7 +317,7 @@ function clear_phase_gateway(visit_phase, visit_gateway) {
   if(visit_phase==undefined) visit_phase = visit_phase_currently_working;
   if(visit_gateway==undefined) visit_gateway = visit_gateway_currently_working;
   
-  $('#practice_member_visit_phase_' + visit_phase + '_gateway_' + visit_gateway).val('');
+  $('#visit_phase_' + visit_phase + '_gateway_' + visit_gateway).val('');
   $('#selected_phase_' + visit_phase + '_gateway_' + visit_gateway).html(''); 
   set_phase_gateway_selector_choices('1', '', '');
   $(".selector").hide();  
@@ -333,7 +333,7 @@ function set_phase_gateway_selector_choices(selected_phase) {
   if(visit_gateway_currently_working=="2") limit_gateway = "1";
   if(visit_gateway_currently_working=="2_affecting") limit_gateway = "1_affecting";
   if(limit_gateway!="") {
-    filter_for_gateway = $('#practice_member_visit_phase_' + visit_phase_currently_working + '_gateway_' + limit_gateway).val();    
+    filter_for_gateway = $('#visit_phase_' + visit_phase_currently_working + '_gateway_' + limit_gateway).val();    
   }
   else filter_for_gateway = "";
 
@@ -575,13 +575,13 @@ function set_phase_gateway_selector_choices(selected_phase) {
 // DIRECTION
 // not using universal functions here to show/set/clear as there is special logic needed
 function set_phase_direction(direction) {
-  $('#practice_member_visit_phase_' + visit_phase_currently_working + '_direction').val(direction);
+  $('#visit_phase_' + visit_phase_currently_working + '_direction').val(direction);
   $('#selected_phase_' + visit_phase_currently_working + '_direction').html(direction); 
   $('.selector').hide();
 }
 
 function clear_phase_direction(visit_phase) {
-  $('#practice_member_visit_phase_' + visit_phase + '_direction').val('');
+  $('#visit_phase_' + visit_phase + '_direction').val('');
   
   $('#selected_phase_' + visit_phase + '_direction').html(''); 
   set_phase_direction_selector_choices(visit_phase, '');
@@ -594,7 +594,7 @@ function set_phase_direction_selector_choices(visit_phase, phase) {
   
   // always show the 'remove' selector element. if no phase, prompt for phase
   $('#no_phase_' + visit_phase + '_direction').show();  
-  if($('#practice_member_visit_phase_' + visit_phase).val()=='') {
+  if($('#visit_phase_' + visit_phase).val()=='') {
     $('#no_phase_' + visit_phase + '_direction').html('please select a phase');
   }
   else {

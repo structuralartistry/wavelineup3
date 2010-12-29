@@ -61,14 +61,14 @@ function show_selector(selector_name, calling_object, _element_to_update_inner_h
         // set gateway choices based on the selected phase and whether this is gateway_1, 2 or affecting gateway
         set_phase_and_gateway_currently_working();
                         
-        selected_phase = $('#practice_member_visit_phase_' + visit_phase_currently_working).val();
+        selected_phase = $('#visit_phase_' + visit_phase_currently_working).val();
           
         set_phase_gateway_selector_choices(selected_phase);
       }
       else if(selector_name=="phase_direction_selector") {
         set_phase_and_gateway_currently_working();
         
-        selected_phase = $('#practice_member_visit_phase_' + visit_phase_currently_working).val();
+        selected_phase = $('#visit_phase_' + visit_phase_currently_working).val();
         
         set_phase_direction_selector_choices(visit_phase_currently_working, selected_phase);
       }

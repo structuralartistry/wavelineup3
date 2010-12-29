@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PracticeMemberVisit do
+describe Visit do
   
   it { should belong_to(:practice_member) }
   

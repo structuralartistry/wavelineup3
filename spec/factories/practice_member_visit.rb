@@ -1,3 +1,3 @@
-# Factory.define :practice_member_visit do |pmv|
+# Factory.define :visit do |pmv|
 # 
 # end

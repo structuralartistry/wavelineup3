@@ -45,7 +45,7 @@
   <table class="selector_table">
     <tr>
       <% counter = 0 %>
-      <% current_user.practice.practice_members.each do |practice_member| %>
+      <% current_user.practice.my_practice_members.each do |practice_member| %>
         <!-- if counter get to expected number, create a new row so these wrap -->
         <% if counter >= 5 %>
           </tr>

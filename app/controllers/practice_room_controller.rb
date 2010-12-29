@@ -4,10 +4,10 @@ class PracticeRoomController < ApplicationController
     
     @travel_card = TravelCard.where(['practice_member_id=?', params[:id]]).first
    
-    @practice_member_visit = PracticeMemberVisit.where(["practice_member_id=?", @practice_member.id]).first
-    @practice_member_visit = PracticeMemberVisit.new if !@practice_member_visit
-    @practice_member_visit.practice_member_id = @practice_member.id
-    @practice_member_visit.save
+    @visit = Visit.where(["practice_member_id=?", @practice_member.id]).first
+    @visit = Visit.new if !@visit
+    @visit.practice_member_id = @practice_member.id
+    @visit.save
     
     acceptable_sections = %w(visit visit_list travel_card)
     if !acceptable_sections.include?(params[:visible_section])

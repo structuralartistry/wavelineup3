@@ -159,7 +159,6 @@ class User < ActiveRecord::Base
         end
       end
       return authorize_success_message
-
     
     when 'user_sessions'
       case current_role
@@ -178,6 +177,16 @@ class User < ActiveRecord::Base
       if current_role == 'guest'
         return set_autorize_failure_value(LOGIN_NOTICE)
       end
+      return authorize_success_message
+
+    when 'visits'
+      case current_role
+      when 'guest'
+        return set_autorize_failure_value(LOGIN_NOTICE)
+      when 'sysadmin'
+        return set_autorize_failure_value(LOGIN_NOTICE)
+      end
+
       return authorize_success_message
       
     else return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)

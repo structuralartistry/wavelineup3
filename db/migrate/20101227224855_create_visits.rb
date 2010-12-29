@@ -1,6 +1,6 @@
-class CreatePracticeMemberVisits < ActiveRecord::Migration
+class CreateVisits < ActiveRecord::Migration
   def self.up
-    create_table :practice_member_visits do |t|
+    create_table :visits do |t|
       t.integer :practice_member_id
       t.datetime :date
       t.string :phase_1
@@ -40,6 +40,6 @@ class CreatePracticeMemberVisits < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :practice_member_visits
+    drop_table :visits
   end
 end

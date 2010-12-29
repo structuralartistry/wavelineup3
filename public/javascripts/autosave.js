@@ -37,10 +37,10 @@ function autosave(control_id, value) {
     return;
   }  
 
-  if(control_id.indexOf("practice_member_visit")>=0) {
-    controller = "practice_member_visits";
-    qualified_field = "practice_member_visit[" + control_id.replace("practice_member_visit_", "") + "]";
-    record_id = $("#practice_member_visit_id").val();
+  if(control_id.indexOf("visit")>=0) {
+    controller = "visits";
+    qualified_field = "visit[" + control_id.replace("visit_", "") + "]";
+    record_id = $("#visit_id").val();
     update_field_to_server(controller, record_id, qualified_field, value);
     return;
   }

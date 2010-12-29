@@ -71,6 +71,7 @@ describe User do
       user.authorize('users', 'create')[:success].should == false
       user.authorize('users', 'update')[:success].should == false
       user.authorize('users', 'destroy')[:success].should == false
+      user.authorize('visits', 'update')[:success].should == false
     end
   end
 
@@ -110,6 +111,7 @@ describe User do
       user.authorize('users', 'create')[:success].should == true
       user.authorize('users', 'update')[:success].should == true
       user.authorize('users', 'destroy')[:success].should == true
+      user.authorize('visits', 'update')[:success].should == false
     end
   end
   
@@ -149,6 +151,7 @@ describe User do
       user.authorize('users', 'create')[:success].should == true
       user.authorize('users', 'update')[:success].should == true
       user.authorize('users', 'destroy')[:success].should == true
+      user.authorize('visits', 'update')[:success].should == true
     end
   end
   
@@ -188,6 +191,7 @@ describe User do
       user.authorize('users', 'create')[:success].should == true
       user.authorize('users', 'update')[:success].should == true
       user.authorize('users', 'destroy')[:success].should == true
+      user.authorize('visits', 'update')[:success].should == true
     end
   end
   
