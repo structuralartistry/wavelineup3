@@ -135,8 +135,7 @@ feature "Visit Feature", %q{
       get_selector_cell_text('selected_phase_2').should == '3'
       get_selector_cell_text('selected_phase_2_direction').should == 'L/B'
     end
-
-    
+   
     scenario "selected phase 5 has no direction" do
       # phase 1
       has_text?('Dir', 'td').should == true
@@ -155,6 +154,86 @@ feature "Visit Feature", %q{
       
       has_text?('Dir', 'td').should == false
     end
+
+    scenario "click on mini-travel card opens the travel card view" do
+      page.find(:xpath, "//div[@id='mini_travel_card']").click
+      confirm_travel_card_loaded
+    end
+    
+    scenario "values for Tension can be set and autosave" do      
+      get_selector_cell_text('short_leg_side').should == ''
+      click_selector_cell('short_leg_side')
+      get_selector_cell_text('short_leg_side').should == 'L'
+      
+      get_selector_cell_text('short_leg_amount').should == ''
+      click_selector_cell('short_leg_amount')
+      click_selector_cell('select_amount_1_15')
+      get_selector_cell_text('short_leg_amount').should == '1-1.5'
+      
+      # tension level fields
+      iteration = 0
+      tension_level_selector_cell_ids = %w(abduction_tension_level adduction_tension_level heel_tension_level eversion_tension_level)
+      tension_level_selector_cell_ids.each do |tension_level_selector_cell_id|
+        get_selector_cell_text(tension_level_selector_cell_id).should == ''
+        click_selector_cell(tension_level_selector_cell_id)
+        click_selector_cell("tension_level_#{iteration}")
+        get_selector_cell_text(tension_level_selector_cell_id).should == iteration.to_s
+        iteration += 1
+      end      
+      
+      # verify autosave
+      visit(@practice_room_visit_page)
+      get_selector_cell_text('short_leg_side').should == 'L'
+      get_selector_cell_text('short_leg_amount').should == '1-1.5'
+      
+      # tension level fields
+      iteration = 0
+      tension_level_selector_cell_ids = %w(abduction_tension_level adduction_tension_level heel_tension_level eversion_tension_level)
+      tension_level_selector_cell_ids.each do |tension_level_selector_cell_id|
+        get_selector_cell_text(tension_level_selector_cell_id).should == iteration.to_s
+        iteration += 1
+      end
+      
+    end
+
+    scenario "values for Advanced/Misc can be set and autosave" do
+      
+      get_selector_cell_text('ingression_organizing_field').should == ''
+      click_selector_cell('ingression_organizing_field')
+      click_selector_cell('select_organizing_field_h2')
+      get_selector_cell_text('ingression_organizing_field').should == 'H2'
+
+      get_selector_cell_text('egression_organizing_field').should == ''
+      click_selector_cell('egression_organizing_field')
+      click_selector_cell('select_organizing_field_h3')
+      get_selector_cell_text('egression_organizing_field').should == 'H3'
+
+      boolean_selector_cell_ids = %w(long_lever_arm short_lever_arm crest)  
+      boolean_selector_cell_ids.each do |selector_cell_id|
+        click_selector_cell(selector_cell_id)
+        get_selector_cell_text(selector_cell_id).should == 'X'
+      end
+      
+      # verify autosave
+      visit(@practice_room_visit_page)
+      get_selector_cell_text('ingression_organizing_field').should == 'H2'
+     get_selector_cell_text('egression_organizing_field').should == 'H3'
+
+      boolean_selector_cell_ids = %w(long_lever_arm short_lever_arm crest)  
+      boolean_selector_cell_ids.each do |selector_cell_id|
+        get_selector_cell_text(selector_cell_id).should == 'X'
+      end
+            
+    end
+    
+    # scenario "values for SRI can be set and autosave" do
+    # 
+    # end
+    # 
+    # scenario "values for Diagnosis and Notes can be set and autosave" do
+    # 
+    # end
+
     # 
     # scenario "gateway side should show on gateway selector in red" do
     #   
@@ -189,21 +268,6 @@ feature "Visit Feature", %q{
     #  
     #  end
     #   
-    #  scenario "values for Tension can be set and autosave" do
-    #  
-    #  end
-    #   
-    #  scenario "values for Advanced/Misc can be set and autosave" do
-    #  
-    #  end
-    #   
-    #  scenario "values for SRI can be set and autosave" do
-    #  
-    #  end
-    #   
-    #  scenario "values for Diagnosis and Notes can be set and autosave" do
-    #  
-    #  end
     #   
     #  scenario "I can change the date of a visit" do
     #  
