@@ -158,7 +158,7 @@ feature "Travel Card Feature", %q{
       tension_level_selector_cell_ids.each do |tension_level_selector_cell_id|     
         get_selector_cell_text(tension_level_selector_cell_id).should == ''
         click_selector_cell(tension_level_selector_cell_id)
-        click_selector_cell("tension_level_#{value_to_set}")
+        click_selector_cell("select_tension_level_#{value_to_set}")
         get_selector_cell_text(tension_level_selector_cell_id).should == value_to_set.to_s
         value_to_set += 1
         value_to_set = 0 if value_to_set > 5
@@ -202,7 +202,7 @@ feature "Travel Card Feature", %q{
       sri_selector_cell_ids.each do |sri_selector_cell_id|
         get_selector_cell_text(sri_selector_cell_id).should == ''
         click_selector_cell("sri_position_#{iteration}_level_of_awareness")
-        click_selector_cell("sri_level_of_awareness_#{iteration}")
+        click_selector_cell("select_sri_level_of_awareness_#{iteration}")
         get_selector_cell_text("sri_position_#{iteration}_level_of_awareness").should == iteration.to_s
         iteration += 1
       end
@@ -211,7 +211,7 @@ feature "Travel Card Feature", %q{
       # sri safety position
       get_selector_cell_text('sri_safety_position').should == ''
       click_selector_cell('sri_safety_position')
-      click_selector_cell("sri_position_3")
+      click_selector_cell("select_sri_position_3")
       get_selector_cell_text('sri_safety_position').should == '3'
       
       # buzz words

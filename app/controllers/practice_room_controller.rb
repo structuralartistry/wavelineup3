@@ -5,7 +5,10 @@ class PracticeRoomController < ApplicationController
     @travel_card = TravelCard.where(['practice_member_id=?', params[:id]]).first
    
     @visit = Visit.where(["practice_member_id=?", @practice_member.id]).first
-    @visit = Visit.new if !@visit
+    if !@visit 
+      @visit = Visit.new
+      @visit.date = Date.today
+    end
     @visit.practice_member_id = @practice_member.id
     @visit.save
     

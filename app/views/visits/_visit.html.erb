@@ -28,8 +28,9 @@
 				<td><%= render :partial => 'visits/mini_travel_card' %></td> 
         <td valign='top'>
 					<table class='selector_table'>
+						<tr><td class="half_height label">Date</td><td colspan='2' class="half_height"></td></tr>
 						<tr>
-							<td><%= f.text_field :date, :size => "10", :class => "visit_date_picker", :value => @visit.date %></td>
+							<td><%= f.text_field :date, :size => "10", :class => 'autosave' %></td>
         			<td style="width: 1.0in;" class="selector_cell selector_cell_text_six_character selector_cell_add" onMouseDown="new_visit();">New Visit</td>    
         			<td style="width: 1.0in;" class="selector_cell selector_cell_text_six_character delete" href="<%= '/visits/' + @visit.id.to_s %>">Delete</td>   
   					</tr>
@@ -37,7 +38,7 @@
 							<td colspan='3' class="half_height label">Notes</td>
 						</tr>
 						<tr>
-				      <td colspan='3'><%= f.text_area :notes, :style => "width: 300px; height: 50px", :class => 'autosave' %></td>
+				      <td colspan='3'><%= f.text_area :notes, :style => "width: 350px; height: 50px", :class => 'autosave' %></td>
 			      </tr>
 					</table>
 				</td>
@@ -103,17 +104,17 @@
         <td class="half_height label" >Crest</td>
       </tr>     
       <tr>
-        <td id="short_leg_side" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('side_selector', this, 'short_leg_side', 'visit_short_leg_side');"></td>    
-        <td id="short_leg_amount" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('short_leg_amount_selector', this, 'short_leg_amount', 'visit_short_leg_amount');"></td>    
-        <td id="heel_tension_level" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('tension_level_selector', this, 'heel_tension_level', 'visit_heel_tension_level');"></td>    
-        <td id="eversion_tension_level" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('tension_level_selector', this, 'eversion_tension_level', 'visit_eversion_tension_level');"></td>    
-        <td id="abduction_tension_level" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('tension_level_selector', this, 'abduction_tension_level', 'visit_abduction_tension_level');"></td>
-        <td id="adduction_tension_level" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('tension_level_selector', this, 'adduction_tension_level', 'visit_adduction_tension_level');"></td>    
-        <td id="ingression_organizing_field" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('organizing_field_selector', this, 'ingression_organizing_field', 'visit_ingression_organizing_field');"></td>    
-        <td id="egression_organizing_field" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('organizing_field_selector', this, 'egression_organizing_field', 'visit_egression_organizing_field');"></td>    
-        <td id="long_lever_arm" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('boolean_selector', this, 'long_lever_arm', 'visit_long_lever_arm');"></td>    
-        <td id="short_lever_arm" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('boolean_selector', this, 'short_lever_arm', 'visit_short_lever_arm');"></td>    
-        <td id="crest" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('boolean_selector', this, 'crest', 'visit_crest');"></td>    
+        <td id="short_leg_side" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('side_selector', this, 'short_leg_side', 'visit_short_leg_side');"></td>    
+        <td id="short_leg_amount" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('short_leg_amount_selector', this, 'short_leg_amount', 'visit_short_leg_amount');"></td>    
+        <td id="heel_tension_level" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('tension_level_selector', this, 'heel_tension_level', 'visit_heel_tension_level');"></td>    
+        <td id="eversion_tension_level" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('tension_level_selector', this, 'eversion_tension_level', 'visit_eversion_tension_level');"></td>    
+        <td id="abduction_tension_level" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('tension_level_selector', this, 'abduction_tension_level', 'visit_abduction_tension_level');"></td>
+        <td id="adduction_tension_level" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('tension_level_selector', this, 'adduction_tension_level', 'visit_adduction_tension_level');"></td>    
+        <td id="ingression_organizing_field" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('organizing_field_selector', this, 'ingression_organizing_field', 'visit_ingression_organizing_field');"></td>    
+        <td id="egression_organizing_field" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('organizing_field_selector', this, 'egression_organizing_field', 'visit_egression_organizing_field');"></td>    
+        <td id="long_lever_arm" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('boolean_selector', this, 'long_lever_arm', 'visit_long_lever_arm');"></td>    
+        <td id="short_lever_arm" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('boolean_selector', this, 'short_lever_arm', 'visit_short_lever_arm');"></td>    
+        <td id="crest" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('boolean_selector', this, 'crest', 'visit_crest');"></td>    
       </tr>
     </table>
     <table class="selector_table">
@@ -130,10 +131,10 @@
         <td colspan="5" style="width: 3.0in;" class="half_height label">Diagnosis</td>
       </tr> 
       <tr>    
-        <td id="sri_stage" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_stage_selector', this, 'sri_stage', 'visit_sri_stage');"></td>
-        <td id="sri_position" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_position_selector', this, 'sri_position', 'visit_sri_position');"></td>    
-        <td id="sri_level_of_care" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('level_of_care_selector', this, 'sri_level_of_care', 'visit_sri_level_of_care');"></td>    
-        <td id="sri_organizing_field" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('organizing_field_selector', this, 'sri_organizing_field', 'visit_sri_organizing_field');"></td>    
+        <td id="sri_stage" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('sri_stage_selector', this, 'sri_stage', 'visit_sri_stage');"></td>
+        <td id="sri_position" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('sri_position_selector', this, 'sri_position', 'visit_sri_position');"></td>    
+        <td id="sri_level_of_care" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('level_of_care_selector', this, 'sri_level_of_care', 'visit_sri_level_of_care');"></td>    
+        <td id="sri_organizing_field" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('organizing_field_selector', this, 'sri_organizing_field', 'visit_sri_organizing_field');"></td>    
         <td>&nbsp;&nbsp;</td>
         <td colspan="5"><%= f.text_area :diagnosis, :style => "width: 300px; height: 50px", :class => 'autosave' %></td>    
       </tr>
