@@ -267,15 +267,13 @@ feature "Travel Card Feature", %q{
         get_input_value(input_id).should == iteration.to_s
       end
       
-      programs_checkboxes_ids = %w(
-      travel_card_book_12_stages
-      travel_card_book_healing_magic
-      )
-
-      programs_checkboxes_ids.each do |checkbox_id|
-        checked?(checkbox_id).should == false
-        check(checkbox_id)
-        checked?(checkbox_id).should == true
+      programs_boolean_ids = %w(
+      book_12_stages
+      book_healing_magic)
+      programs_boolean_ids.each do |boolean_id|
+        get_selector_cell_text(boolean_id).should == ''
+        click_selector_cell(boolean_id)
+        get_selector_cell_text(boolean_id).should == 'X'
       end
       
       # toggle section
@@ -292,9 +290,9 @@ feature "Travel Card Feature", %q{
         get_input_value(input_id).should == iteration.to_s
       end     
       
-      programs_checkboxes_ids.each do |checkbox_id|
-        checked?(checkbox_id).should == true
-      end 
+      programs_boolean_ids.each do |boolean_id|
+        get_selector_cell_text(boolean_id).should == 'X'
+      end
 
     end
     

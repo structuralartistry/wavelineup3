@@ -47,40 +47,40 @@
     <table id="current_visit" class="selector_table">
       <tr>
         <td class="half_height label" >PH</td>
-        <td class="half_height label" >GW 1</td>
-        <td class="half_height label phase_1_affected_gateway_label" >Aff</td>
-        <td class="half_height label" >GW 2</td>
-        <td class="half_height label phase_1_affected_gateway_label" >Aff</td>
+        <td class="half_height label" style='width: 1.0in;'>GW 1</td>
+        <td class="half_height label phase_1_affected_gateway_label" style='width: 1.0in;'>Aff</td>
+        <td class="half_height label" style='width: 1.0in;'>GW 2</td>
+        <td class="half_height label phase_1_affected_gateway_label" style='width: 1.0in;'>Aff</td>
         <td id="phase_1_direction_label" class="half_height label" >Dir</td>
         <td class="half_height label">LOC</td>
         <td class="half_height">&nbsp;</td>
       </tr>
       <tr>
-        <td id="selected_phase_1" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_selector',this, 'phase_1', 'visit_phase_1_gateway_1');"></td>
-        <td id="selected_phase_1_gateway_1" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'phase_1_gateway_1', 'visit_phase_1_gateway_1');"></td>
-        <td id="selected_phase_1_gateway_1_affecting" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'phase_1_gateway_1_affecting', 'visit_phase_1_gateway_1_affecting');"></td>
-        <td id="selected_phase_1_gateway_2" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'phase_1_gateway_2', 'visit_phase_1_gateway_2');"></td>
-        <td id="selected_phase_1_gateway_2_affecting" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'phase_1_gateway_2_affecting', 'visit_phase_1_gateway_2_affecting');"></td>
-        <td id="selected_phase_1_direction" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_direction_selector', this, 'phase_1_direction', 'visit_phase_1_direction');"></td>
+        <td id="selected_phase_1" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_selector',this, 'selected_phase_1', 'visit_phase_1_gateway_1');"></td>
+        <td id="selected_phase_1_gateway_1" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'selected_phase_1_gateway_1', 'visit_phase_1_gateway_1');"></td>
+        <td id="selected_phase_1_gateway_1_affecting" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'selected_phase_1_gateway_1_affecting', 'visit_phase_1_gateway_1_affecting');"></td>
+        <td id="selected_phase_1_gateway_2" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'selected_phase_1_gateway_2', 'visit_phase_1_gateway_2');"></td>
+        <td id="selected_phase_1_gateway_2_affecting" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'selected_phase_1_gateway_2_affecting', 'visit_phase_1_gateway_2_affecting');"></td>
+        <td id="selected_phase_1_direction" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_direction_selector', this, 'selected_phase_1_direction', 'visit_phase_1_direction');"></td>
         <td id="selected_phase_1_level_of_care" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('level_of_care_selector', this, 'selected_phase_1_level_of_care', 'visit_phase_1_level_of_care');"></td>
         <td id="work_second_phase_button" class="selector_cell selector_cell_text_six_character selector_cell_size_medium" onClick="$('.phase_2').show(); $(this).hide();">+ 2nd Phase</td>
       </tr> 
-      <tr class='phase_2 hidden'>
-        <td class="half_height label" >Ph</td>
-        <td class="half_height label" >Gwy 1</td>
-        <td class="half_height label phase_2_affected_gateway_label" >Aff</td>
-        <td class="half_height label" >Gwy 2</td>
-        <td class="half_height label phase_2_affected_gateway_label" >Aff</td>
+      <tr class='phase_2 hidden'>	
+	      <td class="half_height label" >PH</td>
+        <td class="half_height label" style='width: 1.0in;'>GW 1</td>
+        <td class="half_height label phase_2_affected_gateway_label" style='width: 1.0in;'>Aff</td>
+        <td class="half_height label" style='width: 1.0in;'>GW 2</td>
+        <td class="half_height label phase_2_affected_gateway_label" style='width: 1.0in;'>Aff</td>
         <td id="phase_2_direction_label" class="half_height label" >Dir</td>
         <td class="half_height label">LOC</td>
       </tr>
       <tr class='phase_2 hidden'>
-        <td id="selected_phase_2" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_selector',this, 'phase_2', 'visit_phase_2_gateway_2');"></td>
-        <td id="selected_phase_2_gateway_1" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'phase_2_gateway_1', 'visit_phase_2_gateway_1');"></td>
-        <td id="selected_phase_2_gateway_1_affecting" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'phase_2_gateway_1_affecting', 'visit_phase_2_gateway_1_affecting');"></td>
-        <td id="selected_phase_2_gateway_2" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'phase_2_gateway_2', 'visit_phase_2_gateway_2');"></td>
-        <td id="selected_phase_2_gateway_2_affecting" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'phase_2_gateway_2_affecting', 'visit_phase_2_gateway_2_affecting');"></td>
-        <td id="selected_phase_2_direction" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_direction_selector', this, 'phase_2_direction', 'visit_phase_2_direction');"></td>
+        <td id="selected_phase_2" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_selector',this, 'selected_phase_2', 'visit_phase_2_gateway_2');"></td>
+        <td id="selected_phase_2_gateway_1" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'selected_phase_2_gateway_1', 'visit_phase_2_gateway_1');"></td>
+        <td id="selected_phase_2_gateway_1_affecting" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'selected_phase_2_gateway_1_affecting', 'visit_phase_2_gateway_1_affecting');"></td>
+        <td id="selected_phase_2_gateway_2" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'selected_phase_2_gateway_2', 'visit_phase_2_gateway_2');"></td>
+        <td id="selected_phase_2_gateway_2_affecting" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_gateway_selector', this, 'selected_phase_2_gateway_2_affecting', 'visit_phase_2_gateway_2_affecting');"></td>
+        <td id="selected_phase_2_direction" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('phase_direction_selector', this, 'selected_phase_2_direction', 'visit_phase_2_direction');"></td>
         <td id="selected_phase_2_level_of_care" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('level_of_care_selector', this, 'selected_phase_2_level_of_care', 'visit_phase_2_level_of_care');"></td>
       </tr>  
 

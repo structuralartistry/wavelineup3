@@ -203,6 +203,10 @@ select,
   text-align: center;
 }
 
+.gateway_selector_cell {
+	width: 1.0in;
+}
+
 div.selector {
   /* to hold coloring but not location */
   /*background-color: aqua;*/
@@ -261,7 +265,11 @@ span.section_internal_label {
 	border: 3px solid yellow;
 }
 
-.gateway_selector_side_highlight {
+.gateway_selector_side_highlight_l {
+  color: blue;
+}
+
+.gateway_selector_side_highlight_r {
   color: red;
 }
 

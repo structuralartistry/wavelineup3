@@ -73,40 +73,44 @@
     <div id="phase_gateway_selector" class="selector hidden">
       <table class="selector_table">
         <tr>
-          <td id="select_gateway_occ" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.dominant_occiput %></span>OCC</td> 
-          <td id="select_gateway_occ_c1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_occ_c1 %></span>OCC/C1</td> 
-          <td id="select_gateway_c1_occ" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_c1_occ %></span>C1/OCC</td> 
-          <td id="select_gateway_c1_c2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_c1_c2 %></span>C1/C2</td> 
-          <td id="select_gateway_c2_c1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_c2_c1 %></span>C2/C1</td> 
-          <td id="select_gateway_c2_c3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_c2_c3 %></span>C2/C3</td> 
-          <td id="select_gateway_c3_c2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_c3_c2 %></span>C3/C2</td> 
-          <td id="select_gateway_c3_c4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_c3_c4 %></span>C3/C4</td> 
-          <td id="select_gateway_c4_c3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_c4_c3 %></span>C4/C3</td> 
-          <td id="select_gateway_c4_c5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_c4_c5 %></span>C4/C5</td> 
-          <td id="select_gateway_c5_c4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_c5_c4 %></span>C5/C4</td> 
+          <td id="select_gateway_occ" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">OCC</td> 
+          <td id="select_gateway_occ_c1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">OCC/C1</td> 
+          <td id="select_gateway_c1_occ" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C1/OCC</td> 
+          <td id="select_gateway_c1_c2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C1/C2</td> 
+          <td id="select_gateway_c2_c1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C2/C1</td> 
+          <td id="select_gateway_c2_c3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C2/C3</td> 
         </tr>
-        <tr>
-          <td id="select_gateway_c5_c6" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_c5_c6 %></span>C5/C6</td> 
-          <td id="select_gateway_c6_c5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_c6_c5 %></span>C6/C5</td> 
-          <td id="select_gateway_c6_c7" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_c6_c7 %></span>C6/C7</td> 
-          <td id="select_gateway_c7_c6" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_c7_c6 %></span>C7/C6</td> 
-          <td id="select_gateway_c7_t1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_c7_t1 %></span>C7/T1</td> 
-          <td id="select_gateway_t1_c7" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_t1_c7 %></span>T1/C7</td> 
-          <td id="select_gateway_t1_t2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_t1_t2 %></span>T1/T2</td> 
-          <td id="select_gateway_t2_t1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_t2_t1 %></span>T2/T1</td> 
-          <td id="select_gateway_t2_t3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_t2_t3 %></span>T2/T3</td> 
-          <td id="select_gateway_t3_t2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_t3_t2 %></span>T3/T2</td> 
+				<tr>
+					<td id="select_gateway_c3_c2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C3/C2</td> 
+          <td id="select_gateway_c3_c4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C3/C4</td> 
+          <td id="select_gateway_c4_c3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C4/C3</td> 
+          <td id="select_gateway_c4_c5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C4/C5</td> 
+          <td id="select_gateway_c5_c4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C5/C4</td> 
+          <td id="select_gateway_c5_c6" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C5/C6</td> 
         </tr>
-        <tr>
-          <td id="select_gateway_s1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_s1 %></span>S1</td> 
-          <td id="select_gateway_s2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_s2 %></span>S2</td> 
-          <td id="select_gateway_s3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_s3 %></span>S3</td> 
-          <td id="select_gateway_s4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_s4 %></span>S4</td> 
-          <td id="select_gateway_s5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_s5 %></span>S5</td> 
-          <td id="select_gateway_sac" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);">SAC</td> 
-          <td id="select_gateway_cx" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);"><span class="gateway_selector_side_highlight"><%= @travel_card.gateway_cx %></span>CX</td> 
-          <td id="select_gateway_apex" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="set_phase_gateway(this);">APEX</td> 
-          <td id="select_gateway_no_gateway" class="selector_cell gateway_selection_cell selector_cell_text_three_character" onMouseDown="clear_phase_gateway();"> </td> 
+				<tr>
+          <td id="select_gateway_c6_c5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C6/C5</td> 
+          <td id="select_gateway_c6_c7" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C6/C7</td> 
+          <td id="select_gateway_c7_c6" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C7/C6</td> 
+          <td id="select_gateway_c7_t1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C7/T1</td> 
+          <td id="select_gateway_t1_c7" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T1/C7</td> 
+          <td id="select_gateway_t1_t2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T1/T2</td> 
+        </tr>
+				<tr>
+          <td id="select_gateway_t2_t1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T2/T1</td> 
+          <td id="select_gateway_t2_t3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T2/T3</td> 
+          <td id="select_gateway_t3_t2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T3/T2</td> 
+          <td id="select_gateway_s1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S1</td> 
+          <td id="select_gateway_s2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S2</td> 
+          <td id="select_gateway_s3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S3</td> 
+        </tr>
+				<tr>
+					<td id="select_gateway_s4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S4</td> 
+          <td id="select_gateway_s5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S5</td> 
+          <td id="select_gateway_sac" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">SAC</td> 
+          <td id="select_gateway_cx" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">CX</td> 
+          <td id="select_gateway_apex" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">APEX</td> 
+          <td id="select_gateway_no_gateway" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="clear_phase_gateway();"> </td> 
         </tr>
       </table>
     </div>

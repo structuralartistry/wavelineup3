@@ -64,3 +64,10 @@ end
 def selector_cell_selected?(selector_cell_text)
   page.has_xpath?(selector_cell_xpath(selector_cell_text, true), :visible => true)
 end
+
+def verify_gateway_selector(id, side_text, gateway_text)
+  get_selector_cell_text(id).should == "#{side_text} #{gateway_text}".strip
+  if side_text != ''
+    page.find(:xpath, "//td[@id='#{id}']/span[@class='gateway_selector_side_highlight_#{side_text.downcase}']").text.should == side_text
+  end
+end

@@ -283,63 +283,121 @@ feature "Visit Feature", %q{
       get_element_text('visit_diagnosis').should == 'I diagnose no diagnosis'
       get_element_text('visit_notes').should == 'I note no notes'
     end
-
-    # 
-    # scenario "gateway side should show on gateway selector in red" do
-    #   
-    # end 
-    #   
-    # # move this to travel card
-    #  scenario "travel card shows the right gateways with the right coloring" do 
-    #  
-    #  end
-    #   
-    #  scenario "if this practice member has a visit already today then show it, otherwise just show the new visit button" do
-    #  
-    #  end
-    #   
-    #  scenario "the mini-travel card should show the right gateways with the right coloring" do
-    #  
-    #  end
-    #   
-    #  scenario "the mini-travel card should highlight available gateways when a phase is selected for Phase 1" do
-    #  
-    #  end
-    #   
-    #  scenario "the mini-travel card should highlight available gateways when a phase is selected for Phase 2" do
-    #  
-    #  end
-    #   
-    #  scenario "values for Phase 1 can be set and autosave" do
-    #  
-    #  end
-    #   
-    #  scenario "values for Phase 2 can be set and autosave" do
-    #  
-    #  end
-    #   
-    #   
-    #  scenario "I can change the date of a visit" do
-    #  
-    #  end
-    #   
-    #  scenario "I can delete a visit" do
-    #  
-    #  end
-    #   
-    #  scenario "I can see the Visit List" do
-    #  
-    #  end
-    #   
-    #  scenario "The Visit List refreshes when accessed to show even the newest Visit" do
-    #  
-    #  end 
-    #   
-    #  scenario "When I select a visit from the Visit List it shows in the Visit section" do
-    #  
-    #  end
     
   end
+  
+  context "test gateway selector side text and coloring", :js => true do
+    before(:each) do
+      practice_name = 'StructuralArtistry practice'
+      logged_in_as_role_for_practice(:practice_user, practice_name)
+      practice_member = create_practice_member('Kahn, David Nathan', practice_name)
+      @practice_room_visit_page = "/practice_room/#{practice_member.id}/visit"
+      @practice_room_travel_card_page = "/practice_room/#{practice_member.id}/travel_card"
+       
+      travel_card = TravelCard.where("practice_member_id=#{practice_member.id}").first
+      travel_card.gateway_occ_c1 = 'L'
+      travel_card.save
+# have to load and reload to create visit... in a bit this will go away and we will have to ask to create a visit            
+      visit(@practice_room_visit_page)
+      confirm_visit_loaded
+      
+      @visit = Visit.where("practice_member_id=#{practice_member.id}").first
+      @visit.phase_1 = 5
+      @visit.save
+      
+      visit(@practice_room_visit_page)
+    end
+    
+    scenario "gateway selector shows the gateway directions color coded on page load" do
+      click_selector_cell('selected_phase_1_gateway_1')
+      verify_gateway_selector('select_gateway_occ_c1', 'L', 'OCC/C1')
+    end
+    
+    scenario "gateway selector updates based on changes to the travel card without reloading the page" do  
+      click_selector_cell('selected_phase_1_gateway_1')
+      verify_gateway_selector('select_gateway_occ_c1', 'L', 'OCC/C1')
+      
+      # change value on the travel card 
+      click_selector_cell('TC')
+      click_selector_cell('gateway_occ_c1')
+      get_selector_cell_text('gateway_occ_c1').should == 'R'
+      
+      # return to visit and verify that the value propogated both to the set value and the selector
+      click_selector_cell('V')
+      click_selector_cell('selected_phase_1_gateway_1')
+      verify_gateway_selector('select_gateway_occ_c1', 'R', 'OCC/C1')
+    end
+    
+    scenario "selected gateways show the gateways directions on page load" do
+      @visit.phase_1_gateway_1 = 'OCC/C1'
+      @visit.save
+      visit(@practice_room_visit_page)
+      verify_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
+    end
+    
+    scenario "selected gateways show the a gateways' new direction after being changed on the travel card" do
+      @visit.phase_1_gateway_1 = 'OCC/C1'
+      @visit.save
+      visit(@practice_room_visit_page)
+      verify_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
+      
+      # change value on the travel card 
+      click_selector_cell('TC')
+      click_selector_cell('gateway_occ_c1')
+      get_selector_cell_text('gateway_occ_c1').should == 'R'
+      
+      # return to visit and verify that the value propogated both to the set value and the selector
+      click_selector_cell('V')
+      verify_gateway_selector('selected_phase_1_gateway_1', 'R', 'OCC/C1')
+      
+      # change value on the travel card again
+      click_selector_cell('TC')
+      click_selector_cell('gateway_occ_c1')
+      get_selector_cell_text('gateway_occ_c1').should == ''
+      
+      # return to visit and verify that the value propogated both to the set value and the selector
+      click_selector_cell('V')
+      verify_gateway_selector('selected_phase_1_gateway_1', '', 'OCC/C1')
+    end
+    
+  end
+  
+  # # move this to travel card
+  #  scenario "travel card shows the right gateways with the right coloring" do 
+  #  
+  #  end
+  #   
+  #  scenario "if this practice member has a visit already today then show it, otherwise just show the new visit button" do
+  #  
+  #  end
+  #   
+  #  scenario "the mini-travel card should show the right gateways with the right coloring" do
+  #  
+  #  end
+  #   
+  #  scenario "the mini-travel card should highlight available gateways when a phase is selected for Phase 1" do
+  #  
+  #  end
+  #   
+  #  scenario "the mini-travel card should highlight available gateways when a phase is selected for Phase 2" do
+  #  
+  #  end
+  #   
+  #  scenario "I can delete a visit" do
+  #  
+  #  end
+  #   
+  #  scenario "I can see the Visit List" do
+  #  
+  #  end
+  #   
+  #  scenario "The Visit List refreshes when accessed to show even the newest Visit" do
+  #  
+  #  end 
+  #   
+  #  scenario "When I select a visit from the Visit List it shows in the Visit section" do
+  #  
+  #  end
 
   
 end

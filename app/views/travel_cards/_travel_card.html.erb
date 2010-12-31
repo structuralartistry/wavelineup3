@@ -185,12 +185,8 @@
           <td>
             <%= f.text_field :number_ultimatum, :size => 3, :class => 'autosave' %>
           </td>
-          <td align="center">
-            <%= f.check_box :book_12_stages, :onclick => "autosave($(this).attr('id'), $(this).val())" %>
-          </td>
-          <td align="center">
-            <%= f.check_box :book_healing_magic, :onclick => "autosave($(this).attr('id'),  $(this).val())" %>
-          </td>
+	        <td id="book_12_stages" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('boolean_selector', this, 'book_12_stages', 'travel_card_book_12_stages');"></td>
+	        <td id="book_healing_magic" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('boolean_selector', this, 'book_healing_magic', 'travel_card_book_healing_magic');"></td>
         </tr>
       </table>
       
@@ -251,6 +247,10 @@
         <%= f.hidden_field :sri_position_2_level_of_awareness %>
         <%= f.hidden_field :sri_position_3_level_of_awareness %>
         <%= f.hidden_field :sri_safety_position %>
+
+				<%= f.hidden_field :book_12_stages %>
+				<%= f.hidden_field :book_healing_magic %>
+
       <% end %>    
     </td>
   </tr>

@@ -8,14 +8,15 @@ function mini_travel_card_set_values_from_hidden_fields() {
 	$('#mini_travel_card_level_of_care').html($('#travel_card_level_of_care').val());
 
 	// L/R selectors
-	$('#mini_travel_card_dominant_occiput').removeClass('mini_travel_card_cell'); // remove the existing color of cell if there is a value
+	value = $('#travel_card_dominant_occiput').val();
+	set_mini_travel_card_text_and_field_color_class('mini_travel_card_dominant_occiput', value);
 	$('#mini_travel_card_dominant_occiput').html($('#travel_card_dominant_occiput').val()).addClass($('#travel_card_dominant_occiput').val());
 	// gateways
 	lr_selectors = new Array('occ_c1', 'c1_occ', 'c1_c2', 'c2_c1', 'c2_c3', 'c3_c2', 'c3_c4', 'c4_c3', 'c4_c5', 'c5_c4', 'c5_c6', 'c6_c5', 'c6_c7', 'c7_c6', 'c7_t1', 't1_c7', 't1_t2', 't2_t1', 't2_t3', 't3_t2', 's1', 's2', 's3', 's4', 's5', 'cx')
   for (key in lr_selectors) {
 		value = $('#travel_card_gateway_' + lr_selectors[key]).val();
-		if(value != '') $('#mini_travel_card_gateway_' + lr_selectors[key]).removeClass('mini_travel_card_cell'); // remove the existing color of cell if there is a value
-		$('#mini_travel_card_gateway_' + lr_selectors[key]).html(value).addClass(value); // add class which is the color for the selected gateway
+		set_mini_travel_card_text_and_field_color_class('mini_travel_card_gateway_' + lr_selectors[key], value); // remove the existing color of cell if there is a value
+		// $('#mini_travel_card_gateway_' + lr_selectors[key]).html(value).addClass(value); // add class which is the color for the selected gateway
 	}
 
   $('#mini_travel_card_leading_bme_strategy').html($('#travel_card_leading_bme_strategy').val());
@@ -23,6 +24,18 @@ function mini_travel_card_set_values_from_hidden_fields() {
   set_third_bme_strategy();
 
   $('#mini_travel_card_full_respiratory_wave').html($('#travel_card_full_respiratory_wave').val());
+}
+
+function set_mini_travel_card_text_and_field_color_class(field_id, side_value) {
+	// remove all color classes
+	$('#' + field_id).removeClass('mini_travel_card_cell').removeClass('L').removeClass('R');
+	
+	// set the value
+	$('#' + field_id).html(side_value);
+	
+	// set the css color
+	if(side_value=='L' || side_value=='R') $('#' + field_id).addClass(side_value);
+	else 	$('#' + field_id).addClass('mini_travel_card_cell');
 }
 
 
@@ -33,10 +46,10 @@ function visit_set_values_from_hidden_fields() {
   phase_1 = $('#visit_phase_1').val();
   $('#selected_phase_1').html(phase_1);
   set_visible_fields_per_selected_phase(phase_1, "1");
-  $('#selected_phase_1_gateway_1').html(add_span_to_gateway_html($('#visit_phase_1_gateway_1').val()));
-  $('#selected_phase_1_gateway_1_affecting').html(add_span_to_gateway_html($('#visit_phase_1_gateway_1_affecting').val()));
-  $('#selected_phase_1_gateway_2').html(add_span_to_gateway_html($('#visit_phase_1_gateway_2').val()));
-  $('#selected_phase_1_gateway_2_affecting').html(add_span_to_gateway_html($('#visit_phase_1_gateway_2_affecting').val()));
+  $('#selected_phase_1_gateway_1').html(add_side_span_to_gateway_text($('#visit_phase_1_gateway_1').val()));
+  $('#selected_phase_1_gateway_1_affecting').html(add_side_span_to_gateway_text($('#visit_phase_1_gateway_1_affecting').val()));
+  $('#selected_phase_1_gateway_2').html(add_side_span_to_gateway_text($('#visit_phase_1_gateway_2').val()));
+  $('#selected_phase_1_gateway_2_affecting').html(add_side_span_to_gateway_text($('#visit_phase_1_gateway_2_affecting').val()));
   $('#selected_phase_1_direction').html($('#visit_phase_1_direction').val());
   $('#selected_phase_1_level_of_care').html($('#visit_phase_1_level_of_care').val());
 
@@ -44,10 +57,10 @@ function visit_set_values_from_hidden_fields() {
   phase_2 = $('#visit_phase_2').val();
   $('#selected_phase_2').html(phase_2);
   set_visible_fields_per_selected_phase(phase_2, "2");
-  $('#selected_phase_2_gateway_1').html(add_span_to_gateway_html($('#visit_phase_2_gateway_1').val()));
-  $('#selected_phase_2_gateway_1_affecting').html(add_span_to_gateway_html($('#visit_phase_2_gateway_1_affecting').val()));
-  $('#selected_phase_2_gateway_2').html(add_span_to_gateway_html($('#visit_phase_2_gateway_2').val()));
-  $('#selected_phase_2_gateway_2_affecting').html(add_span_to_gateway_html($('#visit_phase_2_gateway_2_affecting').val()));
+  $('#selected_phase_2_gateway_1').html(add_side_span_to_gateway_text($('#visit_phase_2_gateway_1').val()));
+  $('#selected_phase_2_gateway_1_affecting').html(add_side_span_to_gateway_text($('#visit_phase_2_gateway_1_affecting').val()));
+  $('#selected_phase_2_gateway_2').html(add_side_span_to_gateway_text($('#visit_phase_2_gateway_2').val()));
+  $('#selected_phase_2_gateway_2_affecting').html(add_side_span_to_gateway_text($('#visit_phase_2_gateway_2_affecting').val()));
   $('#selected_phase_2_direction').html($('#visit_phase_2_direction').val());
   $('#selected_phase_2_level_of_care').html($('#visit_phase_2_level_of_care').val());
   // determine if we hide phase 2
@@ -247,25 +260,24 @@ function set_visible_fields_per_selected_phase(phase, visit_phase) {
 }
 
 // GATEWAYS
-// not using universal functions here to show/set/clear as there is special logic needed
-function show_phase_gateway_selector() {
-  // add class to the phase gateway selector div which sets what phase 
-  
-  // we would normally just call 'show_selector' but we need to do the
-  // additional step of setting what gateways are available for both 
-  // the phase and for the gateway (i.e. gateway 2 should not have
-  // as an option the selcted gateway 1 value)
+
+function add_side_span_to_gateway_text(gateway_name) {
+	gateway_side = get_gateway_side(gateway_name);
+  if(gateway_side=="L") return "<span class=\"gateway_selector_side_highlight_l\">" + gateway_side + " </span>" + gateway_name;
+	if(gateway_side=="R") return "<span class=\"gateway_selector_side_highlight_r\">" + gateway_side + " </span>" + gateway_name;
+  return gateway_name;
 }
 
-function add_span_to_gateway_html(hidden_field_gateway_value) {
-  // get the first character of the string, which would be what we want to add the span to
-  // if the value is 'L' or 'R'
-  candidate_to_add_span = hidden_field_gateway_value.substring(0,1);
-  if(candidate_to_add_span=="L" || candidate_to_add_span=="R") {
-    remaining_string = hidden_field_gateway_value.substring(1);
-    return "<span class=\"gateway_selector_side_highlight\">" + candidate_to_add_span + "</span>" + remaining_string;
-  }
-  else return hidden_field_gateway_value;
+function get_gateway_side(gateway) {
+	if(gateway=='OCC') travel_card_gateway_control_id = 'travel_card_dominant_occiput'
+	else {
+		travel_card_gateway_control_id = 'travel_card_gateway_' + normalize_gateway(gateway);
+	}
+	return $('#' + travel_card_gateway_control_id).val();
+}
+
+function normalize_gateway(gateway_text) {
+	return gateway_text.toLowerCase().replace(/\//, '_');
 }
 
 function remove_span_from_gateway_html(raw_gateway_value) {
@@ -567,6 +579,15 @@ function set_phase_gateway_selector_choices(selected_phase) {
       }     
       break;
   }
+}
+
+function set_phase_gateway_selector_visible_text() {
+	gateways = new Array('OCC', 'OCC/C1', 'C1/OCC', 'C1/C2', 'C2/C1', 'C2/C3', 'C3/C2', 'C3/C4', 'C4/C3', 'C4/C5', 'C5/C4', 'C5/C6', 'C6/C5', 'C6/C7', 'C7/C6', 'C7/T1', 'T1/C7', 'T1/T2', 'T2/T1', 'T2/T3', 'T3/T2', 'S1', 'S2', 'S3', 'S4', 'S5', 'SAC', 'APEX');
+	for(key in gateways) {
+		gateway_text = gateways[key];
+		gateway_side = get_gateway_side(gateway_text);
+		$('#select_gateway_' + normalize_gateway(gateway_text)).html(add_side_span_to_gateway_text(gateway_text));
+	}
 }
 
 // DIRECTION

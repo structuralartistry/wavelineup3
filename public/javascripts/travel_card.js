@@ -63,6 +63,8 @@ function show_selector(selector_name, calling_object, _element_to_update_inner_h
                         
         selected_phase = $('#visit_phase_' + visit_phase_currently_working).val();
           
+				set_phase_gateway_selector_visible_text();
+
         set_phase_gateway_selector_choices(selected_phase);
       }
       else if(selector_name=="phase_direction_selector") {
