@@ -186,7 +186,7 @@ select,
 .keyboard_selector_cell_spacebar {
   background-color: #e0e0e0; /*#ECE0A1;*/
   color: #000033;
-  border: 2px solid #f0f0f0;
+  border: 1px solid darkgray;
 }
 
 .selector_cell_nav {
@@ -213,7 +213,7 @@ div.selector {
   background-color: lightyellow;
   z-index: 100;
   position: absolute;
-  border: 3px solid #e0e0e0;
+  border: 1px solid #000033;
 }
 
 input,
