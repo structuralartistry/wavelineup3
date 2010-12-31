@@ -257,14 +257,6 @@ span.section_internal_label {
   background-color: #50A0EB;
 }
 
-
-.highlighted {
-  /*background-color: #60a0e0;*/
-/*  background-color: #D38B85;*/
-  /* background-color: #804060; */
-	border: 3px solid yellow;
-}
-
 .gateway_selector_side_highlight_l {
   color: blue;
 }
@@ -548,6 +540,13 @@ div#mini_travel_card {
 	background-color: #e0e0e0; /*#ECE0A1;*/
   color: #000033;
   border: 2px solid #f0f0f0;
+}
+
+.highlighted {
+  /*background-color: #60a0e0;*/
+/*  background-color: #D38B85;*/
+  /* background-color: #804060; */
+	border: 3px solid yellow;
 }
 
 

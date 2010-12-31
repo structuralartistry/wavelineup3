@@ -266,7 +266,6 @@ feature "Visit Feature", %q{
       
     end
 
-    
     scenario "values for Diagnosis and Notes can be set and autosave" do
       get_element_text('visit_diagnosis').should == ''
       fill_in('visit_diagnosis', :with => 'I diagnose no diagnosis')
@@ -282,6 +281,38 @@ feature "Visit Feature", %q{
       visit(@practice_room_visit_page)
       get_element_text('visit_diagnosis').should == 'I diagnose no diagnosis'
       get_element_text('visit_notes').should == 'I note no notes'
+    end
+
+    scenario "the mini-travel card should highlight available gateways when a phase is selected for Phase 1" do
+      # phase 1 - set phase 2 C1
+      verify_is_highlighted?('mini_travel_card_gateway_c1_occ').should == false
+      verify_is_highlighted?('mini_travel_card_gateway_c1_c2').should == false
+
+      click_selector_cell('selected_phase_1')
+      click_selector_cell('select_phase_2_1_c1')
+
+      verify_is_highlighted?('mini_travel_card_gateway_c1_occ').should == true
+      verify_is_highlighted?('mini_travel_card_gateway_c1_c2').should == true      
+
+      # phase 2
+      click_selector_cell('work_second_phase_button')
+      
+      verify_is_highlighted?('mini_travel_card_gateway_c2_c1').should == false
+      verify_is_highlighted?('mini_travel_card_gateway_c2_c3').should == false
+      verify_is_highlighted?('mini_travel_card_gateway_c3_c2').should == false
+      verify_is_highlighted?('mini_travel_card_gateway_c3_c4').should == false
+
+      click_selector_cell('selected_phase_2')
+      click_selector_cell('select_phase_4')
+
+      verify_is_highlighted?('mini_travel_card_gateway_c2_c1').should == true
+      verify_is_highlighted?('mini_travel_card_gateway_c2_c3').should == true
+      verify_is_highlighted?('mini_travel_card_gateway_c3_c2').should == true
+      verify_is_highlighted?('mini_travel_card_gateway_c3_c4').should == true
+    end
+
+    scenario "the mini-travel card should highlight available gateways when a phase is selected for Phase 2" do
+
     end
     
   end
@@ -375,13 +406,6 @@ feature "Visit Feature", %q{
   #  
   #  end
   #   
-  #  scenario "the mini-travel card should highlight available gateways when a phase is selected for Phase 1" do
-  #  
-  #  end
-  #   
-  #  scenario "the mini-travel card should highlight available gateways when a phase is selected for Phase 2" do
-  #  
-  #  end
   #   
   #  scenario "I can delete a visit" do
   #  

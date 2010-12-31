@@ -153,6 +153,7 @@ function highlight_available_gateways() {
       break;
       
     case "5":
+			$("#mini_travel_card_dominant_occiput").addClass("highlighted");
       $("#mini_travel_card_gateway_occ_c1").addClass("highlighted");
       $("#mini_travel_card_gateway_c1_occ").addClass("highlighted");
       $("#mini_travel_card_gateway_c1_c2").addClass("highlighted");
