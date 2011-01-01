@@ -324,6 +324,70 @@ feature "Visit Feature", %q{
 
     end
     
+    scenario "when selecting Phase 1 > 2 C1, 1 > 2 C5, 1 > 4 the second gateway affecting can be the same as the first gateway affecting" do
+      # Louis: on phase 1>2 (both C1 and C5) and for phase 1>4:  the second gateway 'affecting' choice can still be the affected gateway 
+      # from the first contact. example: I make an occiput contact to affect Left C1/2, I can then also make an S1 contact to 
+      # affect Left C1/2.  So basically, I can use another part of the spine to affect the same gateway or go for affecting a 
+      # different gateway within that phase.
+      
+      # 1 > 2 C1
+      click_selector_cell('selected_phase_1')
+      click_selector_cell('select_phase_1_2_c1')
+      click_selector_cell('selected_phase_1_gateway_1_affecting')
+      expected_gateway_choice_ids = %w(select_gateway_c1_occ select_gateway_c1_c2)
+      expected_gateway_choice_ids.each {|id| selector_cell_present?(id).should == true}
+      click_selector_cell('select_gateway_') # close dialog
+      
+      click_selector_cell('selected_phase_1_gateway_2_affecting')
+      expected_gateway_choice_ids.each {|id| selector_cell_present?(id).should == true}
+      click_selector_cell('select_gateway_') # close dialog
+      
+      # 1 > 2 C5
+      click_selector_cell('selected_phase_1')
+      click_selector_cell('select_phase_1_2_c5')
+      click_selector_cell('selected_phase_1_gateway_1_affecting')
+      expected_gateway_choice_ids = %w(
+        select_gateway_c3_c4
+        select_gateway_c4_c3
+        select_gateway_c4_c5
+        select_gateway_c5_c4
+        select_gateway_c5_c6
+        select_gateway_c6_c5
+        select_gateway_c6_c7
+        select_gateway_c7_c6
+        select_gateway_c7_t1
+        select_gateway_t1_c7
+        select_gateway_t1_t2
+        select_gateway_t2_t1
+        select_gateway_t2_t3
+        select_gateway_t3_t2)
+      expected_gateway_choice_ids.each {|id| selector_cell_present?(id).should == true}
+      click_selector_cell('select_gateway_') # close dialog
+      
+      click_selector_cell('selected_phase_1_gateway_2_affecting')
+      expected_gateway_choice_ids.each {|id| selector_cell_present?(id).should == true}
+      click_selector_cell('select_gateway_') # close dialog
+      
+      # 1 > 4
+      click_selector_cell('selected_phase_1')
+      click_selector_cell('select_phase_1_4')
+      click_selector_cell('selected_phase_1_gateway_1_affecting')
+      expected_gateway_choice_ids = %w(
+        select_gateway_c2_c1
+        select_gateway_c2_c3
+        select_gateway_c3_c2
+        select_gateway_c3_c4)
+      expected_gateway_choice_ids.each {|id| selector_cell_present?(id).should == true}      
+      click_selector_cell('select_gateway_') # close dialog
+      
+      click_selector_cell('selected_phase_1_gateway_2_affecting')
+      expected_gateway_choice_ids.each {|id| selector_cell_present?(id).should == true}
+      click_selector_cell('select_gateway_') # close dialog
+    end
+    
+    
+    
+    
   end
   
   context "test mini-travel card", :js => true do
@@ -462,11 +526,7 @@ feature "Visit Feature", %q{
     
   end
   
-  # # move this to travel card
-  #  scenario "travel card shows the right gateways with the right coloring" do 
-  #  
-  #  end
-  #   
+
   #  scenario "if this practice member has a visit already today then show it, otherwise just show the new visit button" do
   #  
   #  end

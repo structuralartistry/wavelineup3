@@ -343,19 +343,22 @@ function set_phase_gateway_selector_choices(selected_phase) {
   if(visit_gateway_currently_working=="2") limit_gateway = "1";
   if(visit_gateway_currently_working=="2_affecting") limit_gateway = "1_affecting";
   if(limit_gateway!="") {
-    filter_for_gateway = $('#visit_phase_' + visit_phase_currently_working + '_gateway_' + limit_gateway).val();    
-  }
+		// do not filter in these phases: 1 > 2 C1, 1 > 2 C5, 1 > 4, as the second gateway affected could be same as the first
+		if(selected_phase!='1 > 2 C1' && selected_phase!='1 > 2 C5' && selected_phase!='1 > 4') {
+    	filter_for_gateway = $('#visit_phase_' + visit_phase_currently_working + '_gateway_' + limit_gateway).val();    
+  	}
+	}
   else filter_for_gateway = "";
 
   $(".gateway_selection_cell").hide();
   
   // always show the blank selector element. if no phase, prompt for phase
-  $('#select_gateway_no_gateway').show();  
+  $('#select_gateway_').show();  
   if(selected_phase=='') {
-    $('#select_gateway_no_gateway').html('please select a phase');
+    $('#select_gateway_').html('please select a phase');
   }
   else {
-    $('#select_gateway_no_gateway').html(' ');
+    $('#select_gateway_').html(' ');
   }
   
   switch(selected_phase)
