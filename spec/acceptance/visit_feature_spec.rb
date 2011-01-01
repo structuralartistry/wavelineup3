@@ -294,36 +294,136 @@ feature "Visit Feature", %q{
 
     scenario "the mini-travel card should highlight available gateways when a phase is selected for Phase 1" do
       # phase 1 - set phase 2 C1
-      verify_is_highlighted?('mini_travel_card_gateway_c1_occ').should == false
-      verify_is_highlighted?('mini_travel_card_gateway_c1_c2').should == false
+      verify_highlighted?('mini_travel_card_gateway_c1_occ').should == false
+      verify_highlighted?('mini_travel_card_gateway_c1_c2').should == false
 
       click_selector_cell('selected_phase_1')
       click_selector_cell('select_phase_2_1_c1')
 
-      verify_is_highlighted?('mini_travel_card_gateway_c1_occ').should == true
-      verify_is_highlighted?('mini_travel_card_gateway_c1_c2').should == true      
+      verify_highlighted?('mini_travel_card_gateway_c1_occ').should == true
+      verify_highlighted?('mini_travel_card_gateway_c1_c2').should == true      
 
       # phase 2
       click_selector_cell('work_second_phase_button')
       
-      verify_is_highlighted?('mini_travel_card_gateway_c2_c1').should == false
-      verify_is_highlighted?('mini_travel_card_gateway_c2_c3').should == false
-      verify_is_highlighted?('mini_travel_card_gateway_c3_c2').should == false
-      verify_is_highlighted?('mini_travel_card_gateway_c3_c4').should == false
+      verify_highlighted?('mini_travel_card_gateway_c2_c1').should == false
+      verify_highlighted?('mini_travel_card_gateway_c2_c3').should == false
+      verify_highlighted?('mini_travel_card_gateway_c3_c2').should == false
+      verify_highlighted?('mini_travel_card_gateway_c3_c4').should == false
 
       click_selector_cell('selected_phase_2')
       click_selector_cell('select_phase_4')
 
-      verify_is_highlighted?('mini_travel_card_gateway_c2_c1').should == true
-      verify_is_highlighted?('mini_travel_card_gateway_c2_c3').should == true
-      verify_is_highlighted?('mini_travel_card_gateway_c3_c2').should == true
-      verify_is_highlighted?('mini_travel_card_gateway_c3_c4').should == true
+      verify_highlighted?('mini_travel_card_gateway_c2_c1').should == true
+      verify_highlighted?('mini_travel_card_gateway_c2_c3').should == true
+      verify_highlighted?('mini_travel_card_gateway_c3_c2').should == true
+      verify_highlighted?('mini_travel_card_gateway_c3_c4').should == true
     end
 
     scenario "the mini-travel card should highlight available gateways when a phase is selected for Phase 2" do
 
     end
     
+  end
+  
+  context "test mini-travel card", :js => true do
+    before(:each) do 
+      practice_name = 'StructuralArtistry practice'
+      logged_in_as_role_for_practice(:practice_user, practice_name)
+      @practice_member = create_practice_member('Kahn, David Nathan', practice_name)
+      @practice_room_visit_page = "/practice_room/#{@practice_member.id}/visit"
+      
+      # set default travel card values
+      @practice_member.travel_card.level_of_care = '1A'
+      @practice_member.travel_card.full_respiratory_wave = 'X'
+      @practice_member.travel_card.leading_bme_strategy = 'B'
+      @practice_member.travel_card.second_bme_strategy = 'M'
+      
+      visible_mini_travel_card_fields = %w(
+        dominant_occiput
+        gateway_occ_c1
+        gateway_c1_occ
+        gateway_c1_c2
+        gateway_c2_c1
+        gateway_c2_c3
+        gateway_c3_c2
+        gateway_c3_c4
+        gateway_c4_c3
+        gateway_c4_c5
+        gateway_c5_c4
+        gateway_c5_c6
+        gateway_c6_c5
+        gateway_c6_c7
+        gateway_c7_c6
+        gateway_c7_t1
+        gateway_t1_c7
+        gateway_t1_t2
+        gateway_t2_t1
+        gateway_t2_t3
+        gateway_t3_t2
+        gateway_s1
+        gateway_s2
+        gateway_s3
+        gateway_s4
+        gateway_s5
+        gateway_cx)
+        
+      #set travel card fields to l
+      visible_mini_travel_card_fields.each do |field|
+        eval("@practice_member.travel_card.#{field}='L'")
+      end
+      @practice_member.travel_card.save
+    end
+    
+    scenario "the mini-travel card should show the right gateways with the right coloring" do
+      
+      visit(@practice_room_visit_page)
+
+      mini_travel_card_non_gateway_cell_correct?('level_of_care', '1A')
+      mini_travel_card_non_gateway_cell_correct?('full_respiratory_wave', 'X')
+      mini_travel_card_non_gateway_cell_correct?('leading_bme_strategy', 'B')
+      mini_travel_card_non_gateway_cell_correct?('second_bme_strategy', 'M')
+        
+      visible_mini_travel_card_fields.each do |field|
+        mini_travel_card_gateway_cell_correct?("mini_travel_card_#{field}", 'L')
+      end
+      
+      # change fields to r and verify
+      visible_mini_travel_card_fields.each do |field|
+        eval("@practice_member.travel_card.#{field}='R'")
+      end
+      @practice_member.travel_card.save
+      visit(@practice_room_visit_page)
+      visible_mini_travel_card_fields.each do |field|
+        mini_travel_card_gateway_cell_correct?("mini_travel_card_#{field}", 'R')
+      end
+      
+      # change fields to r and verify
+      visible_mini_travel_card_fields.each do |field|
+        eval("@practice_member.travel_card.#{field}=''")
+      end
+      @practice_member.travel_card.save
+      visit(@practice_room_visit_page)
+      visible_mini_travel_card_fields.each do |field|
+        mini_travel_card_gateway_cell_correct?("mini_travel_card_#{field}", '')
+      end
+      
+    end
+    
+    scenario "the mini-travel card should update gateways and coloring correctly based on changes to the travel card" do
+      visit(@practice_room_visit_page)
+    
+      mini_travel_card_gateway_cell_correct?('mini_travel_card_gateway_occ_c1', 'L')
+      
+      # change value on the travel card 
+      click_selector_cell('TC')
+      click_selector_cell('gateway_occ_c1')
+      get_selector_cell_text('gateway_occ_c1').should == 'R'
+      
+      # return to visit and verify that the value propogated both to the set value and the selector
+      click_selector_cell('V')
+      mini_travel_card_gateway_cell_correct?('mini_travel_card_gateway_occ_c1', 'R')      
+    end
   end
   
   context "test gateway selector side text and coloring", :js => true do
@@ -334,9 +434,8 @@ feature "Visit Feature", %q{
       @practice_room_visit_page = "/practice_room/#{practice_member.id}/visit"
       @practice_room_travel_card_page = "/practice_room/#{practice_member.id}/travel_card"
        
-      travel_card = TravelCard.where("practice_member_id=#{practice_member.id}").first
-      travel_card.gateway_occ_c1 = 'L'
-      travel_card.save
+      practice_member.travel_card.gateway_occ_c1 = 'L'
+      practice_member.travel_card.save
 # have to load and reload to create visit... in a bit this will go away and we will have to ask to create a visit            
       visit(@practice_room_visit_page)
       confirm_visit_loaded
@@ -411,9 +510,7 @@ feature "Visit Feature", %q{
   #  
   #  end
   #   
-  #  scenario "the mini-travel card should show the right gateways with the right coloring" do
-  #  
-  #  end
+
   #   
   #   
   #  scenario "I can delete a visit" do

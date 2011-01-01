@@ -1,4 +1,5 @@
 Factory.define :travel_card do |tc|
+  tc.association :practice_member, :factory => :practice_member
   tc.dominant_occiput 'L'
   tc.level_of_care '1A'
   tc.full_respiratory_wave 'X'

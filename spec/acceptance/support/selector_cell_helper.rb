@@ -71,7 +71,3 @@ def verify_visit_gateway_selector(id, side_text, gateway_text)
     page.find(:xpath, "//td[@id='#{id}']/span[@class='gateway_selector_side_highlight_#{side_text.downcase}']").text.should == side_text
   end
 end
-
-def verify_is_highlighted?(id)
-  page.has_xpath?("//*[@id='#{id}' and contains(concat(' ',normalize-space(@class),' '),' highlighted ')]")
-end
