@@ -323,36 +323,5 @@ feature "Travel Card Feature", %q{
     
   
   end
-  
-  
+    
 end
-#   @javascript
-#   Scenario: Verify Notes section
-#     Given I am logged in in a "practice user" user role for the practice "Demo Practice"
-#     Given there is a Practice Member in my practice named "Demo Practice" by the name of "Kahn, David N"
-#     When I go to the edit travel card page for Practice Member "Kahn, David N"
-# 
-#     # show section
-#     Then I should not see "Notes" within "td"
-#     Then I should see the selector cell "Notes" as not selected
-#     When I click "Notes" within a selector cell
-#     Then I should see the selector cell "Notes" as selected
-#     Then I should see "Notes" within "td"
-# 
-#     # operate on section
-#     Then I should see "" within "#travel_card_notes"
-#     Then I fill in "travel_card_notes" with "Note on this travel card!"
-# 
-# 
-#     # hide section
-#     When I click "Notes" within a selector cell
-#     Then I should see the selector cell "Notes" as not selected
-#     Then I should not see "Notes" within "td"
-# 
-# 
-#     # verify autosave
-#     When I go to the edit travel card page for Practice Member "Kahn, David N"
-#     When I click "Notes" within a selector cell
-#     Then I should see "Note on this travel card!" within "#travel_card_notes"
-# 
-

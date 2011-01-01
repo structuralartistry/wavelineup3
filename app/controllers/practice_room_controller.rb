@@ -7,7 +7,7 @@ class PracticeRoomController < ApplicationController
     @visit = Visit.where(["practice_member_id=?", @practice_member.id]).first
     if !@visit 
       @visit = Visit.new
-      @visit.date = Date.today
+      @visit.entrainment_date = Date.today
     end
     @visit.practice_member_id = @practice_member.id
     @visit.save

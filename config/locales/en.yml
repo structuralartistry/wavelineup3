@@ -4,6 +4,13 @@
 en:
   hello: "Home Page"
   activerecord:  
+    errors:
+      models:
+        visit:
+          attributes:
+            entrainment_date:
+              invalid_date: 'is invalid'
     attributes: 
       practice: 
         name: "Practice name"
+  

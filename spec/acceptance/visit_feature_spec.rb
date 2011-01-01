@@ -15,13 +15,22 @@ feature "Visit Feature", %q{
       confirm_visit_loaded   
     end
     
-    scenario "I can change the date of the visit" do
-      fill_in('visit_date', :with => '2011-01-07')
+    scenario "I can change the entrainment date of the visit" do
+      fill_in('visit_entrainment_date', :with => '2011-01-07')
       sleep(2) # delay for autosave to complete... wait_until {} not working on this
       
       # verify save
       visit(@practice_room_visit_page)
-      get_input_value('visit_date').should == '2011-01-07'
+      get_input_value('visit_entrainment_date').should == '2011-01-07'
+      
+      # bad date sends back validation message
+      fill_in('visit_entrainment_date', :with => 'xxxxxx')
+      sleep(2) # delay for autosave to complete... wait_until {} not working on this
+      has_flash_notice?('Date invalid: Please correct').should == true
+      
+      # verify save did not take
+      visit(@practice_room_visit_page)
+      get_input_value('visit_entrainment_date').should == '2011-01-07'
     end
     
     scenario "I can set Phase 1 and 2 values and they autosave and that affected gateway selectors show for phase 1" do  
@@ -341,12 +350,12 @@ feature "Visit Feature", %q{
     
     scenario "gateway selector shows the gateway directions color coded on page load" do
       click_selector_cell('selected_phase_1_gateway_1')
-      verify_gateway_selector('select_gateway_occ_c1', 'L', 'OCC/C1')
+      verify_visit_gateway_selector('select_gateway_occ_c1', 'L', 'OCC/C1')
     end
     
     scenario "gateway selector updates based on changes to the travel card without reloading the page" do  
       click_selector_cell('selected_phase_1_gateway_1')
-      verify_gateway_selector('select_gateway_occ_c1', 'L', 'OCC/C1')
+      verify_visit_gateway_selector('select_gateway_occ_c1', 'L', 'OCC/C1')
       
       # change value on the travel card 
       click_selector_cell('TC')
@@ -356,21 +365,21 @@ feature "Visit Feature", %q{
       # return to visit and verify that the value propogated both to the set value and the selector
       click_selector_cell('V')
       click_selector_cell('selected_phase_1_gateway_1')
-      verify_gateway_selector('select_gateway_occ_c1', 'R', 'OCC/C1')
+      verify_visit_gateway_selector('select_gateway_occ_c1', 'R', 'OCC/C1')
     end
     
     scenario "selected gateways show the gateways directions on page load" do
       @visit.phase_1_gateway_1 = 'OCC/C1'
       @visit.save
       visit(@practice_room_visit_page)
-      verify_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
+      verify_visit_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
     end
     
     scenario "selected gateways show the a gateways' new direction after being changed on the travel card" do
       @visit.phase_1_gateway_1 = 'OCC/C1'
       @visit.save
       visit(@practice_room_visit_page)
-      verify_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
+      verify_visit_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
       
       # change value on the travel card 
       click_selector_cell('TC')
@@ -379,7 +388,7 @@ feature "Visit Feature", %q{
       
       # return to visit and verify that the value propogated both to the set value and the selector
       click_selector_cell('V')
-      verify_gateway_selector('selected_phase_1_gateway_1', 'R', 'OCC/C1')
+      verify_visit_gateway_selector('selected_phase_1_gateway_1', 'R', 'OCC/C1')
       
       # change value on the travel card again
       click_selector_cell('TC')
@@ -388,7 +397,7 @@ feature "Visit Feature", %q{
       
       # return to visit and verify that the value propogated both to the set value and the selector
       click_selector_cell('V')
-      verify_gateway_selector('selected_phase_1_gateway_1', '', 'OCC/C1')
+      verify_visit_gateway_selector('selected_phase_1_gateway_1', '', 'OCC/C1')
     end
     
   end
