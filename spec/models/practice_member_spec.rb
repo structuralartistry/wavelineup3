@@ -11,7 +11,7 @@ describe PracticeMember do
   end
   
   it { should belong_to(:practice) }
-  it { should have_many(:travel_cards) }
+  it { should have_one(:travel_card) }
   
   it { should validate_presence_of(:practice_id) }
   it { should validate_presence_of(:last_name) }
@@ -70,7 +70,7 @@ describe PracticeMember do
     
     it "gets a Travel Card record automatically" do
       practice_member = Factory.create(:practice_member)
-      TravelCard.find_by_practice_member_id(practice_member.id).id.should == practice_member.id
+      TravelCard.find_by_practice_member_id(practice_member.id).practice_member_id.should == practice_member.id
     end
 
   end
