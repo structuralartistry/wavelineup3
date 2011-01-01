@@ -10,9 +10,8 @@ feature "Travel Card Feature", %q{
     before(:each) do
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
-      practice_member = create_practice_member('Kahn, David Nathan', practice_name)
-      travel_card_id = TravelCard.where("practice_member_id=#{practice_member.id}").first.id
-      @travel_card_page = "/practice_room/#{practice_member.id}/travel_card"
+      @practice_member = create_practice_member('Kahn, David Nathan', practice_name)
+      @travel_card_page = "/practice_room/#{@practice_member.id}/travel_card"
       visit(@travel_card_page)
       has_text?('Kahn, David N', 'h1')    
     end
@@ -321,6 +320,40 @@ feature "Travel Card Feature", %q{
       get_element_text('travel_card_notes').should == 'This is the note, right here...'    
     end
     
+    scenario "the travel card should show the right gateways with the right coloring" do
+      set_travel_card_default_values(@practice_member.travel_card)
+      visit(@travel_card_page)
+
+      mini_or_travel_card_non_gateway_cell_correct?('level_of_care', '1A')
+      mini_or_travel_card_non_gateway_cell_correct?('full_respiratory_wave', 'X')
+      mini_or_travel_card_non_gateway_cell_correct?('leading_bme_strategy', 'B')
+      mini_or_travel_card_non_gateway_cell_correct?('second_bme_strategy', 'M')
+
+      travel_card_gateway_fields.each do |field|
+        mini_or_travel_card_gateway_cell_correct?(field, 'L')
+      end
+
+      # change fields to r and verify
+      travel_card_gateway_fields.each do |field|
+        eval("@practice_member.travel_card.#{field}='R'")
+      end
+      @practice_member.travel_card.save
+      visit(@travel_card_page)
+      travel_card_gateway_fields.each do |field|
+        mini_or_travel_card_gateway_cell_correct?(field, 'R')
+      end
+
+      # change fields to r and verify
+      travel_card_gateway_fields.each do |field|
+        eval("@practice_member.travel_card.#{field}=''")
+      end
+      @practice_member.travel_card.save
+      visit(@travel_card_page)
+      travel_card_gateway_fields.each do |field|
+        mini_or_travel_card_gateway_cell_correct?(field, '')
+      end
+
+    end
   
   end
     

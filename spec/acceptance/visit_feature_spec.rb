@@ -333,79 +333,40 @@ feature "Visit Feature", %q{
       @practice_member = create_practice_member('Kahn, David Nathan', practice_name)
       @practice_room_visit_page = "/practice_room/#{@practice_member.id}/visit"
       
-      # set default travel card values
-      @practice_member.travel_card.level_of_care = '1A'
-      @practice_member.travel_card.full_respiratory_wave = 'X'
-      @practice_member.travel_card.leading_bme_strategy = 'B'
-      @practice_member.travel_card.second_bme_strategy = 'M'
-      
-      visible_mini_travel_card_fields = %w(
-        dominant_occiput
-        gateway_occ_c1
-        gateway_c1_occ
-        gateway_c1_c2
-        gateway_c2_c1
-        gateway_c2_c3
-        gateway_c3_c2
-        gateway_c3_c4
-        gateway_c4_c3
-        gateway_c4_c5
-        gateway_c5_c4
-        gateway_c5_c6
-        gateway_c6_c5
-        gateway_c6_c7
-        gateway_c7_c6
-        gateway_c7_t1
-        gateway_t1_c7
-        gateway_t1_t2
-        gateway_t2_t1
-        gateway_t2_t3
-        gateway_t3_t2
-        gateway_s1
-        gateway_s2
-        gateway_s3
-        gateway_s4
-        gateway_s5
-        gateway_cx)
-        
-      #set travel card fields to l
-      visible_mini_travel_card_fields.each do |field|
-        eval("@practice_member.travel_card.#{field}='L'")
-      end
-      @practice_member.travel_card.save
+      set_travel_card_default_values(@practice_member.travel_card)
     end
     
     scenario "the mini-travel card should show the right gateways with the right coloring" do
       
       visit(@practice_room_visit_page)
 
-      mini_travel_card_non_gateway_cell_correct?('level_of_care', '1A')
-      mini_travel_card_non_gateway_cell_correct?('full_respiratory_wave', 'X')
-      mini_travel_card_non_gateway_cell_correct?('leading_bme_strategy', 'B')
-      mini_travel_card_non_gateway_cell_correct?('second_bme_strategy', 'M')
+      mini_or_travel_card_non_gateway_cell_correct?('mini_travel_card_level_of_care', '1A')
+      mini_or_travel_card_non_gateway_cell_correct?('mini_travel_card_full_respiratory_wave', 'X')
+      mini_or_travel_card_non_gateway_cell_correct?('mini_travel_card_leading_bme_strategy', 'B')
+      mini_or_travel_card_non_gateway_cell_correct?('mini_travel_card_second_bme_strategy', 'M')
         
-      visible_mini_travel_card_fields.each do |field|
-        mini_travel_card_gateway_cell_correct?("mini_travel_card_#{field}", 'L')
+      travel_card_gateway_fields.each do |field|
+        mini_or_travel_card_gateway_cell_correct?("mini_travel_card_#{field}", 'L')
       end
       
       # change fields to r and verify
-      visible_mini_travel_card_fields.each do |field|
+      travel_card_gateway_fields.each do |field|
         eval("@practice_member.travel_card.#{field}='R'")
       end
       @practice_member.travel_card.save
       visit(@practice_room_visit_page)
-      visible_mini_travel_card_fields.each do |field|
-        mini_travel_card_gateway_cell_correct?("mini_travel_card_#{field}", 'R')
+      travel_card_gateway_fields.each do |field|
+        mini_or_travel_card_gateway_cell_correct?("mini_travel_card_#{field}", 'R')
       end
       
       # change fields to r and verify
-      visible_mini_travel_card_fields.each do |field|
+      travel_card_gateway_fields.each do |field|
         eval("@practice_member.travel_card.#{field}=''")
       end
       @practice_member.travel_card.save
       visit(@practice_room_visit_page)
-      visible_mini_travel_card_fields.each do |field|
-        mini_travel_card_gateway_cell_correct?("mini_travel_card_#{field}", '')
+      travel_card_gateway_fields.each do |field|
+        mini_or_travel_card_gateway_cell_correct?("mini_travel_card_#{field}", '')
       end
       
     end
@@ -413,7 +374,7 @@ feature "Visit Feature", %q{
     scenario "the mini-travel card should update gateways and coloring correctly based on changes to the travel card" do
       visit(@practice_room_visit_page)
     
-      mini_travel_card_gateway_cell_correct?('mini_travel_card_gateway_occ_c1', 'L')
+      mini_or_travel_card_gateway_cell_correct?('mini_travel_card_gateway_occ_c1', 'L')
       
       # change value on the travel card 
       click_selector_cell('TC')
@@ -422,7 +383,7 @@ feature "Visit Feature", %q{
       
       # return to visit and verify that the value propogated both to the set value and the selector
       click_selector_cell('V')
-      mini_travel_card_gateway_cell_correct?('mini_travel_card_gateway_occ_c1', 'R')      
+      mini_or_travel_card_gateway_cell_correct?('mini_travel_card_gateway_occ_c1', 'R')      
     end
   end
   
