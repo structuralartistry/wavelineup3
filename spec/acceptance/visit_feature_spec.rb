@@ -276,33 +276,32 @@ feature "Visit Feature", %q{
       
       selector_cell_present?('sri_position_a').should == true
       selector_cell_present?('sri_position_b').should == false
-      page.has_xpath?("//td[@id='label_sri_position_a' and text()='Pos']").should == true
-      page.has_xpath?("//td[@id='label_sri_position_b' and text()='Pos']").should == true
+      has_text?('Pos', 'td', 'label_sri_position_a')
+      has_text?('Pos', 'td', 'label_sri_position_b')
       
       click_selector_cell('sri_stage')
       click_selector_cell('select_sri_stage_1')
       selector_cell_present?('sri_position_a').should == true
       selector_cell_present?('sri_position_b').should == true
-      get_element_text('label_sri_position_a').should == 'Peace'
-      get_element_text('label_sri_position_b').should == 'Discon'
+      has_text?('Peace', 'td', 'label_sri_position_a')
+      has_text?('Discon', 'td', 'label_sri_position_b')
       
       click_selector_cell('sri_position_a')
       click_selector_cell('select_sri_position_3')
       get_selector_cell_text('sri_position_a').should == '3'
       click_selector_cell('sri_position_b')
       click_selector_cell('select_sri_position_6')
-      get_selector_cell_text('sri_position_a').should == '6'
+      get_selector_cell_text('sri_position_b').should == '6'
       
       # test autosave and reload logic
       visit(@practice_room_visit_page)
       
       selector_cell_present?('sri_position_a').should == true
       selector_cell_present?('sri_position_b').should == true
-      page.has_content?('Pos', 'td').should == false
-      page.has_content?('Peace', 'td').should == true
-      page.has_content?('Discon', 'td').should == true
+      has_text?('Peace', 'td', 'label_sri_position_a')
+      has_text?('Discon', 'td', 'label_sri_position_b')
       get_selector_cell_text('sri_position_a').should == '3'
-      get_selector_cell_text('sri_position_a').should == '6'
+      get_selector_cell_text('sri_position_b').should == '6'
       
     end
     
@@ -311,33 +310,32 @@ feature "Visit Feature", %q{
       
       selector_cell_present?('sri_position_a').should == true
       selector_cell_present?('sri_position_b').should == false
-      get_element_text('label_sri_position_a').should == 'Pos'
-      get_element_text('label_sri_position_b').should == 'Pos'
+      has_text?('Pos', 'td', 'label_sri_position_a')
+      has_text?('Pos', 'td', 'label_sri_position_b')
       
       click_selector_cell('sri_stage')
       click_selector_cell('select_sri_stage_2')
       selector_cell_present?('sri_position_a').should == true
       selector_cell_present?('sri_position_b').should == true
-      get_element_text('label_sri_position_a').should == 'Pos A'
-      get_element_text('label_sri_position_b').should == 'Pos B'
+      has_text?('Pos A', 'td', 'label_sri_position_a')
+      has_text?('Pos B', 'td', 'label_sri_position_b')
       
       click_selector_cell('sri_position_a')
       click_selector_cell('select_sri_position_2')
       get_selector_cell_text('sri_position_a').should == '2'
       click_selector_cell('sri_position_b')
       click_selector_cell('select_sri_position_4')
-      get_selector_cell_text('sri_position_a').should == '4'
+      get_selector_cell_text('sri_position_b').should == '4'
       
       # test autosave and reload logic
       visit(@practice_room_visit_page)
       
       selector_cell_present?('sri_position_a').should == true
       selector_cell_present?('sri_position_b').should == true
-      page.has_content?('Pos', 'td').should == false
-      page.has_content?('Pos A', 'td').should == true
-      page.has_content?('Pos B', 'td').should == true
+      has_text?('Pos A', 'td', 'label_sri_position_a')
+      has_text?('Pos B', 'td', 'label_sri_position_b')
       get_selector_cell_text('sri_position_a').should == '2'
-      get_selector_cell_text('sri_position_a').should == '4'
+      get_selector_cell_text('sri_position_b').should == '4'
     end
 
     scenario "values for Diagnosis and Notes can be set and autosave" do
