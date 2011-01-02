@@ -1,0 +1,9 @@
+
+<table>
+	<% Visit.includes(:practice_member).where("practice_members.practice_id = #{current_user.practice_id}").order("entrainment_date DESC").all.each do |visit| %>
+	<tr>	
+		<td><%= visit.entrainment_date %></td>
+		<td><%= visit.practice_member.full_name_last_comma_first_middle_initial %></td>
+	</tr>	
+	<% end %>
+</table>

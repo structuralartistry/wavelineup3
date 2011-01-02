@@ -14,6 +14,7 @@
 
 			<div id='practice_room_visit_list' style='display: none;'>
 				<p>visit list for <%= @practice_member.full_name_last_comma_first_middle_initial %></p>
+				<%= render :partial => 'visits/visit_list' %>
 			</div>
 
 			<div id='practice_room_travel_card' style='display: none;'>

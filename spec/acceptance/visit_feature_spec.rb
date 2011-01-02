@@ -62,8 +62,8 @@ feature "Visit Feature", %q{
       
       get_selector_cell_text('selected_phase_1_direction').should == ''
       click_selector_cell('selected_phase_1_direction')
-      click_selector_cell('select_direction_f_e')
-      get_selector_cell_text('selected_phase_1_direction').should == 'F/E'
+      click_selector_cell('select_direction_m')
+      get_selector_cell_text('selected_phase_1_direction').should == 'M'
  
       get_selector_cell_text('selected_phase_1_level_of_care').should == ''
       click_selector_cell('selected_phase_1_level_of_care')   
@@ -101,8 +101,8 @@ feature "Visit Feature", %q{
       
       get_selector_cell_text('selected_phase_2_direction').should == ''
       click_selector_cell('selected_phase_2_direction')
-      click_selector_cell('select_direction_f_e')
-      get_selector_cell_text('selected_phase_2_direction').should == 'F/E'
+      click_selector_cell('select_direction_m')
+      get_selector_cell_text('selected_phase_2_direction').should == 'M'
  
       get_selector_cell_text('selected_phase_2_level_of_care').should == ''
       click_selector_cell('selected_phase_2_level_of_care')   
@@ -118,7 +118,7 @@ feature "Visit Feature", %q{
       get_selector_cell_text('selected_phase_1_gateway_1_affecting').should == 'C3/C4'
       get_selector_cell_text('selected_phase_1_gateway_2').should == 'S2'
       get_selector_cell_text('selected_phase_1_gateway_2_affecting').should == 'C4/C3'
-      get_selector_cell_text('selected_phase_1_direction').should == 'F/E'
+      get_selector_cell_text('selected_phase_1_direction').should == 'M'
       get_selector_cell_text('selected_phase_1_level_of_care').should == '3A'
       
       
@@ -130,7 +130,7 @@ feature "Visit Feature", %q{
       get_selector_cell_text('selected_phase_2_gateway_1_affecting').should == 'C3/C4'
       get_selector_cell_text('selected_phase_2_gateway_2').should == 'S2'
       get_selector_cell_text('selected_phase_2_gateway_2_affecting').should == 'C4/C3'
-      get_selector_cell_text('selected_phase_2_direction').should == 'F/E'
+      get_selector_cell_text('selected_phase_2_direction').should == 'M'
       get_selector_cell_text('selected_phase_2_level_of_care').should == '3A'
             
     end
@@ -640,11 +640,16 @@ feature "Visit Feature", %q{
     
   end
   
+  
 
-  #  scenario "if this practice member has a visit already today then show it, otherwise just show the new visit button" do
-  #  
-  #  end
-  #   
+  scenario "if this practice member has a visit already today then show it, otherwise just show the new visit button; new visit button creates a visit" do
+    
+  end
+
+  scenario "new visit button while a visit is present creates a new visit" do
+
+  end
+
 
   #   
   #   
