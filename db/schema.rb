@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101231204802) do
+ActiveRecord::Schema.define(:version => 20110102012133) do
 
   create_table "feedback_supports", :force => true do |t|
     t.integer  "user_id"
@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(:version => 20101231204802) do
     t.string   "phase_2_level_of_care"
     t.string   "phase_2_direction"
     t.string   "sri_stage"
-    t.string   "sri_position"
+    t.string   "sri_position_a"
     t.string   "sri_level_of_care"
     t.string   "sri_organizing_field"
     t.string   "short_leg_side"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20101231204802) do
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sri_position_b"
   end
 
 end

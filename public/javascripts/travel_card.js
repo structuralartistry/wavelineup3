@@ -47,7 +47,7 @@ function show_selector(selector_name, calling_object, _element_to_update_inner_h
   // set the global vars
   element_to_update_inner_html=_element_to_update_inner_html;
   control_to_update=_control_to_update;
-  
+ 
   switch(selector_name) {
     case "boolean_selector":
       boolean_toggle_selected_value(calling_object);
@@ -68,10 +68,11 @@ function show_selector(selector_name, calling_object, _element_to_update_inner_h
         set_phase_gateway_selector_choices(selected_phase);
       }
       else if(selector_name=="phase_direction_selector") {
+
         set_phase_and_gateway_currently_working();
-        
+       
         selected_phase = $('#visit_phase_' + visit_phase_currently_working).val();
-        
+    
         set_phase_direction_selector_choices(visit_phase_currently_working, selected_phase);
       }
       else if(selector_name.indexOf("phase")>=0) {

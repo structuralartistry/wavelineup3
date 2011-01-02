@@ -75,7 +75,8 @@ function visit_set_values_from_hidden_fields() {
   $('#heel_tension_level').html($('#visit_heel_tension_level').val());
   $('#eversion_tension_level').html($('#visit_eversion_tension_level').val());
   $('#sri_stage').html($('#visit_sri_stage').val());
-  $('#sri_position').html($('#visit_sri_position').val());
+  $('#sri_position_a').html($('#visit_sri_position_a').val());
+	$('#sri_position_b').html($('#visit_sri_position_b').val());
   $('#sri_level_of_care').html($('#visit_sri_level_of_care').val());
   $('#sri_organizing_field').html($('#visit_sri_organizing_field').val());
   $('#ingression_organizing_field').html($('#visit_ingression_organizing_field').val());
@@ -88,6 +89,8 @@ function visit_set_values_from_hidden_fields() {
   $('#diagnosis').html($('#visit_diagnosis').val());
 
   highlight_available_gateways();
+
+	set_sri_positions($('#visit_sri_stage').val());
 }
 
 // note: travel_card.js handles the "hide all selectors" funciton for the practice member visit partial
@@ -614,13 +617,13 @@ function set_phase_direction_selector_choices(visit_phase, phase) {
   hide_all_phase_directions(visit_phase);
   
   // always show the 'remove' selector element. if no phase, prompt for phase
-  $('#no_phase_' + visit_phase + '_direction').show();  
-  if($('#visit_phase_' + visit_phase).val()=='') {
-    $('#no_phase_' + visit_phase + '_direction').html('please select a phase');
-  }
-  else {
-    $('#no_phase_' + visit_phase + '_direction').html(' ');
-  }
+  $('#select_direction_').show();  
+  // if($('#visit_phase_' + visit_phase).val()=='') {
+  //   $('#no_phase_' + visit_phase + '_direction').html('please select a phase');
+  // }
+  // else {
+  //   $('#no_phase_' + visit_phase + '_direction').html(' ');
+  // }
   
   switch(phase)
   {
@@ -629,15 +632,15 @@ function set_phase_direction_selector_choices(visit_phase, phase) {
     case "1 > 3":
     case "1 > 4":
     case "1 > 5":
-      $('#phase_' + visit_phase + '_direction_M').show();
-      $('#phase_' + visit_phase + '_direction_L').show();
+      $('#select_direction_m').show();
+      $('#select_direction_l').show();
       break;
       
     case "2 C1": 
     case "2 C5":
     case "4":
-      $('#phase_' + visit_phase + '_direction_F_E').show();
-      $('#phase_' + visit_phase + '_direction_L_B').show();
+      $('#select_direction_f_e').show();
+      $('#select_direction_l_b').show();
       break;
       
     case "3":   
@@ -653,10 +656,42 @@ function set_phase_direction_selector_choices(visit_phase, phase) {
 
 function hide_all_phase_directions(visit_phase) {
   
-  $('#phase_' + visit_phase + '_direction_M').hide();
-  $('#phase_' + visit_phase + '_direction_L').hide();
-  $('#phase_' + visit_phase + '_direction_F_E').hide();
-  $('#phase_' + visit_phase + '_direction_L_B').hide();
-  $('#no_phase_' + visit_phase + '_direction').hide();
+  $('#select_direction_m').hide();
+  $('#select_direction_l').hide();
+  $('#select_direction_f_e').hide();
+  $('#select_direction_l_b').hide();
+  $('#select_direction_').hide();
   
 }
+
+// SRI
+function set_selected_sri_stage(object) {
+	stage = $(object).html();	
+	set_sri_positions(stage);
+	set_selected_value(object);
+}
+
+function set_sri_positions(stage) {
+	// if is stage 1 or 2 show the second field and place appropriate text in the label
+	if(stage=='1' || stage=='2') {
+		$('#label_sri_position_b').show();
+		$('#sri_position_b').show();
+		if(stage=='1') {	
+			$('#label_sri_position_a').html('Peace');
+			$('#label_sri_position_b').html('Discon');
+		}
+		if(stage=='2') {	
+			$('#label_sri_position_a').html('Pos A');
+			$('#label_sri_position_b').html('Pos B');
+		}
+	}
+	else {
+		// hide the second position field and clear the value visually and in hidden field
+		$('#label_sri_position_a').html('Pos');
+		$('#label_sri_position_b').html('Pos')
+		$('#label_sri_position_b').hide();
+		$('#sri_position_b').html('').hide();
+		$('#visit_sri_position_b').val('');
+	}
+}
+

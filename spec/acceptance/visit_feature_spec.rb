@@ -52,13 +52,11 @@ feature "Visit Feature", %q{
 
       get_selector_cell_text('selected_phase_1_gateway_2').should == ''
       click_selector_cell('selected_phase_1_gateway_2')
-      selector_cell_present?('select_gateway_s1').should == false # second gateway can not be set to value of first
       click_selector_cell('select_gateway_s2')
       get_selector_cell_text('selected_phase_1_gateway_2').should == 'S2'
       
       get_selector_cell_text('selected_phase_1_gateway_2_affecting').should == ''
       click_selector_cell('selected_phase_1_gateway_2_affecting')
-      selector_cell_present?('select_gateway_c3_c4').should == false
       click_selector_cell('select_gateway_c4_c3')
       get_selector_cell_text('selected_phase_1_gateway_2_affecting').should == 'C4/C3'
       
@@ -93,13 +91,11 @@ feature "Visit Feature", %q{
 
       get_selector_cell_text('selected_phase_2_gateway_2').should == ''
       click_selector_cell('selected_phase_2_gateway_2')
-      selector_cell_present?('select_gateway_s1').should == false # second gateway can not be set to value of first
       click_selector_cell('select_gateway_s2')
       get_selector_cell_text('selected_phase_2_gateway_2').should == 'S2'
       
       get_selector_cell_text('selected_phase_2_gateway_2_affecting').should == ''
       click_selector_cell('selected_phase_2_gateway_2_affecting')
-      selector_cell_present?('select_gateway_c3_c4').should == false
       click_selector_cell('select_gateway_c4_c3')
       get_selector_cell_text('selected_phase_2_gateway_2_affecting').should == 'C4/C3'
       
@@ -248,13 +244,13 @@ feature "Visit Feature", %q{
       
       get_selector_cell_text('sri_stage').should == ''
       click_selector_cell('sri_stage')
-      click_selector_cell('select_sri_stage_2')
-      get_selector_cell_text('sri_stage').should == '2'
+      click_selector_cell('select_sri_stage_3')
+      get_selector_cell_text('sri_stage').should == '3'
       
-      get_selector_cell_text('sri_position').should == ''
-      click_selector_cell('sri_position')
+      get_selector_cell_text('sri_position_a').should == ''
+      click_selector_cell('sri_position_a')
       click_selector_cell('select_sri_position_6')
-      get_selector_cell_text('sri_position').should == '6'
+      get_selector_cell_text('sri_position_a').should == '6'
       
       get_selector_cell_text('sri_level_of_care').should == ''
       click_selector_cell('sri_level_of_care')   
@@ -268,11 +264,80 @@ feature "Visit Feature", %q{
       
       # verify autosave
       visit(@practice_room_visit_page)
-      get_selector_cell_text('sri_stage').should == '2'
-      get_selector_cell_text('sri_position').should == '6'
+      get_selector_cell_text('sri_stage').should == '3'
+      get_selector_cell_text('sri_position_a').should == '6'
       get_selector_cell_text('sri_level_of_care').should == '2B'
       get_selector_cell_text('sri_organizing_field').should == 'H5'
       
+    end
+    
+    scenario "when SRI stage 1 is selected show two position selectors: peace and disconnection, they can be set and loaded" do
+      get_selector_cell_text('sri_position_a').should == ''
+      
+      selector_cell_present?('sri_position_a').should == true
+      selector_cell_present?('sri_position_b').should == false
+      page.has_xpath?("//td[@id='label_sri_position_a' and text()='Pos']").should == true
+      page.has_xpath?("//td[@id='label_sri_position_b' and text()='Pos']").should == true
+      
+      click_selector_cell('sri_stage')
+      click_selector_cell('select_sri_stage_1')
+      selector_cell_present?('sri_position_a').should == true
+      selector_cell_present?('sri_position_b').should == true
+      get_element_text('label_sri_position_a').should == 'Peace'
+      get_element_text('label_sri_position_b').should == 'Discon'
+      
+      click_selector_cell('sri_position_a')
+      click_selector_cell('select_sri_position_3')
+      get_selector_cell_text('sri_position_a').should == '3'
+      click_selector_cell('sri_position_b')
+      click_selector_cell('select_sri_position_6')
+      get_selector_cell_text('sri_position_a').should == '6'
+      
+      # test autosave and reload logic
+      visit(@practice_room_visit_page)
+      
+      selector_cell_present?('sri_position_a').should == true
+      selector_cell_present?('sri_position_b').should == true
+      page.has_content?('Pos', 'td').should == false
+      page.has_content?('Peace', 'td').should == true
+      page.has_content?('Discon', 'td').should == true
+      get_selector_cell_text('sri_position_a').should == '3'
+      get_selector_cell_text('sri_position_a').should == '6'
+      
+    end
+    
+    scenario "when SRI stage 2 is selected show two position selectors" do
+      get_selector_cell_text('sri_position_a').should == ''
+      
+      selector_cell_present?('sri_position_a').should == true
+      selector_cell_present?('sri_position_b').should == false
+      get_element_text('label_sri_position_a').should == 'Pos'
+      get_element_text('label_sri_position_b').should == 'Pos'
+      
+      click_selector_cell('sri_stage')
+      click_selector_cell('select_sri_stage_2')
+      selector_cell_present?('sri_position_a').should == true
+      selector_cell_present?('sri_position_b').should == true
+      get_element_text('label_sri_position_a').should == 'Pos A'
+      get_element_text('label_sri_position_b').should == 'Pos B'
+      
+      click_selector_cell('sri_position_a')
+      click_selector_cell('select_sri_position_2')
+      get_selector_cell_text('sri_position_a').should == '2'
+      click_selector_cell('sri_position_b')
+      click_selector_cell('select_sri_position_4')
+      get_selector_cell_text('sri_position_a').should == '4'
+      
+      # test autosave and reload logic
+      visit(@practice_room_visit_page)
+      
+      selector_cell_present?('sri_position_a').should == true
+      selector_cell_present?('sri_position_b').should == true
+      page.has_content?('Pos', 'td').should == false
+      page.has_content?('Pos A', 'td').should == true
+      page.has_content?('Pos B', 'td').should == true
+      get_selector_cell_text('sri_position_a').should == '2'
+      get_selector_cell_text('sri_position_a').should == '4'
     end
 
     scenario "values for Diagnosis and Notes can be set and autosave" do
@@ -298,7 +363,7 @@ feature "Visit Feature", %q{
       verify_highlighted?('mini_travel_card_gateway_c1_c2').should == false
 
       click_selector_cell('selected_phase_1')
-      click_selector_cell('select_phase_2_1_c1')
+      click_selector_cell('select_phase_2_c1')
 
       verify_highlighted?('mini_travel_card_gateway_c1_occ').should == true
       verify_highlighted?('mini_travel_card_gateway_c1_c2').should == true      
@@ -385,8 +450,59 @@ feature "Visit Feature", %q{
       click_selector_cell('select_gateway_') # close dialog
     end
     
-    
-    
+    scenario "the correct directions are shown for each phase" do
+      
+      # all phasse 1 should show M/L
+      selected_phase_ids = %w(select_phase_1_2_c1 select_phase_1_2_c5 select_phase_1_3 select_phase_1_4 select_phase_1_5)
+      selected_phase_ids.each do |selected_phase_id|
+        click_selector_cell('selected_phase_1')
+        click_selector_cell(selected_phase_id)
+        
+        click_selector_cell('selected_phase_1_direction')
+        selector_cell_present?('select_direction_m').should == true
+        selector_cell_present?('select_direction_l').should == true
+        selector_cell_present?('select_direction_f_e').should == false
+        selector_cell_present?('select_direction_l_b').should == false
+        selector_cell_present?('select_direction_').should == true
+        
+        click_selector_cell('select_direction_') # close dialog
+      end
+      
+      # Phase 2 C1, 2 C5, 4
+      selected_phase_ids = %w(select_phase_2_c1 select_phase_2_c5 select_phase_4)
+      selected_phase_ids.each do |selected_phase_id|
+        click_selector_cell('selected_phase_1')
+        click_selector_cell(selected_phase_id)
+        
+        click_selector_cell('selected_phase_1_direction')
+        selector_cell_present?('select_direction_m').should == false
+        selector_cell_present?('select_direction_l').should == false
+        selector_cell_present?('select_direction_f_e').should == true
+        selector_cell_present?('select_direction_l_b').should == true
+        selector_cell_present?('select_direction_').should == true
+        
+        click_selector_cell('select_direction_') # close dialog
+      end
+      
+      # 3 - auto-set, so no choices
+      click_selector_cell('selected_phase_1')
+      click_selector_cell('select_phase_3')
+      
+      click_selector_cell('selected_phase_1_direction')
+      selector_cell_present?('select_direction_m').should == false
+      selector_cell_present?('select_direction_l').should == false
+      selector_cell_present?('select_direction_f_e').should == false
+      selector_cell_present?('select_direction_l_b').should == false
+      selector_cell_present?('select_direction_').should == true
+      
+      click_selector_cell('select_direction_') # close dialog
+      
+      # 5 -- no direction
+      click_selector_cell('selected_phase_1')
+      click_selector_cell('select_phase_5')
+      selector_cell_present?('selected_phase_1_direction').should == false
+
+    end
     
   end
   

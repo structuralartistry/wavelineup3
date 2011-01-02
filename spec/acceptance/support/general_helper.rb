@@ -3,7 +3,8 @@ def current_page_is?(page_name)
   current_path =~ /page_name/
 end
 
-def has_text?(text, selector='*')
+def has_text?(text, selector='*', id=nil)
+  return page.has_xpath?("//#{selector}[@id='#{id}' and text()='#{text}']", :visible => true) if id
   page.has_xpath?("//#{selector}[text()='#{text}']", :visible => true)
 end
 

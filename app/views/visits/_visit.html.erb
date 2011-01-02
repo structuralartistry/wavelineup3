@@ -123,7 +123,8 @@
       </tr>
       <tr>
         <td class="half_height label" >Stage</td>
-        <td class="half_height label" >Pos</td>
+        <td id='label_sri_position_a' class="half_height label" >Pos</td>
+				<td id='label_sri_position_b' class="half_height label hidden" >Pos</td>
         <td class="half_height label" >LOC</td> 
         <td class="half_height label" >OF</td>
         <td class="half_height">&nbsp;&nbsp;</td>
@@ -131,8 +132,9 @@
       </tr> 
       <tr>    
         <td id="sri_stage" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('sri_stage_selector', this, 'sri_stage', 'visit_sri_stage');"></td>
-        <td id="sri_position" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('sri_position_selector', this, 'sri_position', 'visit_sri_position');"></td>    
-        <td id="sri_level_of_care" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('level_of_care_selector', this, 'sri_level_of_care', 'visit_sri_level_of_care');"></td>    
+        <td id="sri_position_a" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('sri_position_selector', this, 'sri_position_a', 'visit_sri_position_a');"></td>    
+        <td id="sri_position_b" class="selector_cell selector_cell_text_three_character hidden" onMouseDown="show_selector('sri_position_selector', this, 'sri_position_b', 'visit_sri_position_b');"></td> 
+				<td id="sri_level_of_care" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('level_of_care_selector', this, 'sri_level_of_care', 'visit_sri_level_of_care');"></td>    
         <td id="sri_organizing_field" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('organizing_field_selector', this, 'sri_organizing_field', 'visit_sri_organizing_field');"></td>    
         <td>&nbsp;&nbsp;</td>
         <td colspan="5"><%= f.text_area :diagnosis, :style => "width: 300px; height: 50px", :class => 'autosave' %></td>    
@@ -160,7 +162,8 @@
     <%= f.hidden_field :heel_tension_level %>
     <%= f.hidden_field :eversion_tension_level %>
     <%= f.hidden_field :sri_stage %>
-    <%= f.hidden_field :sri_position %>
+    <%= f.hidden_field :sri_position_a %>
+		<%= f.hidden_field :sri_position_b %>
     <%= f.hidden_field :sri_level_of_care %>
     <%= f.hidden_field :sri_organizing_field %>
     <%= f.hidden_field :ingression_organizing_field %>
