@@ -684,6 +684,8 @@ function set_sri_positions(stage) {
 			$('#label_sri_position_a').html('Pos A');
 			$('#label_sri_position_b').html('Pos B');
 		}
+		$('#label_sri_4_col').hide();
+		$('#label_sri_5_col').show();
 	}
 	else {
 		// hide the second position field and clear the value visually and in hidden field
@@ -692,6 +694,8 @@ function set_sri_positions(stage) {
 		$('#label_sri_position_b').hide();
 		$('#sri_position_b').html('').hide();
 		$('#visit_sri_position_b').val('');
+		$('#label_sri_4_col').show();
+		$('#label_sri_5_col').hide();
 	}
 }
 
