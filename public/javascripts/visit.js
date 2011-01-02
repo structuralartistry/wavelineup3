@@ -541,7 +541,7 @@ function set_phase_gateway_selector_choices(selected_phase) {
       if(filter_for_gateway.indexOf('S4')==-1) $('#select_gateway_s4').show();
       if(filter_for_gateway.indexOf('S5')==-1) $('#select_gateway_s5').show();
       if(filter_for_gateway.indexOf('CX')==-1) $('#select_gateway_cx').show();
-      if(visit_gateway_currently_working=="2") {
+      if(visit_gateway_currently_working=="1") {
         if(filter_for_gateway.indexOf('APEX')==-1) $('#select_gateway_apex').show();
       }
       break;
@@ -556,7 +556,6 @@ function set_phase_gateway_selector_choices(selected_phase) {
     case "5":
       if(visit_gateway_currently_working=="1" || visit_gateway_currently_working == "1_affecting") {
         // gateway 1 selections
-        if(filter_for_gateway.indexOf('OCC')==-1) $('#select_gateway_occ').show();
         if(filter_for_gateway.indexOf('OCC/C1')==-1) $('#select_gateway_occ_c1').show();
         if(filter_for_gateway.indexOf('C1/OCC')==-1) $('#select_gateway_c1_occ').show();
         if(filter_for_gateway.indexOf('C1/C2')==-1) $('#select_gateway_c1_c2').show();
