@@ -389,25 +389,19 @@ div#cal_event_selector {
   font-size: 14px;
 }
 
-.wavelineup_table .header {
-  background-color: #000033;
-  color: white;
-  height: 0.25in;
-}
-
 .wavelineup_table tr {
   height: 0.50in;
 }
 
 .wavelineup_table tr.even {
-background-color: white;
+	background-color: white;
 }
 
 .wavelineup_table tr.odd {
 background-color: #e0e0e0; /*#c0e0f0;*/ /*#C5ECEC;*/
 }
 
-.wavelineup_table table td {
+.wavelineup_table td {
   padding: 5px 10px;
 }
 

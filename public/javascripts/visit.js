@@ -281,7 +281,8 @@ function get_gateway_side(gateway) {
 }
 
 function normalize_gateway(gateway_text) {
-	return gateway_text.toLowerCase().replace(/\//, '_');
+	if(gateway_text!=undefined) return gateway_text.toLowerCase().replace(/\//, '_');
+	return '';
 }
 
 function remove_span_from_gateway_html(raw_gateway_value) {

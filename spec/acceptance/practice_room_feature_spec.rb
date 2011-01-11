@@ -22,7 +22,7 @@ feature "Practice Room Feature", %q{
   
   scenario "when I go to practice_room/visit_list I see the visit list", :js => true do
     visit("/practice_room/#{@practice_member.id}/visit_list")
-    has_text?("visit list for #{@practice_member.full_name_last_comma_first_middle_initial}").should == true
+    has_text?("No Visits on record for this Practice Member").should == true
   end
   
   scenario "bad visible_section param rejected" do

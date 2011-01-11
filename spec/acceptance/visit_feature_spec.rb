@@ -4,12 +4,16 @@ feature "Visit Feature", %q{
 
 } do
 
-  context "test aspects of Visit", :js => true do
+  context "test aspects of Visit", :js => true, :visit => true do
     before(:each) do
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
       practice_member = create_practice_member('Kahn, David Nathan', practice_name)
-      @practice_room_visit_page = "/practice_room/#{practice_member.id}/visit"
+      visit = Factory.create(:visit)
+      visit.practice_member_id = practice_member.id
+      visit.entrainment_date = Date.today
+      visit.save
+      @practice_room_visit_page = "/practice_room/#{practice_member.id}/visit/#{visit.id}"
       visit(@practice_room_visit_page)
       has_text?('Kahn, David N', 'h1') 
       confirm_visit_loaded   
@@ -504,12 +508,18 @@ feature "Visit Feature", %q{
     
   end
   
-  context "test mini-travel card", :js => true do
+  context "test mini-travel card", :js => true, :visit => true do
     before(:each) do 
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
       @practice_member = create_practice_member('Kahn, David Nathan', practice_name)
-      @practice_room_visit_page = "/practice_room/#{@practice_member.id}/visit"
+      
+      visit = Factory.create(:visit)
+      visit.practice_member_id = practice_member.id
+      visit.entrainment_date = Date.today
+      visit.save
+      
+      @practice_room_visit_page = "/practice_room/#{@practice_member.id}/visit/#{visit.id}"
       
       set_travel_card_default_values(@practice_member.travel_card)
     end
@@ -565,23 +575,25 @@ feature "Visit Feature", %q{
     end
   end
   
-  context "test gateway selector side text and coloring", :js => true do
+  context "test gateway selector side text and coloring", :js => true, :visit => true do
     before(:each) do
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
       practice_member = create_practice_member('Kahn, David Nathan', practice_name)
-      @practice_room_visit_page = "/practice_room/#{practice_member.id}/visit"
-      @practice_room_travel_card_page = "/practice_room/#{practice_member.id}/travel_card"
        
       practice_member.travel_card.gateway_occ_c1 = 'L'
       practice_member.travel_card.save
-# have to load and reload to create visit... in a bit this will go away and we will have to ask to create a visit            
-      visit(@practice_room_visit_page)
-      confirm_visit_loaded
       
-      @visit = Visit.where("practice_member_id=#{practice_member.id}").first
+      
+      @visit = Factory.create(:visit)
+      @visit.practice_member_id = practice_member.id
+      @visit.entrainment_date = Date.today
       @visit.phase_1 = 5
       @visit.save
+      
+      @practice_room_visit_page = "/practice_room/#{practice_member.id}/visit/#{@visit.id}"
+      @practice_room_travel_card_page = "/practice_room/#{practice_member.id}/travel_card"
+      
       
       visit(@practice_room_visit_page)
     end
@@ -640,15 +652,55 @@ feature "Visit Feature", %q{
     
   end
   
-  
+  context "test the different loading strategies of the visit view", :visit => true do
+    before(:each) do
+      practice_name = 'StructuralArtistry practice'
+      logged_in_as_role_for_practice(:practice_user, practice_name)
+      @practice_member = create_practice_member('Kahn, David Nathan', practice_name)
+      @practice_room_visit_page = "/practice_room/#{@practice_member.id}/visit" 
+    end
+    
+    scenario "if a practice member has not had a visit in the last day, just show the New Visit button" do
+      visit(@practice_room_visit_page)
+      page.has_xpath?("//*[@id='no_visit_loaded']").should == true
+    end
 
-  scenario "if this practice member has a visit already today then show it, otherwise just show the new visit button; new visit button creates a visit" do
+    scenario "if a practice member has had a visit in the last day, show the most recent visit on loading the visit view" do
+      visit = Factory.create(:visit)
+      visit.practice_member_id = @practice_member.id
+      visit.entrainment_date = Date.today
+      visit.save
+      
+      visit(@practice_room_visit_page)
+      page.has_xpath?("//*[@id='no_visit_loaded']").should == false
+      
+      verify_visit_loaded(visit.id)
+    end
+    
+    scenario "a new visit is created when user clicks New visit", :js => true do
+      visit(@practice_room_visit_page)
+      Visit.all.size.should == 0
+      
+      click_selector_cell('New Visit')
+      
+      visit = Visit.all.first
+      
+      verify_visit_loaded(visit.id)
+    end
     
   end
+  
 
-  scenario "new visit button while a visit is present creates a new visit" do
 
-  end
+  # scenario "if this practice member has a visit already today then show it, otherwise just show the new visit button; new visit button creates a visit" do
+  #   
+  # end
+  # 
+  # scenario "new visit button while a visit is present creates a new visit" do
+  # 
+  # end
+  # 
+
 
 
   #   

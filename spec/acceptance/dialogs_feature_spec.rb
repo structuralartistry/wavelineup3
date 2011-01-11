@@ -76,7 +76,7 @@ feature "New Practice Member and Find dialog feature", %q{
       click_selector_cell('Find')  
       click_selector_cell('Visit List')
       click_selector_cell(@practice_member_name_one)
-      has_text?("visit list for #{@practice_member_name_one}").should == true
+      has_text?('No Visits on record for this Practice Member').should == true
       
       click_selector_cell('Find')  
       click_selector_cell('Personal Info')

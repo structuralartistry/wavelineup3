@@ -3,6 +3,7 @@ Wavelineup3::Application.routes.draw do
   
   resources :visits
 
+  match 'practice_room/:id/:visible_section/:visit_id' => 'practice_room#main'
   match 'practice_room/:id/:visible_section' => 'practice_room#main'
 
 

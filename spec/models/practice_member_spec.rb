@@ -105,4 +105,17 @@ describe PracticeMember do
     end
   end
 
+  # describe "get visits" do
+  #   it "should return the visits only for the owning practice member" do
+  #     practice_member = Factory.create(:practice_member)
+  #     visit_one = Factory.create(:visit)
+  #     visit_one.practice_member_id = practice_member.id
+  #     
+  #     practice_member.visits.size.should == 1
+  #     
+  #     practice_member_two = Factory.create(:practice_member)
+  #     practice_member_two.visits.should == 0
+  #   end
+  # end
+
 end

@@ -5,7 +5,6 @@ def confirm_travel_card_loaded
 end
 
 def confirm_visit_loaded
-  page.has_content?('visit list for').should == true
   # mini tc
   has_text?('LC', 'td')
   has_text?('RW', 'td')
@@ -21,7 +20,7 @@ def confirm_visit_loaded
 end
 
 def confirm_visit_list_loaded
-  page.has_content?('visit list for').should == true
+  page.has_content?('No Visits on record for this Practice Member').should == true
 end
 
 def confirm_practice_room_selector_loaded
