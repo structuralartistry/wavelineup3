@@ -16,6 +16,7 @@ feature "Practice Registration Feature", %q{
     assert has_text?('Email', 'label')
     assert has_text?('Password', 'label')
     assert has_text?('Password confirmation', 'label')
+    has_text?('Time zone', 'label').should == true
     selector_cell_present?('Cancel')
     has_content?("By clicking 'Submit' you agree to")
     
@@ -24,6 +25,7 @@ feature "Practice Registration Feature", %q{
     fill_in('Email', :with => user_email)
     fill_in('Password', :with => 'Password1')
     fill_in('Password confirmation', :with => 'Password1')
+    select('Eastern Time (US & Canada)', :from => 'Time zone')
     click_button('Submit')
     
     has_flash_notice?('Practice was successfully created. Please check your email for the activation link.')
@@ -42,10 +44,10 @@ feature "Practice Registration Feature", %q{
     fill_in('Email', :with => 'practice@structuralartistry.com')
     fill_in('Password', :with => 'Password1')
     fill_in('Password confirmation', :with => 'Password1')
+    select('Eastern Time (US & Canada)', :from => 'Time zone')
     click_button('Submit')
     
     assert has_text?('Practice name has already been taken')
-    
   end
   
 end

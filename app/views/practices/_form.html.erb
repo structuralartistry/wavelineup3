@@ -11,27 +11,44 @@
     </div>
   <% end %>
   <br />
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-		<%= f.submit 'Submit', :class => 'selector_cell_submit' if action_name == 'edit' || action_name == 'update' %>
-  </div>
- 
+	<table class="light_pink" style='width: 5in;'>
+		<tr>
+			<td>
+			  <div class="field">
+			    <%= f.label :name %><br />
+			    <%= f.text_field :name %>
+				</dif>
+				<div class='field'>
+			    <%= f.label :time_zone %><br />
+			    <%= f.time_zone_select :time_zone %>
+			  </div>
+				<%= f.submit 'Submit', :class => 'selector_cell_submit' if action_name == 'edit' || action_name == 'update' %>
+			</td>
+		</tr>
+	</table>
   <% if action_name != 'edit' && action_name != 'update' %>
-    <%= f.fields_for :users do |u| %>
-      <div class="field">
-        <%= u.label :email %><br />
-        <%= u.text_field :email %>
-      </div>
-      <div class="field">
-        <%= u.label :password %><br />
-        <%= u.password_field :password %>
-      </div>
-      <div class="field">
-        <%= u.label :password_confirmation %><br />
-        <%= u.password_field :password_confirmation %>
-      </div>
-    <% end %>
+		<br>
+		<table class="light_pink" style='width: 5in;'>
+			<tr>
+				<td class='bold' valign='top'>Primary User</td>
+				<td>
+					<%= f.fields_for :users do |u| %>
+					      <div class="field">
+					        <%= u.label :email %><br />
+					        <%= u.text_field :email %>
+					      </div>
+					      <div class="field">
+					        <%= u.label :password %><br />
+					        <%= u.password_field :password %>
+					      </div>
+					      <div class="field">
+					        <%= u.label :password_confirmation %><br />
+					        <%= u.password_field :password_confirmation %>
+					      </div>
+			    <% end %>
+				</td>
+			</tr>
+		</table>
 		<% if action_name != 'edit' && action_name != 'update' %>
 			<p>By clicking 'Submit' you agree to the <%= link_to 'Terms of Service', '/terms_of_service', :target => 'new' %>,<br>and <%= link_to 'Privacy', '/privacy_policy', :target => 'new' %> policies</p>
 		<% end %>

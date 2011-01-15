@@ -20,6 +20,8 @@ describe Practice do
   it { should validate_presence_of(:name) }
   it { should validate_uniqueness_of(:name) }
   
+  it { should validate_presence_of(:time_zone) }
+  
   ['Practice Three', 'Practice3', 'Practice-Three'].each do |good_name|
     it { should allow_value(good_name).for(:name) }
   end

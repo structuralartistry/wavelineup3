@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
   
-  before_filter :redirect_to_https, :authorize, :prohibit_internet_explorer
+  before_filter :redirect_to_https, :prohibit_internet_explorer, :authorize
   
   rescue_from Exception, :with => :rescue_all_exceptions if Rails.env == 'production'
   def rescue_all_exceptions(exception)
@@ -42,10 +42,15 @@ class ApplicationController < ActionController::Base
         redirect_to 'https://' + request.host_with_port + request.fullpath if request.env['HTTP_X_FORWARDED_PROTO'] != 'https'
       end
     end
+    
+    def set_timezone
+      Time.zone = current_user.practice.time_zone
+    end
  
     def authorize
       if current_user 
         return_value = current_user.authorize(controller_name, action_name)
+        set_timezone
       else
         return_value = User.new.authorize(controller_name, action_name)
       end

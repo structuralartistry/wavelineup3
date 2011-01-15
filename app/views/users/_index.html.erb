@@ -1,8 +1,8 @@
-<table>
+<table class="light_pink" style='width: 5in;'>
   <tr>
-    <th align="left">Practice Users</th>
-    <th></th>
-    <th></th>
+    <td align="left" class='bold'>Practice Users</td>
+    <td></td>
+    <td></td>
   </tr>
   
 <% @users.each do |user| %>
@@ -11,7 +11,7 @@
     <td><%= button_to 'Delete', user, :confirm => "Are you sure?", :method => :delete, :class => 'selector_cell_submit' %></td>
   </tr>
 <% end %>
+	<tr>
+		<td><%= button_to 'New User', new_user_path, :method => :get, :class => 'selector_cell_submit' %></td>
+	</tr>
 </table>
-
-<br />
-<%= button_to 'New User', new_user_path, :method => :get, :class => 'selector_cell_submit' %>

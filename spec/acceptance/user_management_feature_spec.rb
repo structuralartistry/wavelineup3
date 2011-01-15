@@ -11,23 +11,6 @@ feature "User Management Feature", %q{
     @logged_in_user = @practice.users[0]
     visit('/home')
   end
-  
-  scenario "I can change the name of my practice" do
-    title_contains?(@practice.name)
-    click_selector_cell('Edit Practice')
-    
-    has_text?('Manage Practice', 'h1').should == true
-    has_text?('Practice name', 'label').should == true
-    has_text?('Practice Users', 'th').should == true
-    has_text?(@practice.users[0].email).should == true
-
-    new_practice_name = 'New Practice Name'
-    fill_in('Practice name', :with => new_practice_name)
-    click_selector_cell('Submit')
-    
-    has_flash_notice?('Practice was successfully updated').should == true
-    title_contains?(new_practice_name)
-  end
 
   scenario "I can add a user to my practice and activate the user" do 
     Factory.create(:practice_user)

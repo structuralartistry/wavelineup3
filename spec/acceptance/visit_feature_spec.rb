@@ -9,12 +9,11 @@ feature "Visit Feature", %q{
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
       practice_member = create_practice_member('Kahn, David Nathan', practice_name)
-      visit = Factory.create(:visit)
-      visit.practice_member_id = practice_member.id
-      visit.entrainment_date = Date.today
-      visit.save
-      @practice_room_visit_page = "/practice_room/#{practice_member.id}/visit/#{visit.id}"
-      visit(@practice_room_visit_page)
+      
+      # this will create a new visit organically
+      visit("/practice_room/#{practice_member.id}/visit/new")
+      @practice_room_visit_page = page.current_url
+
       has_text?('Kahn, David N', 'h1') 
       confirm_visit_loaded   
     end
@@ -515,7 +514,7 @@ feature "Visit Feature", %q{
       @practice_member = create_practice_member('Kahn, David Nathan', practice_name)
       
       visit = Factory.create(:visit)
-      visit.practice_member_id = practice_member.id
+      visit.practice_member_id = @practice_member.id
       visit.entrainment_date = Date.today
       visit.save
       
@@ -657,28 +656,27 @@ feature "Visit Feature", %q{
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
       @practice_member = create_practice_member('Kahn, David Nathan', practice_name)
-      @practice_room_visit_page = "/practice_room/#{@practice_member.id}/visit" 
     end
     
     scenario "if a practice member has not had a visit in the last day, just show the New Visit button" do
-      visit(@practice_room_visit_page)
+      visit("/practice_room/#{@practice_member.id}/visit")
       page.has_xpath?("//*[@id='no_visit_loaded']").should == true
     end
 
     scenario "if a practice member has had a visit in the last day, show the most recent visit on loading the visit view" do
-      visit = Factory.create(:visit)
-      visit.practice_member_id = @practice_member.id
-      visit.entrainment_date = Date.today
-      visit.save
-      
-      visit(@practice_room_visit_page)
+      visit("/practice_room/#{@practice_member.id}/visit/new")
+
       page.has_xpath?("//*[@id='no_visit_loaded']").should == false
       
-      verify_visit_loaded(visit.id)
+      # get the visit from the url
+      page.current_url =~ /[0-9]{1,}?$/
+      visit_id = $&
+
+      verify_visit_loaded(visit_id)
     end
     
     scenario "a new visit is created when user clicks New visit", :js => true do
-      visit(@practice_room_visit_page)
+      visit("/practice_room/#{@practice_member.id}/visit")
       Visit.all.size.should == 0
       
       click_selector_cell('New Visit')
