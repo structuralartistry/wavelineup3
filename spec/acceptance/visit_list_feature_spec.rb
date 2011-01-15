@@ -4,7 +4,7 @@ feature "Visit List Feature", %q{
 
 } do
   
-  context "visit list functionality", :visit_list => true do
+  context "visit list functionality", :visit_list => true, :js => true do
     
     before(:each) do
       practice_name = 'StructuralArtistry practice'
@@ -15,7 +15,7 @@ feature "Visit List Feature", %q{
 
     scenario "the visit list shows the date, phase 1, 2 and sri stage of all visits for the selected practice member" do
       visit(@practice_room_visit_list_page) 
-      
+
       # no visits
       has_text?('No Visits on record for this Practice Member').should == true
       has_text?('Date', 'td').should == false
