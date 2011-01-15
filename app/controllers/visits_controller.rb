@@ -8,7 +8,7 @@ class VisitsController < ApplicationController
         format.js { render 'update_response' }
       else
         # entrainment date is the only validation we send back a specific error for
-        if params[:visit][:entrainment_date]
+        if params[:visit][:date]
           flash[:notice] = 'Date invalid: Please correct'
         else
           flash[:notice] = 'Data error'

@@ -7,7 +7,7 @@ class PracticeRoomController < ApplicationController
     if params[:visit_id]
       if params[:visit_id] == 'new'
         @visit = Visit.new
-        @visit.entrainment_date = Date.today
+        @visit.date = DateTime.now
         @visit.practice_member_id = @practice_member.id
         @visit.save
         
@@ -16,7 +16,7 @@ class PracticeRoomController < ApplicationController
         @visit = Visit.where(['id=? AND practice_member_id=?', params[:visit_id], @practice_member.id]).first
       end
     else
-      @visit = Visit.where(['practice_member_id=? AND entrainment_date>?', @practice_member.id, Date.today-1]).order('entrainment_date DESC').first
+      @visit = Visit.where(['practice_member_id=? AND date>?', @practice_member.id, Date.today-1]).order('date DESC').first
       redirect_to "/practice_room/#{@practice_member.id}/visit/#{@visit.id}" if @visit
     end
     
@@ -26,7 +26,7 @@ class PracticeRoomController < ApplicationController
     
 
     
-    @visit_list = Visit.where(['practice_member_id=?', @practice_member.id]).order('entrainment_date DESC').all
+    @visit_list = Visit.where(['practice_member_id=?', @practice_member.id]).order('date DESC').all
     
     acceptable_sections = %w(visit visit_list travel_card)
     if !acceptable_sections.include?(params[:visible_section])

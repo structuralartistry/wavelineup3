@@ -8,7 +8,7 @@ en:
       models:
         visit:
           attributes:
-            entrainment_date:
+            date:
               invalid_date: 'is invalid'
     attributes: 
       practice: 

@@ -19,12 +19,16 @@
 			<td><%= render :partial => 'visits/mini_travel_card' %></td> 
 	      <td valign='top'>
 				<table class='selector_table'>
-					<tr><td class="half_height label">Date</td><td colspan='2' class="half_height"></td></tr>
 					<tr>
-						<td><%= f.text_field :entrainment_date, :size => "12", :class => 'autosave' %></td>
-	      			<td style="width: 1.0in;" class="selector_cell selector_cell_text_six_character selector_cell_add" onClick="window.location.href='/practice_room/<%= @practice_member.id %>/visit/new';">New Visit</td>    
-	      			<td style="width: 1.0in;" class="selector_cell selector_cell_text_six_character delete" href="<%= '/visits/' + @visit.id.to_s %>">Delete</td>   
-						</tr>
+					</tr>
+					<tr>
+						<td class="half_height label">Date</td>
+					</tr>
+					<tr>
+						<td><%= f.text_field :date, :size => "20", :class => 'autosave', :value => @visit.date.strftime('%Y-%m-%d %H:%M') %></td>
+						<td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character selector_cell_add" onClick="window.location.href='/practice_room/<%= @practice_member.id %>/visit/new';">New Visit</td>    
+	      		<td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character delete" href="<%= '/visits/' + @visit.id.to_s %>">Delete</td>   						
+					</tr>
 					<tr>
 						<td colspan='3' class="half_height label">Notes</td>
 					</tr>

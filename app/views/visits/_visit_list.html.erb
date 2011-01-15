@@ -6,9 +6,9 @@
 			<td class='label'>Phase 2</td>
 			<td class='label'>SRI Stage</td>
 		</tr>
-		<% Visit.where("practice_member_id = #{@practice_member.id}").order("entrainment_date DESC").all.each do |visit| %>
+		<% Visit.where("practice_member_id = #{@practice_member.id}").order("date DESC").all.each do |visit| %>
 		<tr id='<%= visit.id %>' class='selector_cell' onClick="window.location.href='/practice_room/<%= @practice_member.id %>/visit/<%= visit.id %>'">	
-			<td align='center'><%= visit.entrainment_date %></td>
+			<td align='center'><%= visit.date %></td>
 			<td align='center'><%= visit.phase_1 %></td>
 			<td align='center'><%= visit.phase_2 %></td>
 			<td align='center'><%= visit.sri_stage %></td>

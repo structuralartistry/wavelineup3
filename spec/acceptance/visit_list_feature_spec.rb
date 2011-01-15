@@ -29,7 +29,7 @@ feature "Visit List Feature", %q{
       
       visit = Factory.create(:visit)
       visit.practice_member_id = @practice_member.id
-      visit.entrainment_date = '2010-01-01'
+      visit.date = '2010-01-01'
       visit.phase_1 = '3'
       visit.phase_2 = '5'
       visit.sri_stage = '6'
@@ -49,7 +49,7 @@ feature "Visit List Feature", %q{
       
       visit = Factory.create(:visit)
       visit.practice_member_id = visit.id
-      visit.entrainment_date = '2011-01-01'
+      visit.date = '2011-01-01'
       visit.phase_1 = '1 > 2 C5'
       visit.phase_2 = '4'
       visit.sri_stage = '9'
@@ -66,7 +66,7 @@ feature "Visit List Feature", %q{
     scenario "when I click on a visit in the visit list, the visit loads into the visit view", :js => true do
       visit = Factory.create(:visit)
       visit.practice_member_id = @practice_member.id
-      visit.entrainment_date = '2010-01-01'
+      visit.date = '2010-01-01'
       visit.phase_1 = '3'
       visit.phase_2 = '5'
       visit.sri_stage = '6'

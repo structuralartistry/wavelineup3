@@ -19,21 +19,21 @@ feature "Visit Feature", %q{
     end
     
     scenario "I can change the entrainment date of the visit" do
-      fill_in('visit_entrainment_date', :with => '2011-01-07')
+      fill_in('visit_date', :with => '2011-01-07 15:13')
       sleep(2) # delay for autosave to complete... wait_until {} not working on this
       
       # verify save
       visit(@practice_room_visit_page)
-      get_input_value('visit_entrainment_date').should == '2011-01-07'
+      get_input_value('visit_date').should == '2011-01-07 15:13'
       
       # bad date sends back validation message
-      fill_in('visit_entrainment_date', :with => 'xxxxxx')
+      fill_in('visit_date', :with => 'xxxxxx')
       sleep(2) # delay for autosave to complete... wait_until {} not working on this
-      has_flash_notice?('Date invalid: Please correct').should == true
+      has_flash_notice?('date invalid: Please correct').should == true
       
       # verify save did not take
       visit(@practice_room_visit_page)
-      get_input_value('visit_entrainment_date').should == '2011-01-07'
+      get_input_value('visit_date').should == '2011-01-07 15:13'
     end
     
     scenario "I can set Phase 1 and 2 values and they autosave and that affected gateway selectors show for phase 1" do  
@@ -515,7 +515,7 @@ feature "Visit Feature", %q{
       
       visit = Factory.create(:visit)
       visit.practice_member_id = @practice_member.id
-      visit.entrainment_date = Date.today
+      visit.date = DateTime.now
       visit.save
       
       @practice_room_visit_page = "/practice_room/#{@practice_member.id}/visit/#{visit.id}"
@@ -586,7 +586,7 @@ feature "Visit Feature", %q{
       
       @visit = Factory.create(:visit)
       @visit.practice_member_id = practice_member.id
-      @visit.entrainment_date = Date.today
+      @visit.date = DateTime.now
       @visit.phase_1 = 5
       @visit.save
       

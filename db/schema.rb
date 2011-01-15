@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110115181940) do
+ActiveRecord::Schema.define(:version => 20110115200830) do
 
   create_table "feedback_supports", :force => true do |t|
     t.integer  "user_id"
@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(:version => 20110115181940) do
 
   create_table "visits", :force => true do |t|
     t.integer  "practice_member_id"
-    t.date     "entrainment_date"
+    t.datetime "date"
     t.string   "phase_1"
     t.string   "phase_1_gateway_1"
     t.string   "phase_1_gateway_2"

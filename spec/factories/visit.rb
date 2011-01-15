@@ -1,7 +1,7 @@
 Factory.define :visit do |v|
   # v.association :practice_member, :factory => :practice_member
   v.practice_member_id 1
-  v.entrainment_date '2010-12-31'
+  v.date '2010-12-31 15:13'
   v.phase_1 '1 > 3'
   v.phase_1_gateway_1 'OCC'
   v.phase_1_gateway_2 'S1'
