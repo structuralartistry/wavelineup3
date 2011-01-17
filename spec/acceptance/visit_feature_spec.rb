@@ -504,6 +504,14 @@ feature "Visit Feature", %q{
       selector_cell_present?('selected_phase_1_direction').should == false
 
     end
+  
+    scenario "the visit can be deleted" do
+      click_selector_cell('Del')
+      has_flash_notice?('Visit successfully deleted').should == true
+      
+      page.has_xpath?("//*[@id='no_visit_loaded']").should == true
+      selector_cell_present?('New Visit').should == true
+    end
     
   end
   
