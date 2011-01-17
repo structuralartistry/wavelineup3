@@ -18,4 +18,19 @@ class VisitsController < ApplicationController
     end
   end
   
+  def destroy
+    @visit = Visit.includes(:practice_member).where(["visits.id=? AND practice_members.practice_id=?", params[:id], current_user.practice.id]).first
+
+    if @visit
+      practice_member_id = @visit.practice_member.id
+      if @visit.destroy
+        flash[:notice] = "Visit successfully deleted"
+        redirect_to "/practice_room/#{practice_member_id}/visit" and return
+      end
+    end
+
+    flash[:notice] = "Visit was not deleted"
+    redirect_to request.fullpath
+  end
+  
 end

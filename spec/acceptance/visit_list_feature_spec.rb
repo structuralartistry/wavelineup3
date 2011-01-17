@@ -42,7 +42,7 @@ feature "Visit List Feature", %q{
       has_text?('Phase 2', 'td').should == true
       has_text?('SRI Stage', 'td').should == true
       
-      has_text?('2010-01-01', 'td').should == true
+      has_text?('2010-01-01 00:00', 'td').should == true
       has_text?('3', 'td').should == true
       has_text?('5', 'td').should == true
       has_text?('6', 'td').should == true
@@ -57,7 +57,7 @@ feature "Visit List Feature", %q{
       
       visit(@practice_room_visit_list_page)
       
-      has_text?('2010-01-01', 'td').should == true
+      has_text?('2010-01-01 00:00', 'td').should == true
       has_text?('3', 'td').should == true
       has_text?('5', 'td').should == true
       has_text?('6', 'td').should == true

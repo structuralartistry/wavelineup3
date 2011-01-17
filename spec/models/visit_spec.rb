@@ -17,7 +17,6 @@ describe Visit do
   it { should allow_value(Date.today + 50.years - 1.year).for(:date) }
   it { should_not allow_value(Date.today + 50.years + 1.year).for(:date) }
   it { should allow_value('2010-12-31').for(:date) }
-  it { should_not allow_value('20-01-01').for(:date) }
   it { should_not allow_value('abcde').for(:date) }
   
   

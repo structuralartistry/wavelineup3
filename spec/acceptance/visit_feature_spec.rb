@@ -29,7 +29,7 @@ feature "Visit Feature", %q{
       # bad date sends back validation message
       fill_in('visit_date', :with => 'xxxxxx')
       sleep(2) # delay for autosave to complete... wait_until {} not working on this
-      has_flash_notice?('date invalid: Please correct').should == true
+      has_flash_notice?('Date invalid: Please correct').should == true
       
       # verify save did not take
       visit(@practice_room_visit_page)

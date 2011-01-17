@@ -13,7 +13,7 @@
     <td><%= practice.name %></td>
     <td><%= link_to 'Show', practice %></td>
     <td><%= link_to 'Edit', edit_practice_path(practice) %></td>
-    <td><%= link_to 'Destroy', practice, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', practice, :confirm => 'This action can not be undone. Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
