@@ -105,6 +105,18 @@ describe PracticeMember do
     end
   end
 
+  it "deletes related records (Travel Card and Visit) when destroyed" do
+    practice_member = Factory.create(:practice_member)
+    travel_card_id = TravelCard.find_by_practice_member_id(practice_member.id).id
+    visit = Factory.create(:visit)
+    visit.practice_member_id = practice_member.id
+    visit.save
+    
+    practice_member.destroy
+    TravelCard.where("practice_member_id=#{practice_member.id}").all.should == []
+    Visit.where("practice_member_id=#{practice_member.id}").all.should == []
+  end
+
   # describe "get visits" do
   #   it "should return the visits only for the owning practice member" do
   #     practice_member = Factory.create(:practice_member)

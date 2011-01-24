@@ -1,7 +1,7 @@
 class PracticeMember < ActiveRecord::Base
   belongs_to :practice
-  has_one :travel_card
-  has_many :visits
+  has_one :travel_card, :dependent => :destroy
+  has_many :visits, :dependent => :destroy
   
   validates_presence_of :practice_id
   validates_presence_of :last_name
@@ -41,11 +41,7 @@ class PracticeMember < ActiveRecord::Base
   def full_name_last_comma_first_middle_initial
     "#{self.last_name}, #{self.first_name} #{self.middle_name[0,1] if self.middle_name.length>=1}".strip
   end
-  
-  # def visits
-  #   Visit.where("practice_member_id = #{self.id}").all
-  # end
-  
+    
   private
   
     def normalize_input

@@ -17,27 +17,37 @@ feature "New Practice Member and Find dialog feature", %q{
       visit('/home')
     end
   
-    scenario "New Practice Member, Find and Feedback Support dialogs show, hide and cancel eachother" do
+    scenario "New Practice Member, Find, Lineup and Feedback Support dialogs show, hide and cancel eachother" do
       
       click_selector_cell('New PM')
       new_practice_member_dialog_present?.should == true
       find_dialog_present?.should == false
       feedback_support_dialog_present?.should == false
+      lineup_dialog_present.should == false
       
       click_selector_cell('Find')
       new_practice_member_dialog_present?.should == false
       find_dialog_present?.should == true
       feedback_support_dialog_present?.should == false
+      lineup_dialog_present.should == false
 
       click_selector_cell('Feedback/Support')
       new_practice_member_dialog_present?.should == false
       find_dialog_present?.should == false
       feedback_support_dialog_present?.should == true
+      lineup_dialog_present.should == false
+      
+      click_selector_cell('Lineup')
+      new_practice_member_dialog_present?.should == false
+      find_dialog_present?.should == false
+      feedback_support_dialog_present?.should == true 
+      lineup_dialog_present.should == true     
       
       click_selector_cell('New PM')
       new_practice_member_dialog_present?.should == true
       find_dialog_present?.should == false
       feedback_support_dialog_present?.should == false
+      lineup_dialog_present.should == false
     end
   
     scenario "I can click on the 'K' alphabet key and only see practice members whose last name starts with 'K'" do
@@ -102,6 +112,41 @@ feature "New Practice Member and Find dialog feature", %q{
       selector_cell_present?('Feedback/Support').should == true
     end
     
+  end
+  
+  context "Lineup selector functionality and operations" do 
+    
+    scenario "any practice member accessed in the practice room is added to the lineup selector, no lineup selector if no PM's have been selected" do
+      click_selector_cell('Lineup').should == false # no lineup selector if no one in the lineup
+      
+      click_selector_cell('Find')            
+      click_selector_cell(@practice_member_name_one)
+      confirm_visit_loaded
+      
+      click_selector_cell('Lineup')
+      assert selector_cell_present?(@practice_member_name_one)
+    end
+    
+    scenario "the lineup selector removes the practice member if they have not been accessed for 30 minutes" do
+      pending "implement"
+      
+      # access a PM
+      
+      # check if in the Lineup selector
+      
+      # set the date of access 31 minutes back
+      
+      # check that is no longer in the selector
+    end
+    
+  end
+  
+  scenario "the Find and Lineup selector cells do not show if there are no practice members" do
+    PracticeMember.delete_all
+    visit('/home')
+    
+    selector_cell_present('Find').should == false
+    selector_cell_present('Lineup').should == false
   end
   
 end

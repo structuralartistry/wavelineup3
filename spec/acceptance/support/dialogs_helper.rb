@@ -9,3 +9,7 @@ end
 def feedback_support_dialog_present?
   return selector_cell_selected?('Feedback/Support') && has_text?('Feedback & Support', 'h1')
 end
+
+def lineup_dialog_present?
+  return selector_cell_present?('Lineup') && has_text?('Recent Practice Members')
+end
