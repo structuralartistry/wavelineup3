@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
   
+  helper_method :lineup_practice_member_ids
+  
   before_filter :redirect_to_https, :prohibit_internet_explorer, :authorize
   
   rescue_from Exception, :with => :rescue_all_exceptions if Rails.env == 'production'
@@ -80,6 +82,11 @@ class ApplicationController < ActionController::Base
     def current_user
       return @current_user if defined?(@current_user)
       @current_user = current_user_session && current_user_session.record
+    end
+    
+    def lineup_practice_member_ids
+      session[:lineup_practice_member_ids] = Lineup.new(LINEUP_DURATION_OF_STAY_MINUTES) if !session[:lineup_practice_member_ids]
+      session[:lineup_practice_member_ids]
     end
     
 end

@@ -1,6 +1,7 @@
 class PracticeRoomController < ApplicationController
   def main
     @practice_member = PracticeMember.where(['id=? AND practice_id=?', params[:id], current_user.practice.id]).first
+    lineup_practice_member_ids << @practice_member.id if @practice_member.id
     
     @travel_card = TravelCard.where(['practice_member_id=?', @practice_member.id]).first
       
