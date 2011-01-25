@@ -1,0 +1,21 @@
+<% if session[:lineup_practice_member_ids] && !session[:lineup_practice_member_ids].empty? %>
+	<table class="selector_table">
+		<% character_group = '' %>
+    <tr>
+      <% counter = 0 %>
+			<% character_group = '' %>
+      <% session[:lineup_practice_member_ids].each do |practice_member_id| %>
+        <!-- if counter get to expected number, create a new row so these wrap -->
+        <% if counter >= 5 || character_group != practice_member.last_name.first.upcase %>
+					<% character_group = practice_member.last_name.first.upcase %>
+          </tr>
+          <tr>
+          <% counter = 0 %>
+        <% end %>
+        <td style="width: 1.5in;" class="selector_cell selector_cell_text_six_character" onmousedown="window.location.href='/practice_room/<%= practice_member.id %>/visit';"><%= truncate(practice_member.full_name_last_comma_first_middle_initial, :length => 30) %></td>
+        <% counter = counter + 1 %>
+      <% end %> 
+    </tr>    
+  </table>
+
+<% end %>

@@ -128,7 +128,7 @@ feature "New Practice Member and Find dialog feature", %q{
     end
     
     scenario "the lineup selector removes the practice member if they have not been accessed for 30 minutes" do
-      pending "implement"
+      pending "implement... maybe do this in a controller test, is a session object probably"
       
       # access a PM
       

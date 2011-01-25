@@ -71,8 +71,11 @@ function set_left_column_buttons() {
   if(practice_member_selector_available) {
     $('#practice_member_selector_show_selector_cell').show();
   }
+  if(lineup_selector_available) {
+    $('#lineup_selector_show_selector_cell').show();
+  }
 
-	selectors = new Array('#new_practice_member', '#practice_member_selector', '#feedback_support');
+	selectors = new Array('#new_practice_member', '#practice_member_selector', '#feedback_support', '#lineup_selector');
 	for (key in selectors) {
 		value = selectors[key]
 		if($(value).is(':visible')) {

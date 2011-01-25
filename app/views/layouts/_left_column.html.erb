@@ -37,6 +37,7 @@ function feedback_support_form() {
 	<tr><td><%= button_to 'Home', home_url, :method => :get, :class => 'bold selector_cell selector_cell_nav', :style => 'width: 1.5in;' %></td></tr>
 	<tr><td><%= button_to 'New PM', '#', :method => :get, :id => 'new_practice_member_show_selector_cell', :class => 'bold selector_cell selector_cell_nav hidden', :style => 'width: 1.5in;', :onclick => "show_dialog('new_practice_member'); return false;" %></td></tr>
 	<tr><td><%= button_to 'Find', '#', :method => :get, :id => 'practice_member_selector_show_selector_cell', :class => 'bold selector_cell selector_cell_nav hidden', :style => 'width: 1.5in;', :onclick => "toggle_dialog('practice_member_selector'); return false;" %></td></tr>
+	<tr><td><%= button_to 'Lineup', '#', :method => :get, :id => 'lineup_selector_show_selector_cell', :class => 'bold selector_cell selector_cell_nav hidden', :style => 'width: 1.5in;', :onclick => "toggle_dialog('lineup_selector'); return false;" %></td></tr>
 	<tr><td></td></tr>
 	<tr><td><%= button_to 'Feedback/Support', '#', :method => :get, :id => 'feedback_support_show_selector_cell', :class => 'bold selector_cell selector_cell_nav', :style => 'width: 1.5in;', :onclick => "show_dialog('feedback_support'); return false;" %></td></tr>
 	<% if current_user.practice %>
