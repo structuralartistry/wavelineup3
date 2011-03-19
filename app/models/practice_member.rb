@@ -39,7 +39,8 @@ class PracticeMember < ActiveRecord::Base
   end
 
   def self.lineup_practice_members
-    self.where(['last_practice_room_access>=?', DateTime.now-LINEUP_DURATION_OF_STAY_MINUTES.minutes]).all
+    lookback_to = (DateTime.now-LINEUP_DURATION_OF_STAY_MINUTES.minutes).utc
+    self.where(['last_practice_room_access>=?', lookback_to]).all
   end
 
   def full_name_last_comma_first_middle_initial

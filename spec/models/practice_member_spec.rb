@@ -119,11 +119,15 @@ describe PracticeMember do
 
   it "should return lineup practice members as those who have been accessed in the practice room within the lineup threshold" do
     PracticeMember.lineup_practice_members.size.should == 0
+
     @practice_member.last_practice_room_access = DateTime.now
     @practice_member.save
+
     PracticeMember.lineup_practice_members.size.should == 1
-    @practice_member.last_practice_room_access = DateTime.now - (LINEUP_DURATION_OF_STAY_MINUTES-2).minutes
+
+    @practice_member.last_practice_room_access = DateTime.now - (LINEUP_DURATION_OF_STAY_MINUTES+2).minutes
     @practice_member.save
+
     PracticeMember.lineup_practice_members.size.should == 0
   end
 
