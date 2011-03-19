@@ -14,7 +14,7 @@ development:
   database: wavelineup3_development
   pool: 5
   username: postgres
-  password: autex
+  password: laugh
   host: localhost
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -42,7 +42,7 @@ test:
   database: wavelineup3_test
   pool: 5
   username: postgres
-  password: autex
+  password: laugh
   host: localhost
 
 production:
@@ -51,7 +51,7 @@ production:
   database: wavelineup3_production
   pool: 5
   username: postgres
-  password: autex
+  password: laugh
 
 # cucumber:
 #   <<: *test

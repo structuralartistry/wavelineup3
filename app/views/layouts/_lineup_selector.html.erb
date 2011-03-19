@@ -1,3 +1,4 @@
+<% PracticeMember.where(['last_practice_room_access>=?', DateTime.now-LINEUP_THRESHOLD.minutes]).all.each do |practice_member| %>
 <% if session[:lineup_practice_member_ids] && !session[:lineup_practice_member_ids].empty? %>
 	<table class="selector_table">
 		<% character_group = '' %>
@@ -14,8 +15,8 @@
         <% end %>
         <td style="width: 1.5in;" class="selector_cell selector_cell_text_six_character" onmousedown="window.location.href='/practice_room/<%= practice_member.id %>/visit';"><%= truncate(practice_member.full_name_last_comma_first_middle_initial, :length => 30) %></td>
         <% counter = counter + 1 %>
-      <% end %> 
-    </tr>    
+      <% end %>
+    </tr>
   </table>
 
 <% end %>

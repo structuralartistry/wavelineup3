@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110117015522) do
+ActiveRecord::Schema.define(:version => 20110221021530) do
 
   create_table "feedback_supports", :force => true do |t|
     t.integer  "user_id"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20110117015522) do
     t.string   "middle_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "last_practice_room_access"
   end
 
   create_table "practices", :force => true do |t|

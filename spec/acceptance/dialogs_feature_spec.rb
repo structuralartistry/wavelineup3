@@ -114,7 +114,7 @@ feature "New Practice Member and Find dialog feature", %q{
     
   end
   
-  context "Lineup selector functionality and operations" do 
+  context "Lineup selector functionality and operations", :js => true do 
     
     scenario "any practice member accessed in the practice room is added to the lineup selector, no lineup selector if no PM's have been selected" do
       click_selector_cell('Lineup').should == false # no lineup selector if no one in the lineup
@@ -141,7 +141,7 @@ feature "New Practice Member and Find dialog feature", %q{
     
   end
   
-  scenario "the Find and Lineup selector cells do not show if there are no practice members" do
+  scenario "the Find and Lineup selector cells do not show if there are no practice members", :js => true do
     PracticeMember.delete_all
     visit('/home')
     
