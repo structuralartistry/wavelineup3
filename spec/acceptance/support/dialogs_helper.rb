@@ -11,5 +11,5 @@ def feedback_support_dialog_present?
 end
 
 def lineup_dialog_present?
-  return selector_cell_present?('Lineup') && has_text?('Recent Practice Members')
+  return selector_cell_present?('Lineup') && has_text?('Lineup')
 end

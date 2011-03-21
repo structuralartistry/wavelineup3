@@ -2,11 +2,11 @@
 <html>
 <head>
   <title>WaveLineup3<%= ' ::: ' + current_user.practice.name if current_user && current_user.practice %><%= ' ::: ' + current_user.email if current_user %></title>
-  
+
 	<%= include_stylesheets :common %>
 	<%= include_javascripts :common %>
   <%= csrf_meta_tag %>
-	
+
 	<% if flash[:notice] %>
 	<script language='javascript'>
 		$(document).ready(function() {
@@ -25,12 +25,15 @@
     		    <%= render :partial => "layouts/left_column" %>
     		  <% end %>
         </td>
-        <td style="width: 98%;">        
+        <td style="width: 98%;">
           <div id="new_practice_member" class="selector hidden">
           </div>
           <div id="practice_member_selector" class="selector hidden">
 						<%= render :partial => "layouts/practice_member_selector" %>
      	    </div>
+          <div id="lineup_selector" class="selector hidden">
+						<%= render :partial => "layouts/lineup_selector" %>
+          </div>
 					<div id="feedback_support" class="selector hidden"></div>
      	    <div id="main_frame">
             <%= yield %>

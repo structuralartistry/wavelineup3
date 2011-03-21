@@ -1,11 +1,13 @@
-<% lineup_practice_members.all.each do |practice_member| %>
-<% if session[:lineup_practice_member_ids] && !session[:lineup_practice_member_ids].empty? %>
+<% if !lineup_practice_members.empty? %>
 	<table class="selector_table">
+    <tr>
+      <th align='left' colspan='5'><h1>Lineup</h1></th>
+    </tr>
 		<% character_group = '' %>
     <tr>
       <% counter = 0 %>
 			<% character_group = '' %>
-      <% session[:lineup_practice_member_ids].each do |practice_member_id| %>
+      <% lineup_practice_members.all.each do |practice_member| %>
         <!-- if counter get to expected number, create a new row so these wrap -->
         <% if counter >= 5 || character_group != practice_member.last_name.first.upcase %>
 					<% character_group = practice_member.last_name.first.upcase %>

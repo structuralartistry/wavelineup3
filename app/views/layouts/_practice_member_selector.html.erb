@@ -1,13 +1,19 @@
 <% if current_user && current_user.practice && current_user.practice.practice_members.size > 0 %>
-  <table class="selector_table"> 
+  <table class="selector_table">
+    <tr>
+      <th align='left' colspan='4'><h1>Select Target Page</h1></th>
+    </tr>
     <tr>
 			<td id='visit_page_selector' style="width: 1.5in;" class="selector_cell selector_cell_text_six_character page_selector current_selected" onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');">Visit</td>
-      <td id='travel_card_page_selector' style="width: 1.5in;" class="selector_cell selector_cell_text_six_character page_selector" onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');">Travel Card</td> 
-			<td id='visit_list_selector' style="width: 1.5in;" class="selector_cell selector_cell_text_six_character page_selector" onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');">Visit List</td>     
+      <td id='travel_card_page_selector' style="width: 1.5in;" class="selector_cell selector_cell_text_six_character page_selector" onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');">Travel Card</td>
+			<td id='visit_list_selector' style="width: 1.5in;" class="selector_cell selector_cell_text_six_character page_selector" onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');">Visit List</td>
       <td id='practice_member_edit_page_selector' style="width: 1.5in;" class="selector_cell selector_cell_text_six_character page_selector" onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');">Personal Info</td>
     </tr>
   </table>
-  <table class="selector_table">      
+  <table class="selector_table">
+    <tr>
+      <th align='left' colspan='14'><h1>Filter Names</h1></th>
+    </tr>
     <tr>
       <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector current_selected" onMouseDown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.practice_member_list').show();">All</td>
 
@@ -39,11 +45,14 @@
       <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">W</td>
       <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">X</td>
       <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">Y</td>
-      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">Z</td>      
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">Z</td>
     </tr>
   </table>
 
 	<table class="selector_table">
+    <tr>
+      <th align='left' colspan='5'><h1>Go</h1></th>
+    </tr>
 		<% character_group = '' %>
     <tr class='practice_member_list character_group_<%= %>'>
       <% counter = 0 %>
@@ -58,8 +67,8 @@
         <% end %>
         <td style="width: 1.5in;" class="selector_cell selector_cell_text_six_character" onmousedown="selected_practice_member_id=<%= practice_member.id %>; navigate_now();"><%= truncate(practice_member.full_name_last_comma_first_middle_initial, :length => 30) %></td>
         <% counter = counter + 1 %>
-      <% end %> 
-    </tr>    
+      <% end %>
+    </tr>
   </table>
 
 <% end %>
