@@ -1,4 +1,4 @@
-<% PracticeMember.where(['last_practice_room_access>=?', DateTime.now-LINEUP_THRESHOLD.minutes]).all.each do |practice_member| %>
+<% lineup_practice_members.all.each do |practice_member| %>
 <% if session[:lineup_practice_member_ids] && !session[:lineup_practice_member_ids].empty? %>
 	<table class="selector_table">
 		<% character_group = '' %>

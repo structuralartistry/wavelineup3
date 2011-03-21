@@ -23,7 +23,7 @@ puts "WARNING: Sysadmin has an unsecure password, '#{user.password}'. Change bef
 puts "It will be down root"
 
 # create a demo practice and user
-practice = Practice.create(:name => "Demo Practice")
+practice = Practice.create(:name => 'Demo Practice', :time_zone => 'Mexico City')
 user = User.new
 user.email = 'dk.kahn@gmail.com'
 user.password = 'Password1'

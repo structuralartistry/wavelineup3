@@ -1,12 +1,12 @@
 $(document).ready(function() {
-  initialize_page();  	
+  initialize_page();
 });
 
 function initialize_page() {
 	$('.hidden').hide();
-	
+
   ajax_links_and_forms();
-  
+
   // no select - this makes the text of any element with this class not selectable
 	$(function(){
 		$.extend($.fn.disableTextSelect = function() {
@@ -63,6 +63,7 @@ function initialize_page() {
 // left column methods
 var practice_member_selector_available;
 var new_practice_member_form_available;
+var lineup_selector_available;
 
 function set_left_column_buttons() {
   if(new_practice_member_form_available) {
@@ -101,7 +102,7 @@ function show_dialog(dialog_id) {
   }
   else {
     toggle_dialog(dialog_id);
-  }	
+  }
 }
 
 function toggle_dialog(dialog_id) {
@@ -121,16 +122,16 @@ selected_practice_member_id = '';
 function navigate_now() {
   selected_page_name = $('.page_selector.current_selected').html();
   switch(selected_page_name) {
-    case 'Personal Info': 
+    case 'Personal Info':
       nav_url = '/practice_members/' + selected_practice_member_id + '/edit';
       break;
-    case 'Travel Card': 
+    case 'Travel Card':
       nav_url = '/practice_room/' + selected_practice_member_id + '/travel_card';
       break;
-    case 'Visit': 
+    case 'Visit':
       nav_url = '/practice_room/' + selected_practice_member_id + '/visit';
       break;
-    case 'Visit List': 
+    case 'Visit List':
       nav_url = '/practice_room/' + selected_practice_member_id + '/visit_list';
       break;
   }

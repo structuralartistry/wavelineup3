@@ -1,15 +1,19 @@
 <script language='javascript'>
 $(document).ready(function() {
   // determine if each button should be visible
-  
+
   <% if current_user.practice && current_user.practice.practice_members.size > 0 %>
     practice_member_selector_available = true;
   <% end %>
-  
+
   <% if current_user.can_create_a_practice_member? %>
     new_practice_member_form_available = true;
   <% end %>
-  
+
+  <% if !lineup_practice_members.empty? %>
+    lineup_selector_available = true;
+  <% end %>
+
   set_left_column_buttons();
 });
 

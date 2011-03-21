@@ -4,7 +4,7 @@ class PracticeRoomController < ApplicationController
     @practice_member.last_practice_room_access = DateTime.now
     @practice_member.save
 
-    lineup_practice_member_ids << @practice_member.id if @practice_member.id
+#    lineup_practice_member_ids << @practice_member.id if @practice_member.id
 
     @travel_card = TravelCard.where(['practice_member_id=?', @practice_member.id]).first
 

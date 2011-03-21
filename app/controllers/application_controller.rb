@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
-  helper_method :lineup_practice_member_ids
+  helper_method :lineup_practice_members
 
   before_filter :redirect_to_https, :prohibit_internet_explorer, :authorize
 
@@ -84,4 +84,7 @@ class ApplicationController < ActionController::Base
       @current_user = current_user_session && current_user_session.record
     end
 
+  def lineup_practice_members
+    PracticeMember.where(['last_practice_room_access>=?', DateTime.now-LINEUP_DURATION_OF_STAY_MINUTES.minutes])
+  end
 end

@@ -20,7 +20,5 @@ RESTRICTED_PAGE_NOTICE = "This page is not permitted per your access rights"
 LOGIN_NOTICE = "Please log in"
 LINEUP_DURATION_OF_STAY_MINUTES = 30
 
-Time::DATE_FORMATS[:default] = "%Y-%m-%d %H:%M" 
-
-
+Time::DATE_FORMATS[:default] = "%Y-%m-%d %H:%M"
 
