@@ -134,16 +134,40 @@ feature "New Practice Member and Find dialog feature", %q{
         assert selector_cell_present?(@practice_member_name_one)
       end
 
-      scenario "the lineup selector removes the practice member if they have not been accessed for 30 minutes" do
-        pending "implement... maybe do this in a controller test, is a session object probably"
-
+      scenario "the lineup selector removes the practice member if they have not been accessed within the lineup time threshold" do
         # access a PM
+        click_selector_cell('Find')
+        click_selector_cell(@practice_member_name_one)
+        click_selector_cell('Find')
+        click_selector_cell(@practice_member_name_two)
 
-        # check if in the Lineup selector
+        selector_cell_present?('Lineup').should == true
+        click_selector_cell('Lineup')
 
-        # set the date of access 31 minutes back
+        selector_cell_present?(@practice_member_name_one).should == true
+        selector_cell_present?(@practice_member_name_two).should == true
+
+        # set the date of access before threshold for pm 1
+        practice_member = PracticeMember.find_by_last_name(@practice_member_name_one.split(/ /)[0].gsub(',',''))
+        practice_member.last_practice_room_access = DateTime.now-(LINEUP_DURATION_OF_STAY_MINUTES+2).minutes
+        practice_member.save
 
         # check that is no longer in the selector
+        visit('/home')
+        selector_cell_present?('Lineup').should == true
+        click_selector_cell('Lineup')
+
+        selector_cell_present?(@practice_member_name_one).should == false
+        selector_cell_present?(@practice_member_name_two).should == true
+
+        # set the date of access before threshold for pm 2
+        practice_member = PracticeMember.find_by_last_name(@practice_member_name_two.split(/ /)[0].gsub(',',''))
+        practice_member.last_practice_room_access = DateTime.now-(LINEUP_DURATION_OF_STAY_MINUTES+2).minutes
+        practice_member.save
+
+        # now lineup should be gone as both pm's are out of scope
+        visit('/home')
+        selector_cell_present?('Lineup').should == false
       end
 
     end
