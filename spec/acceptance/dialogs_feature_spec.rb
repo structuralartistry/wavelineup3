@@ -85,14 +85,9 @@ feature "New Practice Member and Find dialog feature", %q{
         confirm_visit_loaded
 
         click_selector_cell('Find')
-        click_selector_cell('Travel Card')
+        click_selector_cell('Practice Room')
         click_selector_cell(@practice_member_name_one)
         has_text?('Kahn, David N', 'h1')
-        confirm_travel_card_loaded
-
-        click_selector_cell('Find')
-        click_selector_cell('Visit List')
-        click_selector_cell(@practice_member_name_one)
         has_text?('No Visits on record for this Practice Member').should == true
 
         click_selector_cell('Find')

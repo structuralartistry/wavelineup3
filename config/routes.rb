@@ -1,19 +1,14 @@
 Wavelineup3::Application.routes.draw do
-  
-  
+
+
   resources :visits
 
   match 'practice_room/:id/:visible_section/:visit_id' => 'practice_room#main'
   match 'practice_room/:id/:visible_section' => 'practice_room#main'
 
-
-  
-  
-  
-
   match 'activations/new', :as => 'resend_activation_link'
   match 'activations/:activation_code' => 'activations#create', :as => 'activations'
-  
+
   resources :feedback_supports
 
   resources :invitations
@@ -28,7 +23,7 @@ Wavelineup3::Application.routes.draw do
   match 'login' => 'user_sessions#new', :as => 'login'
   match 'logout' => 'user_sessions#destroy', :as => 'logout'
   match 'user_profile' => 'users#edit', :as => 'user_profile'
-  
+
   match 'reset_password' => 'password_resets#new', :as => 'reset_password'
 
   resources :password_resets
@@ -36,7 +31,7 @@ Wavelineup3::Application.routes.draw do
   match 'internet_explorer' => 'user_sessions#internet_explorer', :as => 'internet_explorer'
 
   resources :users
-  
+
   match 'home' => 'home#index', :as => 'home'
   match 'terms_of_service' => 'home#terms_of_service', :as => 'terms_of_service'
   match 'privacy_policy' => 'home#privacy_policy', :as => 'privacy_policy'

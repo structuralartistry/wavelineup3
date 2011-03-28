@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>WaveLineup3<%= ' ::: ' + current_user.practice.name if current_user && current_user.practice %><%= ' ::: ' + current_user.email if current_user %></title>
-  
+
 	<%= include_stylesheets :common %>
 	<%= include_javascripts :common %>
   <%= csrf_meta_tag %>
@@ -24,7 +24,7 @@
             <tr>
               <td><%= image_tag 'wavelineup_logo.gif' %></td>
 							<% if controller_name=='user_sessions' %>
-								<td><%= button_to 'Create My Practice', new_practice_url, :method => :get, :class => 'bold selector_cell selector_cell_nav', :style => 'width: 3.0in;' %></td>
+								<td><%= button_to 'Create My Practice', register_path, :method => :get, :class => 'bold selector_cell selector_cell_nav', :style => 'width: 3.0in;' %></td>
 					    <% end %>
         	  </tr>
         	</table>
@@ -33,7 +33,7 @@
       <tr valign="top">
         <td valign="top" style="width: 15px;">
         </td>
-        <td style="width: 98%;"> 
+        <td style="width: 98%;">
 					<div id="notices"></div>
      	    <div id="main_frame">
             <%= yield %>

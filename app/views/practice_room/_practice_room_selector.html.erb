@@ -9,22 +9,22 @@
 		$('#practice_room_visit').hide();
 		$('#practice_room_travel_card').hide();
 		$('#practice_room_visit_list').hide();
-		
+
 		// unhighlight other buttons
 		$('#practice_room_visit_show_selector_cell').removeClass('current_selected');
 		$('#practice_room_travel_card_show_selector_cell').removeClass('current_selected');
 		$('#practice_room_visit_list_show_selector_cell').removeClass('current_selected');
-		
+
 		// highlight button
 		$('#' + section_id + '_show_selector_cell').addClass('current_selected');
 
 		if(section_id=='practice_room_visit') initialize_visit_view();
 
-		$('#' + section_id).show();		
+		$('#' + section_id).show();
 	}
-	
+
 	function initialize_visit_view() {
-		mini_travel_card_set_values_from_hidden_fields(); 
+		mini_travel_card_set_values_from_hidden_fields();
 		set_third_bme_strategy(true);
 		visit_set_values_from_hidden_fields();
 	}
@@ -33,9 +33,9 @@
 
 <table class="selector_table" style="width: 7in;">
   <tr>
-	  <td id="practice_room_visit_show_selector_cell" class="bold selector_cell selector_cell_nav selector_cell_text_single_character current_selected" style='width: 0.5in;' onclick="set_practice_room_section_and_buttons('practice_room_visit');">V</td>
-	  <td id="practice_room_travel_card_show_selector_cell" class="bold selector_cell selector_cell_nav selector_cell_text_single_character" style='width: 0.5in;' onclick="set_practice_room_section_and_buttons('practice_room_travel_card');">TC</td>
-		<td id="practice_room_visit_list_show_selector_cell" class="bold selector_cell selector_cell_nav selector_cell_text_single_character" style='width: 0.5in;' onclick="set_practice_room_section_and_buttons('practice_room_visit_list');">VL</td>
+	  <td id="practice_room_visit_show_selector_cell" class="selector_cell selector_cell_nav selector_cell_text_six_character page_selector current_selected" style='width: 1.5in;' onclick="set_practice_room_section_and_buttons('practice_room_visit');">Visit</td>
+	  <td id="practice_room_travel_card_show_selector_cell" class="selector_cell selector_cell_nav selector_cell_text_six_character page_selector current_selected" style='width: 1.5in;' onclick="set_practice_room_section_and_buttons('practice_room_travel_card');">Travel Card</td>
+		<td id="practice_room_visit_list_show_selector_cell" class="selector_cell selector_cell_nav selector_cell_text_six_character page_selector current_selected" style='width: 1.5in;' onclick="set_practice_room_section_and_buttons('practice_room_visit_list');">Visit List</td>
 		<td align='right' style='width: 5.5in;'><h1><%= @practice_member.full_name_last_comma_first_middle_initial %></h1></td>
 	</tr>
 </table>

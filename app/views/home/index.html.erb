@@ -3,15 +3,12 @@
 <%= javascript_include_tag 'bindows_gauges/gauge2.ie.js' %>
 <%= javascript_include_tag 'bindows_gauges/gauge2.js' %>
 
-
-<span class='home_intro'><span class='app_color'>WaveLineup:</span> a community driven system</span><br>
-
 <script type='text/javascript'>
   google.load('visualization', '1', {packages:['gauge']});
   google.setOnLoadCallback(draw_stats);
 
   function draw_stats(){
-    
+
 		// global practices
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Label');
@@ -22,8 +19,8 @@
 
     var chart = new google.visualization.Gauge(document.getElementById('global_practices_gauge'));
     var options = {
-      width: 400, 
-      height: 200, 
+      width: 300,
+      height: 150,
       min: 0,
       max: 15};
     chart.draw(data, options);
@@ -37,12 +34,12 @@
     data.setValue(0, 1, <%= PracticeMember.practice_members_global_count %>);
     var chart = new google.visualization.Gauge(document.getElementById('global_practice_members_gauge'));
     var options = {
-      width: 400, 
-      height: 200, 
+      width: 300,
+      height: 150,
       min: 0,
       max: 120};
     chart.draw(data, options);
-       
+
     // local practice members
     <% if current_user.practice %>
     var data = new google.visualization.DataTable();
@@ -54,8 +51,26 @@
 
     var chart = new google.visualization.Gauge(document.getElementById('local_practice_members_gauge'));
     var options = {
-      width: 400, 
-      height: 200, 
+      width: 300,
+      height: 150,
+      min: 0,
+      max:  <%= current_user.practice.practice_members.size + 20 %>};
+    chart.draw(data, options);
+    <% end %>
+
+    // local practice visit 30 day count
+    <% if current_user.practice %>
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Label');
+    data.addColumn('number', 'Value');
+    data.addRows(1);
+    data.setValue(0, 0, '30 Day Visits');
+    data.setValue(0, 1, <%= current_user.practice.my_practice_members.size %>);
+
+    var chart = new google.visualization.Gauge(document.getElementById('local_practice_visit_30_day_count_gauge'));
+    var options = {
+      width: 300,
+      height: 150,
       min: 0,
       max:  <%= current_user.practice.practice_members.size + 20 %>};
     chart.draw(data, options);
@@ -64,8 +79,29 @@
 
 </script>
 
+<span class='home_intro app_color'><%= flash[:notice] %></span>
+
 <table>
   <tr>
+    <td style='height: 0.25in'></td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <table class='light_pink'>
+        <tr>
+          <th colspan='2' class="lightpink">My Practice</th>
+        </tr>
+        <tr>
+          <td align="center">
+            <div id="local_practice_members_gauge"></div>
+          </td>
+          <td align="center">
+            <div id="local_practice_visit_30_day_count_gauge"></div>
+          </td>
+        </tr>
+      </table>
+    </td>
+    <td style="width: 0.25in"></td>
     <td valign='top'>
       <table class='light_green'>
         <tr>
@@ -74,35 +110,11 @@
           </th>
         </tr>
         <tr>
-          <td colspan="2" align="center">
-            Growth and expansion of this system depends on you.<br>
-            Please get the word out and invite other Practitioners!
-          </td>
-        </tr>
-        <tr>
-					<td align="center">
+          <td align="center">
             <div id="global_practices_gauge"></div>
           </td>
           <td align="center">
             <div id="global_practice_members_gauge"></div>
-          </td>
-        </tr>
-      </table>
-    </td>
-    <td style="width: 0.25in"></td>
-    <td valign="top">
-      <table class='light_pink'>
-        <tr>
-          <th class="lightpink">My Practice</th>
-        </tr>
-        <tr>
-          <td valign="top" align="center">
-            These are stats for your<br>practice. More to come as<br>the system grows!
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            <div id="local_practice_members_gauge" style="clear: left;"></div>
           </td>
         </tr>
       </table>
@@ -112,6 +124,7 @@
 	<tr>
 		<td colspan='3'>
 			<div id='invitation'>
+        <p class='bold'>Growth and expansion of this system depends on you. Please get the word out!</p>
 				<%= render :partial => 'invitations/invitation' %>
 			</div>
 		</td>

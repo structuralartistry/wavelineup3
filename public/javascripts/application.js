@@ -125,14 +125,8 @@ function navigate_now() {
     case 'Personal Info':
       nav_url = '/practice_members/' + selected_practice_member_id + '/edit';
       break;
-    case 'Travel Card':
-      nav_url = '/practice_room/' + selected_practice_member_id + '/travel_card';
-      break;
-    case 'Visit':
+    case 'Practice Room':
       nav_url = '/practice_room/' + selected_practice_member_id + '/visit';
-      break;
-    case 'Visit List':
-      nav_url = '/practice_room/' + selected_practice_member_id + '/visit_list';
       break;
   }
   window.location.href=nav_url
