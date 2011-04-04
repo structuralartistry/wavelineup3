@@ -10,69 +10,73 @@
   function draw_stats(){
 
 		// global practices
+    <% global_practice_count = Practice.where("name<>'Demo Practice'").all.size %>
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Label');
     data.addColumn('number', 'Value');
     data.addRows(1);
     data.setValue(0, 0, 'Practices');
-    data.setValue(0, 1, <%= Practice.where("name<>'Demo Practice'").all.size %>);
+    data.setValue(0, 1, <%= global_practice_count %>);
 
     var chart = new google.visualization.Gauge(document.getElementById('global_practices_gauge'));
     var options = {
       width: 300,
       height: 150,
       min: 0,
-      max: 15};
+      max: <%= global_practice_count + (global_practice_count * 0.75).to_i %> };
     chart.draw(data, options);
 
     // global practice members
+    <%= global_practice_member_count = PracticeMember.practice_members_global_count %>
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Label');
     data.addColumn('number', 'Value');
     data.addRows(1);
     data.setValue(0, 0, 'Practice Members');
-    data.setValue(0, 1, <%= PracticeMember.practice_members_global_count %>);
+    data.setValue(0, 1, <%= global_practice_member_count %>);
     var chart = new google.visualization.Gauge(document.getElementById('global_practice_members_gauge'));
     var options = {
       width: 300,
       height: 150,
       min: 0,
-      max: 120};
+      max: <%= global_practice_member_count + (global_practice_member_count * 0.75).to_i %>};
     chart.draw(data, options);
 
     // local practice members
     <% if current_user.practice %>
+    <% local_practice_member_count = current_user.practice.my_practice_members.size %>
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Label');
     data.addColumn('number', 'Value');
     data.addRows(1);
     data.setValue(0, 0, 'Practice Members');
-    data.setValue(0, 1, <%= current_user.practice.my_practice_members.size %>);
+    data.setValue(0, 1, <%= local_practice_member_count %>);
 
     var chart = new google.visualization.Gauge(document.getElementById('local_practice_members_gauge'));
     var options = {
       width: 300,
       height: 150,
       min: 0,
-      max:  <%= current_user.practice.practice_members.size + 20 %>};
+      max:  <%= local_practice_member_count + (local_practice_member_count * 0.75).to_i %>};
     chart.draw(data, options);
     <% end %>
 
     // local practice visit 30 day count
     <% if current_user.practice %>
+    <% thirty_day_visit_count = current_user.practice.visit_count(30.days) %>
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Label');
     data.addColumn('number', 'Value');
     data.addRows(1);
     data.setValue(0, 0, '30 Day Visits');
-    data.setValue(0, 1, <%= current_user.practice.my_practice_members.size %>);
+    data.setValue(0, 1, <%= thirty_day_visit_count %>);
 
     var chart = new google.visualization.Gauge(document.getElementById('local_practice_visit_30_day_count_gauge'));
     var options = {
       width: 300,
       height: 150,
       min: 0,
-      max:  <%= current_user.practice.visit_count(30.days) %>};
+      max:  <%= thirty_day_visit_count + (thirty_day_visit_count * 0.75).to_i %>};
     chart.draw(data, options);
     <% end %>
   }

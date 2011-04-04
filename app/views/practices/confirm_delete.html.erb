@@ -1,0 +1,8 @@
+<h1>Confirm Practice Deletion</h1>
+<p class='bold'>Please confirm that you wish to delete your Practice.</p>
+<p class='bold'>All Practice information including Practice Members, Travel Cards and Visits will be deleted permanently and unable to be recovered.</p>
+<br>
+<%= button_to 'Cancel', edit_practice_url(current_user.practice), :method => :get, :class => 'selector_cell_submit', :style => 'float: left; width: 2.0in;' %>
+<br><br><br><br>
+<%= button_to 'Delete Practice', current_user.practice, :method => :delete, :class => 'selector_cell_submit', :style => 'float: left; color: red; width: 2.0in;' %>
+

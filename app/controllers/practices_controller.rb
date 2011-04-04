@@ -19,7 +19,7 @@ class PracticesController < ApplicationController
   def edit
     @practice = Practice.find(params[:id])
     @users = User.find_all_by_practice_id(params[:id])
-    
+
     # should never get to this action if current_user is nil
     if current_user.role.name == 'sysadmin'
       render # allow all practices
@@ -59,18 +59,21 @@ class PracticesController < ApplicationController
         end
       else
         flash[:notice] = RESTRICTED_PAGE_NOTICE
-        redirect_to home_path        
+        redirect_to home_path
       end
     end
   end
 
+  def confirm_delete
+  end
+
   def destroy
-    @practice = Practice.find(params[:id])
+    @practice = current_user.practice
     @practice.destroy
     flash[:notice] = "Practice successfully deleted"
 
     respond_to do |format|
-      format.html { redirect_to(practices_path) }
+      format.html { redirect_to(login_path) }
     end
   end
 end

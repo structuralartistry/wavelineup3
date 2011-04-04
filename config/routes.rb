@@ -19,6 +19,7 @@ Wavelineup3::Application.routes.draw do
 
   resources :practices
   match 'register' => 'practices#new', :as => 'register'
+  match 'confirm_delete_practice' => 'practices#confirm_delete', :as => 'confirm_delete_practice'
 
   match 'login' => 'user_sessions#new', :as => 'login'
   match 'logout' => 'user_sessions#destroy', :as => 'logout'

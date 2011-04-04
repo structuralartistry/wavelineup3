@@ -1,7 +1,7 @@
 class Practice < ActiveRecord::Base
   has_many :users, :dependent => :destroy
   accepts_nested_attributes_for :users
-  has_many :practice_members
+  has_many :practice_members, :dependent => :destroy
 
   validates_uniqueness_of :name
   validates_presence_of :name
