@@ -69,11 +69,11 @@ feature "New Practice Member and Find dialog feature", %q{
       scenario "Find dialog page selectors toggle correctly" do
         click_selector_cell('Find')
 
-        page_selectors = ['Visit', 'Travel Card', 'Visit List', 'Personal Info']
+        page_selectors = ['Practice Room', 'Personal Info']
         page_selectors.each do |page_selector_cell|
           click_selector_cell(page_selector_cell)
           selector_cell_selected?(page_selector_cell).should == true
-          filtered_page_selectors = ['Visit', 'Travel Card', 'Visit List', 'Personal Info']
+          filtered_page_selectors = ['Practice Room', 'Personal Info']
           filtered_page_selectors.delete(page_selector_cell)
           filtered_page_selectors.each {|selector| selector_cell_selected?(selector).should == false}
         end
@@ -88,7 +88,7 @@ feature "New Practice Member and Find dialog feature", %q{
         click_selector_cell('Practice Room')
         click_selector_cell(@practice_member_name_one)
         has_text?('Kahn, David N', 'h1')
-        has_text?('No Visits on record for this Practice Member').should == true
+        selector_cell_present?('New Visit').should == true
 
         click_selector_cell('Find')
         click_selector_cell('Personal Info')

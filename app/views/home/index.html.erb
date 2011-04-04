@@ -23,7 +23,7 @@
       width: 300,
       height: 150,
       min: 0,
-      max: <%= global_practice_count + (global_practice_count * 0.75).to_i %> };
+      max: <%= set_max_stat_value(global_practice_count) %> };
     chart.draw(data, options);
 
     // global practice members
@@ -39,7 +39,7 @@
       width: 300,
       height: 150,
       min: 0,
-      max: <%= global_practice_member_count + (global_practice_member_count * 0.75).to_i %>};
+      max: <%= set_max_stat_value(global_practice_member_count) %>};
     chart.draw(data, options);
 
     // local practice members
@@ -57,7 +57,7 @@
       width: 300,
       height: 150,
       min: 0,
-      max:  <%= local_practice_member_count + (local_practice_member_count * 0.75).to_i %>};
+      max:  <%= set_max_stat_value(local_practice_member_count) %>};
     chart.draw(data, options);
     <% end %>
 
@@ -76,7 +76,7 @@
       width: 300,
       height: 150,
       min: 0,
-      max:  <%= thirty_day_visit_count + (thirty_day_visit_count * 0.75).to_i %>};
+      max:  <%= set_max_stat_value(thirty_day_visit_count) %>};
     chart.draw(data, options);
     <% end %>
   }

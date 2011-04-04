@@ -24,7 +24,7 @@ def confirm_visit_list_loaded
 end
 
 def confirm_practice_room_selector_loaded
-  selector_cell_present?('V').should == true
-  selector_cell_present?('TC').should == true
-  selector_cell_present?('VL').should == true 
+  selector_cell_present?('Visit').should == true
+  selector_cell_present?('Travel Card').should == true
+  selector_cell_present?('Visit List').should == true
 end
