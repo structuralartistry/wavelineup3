@@ -60,8 +60,8 @@ describe User do
       user.authorize('practices', 'edit')[:success].should == false
       user.authorize('practices', 'create')[:success].should == true
       user.authorize('practices', 'update')[:success].should == false
-      user.authorize('practices', 'destroy')[:success].should == false
       user.authorize('practices', 'confirm_delete')[:success].should == false
+      user.authorize('practices', 'destroy')[:success].should == false
       user.authorize('travel_cards', 'edit')[:success].should == false
       user.authorize('travel_cards', 'update')[:success].should == false
       user.authorize('user_sessions', 'new')[:success].should == true
@@ -94,15 +94,15 @@ describe User do
       user.authorize('practice_members', 'edit')[:success].should == true
       user.authorize('practice_members', 'create')[:success].should == true
       user.authorize('practice_members', 'update')[:success].should == true
-      user.authorize('practices', 'confirm_delete')[:success].should == false
-      user.authorize('practice_members', 'destroy')[:success].should == false
+      user.authorize('practice_members', 'destroy')[:success].should == true
       user.authorize('practice_room', 'main')[:success].should == false
       user.authorize('practices', 'index')[:success].should == true
       user.authorize('practices', 'new')[:success].should == false
       user.authorize('practices', 'edit')[:success].should == true
       user.authorize('practices', 'create')[:success].should == false
       user.authorize('practices', 'update')[:success].should == true
-      user.authorize('practices', 'destroy')[:success].should == true
+      user.authorize('practices', 'confirm_delete')[:success].should == false
+      user.authorize('practices', 'destroy')[:success].should == false
       user.authorize('travel_cards', 'edit')[:success].should == true
       user.authorize('travel_cards', 'update')[:success].should == true
       user.authorize('user_sessions', 'new')[:success].should == false
