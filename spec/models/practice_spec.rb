@@ -43,11 +43,11 @@ describe Practice do
 
   it "gets a count of visits in the last 30 days" do
     practice_member_one = Factory.create(:practice_member, :practice_id => @practice.id)
-    visit = Factory.create(:visit, :practice_member_id => practice_member_one.id)
+    Factory.create(:visit, :practice_member_id => practice_member_one.id)
     practice_member_two = Factory.create(:practice_member, :practice_id => @practice.id)
-    visit = Factory.create(:visit, :practice_member_id => practice_member_two.id, :date => DateTime.now - 31.days)
+    Factory.create(:visit, :practice_member_id => practice_member_two.id, :date => DateTime.now - 31.days)
     @practice.visit_count(30.days).should == 1
-    @practice.visit_count(60.days).should == 2
+    @practice.visit_count(32.days).should == 2
   end
 
 end
