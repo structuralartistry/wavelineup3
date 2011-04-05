@@ -56,22 +56,22 @@ feature "Practice Management Feature", %q{
       Practice.count.should == 0
     end
 
-  end
-
-  context "practice user" do
-
-    before(:each) do
-      @practice = logged_in_as_role_for_practice(:practice_user, "StructuralArtistry practice")
-      @logged_in_user = @practice.users[0]
-      visit('/home')
-    end
-
-    scenario "I can not delete my practice" do
-      title_contains?(@practice.name)
+    scenario "I can export my practice members with travel card information to csv" do
       click_selector_cell('Edit Practice')
 
-      selector_cell_present?('Delete Practice', 'a').should == false
+      click_selector_cell('Export Practice Members')
+
+      page.body.should =~ /csv data here/
+    end
+
+    scenario "I can export my practice member visits to csv" do
+      click_selector_cell('Edit Practice')
+
+      click_selector_cell('Export Visits')
+
+      page.body.should =~ /csv data here/
     end
 
   end
+
 end
