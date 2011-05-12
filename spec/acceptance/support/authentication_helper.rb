@@ -5,18 +5,18 @@ end
 
 def logged_in_as_role_for_practice(role, practice_name)
   practice = Factory.create(:practice, :name => practice_name)
-  
+
   role = role.to_sym
-  
+
   Factory.create(role)
-  
+
   user = Factory.create(role, :email => "#{role.to_s}_user@structuralartistry.com", :practice_id => practice.id)
 
   visit('/login')
   fill_in('Email', :with => user.email)
   fill_in('Password', :with => 'Password1')
   click_button('Submit')
-  assert selector_cell_present?('Logout') 
+  selector_cell_present?('Logout').should == true
   practice
 end
 
