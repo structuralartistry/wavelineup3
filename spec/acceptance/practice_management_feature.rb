@@ -56,20 +56,12 @@ feature "Practice Management Feature", %q{
       Practice.count.should == 0
     end
 
-    scenario "I can export my practice members with travel card information to csv" do
+    scenario "I can export my practice data including practice members with travel card and visit information to xml", :focus => true do
       click_selector_cell('Edit Practice')
 
-      click_selector_cell('Export Practice Members')
+      selector_cell_present?('Export Practice Data').should == true
 
-      page.body.should =~ /csv data here/
-    end
-
-    scenario "I can export my practice member visits to csv" do
-      click_selector_cell('Edit Practice')
-
-      click_selector_cell('Export Visits')
-
-      page.body.should =~ /csv data here/
+      click_selector_cell('Export Practice Data')
     end
 
   end

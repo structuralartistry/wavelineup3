@@ -62,8 +62,18 @@
 <% if action_name == 'edit' && action_name != 'update' %>
 	<br>
   <%= render :partial => '/users/index' %>
-  <br><br>
-  <%= button_to 'Delete Practice', confirm_delete_practice_url, :method => :get, :class => 'selector_cell_submit', :style => 'float: left; color: red; width: 2.0in;' %>
+  <br>
+  <table>
+    <tr>
+      <td>
+        <%= button_to 'Export Practice Data', export_practice_url, :method => :get, :class => 'selector_cell_submit', :style => 'float: left; width: 2.0in;' %>
+      </td>
+      <td style='width: 0.5in'></td>
+      <td>
+        <%= button_to 'Delete Practice', confirm_delete_practice_url, :method => :get, :class => 'selector_cell_submit', :style => 'clear: left; color: red; width: 2.0in;' %>
+      </td>
+    </tr>
+  </table>
 <% end %>
 
 <% if action_name != 'edit' && action_name != 'update' %>

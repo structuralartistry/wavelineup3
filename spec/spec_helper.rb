@@ -27,10 +27,14 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = false
+
+  # flag for wip specs
+  config.filter_run :focus => true
+  config.run_all_when_everything_filtered = true
 end
 
 def login_user(user_factory, options = {})
-  
+
   # could create a practice outside of this and assign it in to this user by practice_id in the options hash,
   # but if does not exist then we create a practice for this user
   if user_factory.to_s != "sysadmin_user" # sysadmin does not have a practice
@@ -40,7 +44,7 @@ def login_user(user_factory, options = {})
       options[:practice_id] = practice.id
     end
   end
-  
+
   @logged_in_user = Factory.create(user_factory, options)
   @controller.stub!(:current_user).and_return(@logged_in_user)
   @logged_in_user
