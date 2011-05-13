@@ -210,10 +210,10 @@ select,
 div.selector {
   /* to hold coloring but not location */
   /*background-color: aqua;*/
-  background-color: lightyellow;
+  background-color: lightblue;
   z-index: 100;
   position: absolute;
-  border: 3px solid #000033;
+  border: 1px solid #000033;
 }
 
 input,
