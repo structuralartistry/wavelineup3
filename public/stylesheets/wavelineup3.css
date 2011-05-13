@@ -105,14 +105,14 @@ h1 {
 }
 
 table.gray_border {
-	border-width: 3px; 
-	border-color: #e0e0e0; 
+	border-width: 3px;
+	border-color: #e0e0e0;
 	border-style: solid;
 }
 
 table.light_pink {
-	border-width: 1px; 
-	border-color: lightpink; 
+	border-width: 1px;
+	border-color: lightpink;
 	border-style: solid;
 }
 
@@ -122,8 +122,8 @@ table.light_pink th {
 
 
 table.light_green {
-	border-width: 1px; 
-	border-color: lightgreen; 
+	border-width: 1px;
+	border-color: lightgreen;
 	border-style: solid;
 }
 
@@ -132,8 +132,8 @@ table.light_green th {
 }
 
 table.blue {
-	border-width: 1px; 
-	border-color: #000033; 
+	border-width: 1px;
+	border-color: #000033;
 	border-style: solid;
 }
 
@@ -154,7 +154,7 @@ table.fc-header {
 }
 .fc-content {
   background-color: #e0e0e0; /*#ECE0A1;*/
-  color: #000033; 
+  color: #000033;
 }
 .fc-event a {
   background-color: #000033;
@@ -169,10 +169,10 @@ a {
   text-decoration: underline;
 }
 
-input, 
-textarea, 
-select, 
-.selector_cell, 
+input,
+textarea,
+select,
+.selector_cell,
 .selector_cell_diagnosis,
 .selector_cell_half_height,
 .selector_cell_half_height_quadruple,
@@ -231,7 +231,7 @@ label {
 }
 
 .label {
-  background-color: #000033; 
+  background-color: #000033;
   color: white;
   font-weight: bold;
 }
@@ -310,8 +310,14 @@ div#practice_member_header {
 }
 
 div#footer {
+  color: white;
   background-color: #000033;
 }
+#footer a { color: white; }
+#footer a:visited { color: white; }
+a:hover { color: #fff; background-color: gray; }
+
+
 
 div#visit {
   padding: 5px;
@@ -334,7 +340,7 @@ div#past_visits {
 }
 
 #notes_detail {
-  
+
 }
 
 #programs_education_detail {
@@ -359,7 +365,7 @@ div#travel_card {
 .R { background-color: red;}
 
 div#processing_message {
-  
+
   width: 100%;
   height: 100%;
 }
@@ -433,13 +439,13 @@ background-color: #e0e0e0; /*#c0e0f0;*/ /*#C5ECEC;*/
 .selector_cell_diagnosis {
   float: left;
   width: 3.0in;
-  height: 0.5in; 
+  height: 0.5in;
 }
 
 .selector_cell_diagnosis_label {
   float: left;
   width: 3.0in;
-  height: 0.25in; 
+  height: 0.25in;
 }
 
 .selector_cell_text_six_character {
@@ -524,7 +530,7 @@ div#mini_travel_card {
 
 #mini_travel_card td {
 	width: 0.2in;
-	height: 0.2in;	
+	height: 0.2in;
 	font-size: 8px;
 	font-weight: bold;
   text-align: center;
