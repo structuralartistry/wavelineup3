@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   validates_format_of :password, :with => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/, :if => :password_present?, :message => 'must be at least 8 characters and contain at least one uppercase letter and one number'
 
-  attr_accessible :email, :password, :password_confirmation, :perishable_token, :persistence_token, :practice_id, :role_id
+  attr_accessible :email, :password, :password_confirmation, :perishable_token, :persistence_token
 
   # password not always present if updating a user, etc...anything beyond new user creation
   def password_present?

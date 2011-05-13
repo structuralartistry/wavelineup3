@@ -29,7 +29,11 @@ describe User do
   it { should_not allow_value('pass').for(:password)}
   it { should_not allow_value('11111111').for(:password)}
 
-
+  it { should_not allow_mass_assignment_of(:crypted_password)}
+  it { should_not allow_mass_assignment_of(:password_salt)}
+  it { should_not allow_mass_assignment_of(:practice_id)}
+  it { should_not allow_mass_assignment_of(:role_id)}
+  it { should_not allow_mass_assignment_of(:active)}
 
   # at some point maybe turn the below into a matrix using this format:
   # controller action guest sysadmin admin pruser
