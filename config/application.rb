@@ -45,13 +45,14 @@ end
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
-  :address  => "mail.structuralartistry.com",
+  :address  => "mail.wavelineup.com",
   :port  => 26,
   :authentication => :login,
-  :user_name  => "wavelineup+structuralartistry.com",
+  :user_name  => "system+wavelineup.com",
   :password  => "468111",
   :enable_starttls_auto => false
 }
+ActionMailer::Base.default :from => "WaveLineup <system@wavelineup.com>"
 
 RESTRICTED_PAGE_NOTICE = "This page is not permitted per your access rights"
 LOGIN_NOTICE = "Please log in"
