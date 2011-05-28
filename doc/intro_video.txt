@@ -1,6 +1,98 @@
 (pre-seed system with a number of PMs, TC's, Visits...)
 
-http://localhost:3001/login
+https://wavelineup.heroku.com
+
+
+WaveLineup is a Visit and Travel Card tracking application for Network Practitioners.
+
+It allows you to enter data in real time in your Practice Room with an iPad or other touchscreen device.
+
+It allows you to quickly review Practice Member information such as Gateways, SRI Strategies
+
+As well as quickly see what you did on the last visit.
+
+
+This basic application is Free. I encourage you to sign up, start using and refer other practitioners.
+
+If enough Practices use the application, new paid features may be developed. 
+
+If you have referred a Practice and in the future they sign up for Paid features, you will receive a 5% discount on 
+any paid feature you sign up for.
+
+
+Possible Future Additions (if interest)
+
+Calendar
+Basic Accounting
+On-Line Scheduling
+Post-Visit Informational Emails (reinforcing what you did at the visit)
+
+
+
+
+
+Create My Practice
+  Free
+  More participation the greater chance the system will get expanded with new features
+
+Home
+  Stats
+  Invite another practitioner
+
+  New Practice Member
+    System built around ease of starting easily to use without additional setup
+    Around the idea that it from day one will allow you to use with PM's as they come in for entrainment
+    Lets imagine you have nothing set up in the system and you want to log a PM's Visit
+    (Create New PM)
+    Once new PM created you are automatically brought to the Visit view of the Practice Room
+    The Practice Room is where you log Visits, Set Travel Card info, and can access Visit List (History)
+  
+    Practice Room
+      Visit
+        New Visit
+          Log a new Visit
+        Set Travel Card
+        See Gateways on the Visit Mini-Travel Card
+        See Highlighted Gateways on the Visit Mini-Travel Card
+        Pull up past Visits on Visit List
+      Finding Practice Members
+        Of course it is more interesting the more information you have entered on the TC, so lets pull up a PM with a complete TC
+        On their Visit view you see all their TC info on the Mini Travel Card
+      Lineup Selector
+        Another feature we have added is to make it easy for you to move between PM's while you treat
+        For this we have the Lineup selector
+        The Lineup selector will hold all the PM's you have accessed within the last 30 minutes. 
+        Allowing you to easily toggle between the recently accessed PM's.
+        After 30 minutes they fall off the list, as we assume that an average entrainment would last 15-30 minutes
+
+
+      Travel Card
+      Visit List
+
+Feedback/Support 
+  You can easily send comments or requests for help directly from the application.
+
+Edit Practice
+  You can easily Edit your User and Practice. If you are the user who set up the Practice you may cancel it at any time.
+  We will not go into all the settings here, but one is especially important.
+  One of the principals we believe in is that you should own your data and feel free at anytime to leave the system should you find something else which suits your needs better.
+  For that reason, at any time (and we recommend that you regularly use this feature to back up your data) 
+  Export Practice Data
+
+
+
+
+
+
+
+
+
+
+
+************* OLD
+(pre-seed system with a number of PMs, TC's, Visits...)
+
+https://wavelineup.heroku.com
 
 Create My Practice
   Free

@@ -16,6 +16,7 @@ describe Practice do
 
   it { should have_many(:users) }
   it { should have_many(:practice_members) }
+  it { should have_one(:referring_practice) }
 
   it { should validate_presence_of(:name) }
   it { should validate_uniqueness_of(:name) }

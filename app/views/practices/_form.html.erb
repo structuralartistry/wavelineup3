@@ -1,4 +1,11 @@
 <%= form_for(@practice) do |f| %>
+  <% if params[:token] %>
+    <% if @practice.referring_practice_id %>
+      <p>You have been referred by: <%= @referring_practice_name %></p>
+    <% else %>
+      <p>The referral link is not valid. You may continue but your Practice will not be assigned as a referral.</p>
+    <% end %>
+  <% end %>
   <% if @practice.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@practice.errors.count, "error") %> prohibited this practice from being saved:</h2>
@@ -11,6 +18,7 @@
     </div>
   <% end %>
   <br />
+  <%= f.hidden_field :referring_practice_id %>
 	<table class="light_pink" style='width: 5in;'>
 		<tr>
 			<td>

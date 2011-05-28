@@ -9,11 +9,18 @@ class PracticesController < ApplicationController
 
   def new
     @practice = Practice.new
+
+    if params[:token]
+      invitation = Invitation.find_by_token(params[:token])
+      if invitation
+        @practice.referring_practice_id = invitation.referring_user.practice.id
+        @referring_practice_name = invitation.referring_user.practice.name
+      end
+    end
+
     1.times { @practice.users.build }
 
-    respond_to do |format|
-      format.html { render 'new', :layout => 'guest' }
-    end
+    render 'new', :layout => 'guest'
   end
 
   def edit
@@ -35,6 +42,7 @@ class PracticesController < ApplicationController
 
   def create
     @practice = Practice.new(params[:practice])
+
     @practice.users[0].role_id = Role.find_by_name('practice admin').id
 
     respond_to do |format|

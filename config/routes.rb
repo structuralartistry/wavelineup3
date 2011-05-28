@@ -19,6 +19,7 @@ Wavelineup3::Application.routes.draw do
 
   resources :practices
   match 'register' => 'practices#new', :as => 'register'
+  match 'register_referred/:token' => 'practices#new', :as => 'register_referred'
   match 'confirm_delete_practice' => 'practices#confirm_delete', :as => 'confirm_delete_practice'
   match 'export_practice' => 'practices#export', :as => 'export_practice'
 

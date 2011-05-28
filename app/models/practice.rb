@@ -2,6 +2,7 @@ class Practice < ActiveRecord::Base
   has_many :users, :dependent => :destroy
   accepts_nested_attributes_for :users
   has_many :practice_members, :dependent => :destroy
+  has_one :referring_practice, :class_name => 'Practice', :foreign_key => :referring_practice_id
 
   validates_uniqueness_of :name
   validates_presence_of :name

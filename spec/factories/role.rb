@@ -1,5 +1,4 @@
 Factory.define :role do |f|
-
 end
 
 Factory.define :sysadmin_role, :class => "Role" do |f|
