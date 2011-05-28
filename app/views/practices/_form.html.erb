@@ -1,9 +1,9 @@
 <%= form_for(@practice) do |f| %>
   <% if params[:token] %>
     <% if @practice.referring_practice_id %>
-      <p>You have been referred by: <%= @referring_practice_name %></p>
+      <p><span class='bold'>You have been referred by: <span style='color: #50A0EB;'><%= @referring_practice_name %></span></span></p>
     <% else %>
-      <p>The referral link is not valid. You may continue but your Practice will not be assigned as a referral.</p>
+      <p class='flash_notice'>The referral link is not valid.<br>You may continue but your Practice will not be assigned as a referral.</p>
     <% end %>
   <% end %>
   <% if @practice.errors.any? %>
@@ -17,7 +17,6 @@
       </ul>
     </div>
   <% end %>
-  <br />
   <%= f.hidden_field :referring_practice_id %>
 	<table class="light_pink" style='width: 5in;'>
 		<tr>

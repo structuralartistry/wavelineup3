@@ -67,7 +67,8 @@ feature "Practice Registration Feature", %q{
     bad_token = 'ZZZZZZ'
     visit("/register_referred/#{bad_token}")
 
-    page.has_content?("The referral link is not valid. You may continue but your Practice will not be assigned as a referral.").should == true
+    page.has_content?("The referral link is not valid.").should == true
+    page.has_content?("You may continue but your Practice will not be assigned as a referral.").should == true
     invitee_practice_name = 'Invitee Practice'
     fill_in('Practice name', :with => invitee_practice_name)
     user_email = 'bad_invitation_email@gmail.com'
