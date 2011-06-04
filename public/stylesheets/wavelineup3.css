@@ -118,8 +118,12 @@ table.light_pink {
 
 table.light_pink th {
 	background-color: lightpink;
+  padding: 10px;
 }
 
+table.light_pink td {
+  padding: 10px;
+}
 
 table.light_green {
 	border-width: 1px;
@@ -129,6 +133,11 @@ table.light_green {
 
 table.light_green th {
 	background-color: lightgreen;
+  padding: 10px;
+}
+
+table.light_green td {
+  padding: 10px;
 }
 
 table.blue {
@@ -234,6 +243,20 @@ label {
   background-color: #000033;
   color: white;
   font-weight: bold;
+}
+
+.label_light {
+  background-color: #e0e0e0;
+  color: #000033;
+  font-weight: bold;
+}
+
+.stat {
+  border: 1px solid #e0e0e0;
+}
+
+.big {
+  font-size: 18pt;
 }
 
 span.section_internal_label {
