@@ -46,7 +46,7 @@ class PracticesController < ApplicationController
     @practice.users[0].role_id = Role.find_by_name('practice admin').id
 
     respond_to do |format|
-      if @practice.save
+      if verify_recaptcha(:model => @practice, :message => 'The words you entered do no match the text shown') && @practice.save
         @practice.users[0].deliver_activation_instructions!
         format.html { redirect_to(login_path, :notice => 'Practice was successfully created. Please check your email for the activation link.') }
       else

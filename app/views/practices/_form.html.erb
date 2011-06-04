@@ -56,9 +56,22 @@
 				</td>
 			</tr>
 		</table>
+    <table>
+      <tr>
+        <td colspan='2'>
+          <p>Please type the two words as they appear below:</p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan='2'>
+          <%= recaptcha_tags %>
+        </td>
+      </tr>
+    </table>
 		<% if action_name != 'edit' && action_name != 'update' %>
 			<p>By clicking 'Submit' you agree to the <%= link_to 'Terms of Service', '/terms_of_service', :target => 'new' %>,<br>and <%= link_to 'Privacy', '/privacy_policy', :target => 'new' %> policies</p>
 		<% end %>
+
 		<div class="actions">
 	    <%= f.submit 'Submit', :class => 'selector_cell_submit', :style => 'float: left' %>
 	  </div>

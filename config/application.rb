@@ -41,6 +41,11 @@ module Wavelineup3
   end
 end
 
+Recaptcha.configure do |config|
+  config.public_key  = '6LdwxcQSAAAAAKxLvY9sGxF-mebFezkbA9I0ZCoo'
+  config.private_key = '6LdwxcQSAAAAALZ6dGPxATGZbGgkJE-noS_Nq1K7'
+end
+
 # Set up email server
 ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.delivery_method = :smtp

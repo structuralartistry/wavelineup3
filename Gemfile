@@ -12,6 +12,8 @@ gem 'validates_timeliness', '~> 3.0.2'
 gem 'yui-compressor'
 gem 'jammit'
 
+gem 'recaptcha', :require => 'recaptcha/rails'
+
 # this needs to be set at heroku
 # heroku config:add BUNDLE_WITHOUT='development test'
 
