@@ -85,6 +85,6 @@ class ApplicationController < ActionController::Base
     end
 
   def lineup_practice_members
-    PracticeMember.where(['last_practice_room_access>=?', DateTime.now-LINEUP_DURATION_OF_STAY_MINUTES.minutes])
+    PracticeMember.where(['last_practice_room_access>=?', DateTime.now-LINEUP_DURATION_OF_STAY_MINUTES.minutes]).order('last_name')
   end
 end
