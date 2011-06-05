@@ -1,24 +1,28 @@
 <%= form_for(@practice) do |f| %>
-  <% if params[:token] %>
-    <% if @practice.referring_practice_id %>
-      <p><span class='bold'>You have been referred by: <span style='color: #50A0EB;'><%= @referring_practice_name %></span></span></p>
-    <% else %>
-      <p class='flash_notice'>The referral link is not valid.<br>You may continue but your Practice will not be assigned as a referral.</p>
-    <% end %>
-  <% end %>
-  <% if @practice.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@practice.errors.count, "error") %> prohibited this practice from being saved:</h2>
-
-      <ul>
-      <% @practice.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= f.hidden_field :referring_practice_id %>
 	<table class="light_pink" style='width: 5in;'>
+    <tr>
+      <td>
+        <% if params[:token] %>
+          <% if @practice.referring_practice_id %>
+            <p><span class='bold'>You have been referred by: <span style='color: #50A0EB;'><%= @referring_practice_name %></span></span></p>
+          <% else %>
+            <p class='flash_notice'>The referral link is not valid.<br>You may continue but your Practice will not be assigned as a referral.</p>
+          <% end %>
+        <% end %>
+        <% if @practice.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@practice.errors.count, "error") %> prohibited this practice from being saved:</h2>
+
+            <ul>
+            <% @practice.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= f.hidden_field :referring_practice_id %>
+      </td>
+    </tr>
 		<tr>
 			<td>
 			  <div class="field">
