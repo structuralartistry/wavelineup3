@@ -38,6 +38,7 @@ Wavelineup3::Application.routes.draw do
   match 'home' => 'home#index', :as => 'home'
   match 'terms_of_service' => 'home#terms_of_service', :as => 'terms_of_service'
   match 'privacy_policy' => 'home#privacy_policy', :as => 'privacy_policy'
+  match 'about' => 'home#about', :as => 'about'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

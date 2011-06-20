@@ -98,7 +98,9 @@ class User < ActiveRecord::Base
 
     when 'home'
       if current_role == 'guest'
-        return set_autorize_failure_value(LOGIN_NOTICE) if action_name != 'terms_of_service' && action_name != 'privacy_policy'
+        if action_name != 'terms_of_service' && action_name != 'privacy_policy' && action_name != 'about'
+          return set_autorize_failure_value(LOGIN_NOTICE)
+        end
       end
       return authorize_success_message
 

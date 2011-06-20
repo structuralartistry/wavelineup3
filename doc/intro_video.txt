@@ -1,3 +1,25 @@
+The WaveLineup system is provided free of charge at the present time.
+At an unspecified point subscribing practices will be given a choice to pay a fee for continued use (which will be used to maintain the system status quo), or to pay a higher fee which would enable continued development of new features. If a practice choses not to pay they will still be able to export their practice data.
+Future development will be heavily influenced and prioritized by requests from the subscribing community.
+Some proposed features are:
+  The system is deployed on a staging server which provides all functionality however may be slower at times than once paid membership begins and the server is upgraded.
+  Speed up the processing time of the application
+  Speed up server response
+  Macros for Diagnoses and Comments
+  SOAP notes and forms
+  Basic Accounting
+  Calendar and Practice Member Scheduling
+  Online Scheduling
+  Post-Visit automatic follow-up emails (reinforcing the session and connection of the Practice Member to the Practice)
+Fees have not been determined since it is unclear the demand for this system.
+
+
+
+
+
+
+
+
 (pre-seed system with a number of PMs, TC's, Visits...)
 
 https://wavelineup.heroku.com
