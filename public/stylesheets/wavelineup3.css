@@ -97,11 +97,19 @@ h4,
 h5 {
   padding:0px;
   margin:0px;
+	color: #000033;
 }
 
 h1 {
 	font-size: 18px;
-	color: #000033;
+}
+
+h2 {
+	font-size: 14px;
+}
+
+h3 {
+	font-size: 11px;
 }
 
 table.gray_border {
