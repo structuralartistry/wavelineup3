@@ -83,6 +83,11 @@ feature "Home Page Feature", %q{
       has_text?('WaveLineup Privacy Policy').should == true
     end
 
+    it "should be able to access about" do
+      click_link('About')
+      has_text?('About WaveLineup').should == true
+    end
+
     it "should have copyright info" do
       page.has_content?('Copyright 2009-').should == true
     end

@@ -1,9 +1,7 @@
 <%= form_for(@invitation, :html => { :class => "ajax_form"}) do |f| %>
 	<table class="blue">
 		<tr>
-			<th>
-				Invite another Practitioner!
-			</th>
+			<th>Invite another Practitioner!</th>
 		</tr>
   <% if @invitation.errors.any? %>
 		<tr>
