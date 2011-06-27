@@ -9,5 +9,5 @@ task :heroku_deploy do
   `git push origin master`
   puts 'Pushing to Heroku'
   `git push heroku master`
-  puts 'Complete'
+  puts 'Deploy completed'
 end

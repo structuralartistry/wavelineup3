@@ -10,7 +10,6 @@ gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => '
 gem 'validates_timeliness', '~> 3.0.2'
 
 gem 'yui-compressor'
-gem 'uglifier'
 gem 'jammit'
 
 gem 'recaptcha', :require => 'recaptcha/rails'
