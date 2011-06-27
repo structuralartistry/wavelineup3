@@ -110,7 +110,7 @@ describe PracticeMember do
     travel_card_id = TravelCard.find_by_practice_member_id(practice_member.id).id
     visit = Factory.create(:visit)
     visit.practice_member_id = practice_member.id
-    visit.save
+    visit.save!
 
     practice_member.destroy
     TravelCard.where("practice_member_id=#{practice_member.id}").all.should == []
