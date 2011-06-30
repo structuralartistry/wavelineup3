@@ -14,5 +14,5 @@ class FeedbackSupportsController < ApplicationController
       format.js { render 'new' }
     end
   end
-  
+
 end

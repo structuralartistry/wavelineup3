@@ -56,7 +56,7 @@ feature "Practice Management Feature", %q{
       Practice.count.should == 0
     end
 
-    scenario "I can export my practice data including practice members with travel card and visit information to xml", :focus => true do
+    scenario "I can export my practice data including practice members with travel card and visit information to xml" do
       click_selector_cell('Edit Practice')
 
       selector_cell_present?('Export Practice Data').should == true
