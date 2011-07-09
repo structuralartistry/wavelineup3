@@ -3,20 +3,23 @@
 <table>
   <tr>
     <% if current_user.practice %>
-      <td valign="top">
+      <td valign="top" style='width: 5.0in'>
         <table class='light_pink'>
           <tr>
             <th colspan='3'>My Practice</th>
           </tr>
           <tr>
-            <td class='label_light' align="center">
+            <td rowspan='2' class='label_light' align="center">
               Practice<br>Members
             </td>
+            <td class='label_light' align="center" colspan='2'>30 day stats</td>
+          </tr>
+          <tr>
             <td class='label_light' align="center">
-              Visits<br><span class='small_text'>(30 days)</span>
+              Visits
             </td>
             <td class='label_light' align="center">
-              Active PMs<br><span class='small_text'>(30 days)</span>
+              Active PMs
             </td>
           </tr>
 
@@ -34,6 +37,36 @@
         </table>
       </td>
     <% end %>
+
+
+    <td valign='top'>
+      <table class='light_green'>
+        <tr>
+          <th>
+            Community
+          </th>
+        </tr>
+        <tr>
+          <td>
+            The cost and future development of this system depend on you! Please refer other Practitioners!
+            See <a href='/about#community_driven_project_background_and_business_case' target='new'>Community Driven Project</a> or watch our video:</p>
+            <iframe width="350" height="215" src="http://www.youtube.com/embed/5DAjIO96U20" frameborder="0" allowfullscreen></iframe>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div id='invitation'>
+              <%= render :partial => 'invitations/invitation' %>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+
+
+
+
+
 <!--
     <td valign='top'>
       <table class='light_green'>
@@ -68,20 +101,6 @@
     </td>
 -->
   </tr>
-  <tr>
-    <td>
-      <p>The cost and future development of this system depend on you!<br>
-      Please refer other Practitioners!
-      See <a href='/about#community_driven_project_background_and_business_case' target='new'>Community Driven Project</a>.</p>
-    </td>
-  </tr>
-	<tr>
-		<td colspan='3'>
-			<div id='invitation'>
-				<%= render :partial => 'invitations/invitation' %>
-			</div>
-		</td>
-	</tr>
 </table>
 
 
