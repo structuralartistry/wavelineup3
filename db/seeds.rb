@@ -11,7 +11,7 @@ Role.create(:name => 'practice admin')
 Role.create(:name => 'practice user')
 
 user = User.new
-user.email = 'sysadmin@structuralartistry.com'
+user.email = 'system@wavelineup.com'
 user.password = 'Password1'
 user.password_confirmation = 'Password1'
 user.role_id = Role.find_by_name('sysadmin').id
