@@ -151,6 +151,11 @@ feature "Visit Feature", %q{
       click_selector_cell('select_phase_3')
       get_selector_cell_text('selected_phase_2').should == '3'
       get_selector_cell_text('selected_phase_2_direction').should == 'L/B'
+
+      # verify save and reload
+      visit(@practice_room_visit_page)
+      get_selector_cell_text('selected_phase_1_direction').should == 'L/B'
+      get_selector_cell_text('selected_phase_2_direction').should == 'L/B'
     end
 
     scenario "selected phase 5 has no direction" do
@@ -695,16 +700,5 @@ feature "Visit Feature", %q{
     end
 
   end
-
-
-
-  # scenario "if this practice member has a visit already today then show it, otherwise just show the new visit button; new visit button creates a visit" do
-  #
-  # end
-  #
-  # scenario "new visit button while a visit is present creates a new visit" do
-  #
-  # end
-  #
 
 end

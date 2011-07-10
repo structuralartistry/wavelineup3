@@ -647,7 +647,7 @@ function set_phase_direction_selector_choices(visit_phase, phase) {
 
     case "3":
 			// since only one direction set it in the field -- no selector
-			$('#selected_phase_' + visit_phase + '_direction').html('L/B');
+      set_phase_direction('L/B');
       break;
 
     case "5":
