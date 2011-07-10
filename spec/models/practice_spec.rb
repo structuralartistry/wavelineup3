@@ -51,4 +51,33 @@ describe Practice do
     @practice.visit_count(35.days).should == 2
   end
 
+  it "gets practices restricted by the current user" do
+    practice_one = @practice
+    practice_two = Factory(:practice_two)
+    user_one = Factory(:practice_admin_user, :practice => practice_one)
+    user_two = Factory(:practice_admin_user, :practice => practice_two)
+    sysadmin_user = Factory(:sysadmin_user)
+
+    Practice.get_all_restricted_by_user(user_one).size.should == 0
+    Practice.get_all_restricted_by_user(user_two).size.should == 0
+
+    Practice.get_all_restricted_by_user(sysadmin_user).size.should == 2
+    Practice.get_all_restricted_by_user(sysadmin_user).size.should == 2
+  end
+
+
+  it "gets a practice, restricted by the current user" do
+    practice_one = @practice
+    practice_two = Factory(:practice_two)
+    user_one = Factory(:practice_admin_user, :practice => practice_one)
+    user_two = Factory(:practice_admin_user, :practice => practice_two)
+    sysadmin_user = Factory(:sysadmin_user)
+
+    Practice.get_by_id_restricted_by_user(practice_one.id, user_one).id.should == practice_one.id
+    Practice.get_by_id_restricted_by_user(practice_one.id, user_two).should == nil
+
+    Practice.get_by_id_restricted_by_user(practice_one.id, sysadmin_user).id.should == practice_one.id
+    Practice.get_by_id_restricted_by_user(practice_two.id, sysadmin_user).id.should == practice_two.id
+  end
+
 end

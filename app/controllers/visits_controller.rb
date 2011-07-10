@@ -1,10 +1,10 @@
 class VisitsController < ApplicationController
-  
+
   def update
-    @visit = Visit.find(params[:id])
-    
+    @visit = Visit.get_by_id_restricted_by_user(params[:id], current_user)
+
     respond_to do |format|
-      if @visit.update_attributes(params[:visit])
+      if @visit && @visit.update_attributes(params[:visit])
         format.js { render 'update_response' }
       else
         # entrainment date is the only validation we send back a specific error for
@@ -17,9 +17,9 @@ class VisitsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
-    @visit = Visit.includes(:practice_member).where(["visits.id=? AND practice_members.practice_id=?", params[:id], current_user.practice.id]).first
+    @visit = Visit.get_by_id_restricted_by_user(params[:id], current_user)
 
     if @visit
       practice_member_id = @visit.practice_member.id
@@ -32,5 +32,5 @@ class VisitsController < ApplicationController
     flash[:notice] = "Visit was not deleted"
     redirect_to request.fullpath
   end
-  
+
 end

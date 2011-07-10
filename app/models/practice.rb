@@ -17,4 +17,23 @@ class Practice < ActiveRecord::Base
   def visit_count(lookback_period)
     PracticeMember.joins(:visits).where("practice_members.practice_id=#{self.id} AND visits.date > '#{Date.today - lookback_period}'").count
   end
+
+  def self.get_all_restricted_by_user(requesting_user)
+    return nil if !requesting_user
+    if requesting_user.role.name == 'sysadmin'
+      return Practice.all
+    else
+      return []
+    end
+  end
+
+  def self.get_by_id_restricted_by_user(practice_id, requesting_user)
+    return nil if !requesting_user
+    if requesting_user.role.name == 'sysadmin'
+      return Practice.find(practice_id)
+    else
+      return Practice.where("id=#{practice_id} AND id=#{requesting_user.practice_id}").first
+    end
+  end
+
 end

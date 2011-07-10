@@ -506,7 +506,7 @@ feature "Visit Feature", %q{
     end
 
     scenario "the visit can be deleted" do
-      click_selector_cell('Del')
+      click_selector_cell('Delete')
       has_flash_notice?('Visit successfully deleted').should == true
 
       page.has_xpath?("//*[@id='no_visit_loaded']").should == true
@@ -706,26 +706,5 @@ feature "Visit Feature", %q{
   #
   # end
   #
-
-
-
-  #
-  #
-  #  scenario "I can delete a visit" do
-  #
-  #  end
-  #
-  #  scenario "I can see the Visit List" do
-  #
-  #  end
-  #
-  #  scenario "The Visit List refreshes when accessed to show even the newest Visit" do
-  #
-  #  end
-  #
-  #  scenario "When I select a visit from the Visit List it shows in the Visit section" do
-  #
-  #  end
-
 
 end

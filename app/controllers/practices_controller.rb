@@ -1,10 +1,6 @@
 class PracticesController < ApplicationController
   def index
-    @practices = Practice.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
+    @practices = Practice.get_all_restricted_by_user(current_user)
   end
 
   def new
@@ -24,19 +20,24 @@ class PracticesController < ApplicationController
   end
 
   def edit
-    @practice = Practice.find(params[:id])
-    @users = User.find_all_by_practice_id(params[:id])
+    @practice = Practice.get_by_id_restricted_by_user(params[:id], current_user)
+    if @practice
+      @users = User.find_all_by_practice_id(@practice.id)
 
-    # should never get to this action if current_user is nil
-    if current_user.role.name == 'sysadmin'
-      render # allow all practices
-    else
-      if current_user.practice_id == @practice.id
-        render
+      # should never get to this action if current_user is nil
+      if current_user.role.name == 'sysadmin'
+        render # allow all practices
       else
-        flash[:notice] = RESTRICTED_PAGE_NOTICE
-        redirect_to home_path
+        if current_user.practice_id == @practice.id
+          render
+        else
+          flash[:notice] = RESTRICTED_PAGE_NOTICE
+          redirect_to home_path
+        end
       end
+    else
+      flash[:notice] = RESTRICTED_PAGE_NOTICE
+      redirect_to home_path
     end
   end
 
@@ -45,30 +46,31 @@ class PracticesController < ApplicationController
 
     @practice.users[0].role_id = Role.find_by_name('practice admin').id
 
-    respond_to do |format|
-      if verify_recaptcha(:model => @practice, :message => 'The words you entered do no match the text shown') && @practice.save
-        @practice.users[0].deliver_activation_instructions!
-        format.html { redirect_to(login_path, :notice => 'Practice was successfully created. Please check your email for the activation link.') }
-      else
-        format.html { render :action => "new", :layout => 'guest' }
-      end
+    if verify_recaptcha(:model => @practice, :message => 'The words you entered do no match the text shown') && @practice.save
+      @practice.users[0].deliver_activation_instructions!
+      redirect_to(login_path, :notice => 'Practice was successfully created. Please check your email for the activation link.')
+    else
+      render :action => "new", :layout => 'guest'
     end
   end
 
   def update
-    @practice = Practice.find(params[:id])
+    @practice = Practice.get_by_id_restricted_by_user(params[:id], current_user)
 
-    respond_to do |format|
+    if @practice
       if current_user.role.name == 'sysadmin' || current_user.practice.id == @practice.id
-        if @practice.update_attributes(params[:practice])
-          format.html { redirect_to(home_path, :notice => 'Practice was successfully updated') }
+        if @practice && @practice.update_attributes(params[:practice])
+          redirect_to(home_path, :notice => 'Practice was successfully updated')
         else
-          format.html { render :action => "edit" }
+          render :action => "edit"
         end
       else
         flash[:notice] = RESTRICTED_PAGE_NOTICE
         redirect_to home_path
       end
+    else
+      flash[:notice] = RESTRICTED_PAGE_NOTICE
+      redirect_to home_path
     end
   end
 
@@ -80,9 +82,7 @@ class PracticesController < ApplicationController
     @practice.destroy
     flash[:notice] = "Practice successfully deleted"
 
-    respond_to do |format|
-      format.html { redirect_to(login_path) }
-    end
+    redirect_to(login_path)
   end
 
   def export

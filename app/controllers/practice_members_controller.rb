@@ -1,7 +1,7 @@
 class PracticeMembersController < ApplicationController
 
   def edit
-    @practice_member = PracticeMember.find(params[:id])
+    @practice_member = PracticeMember.get_by_id_restricted_by_user(params[:id], current_user)
   end
 
   def create
@@ -20,10 +20,10 @@ class PracticeMembersController < ApplicationController
   end
 
   def update
-    @practice_member = PracticeMember.find(params[:id])
+    @practice_member = PracticeMember.get_by_id_restricted_by_user(params[:id], current_user)
 
     respond_to do |format|
-      if @practice_member.update_attributes(params[:practice_member])
+      if @practice_member && @practice_member.update_attributes(params[:practice_member])
         flash[:notice] = 'Practice Member successfully updated'
         format.html { redirect_to home_path }
       else
@@ -33,8 +33,10 @@ class PracticeMembersController < ApplicationController
   end
 
   def destroy
-    @practice_member = PracticeMember.find(params[:id])
-    flash[:notice] = 'Practice Member successfully deleted' if @practice_member.destroy
+    @practice_member = PracticeMember.get_by_id_restricted_by_user(params[:id], current_user)
+    if @practice_member && @practice_member.destroy
+      flash[:notice] = 'Practice Member successfully deleted'
+    end
 
     respond_to do |format|
       format.html { redirect_to home_path }
