@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WaveLineup3<%= ' ::: ' + current_user.practice.name if current_user && current_user.practice %><%= ' ::: ' + current_user.email if current_user %></title>
-  
+  <title>WaveLineup<%= ' ::: ' + current_user.practice.name if current_user && current_user.practice %><%= ' ::: ' + current_user.email if current_user %></title>
+
 	<%= include_stylesheets :common %>
 	<%= include_javascripts :common %>
   <%= csrf_meta_tag %>
@@ -22,7 +22,7 @@
       <tr valign="top">
         <td valign="top" style="width: 15px;">
         </td>
-        <td style="width: 98%;">        
+        <td style="width: 98%;">
      	    <div id="main_frame">
             <%= yield %>
           </div>
