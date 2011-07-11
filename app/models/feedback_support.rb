@@ -10,9 +10,11 @@ class FeedbackSupport < ActiveRecord::Base
 
   def send_email_notification_to_sysadmin
     sysadmin_user = User.find_by_role_id(Role.find_by_name('sysadmin').id)
+    practice_name = ''
+    practice_name = self.user.practice.name if self.user.practice
     message = <<-DOC
       DateTime: #{self.created_at}
-      Practice Name: #{self.user.practice.name}
+      Practice Name: #{practice_name}
       User Email: #{self.user.email}
       Location in Application: #{self.location_in_application}
       Message: #{self.message}
