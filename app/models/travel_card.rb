@@ -1,5 +1,5 @@
 class TravelCard < ActiveRecord::Base
-  has_one :practice_member, :foreign_key => :id
+  has_one :practice_member, :primary_key => :practice_member_id, :foreign_key => :id
 
   validates_presence_of :practice_member_id
 

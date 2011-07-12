@@ -3,10 +3,15 @@ require 'spec_helper'
 describe TravelCard do
 
   before(:each) do
-    Factory.create(:practice_member)
+    @practice_member = Factory.create(:practice_member)
   end
 
   it { should have_one(:practice_member) }
+  it "should be able to access the practice member" do
+    travel_card_id = @practice_member.travel_card.id
+    travel_card = TravelCard.find(travel_card_id)
+    travel_card.practice_member.id.should == @practice_member.id
+  end
 
   it { should validate_presence_of(:practice_member_id) }
 

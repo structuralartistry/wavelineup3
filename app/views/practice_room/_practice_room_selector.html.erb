@@ -33,9 +33,9 @@
 
 <table class="selector_table" style="width: 7in;">
   <tr>
-    <td><%= button_to 'Visit', '#', :method => :get, :id => 'practice_room_visit_show_selector_cell', :class => 'selector_cell selector_cell_nav selector_cell_text_six_character page_selector current_selected', :style => 'width: 1.5in;', :onclick => "set_practice_room_section_and_buttons('practice_room_visit');" %></td>
-    <td><%= button_to 'Travel Card', '#', :method => :get, :id => 'practice_room_travel_card_show_selector_cell', :class => 'selector_cell selector_cell_nav selector_cell_text_six_character page_selector current_selected', :style => 'width: 1.5in;', :onclick => "set_practice_room_section_and_buttons('practice_room_travel_card');" %></td>
-    <td><%= button_to 'Visit List', '#', :method => :get, :id => 'practice_room_visit_list_show_selector_cell', :class => 'selector_cell selector_cell_nav selector_cell_text_six_character page_selector current_selected', :style => 'width: 1.5in;', :onclick => "set_practice_room_section_and_buttons('practice_room_visit_list');" %></td>
+    <td><%= button_to 'Visit', '#', :method => :get, :id => 'practice_room_visit_show_selector_cell', :class => 'selector_cell selector_cell_nav selector_cell_text_six_character page_selector current_selected', :style => 'width: 1.5in;', :onclick => "set_practice_room_section_and_buttons('practice_room_visit'); return false;" %></td>
+    <td><%= button_to 'Travel Card', '#', :method => :get, :id => 'practice_room_travel_card_show_selector_cell', :class => 'selector_cell selector_cell_nav selector_cell_text_six_character page_selector current_selected', :style => 'width: 1.5in;', :onclick => "set_practice_room_section_and_buttons('practice_room_travel_card'); return false;" %></td>
+    <td><%= button_to 'Visit List', '#', :method => :get, :id => 'practice_room_visit_list_show_selector_cell', :class => 'selector_cell selector_cell_nav selector_cell_text_six_character page_selector current_selected', :style => 'width: 1.5in;', :onclick => "set_practice_room_section_and_buttons('practice_room_visit_list'); return false;" %></td>
 		<td align='right' style='width: 5.5in;'><h1><%= @practice_member.full_name_last_comma_first_middle_initial %></h1></td>
 	</tr>
 </table>
