@@ -93,9 +93,7 @@ function show_dialog(dialog_id) {
   if( !$('#' + dialog_id + '_show_selector_cell').hasClass('current_selected') ) {
 
 		switch(dialog_id) {
-			case 'new_practice_member':
-        $('#' + dialog_id).html(new_practice_member_form());
-        break;
+			case 'new_practice_member': $('#' + dialog_id).html(new_practice_member_form()); break;
 			case 'feedback_support': $('#' + dialog_id).html(feedback_support_form()); break;
 		}
 		initialize_page();
