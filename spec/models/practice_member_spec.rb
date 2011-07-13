@@ -118,17 +118,32 @@ describe PracticeMember do
   end
 
   it "should return lineup practice members as those who have been accessed in the practice room within the lineup threshold" do
-    PracticeMember.lineup_practice_members.size.should == 0
+    PracticeMember.lineup_practice_members(@practice.id).count.should == 0
 
     @practice_member.last_practice_room_access = DateTime.now
     @practice_member.save
 
-    PracticeMember.lineup_practice_members.size.should == 1
+    PracticeMember.lineup_practice_members(@practice.id).count.should == 1
 
     @practice_member.last_practice_room_access = DateTime.now - (LINEUP_DURATION_OF_STAY_MINUTES+2).minutes
     @practice_member.save
 
-    PracticeMember.lineup_practice_members.size.should == 0
+    PracticeMember.lineup_practice_members(@practice.id).count.should == 0
+  end
+
+  it "should only return lineup practice members for the current users practice" do
+    PracticeMember.lineup_practice_members(@practice.id).count.should == 0
+    @practice_member.last_practice_room_access = DateTime.now
+    @practice_member.save
+    PracticeMember.lineup_practice_members(@practice.id).count.should == 1
+
+    practice = Factory.create(:practice_two)
+    practice_member = Factory.create(:practice_member, :practice => practice)
+    PracticeMember.count.should == 2
+    PracticeMember.lineup_practice_members(practice.id).count.should == 0
+    practice_member.last_practice_room_access = DateTime.now
+    practice_member.save
+    PracticeMember.lineup_practice_members(practice.id).count.should == 1
   end
 
 end

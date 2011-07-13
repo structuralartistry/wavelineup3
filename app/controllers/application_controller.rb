@@ -85,6 +85,7 @@ class ApplicationController < ActionController::Base
     end
 
   def lineup_practice_members
-    PracticeMember.where(['last_practice_room_access>=?', DateTime.now-LINEUP_DURATION_OF_STAY_MINUTES.minutes]).order('last_name')
+    return PracticeMember.lineup_practice_members(current_user.practice.id) if current_user && current_user.practice
+    return []
   end
 end

@@ -8,10 +8,10 @@ feature "Visit Feature", %q{
     before(:each) do
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
-      practice_member = create_practice_member('Kahn, David Nathan', practice_name)
+      @practice_member = create_practice_member('Kahn, David Nathan', practice_name)
 
       # this will create a new visit organically
-      visit("/practice_room/#{practice_member.id}/visit/new")
+      visit("/practice_room/#{@practice_member.id}/visit/new")
       @practice_room_visit_page = page.current_url
 
       has_text?('Kahn, David N', 'h1')
@@ -175,6 +175,52 @@ feature "Visit Feature", %q{
       get_selector_cell_text('selected_phase_2').should == '5'
 
       has_text?('Dir', 'td').should == false
+    end
+
+    scenario "phase 1 affected gateway lists show gateways which have not been set a side" do
+pending
+      visit = Factory.create(:visit)
+      visit.practice_member_id = @practice_member.id
+      visit.date = DateTime.now
+      visit.phase_1 = '1 > 3'
+      visit.save!
+
+      practice_room_visit_page = "/practice_room/#{@practice_member.id}/visit/#{visit.id}"
+      visit(practice_room_visit_page)
+
+      click_selector_cell('selected_phase_1_gateway_1')
+      click_selector_cell('select_gateway_s1')
+      click_selector_cell('selected_phase_1_gateway_1_affecting')
+      get_selector_cell_text('select_gateway_s2').should == 'S2'
+    end
+
+    scenario "phase 1 affected gateway lists filter for the same side as the selected gateway" do
+pending
+      visit = Factory.create(:visit)
+      visit.practice_member_id = @practice_member.id
+      visit.date = DateTime.now
+      visit.phase_1 = '1 > 3'
+      visit.save!
+
+      travel_card = @practice_member.travel_card
+      travel_card.gateway_s1 = 'L'
+      travel_card.gateway_s2 = 'R'
+      travel_card.gateway_s3 = 'R'
+      travel_card.gateway_s4 = 'L'
+      travel_card.gateway_s5 = 'L'
+      travel_card.save!
+
+      practice_room_visit_page = "/practice_room/#{@practice_member.id}/visit/#{visit.id}"
+      visit(practice_room_visit_page)
+
+      click_selector_cell('selected_phase_1_gateway_1')
+      click_selector_cell('select_gateway_s1') # this is a L gateway, so in the selector below we should only see L gateways
+      click_selector_cell('selected_phase_1_gateway_1_affecting')
+      verify_visit_gateway_selector('select_gateway_s1', 'L', 'S1')
+      selector_cell_present?('select_gateway_s2').should == false
+      selector_cell_present?('select_gateway_s3').should == false
+      verify_visit_gateway_selector('select_gateway_s4', 'L', 'S4')
+      verify_visit_gateway_selector('select_gateway_s5', 'L', 'S5')
     end
 
     scenario "click on mini-travel card opens the travel card view" do

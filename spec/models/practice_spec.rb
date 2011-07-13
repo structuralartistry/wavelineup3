@@ -65,7 +65,6 @@ describe Practice do
     Practice.get_all_restricted_by_user(sysadmin_user).size.should == 2
   end
 
-
   it "gets a practice, restricted by the current user" do
     practice_one = @practice
     practice_two = Factory(:practice_two)
