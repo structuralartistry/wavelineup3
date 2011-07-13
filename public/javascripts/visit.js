@@ -431,9 +431,6 @@ function set_phase_gateway_selector_choices(selected_phase) {
           if(filter_for_gateway.indexOf('S4')==-1) $('#select_gateway_s4').show();
           if(filter_for_gateway.indexOf('S5')==-1) $('#select_gateway_s5').show();
           if(filter_for_gateway.indexOf('CX')==-1) $('#select_gateway_cx').show();
-          // if(visit_gateway_currently_working=="2") {
-          //   if(filter_for_gateway.indexOf('APEX')==-1) $('#select_gateway_apex').show();
-          // }
           break;
         case "1_affecting":
         case "2_affecting":
@@ -443,7 +440,8 @@ function set_phase_gateway_selector_choices(selected_phase) {
           if(filter_for_gateway.indexOf('S4')==-1) $('#select_gateway_s4').show();
           if(filter_for_gateway.indexOf('S5')==-1) $('#select_gateway_s5').show();
           if(filter_for_gateway.indexOf('CX')==-1) $('#select_gateway_cx').show();
-					if(filter_for_gateway.indexOf('APEX')==-1) $('#select_gateway_apex').show();
+					if(filter_for_gateway.indexOf('L APEX')==-1) $('#select_gateway_apex_l').show();
+					if(filter_for_gateway.indexOf('R APEX')==-1) $('#select_gateway_apex_r').show();
           break;
       }
       break;
@@ -510,7 +508,8 @@ function set_phase_gateway_selector_choices(selected_phase) {
           } else {
             // gateway 2 selections
             if(filter_for_gateway.indexOf('CX')==-1) $('#select_gateway_cx').show();
-            if(filter_for_gateway.indexOf('APEX')==-1) $('#select_gateway_apex').show();
+            if(filter_for_gateway.indexOf('L APEX')==-1) $('#select_gateway_apex_l').show();
+            if(filter_for_gateway.indexOf('R APEX')==-1) $('#select_gateway_apex_r').show();
           }
           break;
       }
@@ -547,7 +546,8 @@ function set_phase_gateway_selector_choices(selected_phase) {
       if(filter_for_gateway.indexOf('S5')==-1) $('#select_gateway_s5').show();
       if(filter_for_gateway.indexOf('CX')==-1) $('#select_gateway_cx').show();
       if(visit_gateway_currently_working=="1") {
-        if(filter_for_gateway.indexOf('APEX')==-1) $('#select_gateway_apex').show();
+        if(filter_for_gateway.indexOf('L APEX')==-1) $('#select_gateway_apex_l').show();
+        if(filter_for_gateway.indexOf('R APEX')==-1) $('#select_gateway_apex_r').show();
       }
       break;
 
@@ -584,7 +584,8 @@ function set_phase_gateway_selector_choices(selected_phase) {
       } else {
         // gateway 2 selections
         if(filter_for_gateway.indexOf('CX')==-1) $('#select_gateway_cx').show();
-        if(filter_for_gateway.indexOf('APEX')==-1) $('#select_gateway_apex').show();
+        if(filter_for_gateway.indexOf('L APEX')==-1) $('#select_gateway_apex_l').show();
+        if(filter_for_gateway.indexOf('R APEX')==-1) $('#select_gateway_apex_r').show();
       }
       break;
   }

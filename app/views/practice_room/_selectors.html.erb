@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 	      <td id='select_level_of_care_4' class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">4</td>
-	      <td id='select_level_of_care_' class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);"> </td>  
+	      <td id='select_level_of_care_' class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);"> </td>
     </table>
   </div>
 
@@ -31,7 +31,7 @@
 	      <td id="bme_selector_b" class="selector_cell selector_cell_text_single_character" onMouseDown="set_bme_strategy('B');">B</td>
 	      <td id="bme_selector_m" class="selector_cell selector_cell_text_single_character" onMouseDown="set_bme_strategy('M');">M</td>
 	      <td id="bme_selector_e" class="selector_cell selector_cell_text_single_character" onMouseDown="set_bme_strategy('E');">E</td>
-	      <td id="bme_selector_" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);"> </td>  
+	      <td id="bme_selector_" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);"> </td>
 			</tr>
     </table>
   </div>
@@ -44,7 +44,7 @@
 	      <td id="select_sri_level_of_awareness_1" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">1</td>
 	      <td id="select_sri_level_of_awareness_2" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">2</td>
 	      <td id="select_sri_level_of_awareness_3" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">3</td>
-	      <td id="select_sri_level_of_awareness_" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);"> </td>  
+	      <td id="select_sri_level_of_awareness_" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);"> </td>
 			</tr>
     </table>
   </div>
@@ -61,7 +61,7 @@
 			  <td id="select_sri_position_4" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">4</td>
 	  		<td id="select_sri_position_5" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">5</td>
 	      <td id="select_sri_position_6" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">6</td>
-	      <td id="select_sri_position_" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);"> </td>  
+	      <td id="select_sri_position_" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);"> </td>
 			</tr>
     </table>
   </div>
@@ -82,59 +82,60 @@
 	      <td id='select_phase_3' class="selector_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase('3');">3</td>
 	      <td id='select_phase_4' class="selector_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase('4');">4</td>
 	      <td id='select_phase_5' class="selector_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase('5');">5</td>
-	      <td id='select_phase_' class="selector_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase('');"> </td>  
+	      <td id='select_phase_' class="selector_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase('');"> </td>
     	</tr>
 		</table>
   </div>
-  
+
   <!-- gateway selector -->
-  <% if @travel_card %> 
+  <% if @travel_card %>
     <div id="phase_gateway_selector" class="selector hidden">
       <table class="selector_table">
         <tr>
-          <td id="select_gateway_occ" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">OCC</td> 
-          <td id="select_gateway_occ_c1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">OCC/C1</td> 
-          <td id="select_gateway_c1_occ" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C1/OCC</td> 
-          <td id="select_gateway_c1_c2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C1/C2</td> 
-          <td id="select_gateway_c2_c1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C2/C1</td> 
-          <td id="select_gateway_c2_c3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C2/C3</td> 
+          <td id="select_gateway_occ" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">OCC</td>
+          <td id="select_gateway_occ_c1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">OCC/C1</td>
+          <td id="select_gateway_c1_occ" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C1/OCC</td>
+          <td id="select_gateway_c1_c2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C1/C2</td>
+          <td id="select_gateway_c2_c1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C2/C1</td>
+          <td id="select_gateway_c2_c3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C2/C3</td>
         </tr>
 				<tr>
-					<td id="select_gateway_c3_c2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C3/C2</td> 
-          <td id="select_gateway_c3_c4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C3/C4</td> 
-          <td id="select_gateway_c4_c3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C4/C3</td> 
-          <td id="select_gateway_c4_c5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C4/C5</td> 
-          <td id="select_gateway_c5_c4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C5/C4</td> 
-          <td id="select_gateway_c5_c6" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C5/C6</td> 
+					<td id="select_gateway_c3_c2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C3/C2</td>
+          <td id="select_gateway_c3_c4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C3/C4</td>
+          <td id="select_gateway_c4_c3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C4/C3</td>
+          <td id="select_gateway_c4_c5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C4/C5</td>
+          <td id="select_gateway_c5_c4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C5/C4</td>
+          <td id="select_gateway_c5_c6" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C5/C6</td>
         </tr>
 				<tr>
-          <td id="select_gateway_c6_c5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C6/C5</td> 
-          <td id="select_gateway_c6_c7" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C6/C7</td> 
-          <td id="select_gateway_c7_c6" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C7/C6</td> 
-          <td id="select_gateway_c7_t1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C7/T1</td> 
-          <td id="select_gateway_t1_c7" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T1/C7</td> 
-          <td id="select_gateway_t1_t2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T1/T2</td> 
+          <td id="select_gateway_c6_c5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C6/C5</td>
+          <td id="select_gateway_c6_c7" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C6/C7</td>
+          <td id="select_gateway_c7_c6" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C7/C6</td>
+          <td id="select_gateway_c7_t1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">C7/T1</td>
+          <td id="select_gateway_t1_c7" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T1/C7</td>
+          <td id="select_gateway_t1_t2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T1/T2</td>
         </tr>
 				<tr>
-          <td id="select_gateway_t2_t1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T2/T1</td> 
-          <td id="select_gateway_t2_t3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T2/T3</td> 
-          <td id="select_gateway_t3_t2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T3/T2</td> 
-          <td id="select_gateway_s1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S1</td> 
-          <td id="select_gateway_s2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S2</td> 
-          <td id="select_gateway_s3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S3</td> 
+          <td id="select_gateway_t2_t1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T2/T1</td>
+          <td id="select_gateway_t2_t3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T2/T3</td>
+          <td id="select_gateway_t3_t2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">T3/T2</td>
+          <td id="select_gateway_s1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S1</td>
+          <td id="select_gateway_s2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S2</td>
+          <td id="select_gateway_s3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S3</td>
         </tr>
 				<tr>
-					<td id="select_gateway_s4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S4</td> 
-          <td id="select_gateway_s5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S5</td> 
-          <td id="select_gateway_sac" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">SAC</td> 
-          <td id="select_gateway_cx" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">CX</td> 
-          <td id="select_gateway_apex" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">APEX</td> 
-          <td id="select_gateway_" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="clear_phase_gateway();"> </td> 
+					<td id="select_gateway_s4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S4</td>
+          <td id="select_gateway_s5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">S5</td>
+          <td id="select_gateway_sac" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">SAC</td>
+          <td id="select_gateway_cx" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">CX</td>
+          <td id="select_gateway_apex_l" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">L APEX</td>
+          <td id="select_gateway_apex_r" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="set_phase_gateway(this);">R APEX</td>
+          <td id="select_gateway_" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style='width: 1.0in;' onMouseDown="clear_phase_gateway();"> </td>
         </tr>
       </table>
     </div>
   <% end %>
-  
+
   <!-- direction selector -->
   <div id="phase_direction_selector" class="selector hidden">
     <table class="selector_table">
@@ -145,11 +146,11 @@
 			<tr>
 	      <td id="select_direction_m" class="selector_cell selector_cell_text_single_character" onMouseDown="set_phase_direction('M');">M</td>
 	      <td id="select_direction_l" class="selector_cell selector_cell_text_single_character" onMouseDown="set_phase_direction('L');">L</td>
-	      <td id="select_direction_" class="selector_cell selector_cell_text_single_character" onMouseDown="clear_phase_direction();"> </td>  
+	      <td id="select_direction_" class="selector_cell selector_cell_text_single_character" onMouseDown="clear_phase_direction();"> </td>
 			</tr>
     </table>
   </div>
-  
+
   <!-- SRI -->
   <!-- sri stage selector -->
   <div id="sri_stage_selector" class="selector hidden">
@@ -169,7 +170,7 @@
 	      <td id='select_sri_stage_10' class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_sri_stage(this);">10</td>
 	      <td id='select_sri_stage_11' class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_sri_stage(this);">11</td>
 	      <td id='select_sri_stage_12' class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_sri_stage(this);">12</td>
-	      <td id='select_sri_stage_' class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_sri_stage(this);"> </td>  
+	      <td id='select_sri_stage_' class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_sri_stage(this);"> </td>
 			</tr>
     </table>
   </div>
@@ -186,11 +187,11 @@
 	      <td id='select_organizing_field_h3u' class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">H3U</td>
 	      <td id='select_organizing_field_h4' class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">H4</td>
 	      <td id='select_organizing_field_h5' class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">H5</td>
-	      <td id='select_organizing_field_' class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);"> </td>  
+	      <td id='select_organizing_field_' class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);"> </td>
 			</tr>
     </table>
   </div>
-  
+
   <!-- short leg amount -->
   <div id="short_leg_amount_selector" class="selector hidden">
     <table class="selector_table">
@@ -202,11 +203,11 @@
 			<tr>
 	      <td id='select_amount_15_2' class="selector_cell selector_cell_text_three_character" onMouseDown="set_selected_value(this);">1.5-2</td>
 	      <td id='select_amount_2' class="selector_cell selector_cell_text_three_character" onMouseDown="set_selected_value(this);">2+</td>
-	      <td id='select_amount_' class="selector_cell selector_cell_text_three_character" onMouseDown="set_selected_value(this);"> </td>  
+	      <td id='select_amount_' class="selector_cell selector_cell_text_three_character" onMouseDown="set_selected_value(this);"> </td>
 			</tr>
     </table>
   </div>
-  
+
   <!-- tension level selector -->
   <div id="tension_level_selector" class="selector hidden">
     <table class="selector_table">
@@ -219,7 +220,7 @@
 	      <td id="select_tension_level_3" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">3</td>
 	      <td id="select_tension_level_4" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">4</td>
 	      <td id="select_tension_level_5" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);">5</td>
-	      <td id="select_tension_level_" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);"> </td>  
+	      <td id="select_tension_level_" class="selector_cell selector_cell_text_single_character" onMouseDown="set_selected_value(this);"> </td>
 			</tr>
     </table>
   </div>
