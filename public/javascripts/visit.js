@@ -591,7 +591,7 @@ function set_phase_gateway_selector_choices(selected_phase) {
 }
 
 function set_phase_gateway_selector_visible_text() {
-	gateways = new Array('OCC', 'OCC/C1', 'C1/OCC', 'C1/C2', 'C2/C1', 'C2/C3', 'C3/C2', 'C3/C4', 'C4/C3', 'C4/C5', 'C5/C4', 'C5/C6', 'C6/C5', 'C6/C7', 'C7/C6', 'C7/T1', 'T1/C7', 'T1/T2', 'T2/T1', 'T2/T3', 'T3/T2', 'S1', 'S2', 'S3', 'S4', 'S5', 'SAC', 'APEX');
+	gateways = new Array('OCC', 'OCC/C1', 'C1/OCC', 'C1/C2', 'C2/C1', 'C2/C3', 'C3/C2', 'C3/C4', 'C4/C3', 'C4/C5', 'C5/C4', 'C5/C6', 'C6/C5', 'C6/', 'C7/C6', 'C7/T1', 'T1/C7', 'T1/T2', 'T2/T1', 'T2/T3', 'T3/T2', 'S1', 'S2', 'S3', 'S4', 'S5', 'SAC', 'CX', 'APEX');
 	for(key in gateways) {
 		gateway_text = gateways[key];
 		gateway_side = get_gateway_side(gateway_text);

@@ -588,6 +588,7 @@ feature "Visit Feature", %q{
   end
 
   context "test gateway selector side text and coloring", :js => true, :visit => true do
+
     before(:each) do
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
@@ -613,6 +614,23 @@ feature "Visit Feature", %q{
     scenario "gateway selector shows the gateway directions color coded on page load" do
       click_selector_cell('selected_phase_1_gateway_1')
       verify_visit_gateway_selector('select_gateway_occ_c1', 'L', 'OCC/C1')
+    end
+
+    scenario "gateway selector show the correct gateway direction for CX" do
+      @visit.phase_1 = 3
+      @visit.save!
+      visit(@practice_room_visit_page)
+
+      # CX gateway side not set
+      click_selector_cell('selected_phase_1_gateway_1')
+      get_selector_cell_text('select_gateway_cx').should == 'CX'
+
+      # CX gateway side set
+      @visit.practice_member.travel_card.gateway_cx = 'R'
+      @visit.practice_member.travel_card.save!
+      visit(@practice_room_visit_page)
+      click_selector_cell('selected_phase_1_gateway_1')
+      verify_visit_gateway_selector('select_gateway_cx', 'R', 'CX')
     end
 
     scenario "gateway selector updates based on changes to the travel card without reloading the page" do
