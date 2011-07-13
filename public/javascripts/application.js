@@ -105,7 +105,6 @@ function show_dialog(dialog_id) {
   else {
     toggle_dialog(dialog_id);
   }
-$('#practice_member_first_name').focus();
 }
 
 function toggle_dialog(dialog_id) {
