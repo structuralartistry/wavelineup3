@@ -1,4 +1,4 @@
-// All code except where noted copyright by StructuralArtistry 2011. All rights reserved.
+// All code except where otherwise noted is copyright by StructuralArtistry 2011. All rights reserved.
 /*!
  * jQuery JavaScript Library v1.4.4
  * http://jquery.com/
