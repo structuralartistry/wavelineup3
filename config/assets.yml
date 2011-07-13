@@ -1,5 +1,6 @@
 embed_assets: datauri 
 package_assets: on
+gzip_assets: off
 
 javascripts:
   common: 
