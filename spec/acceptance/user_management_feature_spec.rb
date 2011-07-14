@@ -12,7 +12,7 @@ feature "User Management Feature", %q{
     visit('/home')
   end
 
-  scenario "I can add a user to my practice and activate the user", :focus => true do
+  scenario "I can add a user to my practice and activate the user" do
     Factory.create(:practice_user)
 
     click_selector_cell('Edit Practice')
@@ -48,7 +48,7 @@ feature "User Management Feature", %q{
     confirm_home_page_loaded
   end
 
-  scenario "if user tries to log in with inactivated user, they receive a message and can request the activation link to be resent", :focus => true do
+  scenario "if user tries to log in with inactivated user, they receive a message and can request the activation link to be resent" do
     Factory.create(:practice_user)
 
     click_selector_cell('Edit Practice')
