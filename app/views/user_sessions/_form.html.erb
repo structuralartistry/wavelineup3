@@ -6,7 +6,7 @@
       <ul>
       <% @user_session.errors.full_messages.each do |msg| %>
         <% if msg == "Your account is not active" %>
-          <%= render 'activations/reactivate' %>
+          <%= render :partial => 'activations/reactivate' %>
         <% else %>
          <li><%= msg %></li>
         <% end %>
@@ -14,7 +14,7 @@
       </ul>
     </div>
   <% end %>
-  
+
   <br />
 
   <div class="field">

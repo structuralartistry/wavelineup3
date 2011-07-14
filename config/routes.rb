@@ -6,7 +6,7 @@ Wavelineup3::Application.routes.draw do
   match 'practice_room/:id/:visible_section/:visit_id' => 'practice_room#main'
   match 'practice_room/:id/:visible_section' => 'practice_room#main'
 
-  match 'activations/new', :as => 'resend_activation_link'
+  match 'activations/resend/:activation_code' => 'activations#resend', :as => 'resend_activation'
   match 'activations/:activation_code' => 'activations#create', :as => 'activations'
 
   resources :feedback_supports
