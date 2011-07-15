@@ -178,7 +178,6 @@ feature "Visit Feature", %q{
     end
 
     scenario "phase 1 affected gateway lists show gateways which have not been set a side" do
-pending
       visit = Factory.create(:visit)
       visit.practice_member_id = @practice_member.id
       visit.date = DateTime.now
@@ -194,9 +193,8 @@ pending
       get_selector_cell_text('select_gateway_s2').should == 'S2'
     end
 
-    scenario "phase 1 affected gateway lists filter for the same side as the selected gateway" do
-pending
-      visit = Factory.create(:visit)
+    scenario "phase 1 affected gateway lists filter for the same side as the selected gateway", :focus => true do
+      visit = Visit.new
       visit.practice_member_id = @practice_member.id
       visit.date = DateTime.now
       visit.phase_1 = '1 > 3'
@@ -216,7 +214,7 @@ pending
       click_selector_cell('selected_phase_1_gateway_1')
       click_selector_cell('select_gateway_s1') # this is a L gateway, so in the selector below we should only see L gateways
       click_selector_cell('selected_phase_1_gateway_1_affecting')
-      verify_visit_gateway_selector('select_gateway_s1', 'L', 'S1')
+      selector_cell_present?('select_gateway_s1').should == false # this is not per the tested rule but primary gateway is s1
       selector_cell_present?('select_gateway_s2').should == false
       selector_cell_present?('select_gateway_s3').should == false
       verify_visit_gateway_selector('select_gateway_s4', 'L', 'S4')
@@ -502,7 +500,7 @@ pending
       click_selector_cell('select_gateway_') # close dialog
     end
 
-    scenario "in Phase 1 > 3 the affected gateway should not be the same as the primary gateway", :focus => true do
+    scenario "in Phase 1 > 3 the affected gateway should not be the same as the primary gateway" do
       click_selector_cell('selected_phase_1')
       click_selector_cell('select_phase_1_3')
       click_selector_cell('selected_phase_1_gateway_1')
@@ -516,7 +514,7 @@ pending
       selector_cell_present?('select_gateway_s2').should == false
     end
 
-    scenario "in Phase 1 > 5 the affected gateway should not be the same as the primary gateway", :focus => true do
+    scenario "in Phase 1 > 5 the affected gateway should not be the same as the primary gateway" do
       click_selector_cell('selected_phase_1')
       click_selector_cell('select_phase_1_5')
       click_selector_cell('selected_phase_1_gateway_1')
