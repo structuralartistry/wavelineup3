@@ -583,7 +583,7 @@ function set_phase_gateway_selector_choices(selected_phase) {
         if(filter_for_gateway.indexOf('T3/T2')==-1) $('#select_gateway_t3_t2').show();
       } else {
         // gateway 2 selections
-        if(filter_for_gateway.indexOf('CX')==-1) $('#select_gateway_cx').show();
+        if(filter_for_gateway.indexOf('C CX')==-1) $('#select_gateway_cx_c').show();
         if(filter_for_gateway.indexOf('L APEX')==-1) $('#select_gateway_apex_l').show();
         if(filter_for_gateway.indexOf('R APEX')==-1) $('#select_gateway_apex_r').show();
       }

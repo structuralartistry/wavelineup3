@@ -502,6 +502,14 @@ pending
       click_selector_cell('select_gateway_') # close dialog
     end
 
+    scenario "phase 5 should show CX (no L/R differentiation), L APEX and R APEX as static options", :focus => true do
+      click_selector_cell('selected_phase_1')
+      click_selector_cell('select_phase_5')
+      click_selector_cell('selected_phase_1_gateway_2')
+      expected_gateway_choice_ids = %w(select_gateway_cx_c select_gateway_apex_l select_gateway_apex_r)
+      expected_gateway_choice_ids.each {|id| selector_cell_present?(id).should == true}
+    end
+
     scenario "the correct directions are shown for each phase" do
 
       # all phasse 1 should show M/L
