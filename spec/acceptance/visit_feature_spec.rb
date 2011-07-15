@@ -193,14 +193,20 @@ feature "Visit Feature", %q{
       get_selector_cell_text('select_gateway_s2').should == 'S2'
     end
 
-    scenario "phase 1 affected gateway lists filter for the same side as the selected gateway" do
+    scenario "phase 1 affected gateway lists filter for the same side as the selected gateway", :focus => true do
       visit = Visit.new
       visit.practice_member_id = @practice_member.id
       visit.date = DateTime.now
-      visit.phase_1 = '1 > 3'
       visit.save!
 
       travel_card = @practice_member.travel_card
+      travel_card.gateway_c1_occ = 'R'
+      travel_card.gateway_c1_c2 = 'L'
+      travel_card.gateway_c2_c1 = 'R'
+      travel_card.gateway_c2_c3 = 'L'
+      travel_card.gateway_c3_c2 = 'R'
+      travel_card.gateway_c3_c4 = 'R'
+      travel_card.gateway_c4_c3 = 'L'
       travel_card.gateway_s1 = 'L'
       travel_card.gateway_s2 = 'R'
       travel_card.gateway_s3 = 'R'
@@ -211,14 +217,66 @@ feature "Visit Feature", %q{
       practice_room_visit_page = "/practice_room/#{@practice_member.id}/visit/#{visit.id}"
       visit(practice_room_visit_page)
 
+      # spot check phase 1 > 2 C1
+      click_selector_cell('selected_phase_1')
+      click_selector_cell('select_phase_1_2_c1')
+      click_selector_cell('selected_phase_1_gateway_2')
+      click_selector_cell('select_gateway_s2')
+      click_selector_cell('selected_phase_1_gateway_2_affecting')
+      selector_cell_present?('select_gateway_c1_c2').should == false
+      verify_visit_gateway_selector('select_gateway_c1_occ', 'R', 'C1/OCC')
+
+      # spot check phase 1 > 2 C5
+      click_selector_cell('selected_phase_1')
+      click_selector_cell('select_phase_1_2_c5')
       click_selector_cell('selected_phase_1_gateway_1')
-      click_selector_cell('select_gateway_s1') # this is a L gateway, so in the selector below we should only see L gateways
+      click_selector_cell('select_gateway_s1')
       click_selector_cell('selected_phase_1_gateway_1_affecting')
-      selector_cell_present?('select_gateway_s1').should == false # this is not per the tested rule but primary gateway is s1
+      selector_cell_present?('select_gateway_c3_c4').should == false
+      verify_visit_gateway_selector('select_gateway_c4_c3', 'L', 'C4/C3')
+
+      # spot check phase 1 > 3
+      click_selector_cell('selected_phase_1')
+      click_selector_cell('select_phase_1_3')
+      click_selector_cell('selected_phase_1_gateway_1')
+      click_selector_cell('select_gateway_s1')
+      click_selector_cell('selected_phase_1_gateway_1_affecting')
+      selector_cell_present?('select_gateway_s1').should == false
       selector_cell_present?('select_gateway_s2').should == false
       selector_cell_present?('select_gateway_s3').should == false
       verify_visit_gateway_selector('select_gateway_s4', 'L', 'S4')
       verify_visit_gateway_selector('select_gateway_s5', 'L', 'S5')
+
+      # test gateway 2 affecting
+      click_selector_cell('selected_phase_1_gateway_2')
+      click_selector_cell('select_gateway_s2')
+      click_selector_cell('selected_phase_1_gateway_2_affecting')
+      selector_cell_present?('select_gateway_s1').should == false
+      selector_cell_present?('select_gateway_s2').should == false
+      verify_visit_gateway_selector('select_gateway_s3', 'R', 'S3')
+      selector_cell_present?('select_gateway_s4').should == false
+      selector_cell_present?('select_gateway_s5').should == false
+
+      # spot check phase 1 > 4
+      click_selector_cell('selected_phase_1')
+      click_selector_cell('select_phase_1_4')
+      click_selector_cell('selected_phase_1_gateway_1')
+      click_selector_cell('select_gateway_s1')
+      click_selector_cell('selected_phase_1_gateway_1_affecting')
+      verify_visit_gateway_selector('select_gateway_c2_c3', 'L', 'C2/C3')
+      selector_cell_present?('select_gateway_c3_c2').should == false
+
+      # spot check phase 1 > 5
+      click_selector_cell('selected_phase_1')
+      click_selector_cell('select_phase_1_5')
+      click_selector_cell('selected_phase_1_gateway_1')
+      click_selector_cell('select_gateway_s1')
+      click_selector_cell('selected_phase_1_gateway_1_affecting')
+
+      verify_visit_gateway_selector('select_gateway_c1_c2', 'L', 'C1/C2')
+      selector_cell_present?('select_gateway_c2_c1').should == false
+      verify_visit_gateway_selector('select_gateway_c2_c3', 'L', 'C2/C3')
+      selector_cell_present?('select_gateway_c3_c2').should == false
     end
 
     scenario "click on mini-travel card opens the travel card view" do

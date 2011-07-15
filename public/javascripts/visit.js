@@ -294,6 +294,10 @@ function get_gateway_side_from_selector_html(selector_id) {
   return '';
 }
 
+function gateway_text_to_id_format(gateway_text) {
+  return gateway_text.replace(/\//,'_').toLowerCase();
+}
+
 function remove_span_from_gateway_html(raw_gateway_value) {
   // remove <span class="gateway_selector_side_highlight">...</span> from the gateway_value
   return raw_gateway_value.replace(/<span.*>.*<\/span>/i, '')
@@ -405,8 +409,17 @@ function set_phase_gateway_selector_choices(selected_phase) {
           break;
         case "1_affecting":
         case "2_affecting":
-          if(filter_for_other_gateway.indexOf('C1/OCC')==-1) $('#select_gateway_c1_occ').show();
-          if(filter_for_other_gateway.indexOf('C1/C2')==-1) $('#select_gateway_c1_c2').show();
+          primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
+
+          gateways = new Array('C1/OCC', 'C1/C2');
+          for(index in gateways) {
+            gateway_text = gateways[index];
+
+            if(filter_for_other_gateway.indexOf(gateway_text)==-1 && filter_gateway_affected_for_primary_gateway.indexOf(gateway_text)==-1) {
+              gateway_id = gateway_text_to_id_format(gateway_text);
+              if(get_gateway_side_from_selector_html('select_gateway_' + gateway_id) == primary_gateway_side) $('#select_gateway_' + gateway_id).show();
+            }
+          }
           break;
       }
       break;
@@ -425,20 +438,17 @@ function set_phase_gateway_selector_choices(selected_phase) {
           break;
         case "1_affecting":
         case "2_affecting":
-          if(filter_for_other_gateway.indexOf('C3/C4')==-1) $('#select_gateway_c3_c4').show();
-          if(filter_for_other_gateway.indexOf('C4/C3')==-1) $('#select_gateway_c4_c3').show();
-          if(filter_for_other_gateway.indexOf('C4/C5')==-1) $('#select_gateway_c4_c5').show();
-          if(filter_for_other_gateway.indexOf('C5/C4')==-1) $('#select_gateway_c5_c4').show();
-          if(filter_for_other_gateway.indexOf('C5/C6')==-1) $('#select_gateway_c5_c6').show();
-          if(filter_for_other_gateway.indexOf('C6/C5')==-1) $('#select_gateway_c6_c5').show();
-          if(filter_for_other_gateway.indexOf('C6/C7')==-1) $('#select_gateway_c6_c7').show();
-          if(filter_for_other_gateway.indexOf('C7/C6')==-1) $('#select_gateway_c7_c6').show();
-          if(filter_for_other_gateway.indexOf('C7/T1')==-1) $('#select_gateway_c7_t1').show();
-          if(filter_for_other_gateway.indexOf('T1/C7')==-1) $('#select_gateway_t1_c7').show();
-          if(filter_for_other_gateway.indexOf('T1/T2')==-1) $('#select_gateway_t1_t2').show();
-          if(filter_for_other_gateway.indexOf('T2/T1')==-1) $('#select_gateway_t2_t1').show();
-          if(filter_for_other_gateway.indexOf('T2/T3')==-1) $('#select_gateway_t2_t3').show();
-          if(filter_for_other_gateway.indexOf('T3/T2')==-1) $('#select_gateway_t3_t2').show();
+          primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
+
+          gateways = new Array('C3/C4', 'C4/C3', 'C4/C5', 'C5/C4', 'C5/C6', 'C6/C5', 'C6/C7', 'C7/C6', 'C7/T1', 'T1/C7', 'T1/T2', 'T2/T1', 'T2/T3', 'T3/T2');
+          for(index in gateways) {
+            gateway_text = gateways[index];
+
+            if(filter_for_other_gateway.indexOf(gateway_text)==-1 && filter_gateway_affected_for_primary_gateway.indexOf(gateway_text)==-1) {
+              gateway_id = gateway_text_to_id_format(gateway_text);
+              if(get_gateway_side_from_selector_html('select_gateway_' + gateway_id) == primary_gateway_side) $('#select_gateway_' + gateway_id).show();
+            }
+          }
           break;
       }
       break;
@@ -461,16 +471,16 @@ function set_phase_gateway_selector_choices(selected_phase) {
 
           gateways = new Array('S1', 'S2', 'S3', 'S4', 'S5', 'CX');
           for(index in gateways) {
-            gateway = gateways[index];
+            gateway_text = gateways[index];
 
-            if(filter_for_other_gateway.indexOf(gateway)==-1 && filter_gateway_affected_for_primary_gateway.indexOf(gateway)==-1) {
-              if(get_gateway_side_from_selector_html('select_gateway_' + gateway.toLowerCase()) == primary_gateway_side) $('#select_gateway_' + gateway.toLowerCase()).show();
+            if(filter_for_other_gateway.indexOf(gateway_text)==-1 && filter_gateway_affected_for_primary_gateway.indexOf(gateway_text)==-1) {
+              gateway_id = gateway_text_to_id_format(gateway_text);
+              if(get_gateway_side_from_selector_html('select_gateway_' + gateway_id) == primary_gateway_side) $('#select_gateway_' + gateway_id).show();
             }
           }
 
 					if(filter_for_other_gateway.indexOf('L APEX')==-1) $('#select_gateway_apex_l').show();
 					if(filter_for_other_gateway.indexOf('R APEX')==-1) $('#select_gateway_apex_r').show();
-
           break;
       }
       break;
@@ -489,10 +499,17 @@ function set_phase_gateway_selector_choices(selected_phase) {
           break;
         case "1_affecting":
         case "2_affecting":
-          if(filter_for_other_gateway.indexOf('C2/C1')==-1) $('#select_gateway_c2_c1').show();
-          if(filter_for_other_gateway.indexOf('C2/C3')==-1) $('#select_gateway_c2_c3').show();
-          if(filter_for_other_gateway.indexOf('C3/C2')==-1) $('#select_gateway_c3_c2').show();
-          if(filter_for_other_gateway.indexOf('C3/C4')==-1) $('#select_gateway_c3_c4').show();
+          primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
+
+          gateways = new Array('C2/C1', 'C2/C3', 'C3/C2', 'C3/C4');
+          for(index in gateways) {
+            gateway_text = gateways[index];
+
+            if(filter_for_other_gateway.indexOf(gateway_text)==-1 && filter_gateway_affected_for_primary_gateway.indexOf(gateway_text)==-1) {
+              gateway_id = gateway_text_to_id_format(gateway_text);
+              if(get_gateway_side_from_selector_html('select_gateway_' + gateway_id) == primary_gateway_side) $('#select_gateway_' + gateway_id).show();
+            }
+          }
           break;
       }
       break;
@@ -511,38 +528,32 @@ function set_phase_gateway_selector_choices(selected_phase) {
           break;
         case "1_affecting":
         case "2_affecting":
-          if(visit_gateway_currently_working=="1" || visit_gateway_currently_working == "1_affecting") {
+          if(visit_gateway_currently_working == "1_affecting") {
             // gateway 1 selections
-            if(filter_for_other_gateway.indexOf('OCC')==-1 && filter_gateway_affected_for_primary_gateway.indexOf('OCC')==-1) {
-              $('#select_gateway_occ').show();
+            primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
+
+            gateways = new Array('OCC', 'OCC/C1', 'C1/OCC', 'C1/C2', 'C2/C1', 'C2/C3', 'C3/C2', 'C3/C4', 'C4/C3', 'C4/C5', 'C5/C4', 'C5/C6', 'C6/C5', 'C6/C7', 'C7/C6', 'C7/T1', 'T1/C7', 'T1/T2', 'T2/T1', 'T2/T3', 'T3/T2');
+            for(index in gateways) {
+              gateway_text = gateways[index];
+
+              if(filter_for_other_gateway.indexOf(gateway_text)==-1 && filter_gateway_affected_for_primary_gateway.indexOf(gateway_text)==-1) {
+                gateway_id = gateway_text_to_id_format(gateway_text);
+                if(get_gateway_side_from_selector_html('select_gateway_' + gateway_id) == primary_gateway_side) $('#select_gateway_' + gateway_id).show();
+              }
             }
-            if(filter_for_other_gateway.indexOf('OCC/C1')==-1) $('#select_gateway_occ_c1').show();
-            if(filter_for_other_gateway.indexOf('C1/OCC')==-1) $('#select_gateway_c1_occ').show();
-            if(filter_for_other_gateway.indexOf('C1/C2')==-1) $('#select_gateway_c1_c2').show();
-            if(filter_for_other_gateway.indexOf('C2/C1')==-1) $('#select_gateway_c2_c1').show();
-            if(filter_for_other_gateway.indexOf('C2/C3')==-1) $('#select_gateway_c2_c3').show();
-            if(filter_for_other_gateway.indexOf('C3/C2')==-1) $('#select_gateway_c3_c2').show();
-            if(filter_for_other_gateway.indexOf('C3/C4')==-1) $('#select_gateway_c3_c4').show();
-            if(filter_for_other_gateway.indexOf('C4/C3')==-1) $('#select_gateway_c4_c3').show();
-            if(filter_for_other_gateway.indexOf('C4/C5')==-1) $('#select_gateway_c4_c5').show();
-            if(filter_for_other_gateway.indexOf('C5/C4')==-1) $('#select_gateway_c5_c4').show();
-            if(filter_for_other_gateway.indexOf('C5/C6')==-1) $('#select_gateway_c5_c6').show();
-            if(filter_for_other_gateway.indexOf('C6/C5')==-1) $('#select_gateway_c6_c5').show();
-            if(filter_for_other_gateway.indexOf('C6/C7')==-1) $('#select_gateway_c6_c7').show();
-            if(filter_for_other_gateway.indexOf('C7/C6')==-1) $('#select_gateway_c7_c6').show();
-            if(filter_for_other_gateway.indexOf('C7/T1')==-1) $('#select_gateway_c7_t1').show();
-            if(filter_for_other_gateway.indexOf('T1/C7')==-1) $('#select_gateway_t1_c7').show();
-            if(filter_for_other_gateway.indexOf('T1/T2')==-1) $('#select_gateway_t1_t2').show();
-            if(filter_for_other_gateway.indexOf('T2/T1')==-1) $('#select_gateway_t2_t1').show();
-            if(filter_for_other_gateway.indexOf('T2/T3')==-1) $('#select_gateway_t2_t3').show();
-            if(filter_for_other_gateway.indexOf('T3/T2')==-1) $('#select_gateway_t3_t2').show();
           } else {
             // gateway 2 selections
-            if(filter_for_other_gateway.indexOf('CX')==-1 && filter_gateway_affected_for_primary_gateway.indexOf('CX')==-1) {
-              $('#select_gateway_cx').show();
+            primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
+
+            gateways = new Array('CX', 'L APEX', 'R APEX');
+            for(index in gateways) {
+              gateway_text = gateways[index];
+
+              if(filter_for_other_gateway.indexOf(gateway_text)==-1 && filter_gateway_affected_for_primary_gateway.indexOf(gateway_text)==-1) {
+                gateway_id = gateway_text_to_id_format(gateway_text);
+                if(get_gateway_side_from_selector_html('select_gateway_' + gateway_id) == primary_gateway_side) $('#select_gateway_' + gateway_id).show();
+              }
             }
-            if(filter_for_other_gateway.indexOf('L APEX')==-1) $('#select_gateway_apex_l').show();
-            if(filter_for_other_gateway.indexOf('R APEX')==-1) $('#select_gateway_apex_r').show();
           }
           break;
       }
