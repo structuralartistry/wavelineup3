@@ -193,7 +193,7 @@ feature "Visit Feature", %q{
       get_selector_cell_text('select_gateway_s2').should == 'S2'
     end
 
-    scenario "phase 1 affected gateway lists filter for the same side as the selected gateway", :focus => true do
+    scenario "phase 1 affected gateway lists filter for the same side as the selected gateway" do
       visit = Visit.new
       visit.practice_member_id = @practice_member.id
       visit.date = DateTime.now
