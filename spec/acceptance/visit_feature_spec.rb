@@ -502,7 +502,35 @@ pending
       click_selector_cell('select_gateway_') # close dialog
     end
 
-    scenario "phase 5 should show CX (no L/R differentiation), L APEX and R APEX as static options", :focus => true do
+    scenario "in Phase 1 > 3 the affected gateway should not be the same as the primary gateway", :focus => true do
+      click_selector_cell('selected_phase_1')
+      click_selector_cell('select_phase_1_3')
+      click_selector_cell('selected_phase_1_gateway_1')
+      click_selector_cell('select_gateway_s1')
+      click_selector_cell('selected_phase_1_gateway_1_affecting')
+      selector_cell_present?('select_gateway_s1').should == false
+
+      click_selector_cell('selected_phase_1_gateway_2')
+      click_selector_cell('select_gateway_s2')
+      click_selector_cell('selected_phase_1_gateway_2_affecting')
+      selector_cell_present?('select_gateway_s2').should == false
+    end
+
+    scenario "in Phase 1 > 5 the affected gateway should not be the same as the primary gateway", :focus => true do
+      click_selector_cell('selected_phase_1')
+      click_selector_cell('select_phase_1_5')
+      click_selector_cell('selected_phase_1_gateway_1')
+      click_selector_cell('select_gateway_occ')
+      click_selector_cell('selected_phase_1_gateway_1_affecting')
+      selector_cell_present?('select_gateway_occ').should == false
+
+      click_selector_cell('selected_phase_1_gateway_2')
+      click_selector_cell('select_gateway_cx')
+      click_selector_cell('selected_phase_1_gateway_2_affecting')
+      selector_cell_present?('select_gateway_cx').should == false
+    end
+
+    scenario "phase 5 should show CX (no L/R differentiation), L APEX and R APEX as static options" do
       click_selector_cell('selected_phase_1')
       click_selector_cell('select_phase_5')
       click_selector_cell('selected_phase_1_gateway_2')

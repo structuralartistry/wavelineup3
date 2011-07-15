@@ -343,6 +343,7 @@ function set_phase_gateway_selector_choices(selected_phase) {
   // set the 'filter for' - this is the name of the field which should not be duplicated,
   // i.e. the selector choises for gateway 2 should not have in its array the selected
   // value of gateway 1, same for gateway 2 affected against gateway 1 affected
+  // ...the limit gateway is the gateway being compared to
   limit_gateway = "";
   // get the gateway or gateway affecting (if 2, then is 1, if 2 affecting, is 1 affecting to limit)
   if(visit_gateway_currently_working=="2") limit_gateway = "1";
@@ -354,6 +355,20 @@ function set_phase_gateway_selector_choices(selected_phase) {
   	}
 	}
   else filter_for_gateway = "";
+
+  // in phase 1, the affected gateway should not be the same as the selected gateway
+  // the only applicable phase 1's are 1 > 3 and 1 > 5 as in the others the primary and affected gateway lists are mutually exclusive
+  filter_gateway_affected_for_primary_gateway = '';
+  if((selected_phase.indexOf('1 > 3')!=-1 || selected_phase.indexOf('1 > 5')!=-1) && visit_gateway_currently_working.indexOf('_affecting')!=-1) {
+    switch(visit_gateway_currently_working) {
+      case '1_affecting':
+        filter_gateway_affected_for_primary_gateway = $('#visit_phase_' + visit_phase_currently_working + '_gateway_1').val();
+        break;
+      case '2_affecting':
+        filter_gateway_affected_for_primary_gateway = $('#visit_phase_' + visit_phase_currently_working + '_gateway_2').val();
+        break;
+    }
+  }
 
   $(".gateway_selection_cell").hide();
 
@@ -434,12 +449,24 @@ function set_phase_gateway_selector_choices(selected_phase) {
           break;
         case "1_affecting":
         case "2_affecting":
-          if(filter_for_gateway.indexOf('S1')==-1) $('#select_gateway_s1').show();
-          if(filter_for_gateway.indexOf('S2')==-1) $('#select_gateway_s2').show();
-          if(filter_for_gateway.indexOf('S3')==-1) $('#select_gateway_s3').show();
-          if(filter_for_gateway.indexOf('S4')==-1) $('#select_gateway_s4').show();
-          if(filter_for_gateway.indexOf('S5')==-1) $('#select_gateway_s5').show();
-          if(filter_for_gateway.indexOf('CX')==-1) $('#select_gateway_cx').show();
+          if(filter_for_gateway.indexOf('S1')==-1 && filter_gateway_affected_for_primary_gateway.indexOf('S1')==-1) {
+            $('#select_gateway_s1').show();
+          }
+          if(filter_for_gateway.indexOf('S2')==-1 && filter_gateway_affected_for_primary_gateway.indexOf('S2')==-1) {
+            $('#select_gateway_s2').show();
+          }
+          if(filter_for_gateway.indexOf('S3')==-1 && filter_gateway_affected_for_primary_gateway.indexOf('S3')==-1) {
+            $('#select_gateway_s3').show();
+          }
+          if(filter_for_gateway.indexOf('S4')==-1 && filter_gateway_affected_for_primary_gateway.indexOf('S4')==-1) {
+            $('#select_gateway_s4').show();
+          }
+          if(filter_for_gateway.indexOf('S5')==-1 && filter_gateway_affected_for_primary_gateway.indexOf('S5')==-1) {
+            $('#select_gateway_s5').show();
+          }
+          if(filter_for_gateway.indexOf('CX')==-1 && filter_gateway_affected_for_primary_gateway.indexOf('CX')==-1) {
+            $('#select_gateway_cx').show();
+          }
 					if(filter_for_gateway.indexOf('L APEX')==-1) $('#select_gateway_apex_l').show();
 					if(filter_for_gateway.indexOf('R APEX')==-1) $('#select_gateway_apex_r').show();
           break;
@@ -484,7 +511,9 @@ function set_phase_gateway_selector_choices(selected_phase) {
         case "2_affecting":
           if(visit_gateway_currently_working=="1" || visit_gateway_currently_working == "1_affecting") {
             // gateway 1 selections
-            if(filter_for_gateway.indexOf('OCC')==-1) $('#select_gateway_occ').show();
+            if(filter_for_gateway.indexOf('OCC')==-1 && filter_gateway_affected_for_primary_gateway.indexOf('OCC')==-1) {
+              $('#select_gateway_occ').show();
+            }
             if(filter_for_gateway.indexOf('OCC/C1')==-1) $('#select_gateway_occ_c1').show();
             if(filter_for_gateway.indexOf('C1/OCC')==-1) $('#select_gateway_c1_occ').show();
             if(filter_for_gateway.indexOf('C1/C2')==-1) $('#select_gateway_c1_c2').show();
@@ -507,7 +536,9 @@ function set_phase_gateway_selector_choices(selected_phase) {
             if(filter_for_gateway.indexOf('T3/T2')==-1) $('#select_gateway_t3_t2').show();
           } else {
             // gateway 2 selections
-            if(filter_for_gateway.indexOf('CX')==-1) $('#select_gateway_cx').show();
+            if(filter_for_gateway.indexOf('CX')==-1 && filter_gateway_affected_for_primary_gateway.indexOf('CX')==-1) {
+              $('#select_gateway_cx').show();
+            }
             if(filter_for_gateway.indexOf('L APEX')==-1) $('#select_gateway_apex_l').show();
             if(filter_for_gateway.indexOf('R APEX')==-1) $('#select_gateway_apex_r').show();
           }
