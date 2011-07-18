@@ -288,14 +288,30 @@ function normalize_gateway(gateway_text) {
 
 function get_gateway_side_from_selector_html(selector_id) {
   selector_html = $('#' + selector_id).html();
-  side = '';
-  if(selector_html.indexOf('gateway_selector_side_highlight_l')>=0) return 'L';
-  else if(selector_html.indexOf('gateway_selector_side_highlight_r')>=0) return 'R';
+  if(selector_html.match(/L/)!=null) return 'L';
+  if(selector_html.match(/R/)!=null) return 'R';
   return '';
 }
 
 function gateway_text_to_id_format(gateway_text) {
-  return gateway_text.replace(/\//,'_').toLowerCase();
+  return gateway_text.replace(/[\/]|[ ]/g,'_').toLowerCase();
+}
+
+function gateway_side_matches_or_is_not_set(gateway_selector_id, side_to_match_against) {
+  if(side_to_match_against==undefined) return true;
+  side = get_gateway_side_from_selector_html(gateway_selector_id)
+  if(side==undefined) return true;
+
+  side_to_match_against = side_to_match_against.trim();
+  side = side.trim();
+
+  // if no side to match against, then we have to include all
+  if(side_to_match_against == '') return true;
+  // if there is no side on the potential selector then we have to include it
+  if(side == '') return true;
+  if(side == 'L' && side == side_to_match_against) return true;
+  if(side == 'R' && side == side_to_match_against) return true;
+  return false;
 }
 
 function remove_span_from_gateway_html(raw_gateway_value) {
@@ -356,7 +372,7 @@ function set_phase_gateway_selector_choices(selected_phase) {
   // i.e. the selector choises for gateway 2 should not have in its array the selected
   // value of gateway 1, same for gateway 2 affected against gateway 1 affected
   // ...the limit gateway is the gateway being compared to
-  limit_gateway = "";
+  var limit_gateway = "";
   // get the gateway or gateway affecting (if 2, then is 1, if 2 affecting, is 1 affecting to limit)
   if(visit_gateway_currently_working=="2") limit_gateway = "1";
   if(visit_gateway_currently_working=="2_affecting") limit_gateway = "1_affecting";
@@ -370,7 +386,7 @@ function set_phase_gateway_selector_choices(selected_phase) {
 
   // in phase 1, the affected gateway should not be the same as the selected gateway
   // the only applicable phase 1's are 1 > 3 and 1 > 5 as in the others the primary and affected gateway lists are mutually exclusive
-  filter_gateway_affected_for_primary_gateway = '';
+  var filter_gateway_affected_for_primary_gateway = '';
   if((selected_phase.indexOf('1 > 3')!=-1 || selected_phase.indexOf('1 > 5')!=-1) && visit_gateway_currently_working.indexOf('_affecting')!=-1) {
     switch(visit_gateway_currently_working) {
       case '1_affecting':
@@ -409,15 +425,15 @@ function set_phase_gateway_selector_choices(selected_phase) {
           break;
         case "1_affecting":
         case "2_affecting":
-          primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
+          var primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
 
-          gateways = new Array('C1/OCC', 'C1/C2');
+          var gateways = new Array('C1/OCC', 'C1/C2');
           for(index in gateways) {
-            gateway_text = gateways[index];
+            var gateway_text = gateways[index];
 
             if(filter_for_other_gateway.indexOf(gateway_text)==-1 && filter_gateway_affected_for_primary_gateway.indexOf(gateway_text)==-1) {
-              gateway_id = gateway_text_to_id_format(gateway_text);
-              if(get_gateway_side_from_selector_html('select_gateway_' + gateway_id) == primary_gateway_side) $('#select_gateway_' + gateway_id).show();
+              var gateway_id = 'select_gateway_' + gateway_text_to_id_format(gateway_text);
+              if(gateway_side_matches_or_is_not_set(gateway_id, primary_gateway_side)) $('#' + gateway_id).show();
             }
           }
           break;
@@ -438,15 +454,15 @@ function set_phase_gateway_selector_choices(selected_phase) {
           break;
         case "1_affecting":
         case "2_affecting":
-          primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
+          var primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
 
-          gateways = new Array('C3/C4', 'C4/C3', 'C4/C5', 'C5/C4', 'C5/C6', 'C6/C5', 'C6/C7', 'C7/C6', 'C7/T1', 'T1/C7', 'T1/T2', 'T2/T1', 'T2/T3', 'T3/T2');
+          var gateways = new Array('C3/C4', 'C4/C3', 'C4/C5', 'C5/C4', 'C5/C6', 'C6/C5', 'C6/C7', 'C7/C6', 'C7/T1', 'T1/C7', 'T1/T2', 'T2/T1', 'T2/T3', 'T3/T2');
           for(index in gateways) {
-            gateway_text = gateways[index];
+            var gateway_text = gateways[index];
 
             if(filter_for_other_gateway.indexOf(gateway_text)==-1 && filter_gateway_affected_for_primary_gateway.indexOf(gateway_text)==-1) {
-              gateway_id = gateway_text_to_id_format(gateway_text);
-              if(get_gateway_side_from_selector_html('select_gateway_' + gateway_id) == primary_gateway_side) $('#select_gateway_' + gateway_id).show();
+              var gateway_id = 'select_gateway_' + gateway_text_to_id_format(gateway_text);
+              if(gateway_side_matches_or_is_not_set(gateway_id, primary_gateway_side)) $('#' + gateway_id).show();
             }
           }
           break;
@@ -467,20 +483,17 @@ function set_phase_gateway_selector_choices(selected_phase) {
           break;
         case "1_affecting":
         case "2_affecting":
-          primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
+          var primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
 
-          gateways = new Array('S1', 'S2', 'S3', 'S4', 'S5', 'CX');
+          var gateways = new Array('S1', 'S2', 'S3', 'S4', 'S5', 'CX', 'L APEX', 'R APEX');
           for(index in gateways) {
-            gateway_text = gateways[index];
+            var gateway_text = gateways[index];
 
             if(filter_for_other_gateway.indexOf(gateway_text)==-1 && filter_gateway_affected_for_primary_gateway.indexOf(gateway_text)==-1) {
-              gateway_id = gateway_text_to_id_format(gateway_text);
-              if(get_gateway_side_from_selector_html('select_gateway_' + gateway_id) == primary_gateway_side) $('#select_gateway_' + gateway_id).show();
+              var gateway_id = 'select_gateway_' + gateway_text_to_id_format(gateway_text);
+              if(gateway_side_matches_or_is_not_set(gateway_id, primary_gateway_side)) $('#' + gateway_id).show();
             }
           }
-
-					if(filter_for_other_gateway.indexOf('L APEX')==-1) $('#select_gateway_apex_l').show();
-					if(filter_for_other_gateway.indexOf('R APEX')==-1) $('#select_gateway_apex_r').show();
           break;
       }
       break;
@@ -499,15 +512,15 @@ function set_phase_gateway_selector_choices(selected_phase) {
           break;
         case "1_affecting":
         case "2_affecting":
-          primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
+          var primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
 
-          gateways = new Array('C2/C1', 'C2/C3', 'C3/C2', 'C3/C4');
+          var gateways = new Array('C2/C1', 'C2/C3', 'C3/C2', 'C3/C4');
           for(index in gateways) {
-            gateway_text = gateways[index];
+            var gateway_text = gateways[index];
 
             if(filter_for_other_gateway.indexOf(gateway_text)==-1 && filter_gateway_affected_for_primary_gateway.indexOf(gateway_text)==-1) {
-              gateway_id = gateway_text_to_id_format(gateway_text);
-              if(get_gateway_side_from_selector_html('select_gateway_' + gateway_id) == primary_gateway_side) $('#select_gateway_' + gateway_id).show();
+              var gateway_id = 'select_gateway_' + gateway_text_to_id_format(gateway_text);
+              if(gateway_side_matches_or_is_not_set(gateway_id, primary_gateway_side)) $('#' + gateway_id).show();
             }
           }
           break;
@@ -530,28 +543,26 @@ function set_phase_gateway_selector_choices(selected_phase) {
         case "2_affecting":
           if(visit_gateway_currently_working == "1_affecting") {
             // gateway 1 selections
-            primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
+            var primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
 
-            gateways = new Array('OCC', 'OCC/C1', 'C1/OCC', 'C1/C2', 'C2/C1', 'C2/C3', 'C3/C2', 'C3/C4', 'C4/C3', 'C4/C5', 'C5/C4', 'C5/C6', 'C6/C5', 'C6/C7', 'C7/C6', 'C7/T1', 'T1/C7', 'T1/T2', 'T2/T1', 'T2/T3', 'T3/T2');
+            var gateways = new Array('OCC', 'OCC/C1', 'C1/OCC', 'C1/C2', 'C2/C1', 'C2/C3', 'C3/C2', 'C3/C4', 'C4/C3', 'C4/C5', 'C5/C4', 'C5/C6', 'C6/C5', 'C6/C7', 'C7/C6', 'C7/T1', 'T1/C7', 'T1/T2', 'T2/T1', 'T2/T3', 'T3/T2');
             for(index in gateways) {
-              gateway_text = gateways[index];
+              var gateway_text = gateways[index];
 
               if(filter_for_other_gateway.indexOf(gateway_text)==-1 && filter_gateway_affected_for_primary_gateway.indexOf(gateway_text)==-1) {
-                gateway_id = gateway_text_to_id_format(gateway_text);
-                if(get_gateway_side_from_selector_html('select_gateway_' + gateway_id) == primary_gateway_side) $('#select_gateway_' + gateway_id).show();
+                var gateway_id = 'select_gateway_' + gateway_text_to_id_format(gateway_text);
+                if(gateway_side_matches_or_is_not_set(gateway_id, primary_gateway_side)) $('#' + gateway_id).show();
               }
             }
           } else {
             // gateway 2 selections
-            primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
-
-            gateways = new Array('CX', 'L APEX', 'R APEX');
+            var primary_gateway_side = get_gateway_side_from_selector_html('selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working[0]);
+            var gateways = new Array('CX', 'L APEX', 'R APEX');
             for(index in gateways) {
-              gateway_text = gateways[index];
-
+              var gateway_text = gateways[index];
               if(filter_for_other_gateway.indexOf(gateway_text)==-1 && filter_gateway_affected_for_primary_gateway.indexOf(gateway_text)==-1) {
-                gateway_id = gateway_text_to_id_format(gateway_text);
-                if(get_gateway_side_from_selector_html('select_gateway_' + gateway_id) == primary_gateway_side) $('#select_gateway_' + gateway_id).show();
+                var gateway_id = 'select_gateway_' + gateway_text_to_id_format(gateway_text);
+                if(gateway_side_matches_or_is_not_set(gateway_id, primary_gateway_side)) $('#' + gateway_id).show();
               }
             }
           }
@@ -590,8 +601,8 @@ function set_phase_gateway_selector_choices(selected_phase) {
       if(filter_for_other_gateway.indexOf('S5')==-1) $('#select_gateway_s5').show();
       if(filter_for_other_gateway.indexOf('CX')==-1) $('#select_gateway_cx').show();
       if(visit_gateway_currently_working=="1") {
-        if(filter_for_other_gateway.indexOf('L APEX')==-1) $('#select_gateway_apex_l').show();
-        if(filter_for_other_gateway.indexOf('R APEX')==-1) $('#select_gateway_apex_r').show();
+        if(filter_for_other_gateway.indexOf('L APEX')==-1) $('#select_gateway_l_apex').show();
+        if(filter_for_other_gateway.indexOf('R APEX')==-1) $('#select_gateway_r_apex').show();
       }
       break;
 
@@ -628,8 +639,8 @@ function set_phase_gateway_selector_choices(selected_phase) {
       } else {
         // gateway 2 selections
         if(filter_for_other_gateway.indexOf('C CX')==-1) $('#select_gateway_cx_c').show();
-        if(filter_for_other_gateway.indexOf('L APEX')==-1) $('#select_gateway_apex_l').show();
-        if(filter_for_other_gateway.indexOf('R APEX')==-1) $('#select_gateway_apex_r').show();
+        if(filter_for_other_gateway.indexOf('L APEX')==-1) $('#select_gateway_l_apex').show();
+        if(filter_for_other_gateway.indexOf('R APEX')==-1) $('#select_gateway_r_apex').show();
       }
       break;
   }

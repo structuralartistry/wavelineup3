@@ -190,7 +190,47 @@ feature "Visit Feature", %q{
       click_selector_cell('selected_phase_1_gateway_1')
       click_selector_cell('select_gateway_s1')
       click_selector_cell('selected_phase_1_gateway_1_affecting')
-      get_selector_cell_text('select_gateway_s2').should == 'S2'
+
+      selector_cell_present?('select_gateway_s1').should == false
+      selector_cell_present?('select_gateway_s2').should == true
+      selector_cell_present?('select_gateway_s3').should == true
+      selector_cell_present?('select_gateway_s4').should == true
+      selector_cell_present?('select_gateway_s5').should == true
+      selector_cell_present?('select_gateway_cx').should == true
+      selector_cell_present?('select_gateway_l_apex').should == true
+      selector_cell_present?('select_gateway_r_apex').should == true
+    end
+
+    scenario "phase 1 affected gateway lists show all if primary gateway not set" do
+      visit = Factory.create(:visit)
+      visit.practice_member_id = @practice_member.id
+      visit.date = DateTime.now
+      visit.phase_1 = '1 > 3'
+      visit.save!
+
+      travel_card = @practice_member.travel_card
+      travel_card.gateway_s1 = 'L'
+      travel_card.gateway_s2 = 'R'
+      travel_card.gateway_s3 = 'R'
+      travel_card.gateway_s4 = 'L'
+      travel_card.gateway_s5 = 'L'
+      travel_card.gateway_cx = 'R'
+      travel_card.save!
+
+      practice_room_visit_page = "/practice_room/#{@practice_member.id}/visit/#{visit.id}"
+      visit(practice_room_visit_page)
+
+      click_selector_cell('selected_phase_1_gateway_1')
+      click_selector_cell('select_gateway_s1')
+      click_selector_cell('selected_phase_1_gateway_1_affecting')
+      selector_cell_present?('select_gateway_s1').should == false
+      selector_cell_present?('select_gateway_s2').should == false
+      selector_cell_present?('select_gateway_s3').should == false
+      selector_cell_present?('select_gateway_s4').should == true
+      selector_cell_present?('select_gateway_s5').should == true
+      selector_cell_present?('select_gateway_cx').should == false
+      selector_cell_present?('select_gateway_l_apex').should == true
+      selector_cell_present?('select_gateway_r_apex').should == false
     end
 
     scenario "phase 1 affected gateway lists filter for the same side as the selected gateway" do
@@ -246,6 +286,8 @@ feature "Visit Feature", %q{
       selector_cell_present?('select_gateway_s3').should == false
       verify_visit_gateway_selector('select_gateway_s4', 'L', 'S4')
       verify_visit_gateway_selector('select_gateway_s5', 'L', 'S5')
+      selector_cell_present?('select_gateway_l_apex').should == true
+      selector_cell_present?('select_gateway_r_apex').should == false
 
       # test gateway 2 affecting
       click_selector_cell('selected_phase_1_gateway_2')
@@ -277,6 +319,15 @@ feature "Visit Feature", %q{
       selector_cell_present?('select_gateway_c2_c1').should == false
       verify_visit_gateway_selector('select_gateway_c2_c3', 'L', 'C2/C3')
       selector_cell_present?('select_gateway_c3_c2').should == false
+
+
+      click_selector_cell('selected_phase_1_gateway_2')
+      click_selector_cell('select_gateway_s2')
+      click_selector_cell('selected_phase_1_gateway_2_affecting')
+
+      selector_cell_present?('select_gateway_cx').should == true
+      selector_cell_present?('select_gateway_l_apex').should == false
+      selector_cell_present?('select_gateway_r_apex').should == true
     end
 
     scenario "click on mini-travel card opens the travel card view" do
@@ -590,7 +641,7 @@ feature "Visit Feature", %q{
       click_selector_cell('selected_phase_1')
       click_selector_cell('select_phase_5')
       click_selector_cell('selected_phase_1_gateway_2')
-      expected_gateway_choice_ids = %w(select_gateway_cx_c select_gateway_apex_l select_gateway_apex_r)
+      expected_gateway_choice_ids = %w(select_gateway_cx_c select_gateway_l_apex select_gateway_r_apex)
       expected_gateway_choice_ids.each {|id| selector_cell_present?(id).should == true}
     end
 
