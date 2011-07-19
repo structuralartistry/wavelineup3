@@ -43,12 +43,21 @@
             <tr>
               <th colspan='3'>SYSADMIN</th>
             </tr>
+            <% practices_added_today = Practice.where('created_at >= ?', Time.zone.now-1.day) %>
             <tr>
               <td class='label_light' align="center">
                 Practices/today
               </td>
-              <td align="center" colspan='2'><%= Practice.count %>/<%= Practice.where('created_at >= ?', Time.zone.now-1.day).all.count %></td>
+              <td align="center" colspan='2'><%= Practice.count %>/<%= practices_added_today.all.count %></td>
             </tr>
+            <% if practices_added_today.all.count > 0 %>
+              <td class='label_light' align="center" colspan='2'>
+                Practices Added Today
+              </td>
+              <% practices_added_today.all.each do |practice| %>
+                <tr><td colspan='2'><%= practice.name %>: <%= practice.users.map(&:email) %></td></tr>
+              <% end %>
+            <% end %>
             <tr>
               <td class='label_light' align="center">
                 PMs/today
