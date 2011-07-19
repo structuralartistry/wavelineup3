@@ -36,8 +36,55 @@
           </tr>
         </table>
       </td>
+    <% else %>
+      <% if current_user.role.name == 'sysadmin' %>
+        <td valign="top" style='width: 5.0in'>
+          <table class='light_pink'>
+            <tr>
+              <th colspan='3'>SYSADMIN</th>
+            </tr>
+            <tr>
+              <td class='label_light' align="center">
+                Practices/today
+              </td>
+              <td align="center" colspan='2'><%= Practice.count %>/<%= Practice.where('created_at >= ?', Time.zone.now-1.day).all.count %></td>
+            </tr>
+            <tr>
+              <td class='label_light' align="center">
+                PMs/today
+              </td>
+              <td align="center" colspan='2'><%= PracticeMember.count %>/<%= PracticeMember.where('created_at >= ?', Time.zone.now-1.day).all.count %></td>
+            </tr>
+            <tr>
+              <td class='label_light' align="center">
+                Visits/today
+              </td>
+              <td align="center" colspan='2'><%= Visit.count %>/<%= Visit.where('created_at >= ?', Time.zone.now-1.day).all.count %></td>
+            </tr>
+            <tr>
+              <td class='label_light' align="center">
+                Users/today
+              </td>
+              <td align="center" colspan='2'><%= User.count %>/<%= User.where('created_at >= ?', Time.zone.now-1.day).all.count %></td>
+            </tr>
+            <tr>
+              <td class='label_light' align="center" colspan='2'>
+                System Errors
+              </td>
+            </tr>
+            <% if SystemError.count > 0 %>
+              <% SystemError.order('created_at').all.each do |system_error| %>
+                <tr>
+                  <td align="center" colspan='2'><%= system_error.created_at %><br><%= system_error.user.email if system_error.user %><br><%= system_error.error %><br><%= system_error.incidentals %></td>
+                </tr>
+              <% end %>
+            <% else %>
+              <tr><td align="center" colspan='2'>None</td></tr>
+            <% end %>
+          </table>
+        </td>
+      <% end %>
     <% end %>
-
 
     <td valign='top'>
       <table class='light_green'>
