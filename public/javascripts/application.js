@@ -91,7 +91,6 @@ function set_left_column_buttons() {
 function show_dialog(dialog_id) {
   // if form already showing dont need to load, just need to toggle off
   if( !$('#' + dialog_id + '_show_selector_cell').hasClass('current_selected') ) {
-
 		switch(dialog_id) {
 			case 'new_practice_member': $('#' + dialog_id).html(new_practice_member_form()); break;
 			case 'feedback_support': $('#' + dialog_id).html(feedback_support_form()); break;
@@ -112,7 +111,10 @@ function toggle_dialog(dialog_id) {
 
   $('.selector').hide();
   if(is_showing_now) $('#' + dialog_id).hide();
-  else $('#' + dialog_id).show('slide');
+  else {
+    if(dialog_id=='new_practice_member') $('#' + dialog_id).show('slide', function(){$('#practice_member_first_name').focus();});
+    else $('#' + dialog_id).show('slide');
+  }
   set_left_column_buttons();
 }
 
