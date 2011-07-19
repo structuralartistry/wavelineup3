@@ -68,6 +68,26 @@
               <td align="center" colspan='2'><%= User.count %>/<%= User.where('created_at >= ?', Time.zone.now-1.day).all.count %></td>
             </tr>
             <tr>
+              <td class='label_light' align="center">
+                Logins today/bad
+              </td>
+              <% failed_logins_today = Login.where('created_at >= ? AND success != ?', Time.zone.now-1.day, true) %>
+              <td align="center" colspan='2'><%= Login.where('created_at >= ?', Time.zone.now-1.day).all.count %>/<%= failed_logins_today.all.count %></td>
+            </tr>
+            <tr>
+              <td class='label_light' align="center" colspan='2'>
+                Failed Logins Today
+              </td>
+            </tr>
+            <% if failed_logins_today.all.count > 0 %>
+              <% failed_logins_today.all.each do |failed_login| %>
+                <tr><td colspan='2'><%= failed_login.created_at.strftime('%H:%M') %>: <%= failed_login.email %></td></tr>
+              <% end %>
+            <% else %>
+              <tr><td colspan='2'>None</td></tr>
+            <% end %>
+
+            <tr>
               <td class='label_light' align="center" colspan='2'>
                 System Errors
               </td>
@@ -75,11 +95,11 @@
             <% if SystemError.count > 0 %>
               <% SystemError.order('created_at').all.each do |system_error| %>
                 <tr>
-                  <td align="center" colspan='2'><%= system_error.created_at %><br><%= system_error.user.email if system_error.user %><br><%= system_error.error %><br><%= system_error.incidentals %></td>
+                  <td colspan='2'><%= system_error.created_at %><br><%= system_error.user.email if system_error.user %><br><%= system_error.error %><br><%= system_error.incidentals %></td>
                 </tr>
               <% end %>
             <% else %>
-              <tr><td align="center" colspan='2'>None</td></tr>
+              <tr><td colspan='2'>None</td></tr>
             <% end %>
           </table>
         </td>

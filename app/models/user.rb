@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   belongs_to :role
   has_many :invitations, :foreign_key => 'referring_user_id'
   has_many :feedback_supports
+  has_many :system_errors
 
   validates_presence_of :role
 

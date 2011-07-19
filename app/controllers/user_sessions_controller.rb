@@ -16,9 +16,11 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     respond_to do |format|
       if @user_session.save
+        Login.create!(:email => @user_session.email, :user_id => User.find_by_email(@user_session.email).id, :success => true)
         flash[:notice] = "Welcome to WaveLineup #{@user_session.email}!"
         format.html { redirect_to(home_path) }
-      else       
+      else
+        Login.create!(:email => @user_session.email, :success => false)
         flash[:notice] = "Authentication failed"
         format.html { render :action => "new", :layout => 'guest' }
       end
@@ -34,7 +36,7 @@ class UserSessionsController < ApplicationController
       format.html { redirect_to(login_path) }
     end
   end
-  
+
   def internet_explorer
     render 'internet_explorer', :layout => 'bare'
   end

@@ -16,6 +16,7 @@ describe User do
   it { should belong_to(:practice) }
   it { should belong_to(:role) }
   it { should have_many(:invitations) }
+  it { should have_many(:system_errors) }
   it { should have_many(:feedback_supports) }
 
   it { should validate_presence_of(:role) }
