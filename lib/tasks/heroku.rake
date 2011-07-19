@@ -29,7 +29,7 @@ task :heroku_deploy do
   puts 'Pushing git origin master'
   `git push origin master`
   puts 'Pushing to Heroku'
-  `git push heroku master --app wavelineup`
+  `git push heroku master`
   puts 'Deploy completed'
 end
 
