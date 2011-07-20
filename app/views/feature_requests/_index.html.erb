@@ -1,0 +1,72 @@
+<div id='features' style='display: none'>
+  <% if current_user.role.name == 'sysadmin' %>
+    <%= link_to 'New Feature Request', new_feature_request_path %>
+  <% end %>
+
+  <table class='light_yellow'>
+    <tr>
+      <th colspan='7'>
+        Recent Features Added (30 days)
+      </th>
+    </tr>
+    <% features_added_30_days = FeatureRequest.where('date_implemented IS NOT NULL and date_implemented >= ?', Time.zone.now-30.days) %>
+    <% if features_added_30_days.count > 0 %>
+
+      <tr>
+        <td class='label_light'>Name</td>
+        <td class='label_light'>Description</td>
+        <% if current_user.role.name == 'sysadmin' %>
+          <td class='label_light'>Notes</td>
+        <% end %>
+        <td class='label_light'>Date Implemented</td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% else %>
+      <tr><td colspan='7'>None</td>
+    <% end %>
+    <% features_added_30_days.all.each do |feature_request| %>
+      <tr>
+        <td><%= feature_request.name %></td>
+        <td><%= feature_request.description %></td>
+        <% if current_user.role.name == 'sysadmin' %>
+          <td><%= feature_request.notes %></td>
+        <% end %>
+        <td><%= feature_request.date_implemented %></td>
+        <% if current_user.role.name == 'sysadmin' %>
+          <td><%= button_to 'Edit', edit_feature_request_path(feature_request), :method => :get, :class => 'selector_cell_submit' %></td>
+          <td><%= button_to 'Delete', feature_request, :confirm => "This action can not be undone. Are you sure?", :method => :delete, :class => 'selector_cell_submit' %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    <tr>
+      <th colspan='7'>
+        Feature Requests
+      </th>
+    </tr>
+    <tr>
+      <td class='label_light'>Name</td>
+      <td class='label_light'>Description</td>
+      <% if current_user.role.name == 'sysadmin' %>
+        <td class='label_light'>Notes</td>
+      <% end %>
+      <td class='label_light'>Times Requested</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <% FeatureRequest.where('date_implemented IS NULL').all.each do |feature_request| %>
+      <tr>
+        <td><%= feature_request.name %></td>
+        <td><%= feature_request.description %></td>
+        <% if current_user.role.name == 'sysadmin' %>
+          <td><%= feature_request.notes %></td>
+        <% end %>
+        <td><%= feature_request.times_requested %></td>
+        <% if current_user.role.name == 'sysadmin' %>
+          <td><%= button_to 'Edit', edit_feature_request_path(feature_request), :method => :get, :class => 'selector_cell_submit' %></td>
+          <td><%= button_to 'Delete', feature_request, :confirm => "This action can not be undone. Are you sure?", :method => :delete, :class => 'selector_cell_submit' %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>

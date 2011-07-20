@@ -1,3 +1,4 @@
+<h1>Feature Request</h1>
 <%= form_for(@feature_request) do |f| %>
   <% if @feature_request.errors.any? %>
     <div id="error_explanation">
@@ -17,21 +18,21 @@
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.text_area :description, :style => "width: 350px; height: 50px" %>
   </div>
   <div class="field">
     <%= f.label :notes %><br />
-    <%= f.text_area :notes %>
+    <%= f.text_area :notes, :style => "width: 350px; height: 50px" %>
   </div>
   <div class="field">
     <%= f.label :times_requested %><br />
-    <%= f.text_field :times_requested %>
+    <%= f.text_field :times_requested, :size => 10 %>
   </div>
   <div class="field">
     <%= f.label :date_implemented %><br />
-    <%= f.date_select :date_implemented %>
+    <%= f.text_field :date_implemented %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Submit', :class => 'selector_cell_submit' %>
   </div>
 <% end %>

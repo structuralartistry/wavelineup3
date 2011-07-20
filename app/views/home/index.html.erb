@@ -36,6 +36,31 @@
           </tr>
         </table>
       </td>
+      <td valign='top'>
+        <table class='light_green'>
+          <tr>
+            <th>
+              Community
+            </th>
+          </tr>
+          <tr>
+            <td>
+              The cost and future development of this system depend on you! Please refer other Practitioners!
+              See <a href='/about#community_driven_project_background_and_business_case' target='new'>Community Driven Project</a> or watch our video:</p>
+              <iframe width="350" height="215" src="http://www.youtube.com/embed/5DAjIO96U20" frameborder="0" allowfullscreen></iframe>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div id='invitation'>
+                <%= render :partial => 'invitations/invitation' %>
+              </div>
+            </td>
+          </tr>
+
+          <tr><td><%= button_to 'Feature', home_url, :method => :get, :class => 'bold selector_cell selector_cell_nav', :style => 'width: 1.5in;' %></td></tr>
+        </table>
+      </td>
     <% else %>
       <% if current_user.role.name == 'sysadmin' %>
         <td valign="top" style='width: 5.0in'>
@@ -112,70 +137,47 @@
             <% end %>
           </table>
         </td>
+        <td valign='top'>
+          <table class='light_green'>
+            <tr>
+              <th>
+                Feature Requests
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <%= render :partial => 'feature_requests/index.html.erb' %>
+              </td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <td>
+                <div id='invitation'>
+                  <%= render :partial => 'invitations/invitation' %>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
       <% end %>
     <% end %>
-
-    <td valign='top'>
-      <table class='light_green'>
+  </tr>
+  <tr>
+    <td valign='top' colspan='2'>
+      <table style='width: 100%'>
         <tr>
-          <th>
-            Community
+          <th onClick="$('#features').toggle()" class='selector_cell'>
+            Features: System Update Log and Feature Request List (click to view)
           </th>
         </tr>
         <tr>
           <td>
-            The cost and future development of this system depend on you! Please refer other Practitioners!
-            See <a href='/about#community_driven_project_background_and_business_case' target='new'>Community Driven Project</a> or watch our video:</p>
-            <iframe width="350" height="215" src="http://www.youtube.com/embed/5DAjIO96U20" frameborder="0" allowfullscreen></iframe>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div id='invitation'>
-              <%= render :partial => 'invitations/invitation' %>
-            </div>
+            <%= render :partial => 'feature_requests/index.html.erb' %>
           </td>
         </tr>
       </table>
     </td>
-
-
-
-
-
-<!--
-    <td valign='top'>
-      <table class='light_green'>
-        <tr>
-          <th colspan="3">
-            Systemwide
-          </th>
-        </tr>
-        <tr>
-          <td class='label_light' align="center">
-            Practices
-          </td>
-          <td class='label_light' align="center">
-            Practice<br>Memebers
-          </td>
-          <td class='label_light' align="center">
-            Visits<br>30 days
-          </td>
-        </tr>
-        <tr>
-          <td class='stat' align="center">
-            <p class='big'>< Practice.where("name<>'Demo Practice'").all.size %></p>
-          </td>
-          <td class='stat' align="center">
-            <p class='big'>< PracticeMember.practice_members_global_count %></p>
-          </td>
-          <td class='stat' align="center">
-            <p class='big'>< Visit.where('created_at >= ?', DateTime.now-30.days).count %></p>
-          </td>
-        </tr>
-      </table>
-    </td>
--->
   </tr>
 </table>
 
