@@ -1,8 +1,13 @@
 require 'spec_helper'
 
-describe "SystemError after_save" do
+describe SystemError do
 
   it { should belong_to(:user) }
+
+end
+
+#describe "SystemError after_save" do
+
 
   # it "should send an email to the admin after save" do
   #   system_error = SystemError.new
@@ -10,7 +15,7 @@ describe "SystemError after_save" do
   #   system_error.run_callbacks(:after_save)
   # end
 
-end
+#end
 
 #
 # Failures:

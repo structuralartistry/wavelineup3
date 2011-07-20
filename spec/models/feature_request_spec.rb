@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Login do
+describe FeatureRequest do
 end

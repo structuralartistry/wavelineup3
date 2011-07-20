@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110719173852) do
+ActiveRecord::Schema.define(:version => 20110720154545) do
+
+  create_table "feature_requests", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "notes"
+    t.integer  "times_requested"
+    t.date     "date_implemented"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "feedback_supports", :force => true do |t|
     t.integer  "user_id"

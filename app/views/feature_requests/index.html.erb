@@ -1,0 +1,31 @@
+<h1>Listing feature_requests</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Notes</th>
+    <th>Times requested</th>
+    <th>Date implemented</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @feature_requests.each do |feature_request| %>
+  <tr>
+    <td><%= feature_request.name %></td>
+    <td><%= feature_request.description %></td>
+    <td><%= feature_request.notes %></td>
+    <td><%= feature_request.times_requested %></td>
+    <td><%= feature_request.date_implemented %></td>
+    <td><%= link_to 'Show', feature_request %></td>
+    <td><%= link_to 'Edit', edit_feature_request_path(feature_request) %></td>
+    <td><%= link_to 'Destroy', feature_request, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Feature request', new_feature_request_path %>

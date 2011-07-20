@@ -91,6 +91,12 @@ class User < ActiveRecord::Base
       end
       return authorize_success_message
 
+    when 'feature_requests'
+      if current_role == 'sysadmin'
+        return authorize_success_message
+      end
+      return set_autorize_failure_value(LOGIN_NOTICE)
+
     when 'feedback_supports'
       if current_role == 'guest' || current_role == 'sysadmin'
         return set_autorize_failure_value(LOGIN_NOTICE)
