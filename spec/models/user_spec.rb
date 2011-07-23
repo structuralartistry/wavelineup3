@@ -18,6 +18,7 @@ describe User do
   it { should have_many(:invitations) }
   it { should have_many(:system_errors) }
   it { should have_many(:feedback_supports) }
+  it { should have_many(:logins) }
 
   it { should validate_presence_of(:role) }
   it { should validate_uniqueness_of(:email) }
@@ -48,6 +49,7 @@ describe User do
       user.authorize('home', 'terms_of_service')[:success].should == true
       user.authorize('home', 'privacy_policy')[:success].should == true
       user.authorize('home', 'about')[:success].should == true
+      user.authorize('feature_requests', 'index')[:success].should == false
       user.authorize('feature_requests', 'new')[:success].should == false
       user.authorize('feature_requests', 'edit')[:success].should == false
       user.authorize('feature_requests', 'create')[:success].should == false
@@ -95,6 +97,7 @@ describe User do
       user.authorize('home', 'terms_of_service')[:success].should == true
       user.authorize('home', 'privacy_policy')[:success].should == true
       user.authorize('home', 'about')[:success].should == true
+      user.authorize('feature_requests', 'index')[:success].should == true
       user.authorize('feature_requests', 'new')[:success].should == true
       user.authorize('feature_requests', 'edit')[:success].should == true
       user.authorize('feature_requests', 'create')[:success].should == true
@@ -142,6 +145,7 @@ describe User do
       user.authorize('home', 'terms_of_service')[:success].should == true
       user.authorize('home', 'privacy_policy')[:success].should == true
       user.authorize('home', 'about')[:success].should == true
+      user.authorize('feature_requests', 'index')[:success].should == true
       user.authorize('feature_requests', 'new')[:success].should == false
       user.authorize('feature_requests', 'edit')[:success].should == false
       user.authorize('feature_requests', 'create')[:success].should == false
@@ -189,6 +193,7 @@ describe User do
       user.authorize('home', 'terms_of_service')[:success].should == true
       user.authorize('home', 'privacy_policy')[:success].should == true
       user.authorize('home', 'about')[:success].should == true
+      user.authorize('feature_requests', 'index')[:success].should == true
       user.authorize('feature_requests', 'new')[:success].should == false
       user.authorize('feature_requests', 'edit')[:success].should == false
       user.authorize('feature_requests', 'create')[:success].should == false

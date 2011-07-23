@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :invitations, :foreign_key => 'referring_user_id'
   has_many :feedback_supports
   has_many :system_errors
+  has_many :logins
 
   validates_presence_of :role
 
@@ -92,7 +93,10 @@ class User < ActiveRecord::Base
       return authorize_success_message
 
     when 'feature_requests'
+      return set_autorize_failure_value(LOGIN_NOTICE) if current_role == 'guest'
       if current_role == 'sysadmin'
+        return authorize_success_message
+      elsif action_name == 'index'
         return authorize_success_message
       end
       return set_autorize_failure_value(LOGIN_NOTICE)

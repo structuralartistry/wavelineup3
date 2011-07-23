@@ -20,138 +20,138 @@ require 'spec_helper'
 
 describe FeatureRequestsController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # FeatureRequest. As you add validations to FeatureRequest, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
-    {}
-  end
-
-  describe "GET index" do
-    it "assigns all feature_requests as @feature_requests" do
-      feature_request = FeatureRequest.create! valid_attributes
-      get :index
-      assigns(:feature_requests).should eq([feature_request])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested feature_request as @feature_request" do
-      feature_request = FeatureRequest.create! valid_attributes
-      get :show, :id => feature_request.id.to_s
-      assigns(:feature_request).should eq(feature_request)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new feature_request as @feature_request" do
-      get :new
-      assigns(:feature_request).should be_a_new(FeatureRequest)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested feature_request as @feature_request" do
-      feature_request = FeatureRequest.create! valid_attributes
-      get :edit, :id => feature_request.id.to_s
-      assigns(:feature_request).should eq(feature_request)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new FeatureRequest" do
-        expect {
-          post :create, :feature_request => valid_attributes
-        }.to change(FeatureRequest, :count).by(1)
-      end
-
-      it "assigns a newly created feature_request as @feature_request" do
-        post :create, :feature_request => valid_attributes
-        assigns(:feature_request).should be_a(FeatureRequest)
-        assigns(:feature_request).should be_persisted
-      end
-
-      it "redirects to the created feature_request" do
-        post :create, :feature_request => valid_attributes
-        response.should redirect_to(FeatureRequest.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved feature_request as @feature_request" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        FeatureRequest.any_instance.stub(:save).and_return(false)
-        post :create, :feature_request => {}
-        assigns(:feature_request).should be_a_new(FeatureRequest)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        FeatureRequest.any_instance.stub(:save).and_return(false)
-        post :create, :feature_request => {}
-        response.should render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested feature_request" do
-        feature_request = FeatureRequest.create! valid_attributes
-        # Assuming there are no other feature_requests in the database, this
-        # specifies that the FeatureRequest created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        FeatureRequest.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => feature_request.id, :feature_request => {'these' => 'params'}
-      end
-
-      it "assigns the requested feature_request as @feature_request" do
-        feature_request = FeatureRequest.create! valid_attributes
-        put :update, :id => feature_request.id, :feature_request => valid_attributes
-        assigns(:feature_request).should eq(feature_request)
-      end
-
-      it "redirects to the feature_request" do
-        feature_request = FeatureRequest.create! valid_attributes
-        put :update, :id => feature_request.id, :feature_request => valid_attributes
-        response.should redirect_to(feature_request)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the feature_request as @feature_request" do
-        feature_request = FeatureRequest.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        FeatureRequest.any_instance.stub(:save).and_return(false)
-        put :update, :id => feature_request.id.to_s, :feature_request => {}
-        assigns(:feature_request).should eq(feature_request)
-      end
-
-      it "re-renders the 'edit' template" do
-        feature_request = FeatureRequest.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        FeatureRequest.any_instance.stub(:save).and_return(false)
-        put :update, :id => feature_request.id.to_s, :feature_request => {}
-        response.should render_template("edit")
-      end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested feature_request" do
-      feature_request = FeatureRequest.create! valid_attributes
-      expect {
-        delete :destroy, :id => feature_request.id.to_s
-      }.to change(FeatureRequest, :count).by(-1)
-    end
-
-    it "redirects to the feature_requests list" do
-      feature_request = FeatureRequest.create! valid_attributes
-      delete :destroy, :id => feature_request.id.to_s
-      response.should redirect_to(feature_requests_url)
-    end
-  end
+#  # This should return the minimal set of attributes required to create a valid
+#  # FeatureRequest. As you add validations to FeatureRequest, be sure to
+#  # update the return value of this method accordingly.
+#  def valid_attributes
+#    {}
+#  end
+#
+#  describe "GET index" do
+#    it "assigns all feature_requests as @feature_requests" do
+#      feature_request = FeatureRequest.create! valid_attributes
+#      get :index
+#      assigns(:feature_requests).should eq([feature_request])
+#    end
+#  end
+#
+#  describe "GET show" do
+#    it "assigns the requested feature_request as @feature_request" do
+#      feature_request = FeatureRequest.create! valid_attributes
+#      get :show, :id => feature_request.id.to_s
+#      assigns(:feature_request).should eq(feature_request)
+#    end
+#  end
+#
+#  describe "GET new" do
+#    it "assigns a new feature_request as @feature_request" do
+#      get :new
+#      assigns(:feature_request).should be_a_new(FeatureRequest)
+#    end
+#  end
+#
+#  describe "GET edit" do
+#    it "assigns the requested feature_request as @feature_request" do
+#      feature_request = FeatureRequest.create! valid_attributes
+#      get :edit, :id => feature_request.id.to_s
+#      assigns(:feature_request).should eq(feature_request)
+#    end
+#  end
+#
+#  describe "POST create" do
+#    describe "with valid params" do
+#      it "creates a new FeatureRequest" do
+#        expect {
+#          post :create, :feature_request => valid_attributes
+#        }.to change(FeatureRequest, :count).by(1)
+#      end
+#
+#      it "assigns a newly created feature_request as @feature_request" do
+#        post :create, :feature_request => valid_attributes
+#        assigns(:feature_request).should be_a(FeatureRequest)
+#        assigns(:feature_request).should be_persisted
+#      end
+#
+#      it "redirects to the created feature_request" do
+#        post :create, :feature_request => valid_attributes
+#        response.should redirect_to(FeatureRequest.last)
+#      end
+#    end
+#
+#    describe "with invalid params" do
+#      it "assigns a newly created but unsaved feature_request as @feature_request" do
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        FeatureRequest.any_instance.stub(:save).and_return(false)
+#        post :create, :feature_request => {}
+#        assigns(:feature_request).should be_a_new(FeatureRequest)
+#      end
+#
+#      it "re-renders the 'new' template" do
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        FeatureRequest.any_instance.stub(:save).and_return(false)
+#        post :create, :feature_request => {}
+#        response.should render_template("new")
+#      end
+#    end
+#  end
+#
+#  describe "PUT update" do
+#    describe "with valid params" do
+#      it "updates the requested feature_request" do
+#        feature_request = FeatureRequest.create! valid_attributes
+#        # Assuming there are no other feature_requests in the database, this
+#        # specifies that the FeatureRequest created on the previous line
+#        # receives the :update_attributes message with whatever params are
+#        # submitted in the request.
+#        FeatureRequest.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+#        put :update, :id => feature_request.id, :feature_request => {'these' => 'params'}
+#      end
+#
+#      it "assigns the requested feature_request as @feature_request" do
+#        feature_request = FeatureRequest.create! valid_attributes
+#        put :update, :id => feature_request.id, :feature_request => valid_attributes
+#        assigns(:feature_request).should eq(feature_request)
+#      end
+#
+#      it "redirects to the feature_request" do
+#        feature_request = FeatureRequest.create! valid_attributes
+#        put :update, :id => feature_request.id, :feature_request => valid_attributes
+#        response.should redirect_to(feature_request)
+#      end
+#    end
+#
+#    describe "with invalid params" do
+#      it "assigns the feature_request as @feature_request" do
+#        feature_request = FeatureRequest.create! valid_attributes
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        FeatureRequest.any_instance.stub(:save).and_return(false)
+#        put :update, :id => feature_request.id.to_s, :feature_request => {}
+#        assigns(:feature_request).should eq(feature_request)
+#      end
+#
+#      it "re-renders the 'edit' template" do
+#        feature_request = FeatureRequest.create! valid_attributes
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        FeatureRequest.any_instance.stub(:save).and_return(false)
+#        put :update, :id => feature_request.id.to_s, :feature_request => {}
+#        response.should render_template("edit")
+#      end
+#    end
+#  end
+#
+#  describe "DELETE destroy" do
+#    it "destroys the requested feature_request" do
+#      feature_request = FeatureRequest.create! valid_attributes
+#      expect {
+#        delete :destroy, :id => feature_request.id.to_s
+#      }.to change(FeatureRequest, :count).by(-1)
+#    end
+#
+#    it "redirects to the feature_requests list" do
+#      feature_request = FeatureRequest.create! valid_attributes
+#      delete :destroy, :id => feature_request.id.to_s
+#      response.should redirect_to(feature_requests_url)
+#    end
+#  end
 
 end

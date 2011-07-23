@@ -10,13 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110720154545) do
+ActiveRecord::Schema.define(:version => 20110723160436) do
 
   create_table "feature_requests", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.text     "notes"
-    t.integer  "times_requested"
+    t.integer  "popularity_priority_index"
     t.date     "date_implemented"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,0 +1,22 @@
+<table class='yellow' style='width: 100%'>
+  <tr>
+    <th colspan='3'>System</th>
+  </tr>
+  <tr><td><%= link_to 'Feature Requests List', feature_requests_path %></td></tr>
+  <% recently_implemented_feature_requests = FeatureRequest.recently_implemented %>
+  <% if !recently_implemented_feature_requests.empty? %>
+    <tr>
+      <td colspan='3' class='label_light'>Recent Updates</td>
+    </tr>
+    <tr>
+      <td colspan='3'>
+        <ul>
+        <% recently_implemented_feature_requests.each do |feature_request| %>
+          <li><%= feature_request.name %></li>
+        <% end %>
+        </ul>
+        <span class='small_text'>See Feature Requests List for more detail</span>
+      </td>
+    </tr>
+  <% end %>
+</table>

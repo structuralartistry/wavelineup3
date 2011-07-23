@@ -14,6 +14,8 @@ feature "Home Page Feature", %q{
       visit('/home')
       confirm_login_page_loaded
       title_contains?("WaveLineup").should == true
+
+      has_text?('System', 'th').should == false
     end
 
     scenario "Home page logged in as sysadmin" do
@@ -28,6 +30,8 @@ feature "Home Page Feature", %q{
       visit('/home')
       confirm_home_page_loaded
       title_contains?("WaveLineup ::: #{practice.name} ::: #{practice.users[0].email}")
+      has_text?('System', 'th').should == true
+      has_text?('Feature Requests', 'a')
     end
 
     scenario "Home page logged in as a practice user" do
@@ -35,6 +39,8 @@ feature "Home Page Feature", %q{
       visit('/home')
       confirm_home_page_loaded
       title_contains?("WaveLineup ::: #{practice.name} ::: #{practice.users[0].email}")
+      has_text?('System', 'th').should == true
+      has_text?('Feature Requests', 'a')
     end
 
   end

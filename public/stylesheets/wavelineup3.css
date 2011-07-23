@@ -157,18 +157,18 @@ table.light_green td {
   padding: 10px;
 }
 
-table.light_yellow {
+table.yellow {
 	border-width: 1px;
 	border-color: yellow;
 	border-style: solid;
 }
 
-table.light_yellow th {
+table.yellow th {
 	background-color: #FFFF66;
   padding: 10px;
 }
 
-table.light_yellow td {
+table.yellow td {
   padding: 10px;
 }
 
