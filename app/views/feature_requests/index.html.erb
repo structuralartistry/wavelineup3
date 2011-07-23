@@ -9,29 +9,31 @@
   <% features_added = FeatureRequest.where('date_implemented IS NOT NULL').order('date_implemented DESC') %>
   <% if features_added.count > 0 %>
     <tr class='feature_added'>
-      <td class='label_light' style='width: 1.0in'>Name</td>
-      <td class='label_light'>Description</td>
+      <td class='label_light' valign='top' style='width: 1.0in'>Name</td>
+      <td class='label_light' valign='top'>Description</td>
       <% if current_user.role.name == 'sysadmin' %>
-        <td class='label_light'>Notes</td>
+        <td class='label_light' valign='top'>Notes</td>
       <% end %>
-      <td class='label_light' style='width: 1.0in'>Date Implemented</td>
-      <td></td>
-      <td></td>
+      <td class='label_light' valign='top' style='width: 1.0in'>Date Implemented</td>
+      <% if current_user.role.name == 'sysadmin' %>
+        <td></td>
+        <td></td>
+      <% end %>
     </tr>
   <% else %>
     <tr><td colspan='7'>None</td>
   <% end %>
   <% features_added.all.each do |feature_request| %>
     <tr class='feature_added'>
-      <td><%= feature_request.name %></td>
-      <td><%= feature_request.description %></td>
+      <td valign='top'><%= feature_request.name %></td>
+      <td valign='top'><%= feature_request.description %></td>
       <% if current_user.role.name == 'sysadmin' %>
-        <td><%= feature_request.notes %></td>
+        <td valign='top'><%= feature_request.notes %></td>
       <% end %>
-      <td><%= feature_request.date_implemented %></td>
+      <td valign='top'><%= feature_request.date_implemented %></td>
       <% if current_user.role.name == 'sysadmin' %>
-        <td><%= button_to 'Edit', edit_feature_request_path(feature_request), :method => :get, :class => 'selector_cell_submit' %></td>
-        <td><%= button_to 'Delete', feature_request, :confirm => "This action can not be undone. Are you sure?", :method => :delete, :class => 'selector_cell_submit' %></td>
+        <td valign='top'><%= link_to 'Edit', edit_feature_request_path(feature_request), :method => :get %></td>
+        <td valign='top'><%= link_to 'Delete', feature_request, :confirm => "This action can not be undone. Are you sure?", :method => :delete %></td>
       <% end %>
     </tr>
   <% end %>
@@ -42,26 +44,28 @@
     <th colspan='7' onClick="$('.feature_requested').toggle();">Feature Requests (click to toggle)</th>
   </tr>
   <tr class='feature_requested'>
-    <td class='label_light' style='width: 1.0in'>Name</td>
-    <td class='label_light'>Description</td>
+    <td class='label_light' valign='top' style='width: 1.0in'>Name</td>
+    <td class='label_light' valign='top'>Description</td>
     <% if current_user.role.name == 'sysadmin' %>
-      <td class='label_light'>Notes</td>
+      <td class='label_light' valign='top'>Notes</td>
     <% end %>
-    <td class='label_light' style='width: 1.0in'>Popularity/Priority</td>
-    <td></td>
-    <td></td>
+    <td class='label_light' valign='top' style='width: 1.0in'>Popularity/Priority</td>
+    <% if current_user.role.name == 'sysadmin' %>
+      <td></td>
+      <td></td>
+    <% end %>
   </tr>
   <% FeatureRequest.where('date_implemented IS NULL').order('popularity_priority_index DESC').all.each do |feature_request| %>
     <tr class='feature_requested'>
-      <td><%= feature_request.name %></td>
-      <td><%= feature_request.description %></td>
+      <td valign='top'><%= feature_request.name %></td>
+      <td valign='top'><%= feature_request.description %></td>
       <% if current_user.role.name == 'sysadmin' %>
-        <td><%= feature_request.notes %></td>
+        <td valign='top'><%= feature_request.notes %></td>
       <% end %>
-      <td><%= feature_request.popularity_priority_index %></td>
+      <td valign='top'><%= feature_request.popularity_priority_index %></td>
       <% if current_user.role.name == 'sysadmin' %>
-        <td><%= button_to 'Edit', edit_feature_request_path(feature_request), :method => :get, :class => 'selector_cell_submit' %></td>
-        <td><%= button_to 'Delete', feature_request, :confirm => "This action can not be undone. Are you sure?", :method => :delete, :class => 'selector_cell_submit' %></td>
+        <td valign='top'><%= link_to 'Edit', edit_feature_request_path(feature_request), :method => :get %></td>
+        <td valign='top'><%= link_to 'Delete', feature_request, :confirm => "This action can not be undone. Are you sure?", :method => :delete %></td>
       <% end %>
     </tr>
   <% end %>
