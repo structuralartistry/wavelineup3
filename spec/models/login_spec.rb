@@ -1,5 +1,5 @@
 require 'spec_helper'
 
 describe Login do
-  it { should have_many(:users) }
+  it { should belong_to(:user) }
 end
