@@ -34,11 +34,11 @@ def update_past_visits
         gateway_side.strip! if gateway_side
         puts "    gateway_side: #{gateway_side}"
         if gateway_side && gateway_side =~ /[L]/
-          eval_expn = "set_visit_gateway = 'L #{set_gateway_text}'"
+          eval_expn = "#{set_visit_gateway} = 'L #{set_gateway_text}'"
           puts "    eval_expn: #{eval_expn}"
           eval(eval_expn)
         elsif gateway_side && gateway_side =~ /[R]/
-          eval_expn = "set_visit_gateway = 'R #{set_gateway_text}'"
+          eval_expn = "#{set_visit_gateway} = 'R #{set_gateway_text}'"
           puts "    eval_expn: #{eval_expn}"
           eval(eval_expn)
         end
