@@ -837,14 +837,14 @@ feature "Visit Feature", %q{
       verify_visit_gateway_selector('select_gateway_occ_c1', 'R', 'OCC/C1')
     end
 
-    scenario "selected gateways show the gateways directions on page load", :focus => true do
+    scenario "selected gateways show the gateways directions on page load" do
       @visit.phase_1_gateway_1 = 'L OCC/C1'
       @visit.save
       visit(@practice_room_visit_page)
       verify_visit_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
     end
 
-    scenario "selected gateways do not get changed to show the a gateways' new direction after being changed on the travel card", :focus => true do
+    scenario "selected gateways do not get changed to show the a gateways' new direction after being changed on the travel card" do
       @visit.phase_1_gateway_1 = 'L OCC/C1'
       @visit.save
       visit(@practice_room_visit_page)
@@ -869,11 +869,15 @@ feature "Visit Feature", %q{
       verify_visit_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
     end
 
-    scenario "selected gateways sides get saved with the travel card lateral value at the time selected and do not get changed if the tc value changes", :focus => true do
-      @visit.phase_1_gateway_1 = 'L OCC/C1'
-      @visit.save
+    scenario "selected gateways sides get saved with the travel card lateral value at the time selected and do not get changed if the tc value changes" do
       visit(@practice_room_visit_page)
+
+      click_selector_cell('selected_phase_1_gateway_1')
+      click_selector_cell('select_gateway_occ_c1')
       verify_visit_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
+
+      @visit.reload
+      @visit.phase_1_gateway_1.should eq('L OCC/C1')
 
       # change value on the travel card
       click_selector_cell('Travel Card')
