@@ -1,6 +1,15 @@
 def update_past_visits
   Visit.all.each do |visit|
     puts "Processing Visit id #{visit.id}"
+    if !visit.practice_member
+      visit.destroy
+      next
+    end
+    if !visit.practice_member.travel_card
+      puts "*************ALERT***************: no travel card for pm id #{visit.practice_member}"
+      next
+    end
+
     travel_card = visit.practice_member.travel_card
 
     set_gateways = %w(visit.phase_1_gateway_1
