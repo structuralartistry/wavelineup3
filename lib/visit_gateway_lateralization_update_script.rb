@@ -23,18 +23,20 @@ def update_past_visits
                       visit.phase_2_gateway_2_affecting)
     set_gateways.each do |set_visit_gateway|
       puts "  set_visit_gateway: #{set_visit_gateway}"
-      set_gateway_text = eval(set_visit_gateway).strip
+      set_gateway_text = eval(set_visit_gateway)
+      set_gateway_text.strip!
       puts "    set_gateway_text: #{set_gateway_text}"
       if set_gateway_text && !set_gateway_text.empty?
         normalized_gateway = 'gateway_' + set_gateway_text.downcase.gsub(/\//,'_')
         puts "    normalized_gateway: #{normalized_gateway}"
-        gateway_side = eval("travel_card.#{normalized_gateway}").strip
+        gateway_side = eval("travel_card.#{normalized_gateway}")
+        gateway_side.strip! if gateway_side
         puts "    gateway_side: #{gateway_side}"
-        if gateway_side =~ /[L]/
+        if gateway_side && gateway_side =~ /[L]/
           eval_expn = "set_visit_gateway = 'L #{set_gateway_text}'"
           puts "    eval_expn: #{eval_expn}"
           eval(eval_expn)
-        elsif gateway_side =~ /[R]/
+        elsif gateway_side && gateway_side =~ /[R]/
           eval_expn = "set_visit_gateway = 'R #{set_gateway_text}"
           puts "    eval_expn: #{eval_expn}"
           eval(eval_expn)
