@@ -26,7 +26,7 @@ def update_past_visits
       set_gateway_text = eval(set_visit_gateway)
       puts "    set_gateway_text: #{set_gateway_text}"
       if set_gateway_text
-        normalized_gateway = 'gateway_' + set_visit_gateway_text.downcase.gsub(/\//,'_')
+        normalized_gateway = 'gateway_' + set_gateway_text.downcase.gsub(/\//,'_')
         puts "    normalized_gateway: #{normalized_gateway}"
         gateway_side = eval("travel_card.#{normalized_gateway}").strip
         puts "    gateway_side: #{gateway_side}"
