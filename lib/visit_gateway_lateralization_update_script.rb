@@ -24,7 +24,7 @@ def update_past_visits
     set_gateways.each do |set_visit_gateway|
       puts "  set_visit_gateway: #{set_visit_gateway}"
       set_gateway_text = eval(set_visit_gateway)
-      set_gateway_text.strip!
+      set_gateway_text.strip! if set_gateway_text
       puts "    set_gateway_text: #{set_gateway_text}"
       if set_gateway_text && !set_gateway_text.empty?
         normalized_gateway = 'gateway_' + set_gateway_text.downcase.gsub(/\//,'_')
