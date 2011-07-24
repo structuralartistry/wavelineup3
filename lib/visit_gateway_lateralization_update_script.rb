@@ -1,3 +1,4 @@
+# this script can be deleted once it is run on production
 def update_past_visits
   Visit.all.each do |visit|
     puts "Processing Visit id #{visit.id}"
