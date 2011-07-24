@@ -12,7 +12,7 @@ def update_past_visits
                       visit.phase_2_gateway_2
                       visit.phase_2_gateway_1_affecting
                       visit.phase_2_gateway_2_affecting)
-    set_gateways.each |set_visit_gateway|
+    set_gateways.each do |set_visit_gateway|
       puts "  set_visit_gateway: #{set_visit_gateway}"
       set_gateway_text = eval(set_visit_gateway)
       puts "    set_gateway_text: #{set_gateway_text}"
