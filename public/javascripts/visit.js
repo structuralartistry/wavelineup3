@@ -46,10 +46,10 @@ function visit_set_values_from_hidden_fields() {
   phase_1 = $('#visit_phase_1').val();
   $('#selected_phase_1').html(phase_1);
   set_visible_fields_per_selected_phase(phase_1, "1");
-  $('#selected_phase_1_gateway_1').html(add_side_span_to_gateway_text($('#visit_phase_1_gateway_1').val()));
-  $('#selected_phase_1_gateway_1_affecting').html(add_side_span_to_gateway_text($('#visit_phase_1_gateway_1_affecting').val()));
-  $('#selected_phase_1_gateway_2').html(add_side_span_to_gateway_text($('#visit_phase_1_gateway_2').val()));
-  $('#selected_phase_1_gateway_2_affecting').html(add_side_span_to_gateway_text($('#visit_phase_1_gateway_2_affecting').val()));
+  $('#selected_phase_1_gateway_1').html(add_lateral_side_span_to_lateralized_gateway_text($('#visit_phase_1_gateway_1').val()));
+  $('#selected_phase_1_gateway_1_affecting').html(add_lateral_side_span_to_lateralized_gateway_text($('#visit_phase_1_gateway_1_affecting').val()));
+  $('#selected_phase_1_gateway_2').html(add_lateral_side_span_to_lateralized_gateway_text($('#visit_phase_1_gateway_2').val()));
+  $('#selected_phase_1_gateway_2_affecting').html(add_lateral_side_span_to_lateralized_gateway_text($('#visit_phase_1_gateway_2_affecting').val()));
   $('#selected_phase_1_direction').html($('#visit_phase_1_direction').val());
   $('#selected_phase_1_level_of_care').html($('#visit_phase_1_level_of_care').val());
 
@@ -57,10 +57,10 @@ function visit_set_values_from_hidden_fields() {
   phase_2 = $('#visit_phase_2').val();
   $('#selected_phase_2').html(phase_2);
   set_visible_fields_per_selected_phase(phase_2, "2");
-  $('#selected_phase_2_gateway_1').html(add_side_span_to_gateway_text($('#visit_phase_2_gateway_1').val()));
-  $('#selected_phase_2_gateway_1_affecting').html(add_side_span_to_gateway_text($('#visit_phase_2_gateway_1_affecting').val()));
-  $('#selected_phase_2_gateway_2').html(add_side_span_to_gateway_text($('#visit_phase_2_gateway_2').val()));
-  $('#selected_phase_2_gateway_2_affecting').html(add_side_span_to_gateway_text($('#visit_phase_2_gateway_2_affecting').val()));
+  $('#selected_phase_2_gateway_1').html(add_lateral_side_span_to_lateralized_gateway_text($('#visit_phase_2_gateway_1').val()));
+  $('#selected_phase_2_gateway_1_affecting').html(add_lateral_side_span_to_lateralized_gateway_text($('#visit_phase_2_gateway_1_affecting').val()));
+  $('#selected_phase_2_gateway_2').html(add_lateral_side_span_to_lateralized_gateway_text($('#visit_phase_2_gateway_2').val()));
+  $('#selected_phase_2_gateway_2_affecting').html(add_lateral_side_span_to_lateralized_gateway_text($('#visit_phase_2_gateway_2_affecting').val()));
   $('#selected_phase_2_direction').html($('#visit_phase_2_direction').val());
   $('#selected_phase_2_level_of_care').html($('#visit_phase_2_level_of_care').val());
   // determine if we hide phase 2
@@ -111,7 +111,6 @@ function set_phase_and_gateway_currently_working() {
 }
 
 // HIGHLIGHT GATEWAYS
-
 function highlight_available_gateways() {
 
   clear_available_gateways();
@@ -203,8 +202,6 @@ function clear_available_gateways() {
   $("#mini_travel_card_gateway_cx").removeClass("highlighted");
 }
 
-
-
 // PHASE
 // not using universal functions here to show/set/clear as there is special logic needed
 function set_phase(selected_phase) {
@@ -265,15 +262,28 @@ function set_visible_fields_per_selected_phase(phase, visit_phase) {
 }
 
 // GATEWAYS
+function add_lateral_side_span_to_lateralized_gateway_text(gateway_text) {
+  gateway_side = get_gateway_side_from_gateway_text_or_html(gateway_text);
+  if(gateway_side=='L') return gateway_text.replace(/^L /, "<span class=\"gateway_selector_side_highlight_l\">L </span>");
+  if(gateway_side=='R') return gateway_text.replace(/^R /, "<span class=\"gateway_selector_side_highlight_r\">R </span>");
+  return gateway_text;
+}
 
-function add_side_span_to_gateway_text(gateway_name) {
-	gateway_side = get_gateway_side(gateway_name);
-  if(gateway_side=="L") return "<span class=\"gateway_selector_side_highlight_l\">" + gateway_side + " </span>" + gateway_name;
-	if(gateway_side=="R") return "<span class=\"gateway_selector_side_highlight_r\">" + gateway_side + " </span>" + gateway_name;
+function remove_lateral_side_span_from_lateralized_side_span_gateway_html(gateway_text) {
+  gateway_side = get_gateway_side_from_gateway_text_or_html(gateway_text);
+  if(gateway_side=='L') return gateway_text.replace(/^<span.*<\/span>/, 'L ');
+  if(gateway_side=='R') return gateway_text.replace(/^<span.*<\/span>/, 'R ');
+  return gateway_text;
+}
+
+function add_travel_card_gateway_side_and_lateralized_side_span_to_raw_gateway_text(gateway_name) {
+	gateway_side = get_gateway_side_from_travel_card(gateway_name);
+  if(gateway_side=="L") return "<span class=\"gateway_selector_side_highlight_l\">L </span>" + gateway_name;
+	if(gateway_side=="R") return "<span class=\"gateway_selector_side_highlight_r\">R </span>" + gateway_name;
   return gateway_name;
 }
 
-function get_gateway_side(gateway) {
+function get_gateway_side_from_travel_card(gateway) {
 	if(gateway=='OCC') travel_card_gateway_control_id = 'travel_card_dominant_occiput'
 	else {
 		travel_card_gateway_control_id = 'travel_card_gateway_' + normalize_gateway(gateway);
@@ -288,8 +298,13 @@ function normalize_gateway(gateway_text) {
 
 function get_gateway_side_from_selector_html(selector_id) {
   selector_html = $('#' + selector_id).html();
-  if(selector_html.match(/L/)!=null) return 'L';
-  if(selector_html.match(/R/)!=null) return 'R';
+  return get_gateway_side_from_gateway_text_or_html(selector_html);
+}
+
+function get_gateway_side_from_gateway_text_or_html(gateway_text_or_html) {
+  if(gateway_text_or_html==undefined) return '';
+  if(gateway_text_or_html.match(/L/)!=null) return 'L';
+  if(gateway_text_or_html.match(/R/)!=null) return 'R';
   return '';
 }
 
@@ -314,14 +329,9 @@ function gateway_side_matches_or_is_not_set(gateway_selector_id, side_to_match_a
   return false;
 }
 
-function remove_span_from_gateway_html(raw_gateway_value) {
-  // remove <span class="gateway_selector_side_highlight">...</span> from the gateway_value
-  return raw_gateway_value.replace(/<span.*>.*<\/span>/i, '')
-}
-
 function set_phase_gateway(calling_object) {
   gateway_value = $(calling_object).html();
-	value_to_save = remove_span_from_gateway_html(gateway_value);
+	value_to_save = remove_lateral_side_span_from_lateralized_side_span_gateway_html(gateway_value);
   $('#visit_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working).val(value_to_save);
   $('#selected_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working).html(gateway_value);
 	autosave('visit_phase_' + visit_phase_currently_working + '_gateway_' + visit_gateway_currently_working, value_to_save);
@@ -650,8 +660,8 @@ function set_phase_gateway_selector_visible_text() {
 	gateways = new Array('OCC', 'OCC/C1', 'C1/OCC', 'C1/C2', 'C2/C1', 'C2/C3', 'C3/C2', 'C3/C4', 'C4/C3', 'C4/C5', 'C5/C4', 'C5/C6', 'C6/C5', 'C6/', 'C7/C6', 'C7/T1', 'T1/C7', 'T1/T2', 'T2/T1', 'T2/T3', 'T3/T2', 'S1', 'S2', 'S3', 'S4', 'S5', 'CX');
 	for(key in gateways) {
 		gateway_text = gateways[key];
-		gateway_side = get_gateway_side(gateway_text);
-		$('#select_gateway_' + normalize_gateway(gateway_text)).html(add_side_span_to_gateway_text(gateway_text));
+		gateway_side = get_gateway_side_from_gateway_text_or_html(gateway_text);
+		$('#select_gateway_' + normalize_gateway(gateway_text)).html(add_travel_card_gateway_side_and_lateralized_side_span_to_raw_gateway_text(gateway_text));
 	}
 }
 

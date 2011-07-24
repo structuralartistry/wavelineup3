@@ -837,15 +837,15 @@ feature "Visit Feature", %q{
       verify_visit_gateway_selector('select_gateway_occ_c1', 'R', 'OCC/C1')
     end
 
-    scenario "selected gateways show the gateways directions on page load" do
-      @visit.phase_1_gateway_1 = 'OCC/C1'
+    scenario "selected gateways show the gateways directions on page load", :focus => true do
+      @visit.phase_1_gateway_1 = 'L OCC/C1'
       @visit.save
       visit(@practice_room_visit_page)
       verify_visit_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
     end
 
-    scenario "selected gateways show the a gateways' new direction after being changed on the travel card" do
-      @visit.phase_1_gateway_1 = 'OCC/C1'
+    scenario "selected gateways do not get changed to show the a gateways' new direction after being changed on the travel card", :focus => true do
+      @visit.phase_1_gateway_1 = 'L OCC/C1'
       @visit.save
       visit(@practice_room_visit_page)
       verify_visit_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
@@ -855,18 +855,34 @@ feature "Visit Feature", %q{
       click_selector_cell('gateway_occ_c1')
       get_selector_cell_text('gateway_occ_c1').should == 'R'
 
-      # return to visit and verify that the value propogated both to the set value and the selector
+      # return to visit and verify
       click_selector_cell('Visit')
-      verify_visit_gateway_selector('selected_phase_1_gateway_1', 'R', 'OCC/C1')
+      verify_visit_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
 
       # change value on the travel card again
       click_selector_cell('Travel Card')
       click_selector_cell('gateway_occ_c1')
       get_selector_cell_text('gateway_occ_c1').should == ''
 
-      # return to visit and verify that the value propogated both to the set value and the selector
+      # return to visit and verify
       click_selector_cell('Visit')
-      verify_visit_gateway_selector('selected_phase_1_gateway_1', '', 'OCC/C1')
+      verify_visit_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
+    end
+
+    scenario "selected gateways sides get saved with the travel card lateral value at the time selected and do not get changed if the tc value changes", :focus => true do
+      @visit.phase_1_gateway_1 = 'L OCC/C1'
+      @visit.save
+      visit(@practice_room_visit_page)
+      verify_visit_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
+
+      # change value on the travel card
+      click_selector_cell('Travel Card')
+      click_selector_cell('gateway_occ_c1')
+      get_selector_cell_text('gateway_occ_c1').should == 'R'
+
+      # reload the page and verify
+      visit(@practice_room_visit_page)
+      verify_visit_gateway_selector('selected_phase_1_gateway_1', 'L', 'OCC/C1')
     end
 
   end
