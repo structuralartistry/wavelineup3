@@ -898,7 +898,8 @@ feature "Visit Feature", %q{
       @practice_member = create_practice_member('Kahn, David Nathan', practice_name)
     end
 
-    scenario "if a practice member has not had a visit in the last day, just show the New Visit button" do
+    scenario "if a practice member has not had a visit in the last day, just show the New Visit button", :focus => true do
+      visit = Factory(:visit, :date => (DateTime.now-4.hours))
       visit("/practice_room/#{@practice_member.id}/visit")
       page.has_xpath?("//*[@id='no_visit_loaded']").should == true
     end

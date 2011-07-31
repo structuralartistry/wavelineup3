@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.7'
 
+# env ARCHFLAGS="-arch x86_64" gem install pg
 gem 'pg'
 
 # gem 'authlogic'

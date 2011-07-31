@@ -10,7 +10,7 @@ class PracticeRoomController < ApplicationController
       if params[:visit_id]
         if params[:visit_id] == 'new'
           @visit = Visit.new
-          @visit.date = DateTime.now
+          @visit.date = Time.zone.now
           @visit.practice_member_id = @practice_member.id
           @visit.save
 
@@ -19,7 +19,7 @@ class PracticeRoomController < ApplicationController
           @visit = Visit.where(['id=? AND practice_member_id=?', params[:visit_id], @practice_member.id]).first
         end
       else
-        @visit = Visit.where(['practice_member_id=? AND date>?', @practice_member.id, Date.today-1]).order('date DESC').first
+        @visit = Visit.where(['practice_member_id=? AND date>?', @practice_member.id, Time.zone.now-3.hours]).order('date DESC').first
         redirect_to "/practice_room/#{@practice_member.id}/visit/#{@visit.id}" if @visit
       end
 
