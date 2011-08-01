@@ -57,6 +57,20 @@ function initialize_page() {
 	$('.selector_cell_submit').mousedown(function() {
 		$(this).addClass('current_selected');
 	});
+
+  // autoresize all text areas on input
+  $('textarea').autoResize({
+    // On resize:
+    onResize : function() {
+        $(this).css({opacity:0.8});
+    },
+    // After resize:
+    animateCallback : function() {
+        $(this).css({opacity:1});
+    },
+    // Quite slow animation:
+    animateDuration : 300,
+  });
 }
 
 
