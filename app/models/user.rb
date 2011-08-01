@@ -168,6 +168,13 @@ class User < ActiveRecord::Base
         return authorize_success_message
       end
 
+    when 'reports'
+      if current_role == 'practice admin' || current_role == 'practice user'
+        return authorize_success_message
+      else
+        return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
+      end
+
     when 'travel_cards'
       case current_role
       when 'guest'

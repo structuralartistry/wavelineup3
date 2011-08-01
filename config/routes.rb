@@ -1,5 +1,6 @@
 Wavelineup3::Application.routes.draw do
 
+  resources :reports
 
   resources :feature_requests
 
