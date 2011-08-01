@@ -17,6 +17,18 @@ feature "Reporting Feature", %q{
     click_selector_cell('Reports')
     current_path.should =~ /reports/
     has_text?('Reports', 'h1').should == true
+
+    has_selector_cell?('All Practice Members').should == true
+    has_selector_cell?('All Dates').should == true
+    has_selector_cell?('Submit').should == true
+  end
+
+  scenario "should be able to filter report by all practice members and all dates (default on page load)" do
+    selector_cell_selected?('All Practice Members').should == true
+    selector_cell_selected?('All Dates').should == true
+    click_selector_cell('Submit')
+
+    has_text?('Report', 'h1').should == true
   end
 
   scenario "should be able to filter report by a specific practice member" do
@@ -26,10 +38,6 @@ pending
 
   scenario "the selected practice member should be the currently selected practice member in the practice room" do
     pending 'maybe not do this....'
-  end
-
-  scenario "should be able to filter report by all practice members" do
-pending
   end
 
   scenario "should be able to filter report by date range" do
