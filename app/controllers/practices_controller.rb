@@ -87,9 +87,11 @@ class PracticesController < ApplicationController
 
   def export
     exported_data = StringIO.new
+    exported_data.write("<practice name='#{current_user.practice.name}'>")
     current_user.practice.practice_members.each do |practice_member|
       exported_data.write(practice_member.to_xml(:skip_instruct => true, :include => [:travel_card, :visits]))
     end
+    exported_data.write('</practice>')
     send_data exported_data.string, :type => "text/plain",
                                     :filename=>"#{current_user.practice.name.gsub(/ /,'_')}.xml",
                                     :disposition => 'attachment'

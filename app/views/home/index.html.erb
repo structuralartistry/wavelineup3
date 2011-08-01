@@ -31,7 +31,7 @@
               <p class='big'><%= thirty_day_visit_count = current_user.practice.visit_count(30.days) %></p>
             </td>
             <td class='stat' align="center">
-              <p class='big'><%= PracticeMember.joins(:visits).select('DISTINCT practice_members.id').where('visits.date>=? AND practice_id=?', (DateTime.now-30.days), current_user.practice.id).count %></p>
+              <p class='big'><%= PracticeMember.joins(:visits).select('DISTINCT practice_members.id').where('visits.date>=? AND practice_id=?', (Time.zone.now-30.days), current_user.practice.id).count %></p>
             </td>
           </tr>
         </table>
