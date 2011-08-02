@@ -352,7 +352,7 @@ describe User do
     end
   end
 
-  it "should make email lowercase", :focus => true do
+  it "should make email lowercase" do
     user = Factory(:practice_admin_user, :email => 'Dk.Kahn@gmail.com')
     user.email.should eq('dk.kahn@gmail.com')
   end

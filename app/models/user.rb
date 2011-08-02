@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :perishable_token, :persistence_token
 
   def email=(umail)
-    write_attribute(:email, umail.mb_chars.downcase)
+    write_attribute(:email, umail.downcase)
   end
 
   # password not always present if updating a user, etc...anything beyond new user creation

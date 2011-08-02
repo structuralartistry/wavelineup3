@@ -1,1 +1,41 @@
 <h1>Report</h1>
+.ljust()
+<pre>
+  <% @visits.each do |visit| %>
+    Visit Date | Practice Member Id | Practice Member Name
+    <%= visit.date %> | <%= visit.practice_member_id %> | <%= visit.practice_member.full_name_last_comma_first_middle_initial %>
+
+    1st Phase | Gateway 1 | Gateway 1 Aff | Gateway 2 | Gateway 2 Aff | LOC | Dir
+    <%= visit.phase_1 %> | <%= visit.phase_1_gateway_1 %> | <%= visit.phase_1_gateway_1_affecting %> | <%= visit.phase_1_gateway_2 %> | <%= visit.phase_1_gateway_2_affecting %> | <%= visit.phase_1_level_of_care %> | <%= visit.phase_1_direction %>
+
+    2st Phase | Gateway 1 | Gateway 1 Aff | Gateway 2 | Gateway 2 Aff | LOC | Dir
+    <%= visit.phase_2 %> | <%= visit.phase_2_gateway_1 %> | <%= visit.phase_2_gateway_1_affecting %> | <%= visit.phase_2_gateway_2 %> | <%= visit.phase_2_gateway_2_affecting %> | <%= visit.phase_2_level_of_care %> | <%= visit.phase_2_direction %>
+
+    SRI
+    Stage | Position A | Position B | LOC | OF
+    <%= visit.sri_stage %> | <%= visit.sri_position_a %> | <%= visit.sri_position_b %> | <%= visit.sri_level_of_care %> | <%= visit.sri_organizing_field %>
+
+    Short Leg Side | Short Leg Amount
+    <%= visit.short_leg_side %> | <%= visit.short_leg_amount %>
+
+    Tension Levels
+    HT | EV | ABD | ADD
+    <%= visit.heel_tension_level %> | <%= visit.eversion_tension_level %> | <%= visit.abduction_tension_level %> | <%= visit.adduction_tension_level %>
+
+    Advanced Care / Misc
+    I OF | E OF | LLA | SLA | Crest
+    <%= visit.ingression_organizing_field %> | <%= visit.egression_organizing_field %> | <%= visit.long_lever_arm %> | <%= visit.short_lever_arm %> | <%= visit.crest %>
+
+    Diagnosis
+    <%= visit.diagnosis %>
+
+    Notes
+    <%= visit.notes %>
+
+    Record Created At:
+    <%= visit.created_at %>
+
+    Last Updated At:
+    <%= visit.updated_at %>
+  <% end %>
+</pre>
