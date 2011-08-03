@@ -41,17 +41,37 @@ feature "Reporting Feature", %q{
     has_text?('Report', 'h1').should == true
   end
 
-  scenario "should be able to filter report by a specific practice member" do
-pending
-    visit('/reports')
-  end
+  scenario "should be able to filter report by a specific practice member", :js => true do
+    practice_member = Factory(:practice_member, :practice => @practice)
+    visit = Factory(:visit, :practice_member => practice_member)
 
-  scenario "the selected practice member should be the currently selected practice member in the practice room" do
-    pending 'maybe not do this....'
+    # create another which should not return
+    Factory(:practice_member, :practice => Factory(:practice_two))
+
+    visit("/reports/show?filter_practice_members=#{practice_member.id}&lookback_days=1")
+
+    has_text?("Practice Member filter: #{practice_member.full_name_last_comma_first_middle_initial.upcase}", 'p').should == true
+    has_text?("1 Visit records returned for 1 Practice Members", 'p').should == true
+    has_text?(visit.phase_1, 'td').should == true
+
+
+    visit("/reports/show?filter_practice_members=#{practice_member.id.succ}&lookback_days=1")
+    has_text?("Practice Member filter: ", 'p').should == true
+    has_text?("0 Visit records returned for 0 Practice Members", 'p').should == true
+    has_text?(visit.phase_1, 'td').should == false
   end
 
   scenario "should be able to filter report by date range" do
-pending
+    practice_member = Factory(:practice_member, :practice => @practice)
+    visit = Factory(:visit, :practice_member => practice_member, :date => DateTime.now)
+    visit = Factory(:visit, :practice_member => practice_member, :date => DateTime.now-10.days)
+    visit = Factory(:visit, :practice_member => practice_member, :date => DateTime.now-35.days)
+    visit = Factory(:visit, :practice_member => practice_member, :date => DateTime.now-65.days)
+
+    click_selector_cell('30 Days')
+    click_selector_cell('Submit')
+
+    has_text?("2 Visit records returned for 1 Practice Members", 'p').should == true
   end
 
   scenario "it should show the correct fields for a visit on the report" do
@@ -70,18 +90,6 @@ pending
   end
 
   scenario "should be able to include the travel card data in the report" do
-pending
-  end
-
-  scenario "on the report there should be a button to Print" do
-pending
-  end
-
-  scenario "on the report there should be a button to Export the report" do
-pending
-  end
-
-  scenario "the visits should on report should be grouped by practice member, date descending" do
 pending
   end
 

@@ -1,6 +1,6 @@
 <h1>Report</h1>
-<p>Report for time period <%= @start_date %> to <%= @end_date %></p>
-<p>Practice Member filter: <%= @practice_member_filter %></p>
+<p>Report for time period <%= Time.zone.now-@lookback_days.to_i.days %> to <%= Time.zone.now %></p>
+<p>Practice Member filter: <%= @filtered_practice_member_name %></p>
 <p><%= @visits.count %> Visit records returned for <%= @visits.select('DISTINCT practice_member_id').count %> Practice Members</p>
 <% current_practice_member_id = nil %>
 <% @visits.all.each do |visit| %>
@@ -20,7 +20,7 @@
     <% current_practice_member_id = visit.practice_member_id %>
   <% end %>
   <tr>
-    <td align='center' class='light_green bold'>Visit Dt</td><td colspan='7' class='bold'><%= visit.date %></td>
+    <td align='center' class='light_green_background bold'>Visit Dt</td><td colspan='7' class='bold'><%= visit.date %></td>
   </tr>
   <tr>
     <th>PH Worked</th><th>PH</th><th>GW 1</th><th>GW 1 Aff</th><th>GW 2</th><th>GW 2 Aff</th><th>LOC</th><th>Dir</th>
