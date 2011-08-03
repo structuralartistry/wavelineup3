@@ -56,9 +56,17 @@ pending
 
   scenario "it should show the correct fields for a visit on the report" do
     practice_member = Factory(:practice_member, :practice => @practice)
-    Factory(:visit, :practice_member => practice_member)
-    visit('/reports/show/filter_practice_members=all&lookback_days=1')
-has_text?('need to complete this test')
+    visit = Factory(:visit, :practice_member => practice_member)
+    visit('/reports/show?filter_practice_members=all&lookback_days=1')
+
+    page.has_content?('Report for time period').should == true
+    page.has_content?('Practice Member filter').should == true
+    page.has_content?('Visit records returned for').should == true
+
+    # spot check visit
+    has_text?(visit.phase_1, 'td').should == true
+    has_text?(visit.phase_2, 'td').should == true
+    has_text?(visit.notes, 'td').should == true
   end
 
   scenario "should be able to include the travel card data in the report" do
@@ -70,6 +78,10 @@ pending
   end
 
   scenario "on the report there should be a button to Export the report" do
+pending
+  end
+
+  scenario "the visits should on report should be grouped by practice member, date descending" do
 pending
   end
 

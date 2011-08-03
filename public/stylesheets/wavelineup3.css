@@ -157,6 +157,10 @@ table.light_green td {
   padding: 10px;
 }
 
+.light_green {
+	background-color: lightgreen;
+}
+
 table.yellow {
 	border-width: 1px;
 	border-color: yellow;
@@ -605,4 +609,17 @@ div#mini_travel_card {
 	border: 3px solid yellow;
 }
 
+table.report th {
+  width: 0.5in;
+  padding: 0 10px 0px 10px;
+}
 
+table.report td {
+  width: 0.5in;
+}
+
+table.report th {
+  background-color: #e0e0e0;
+  color: #000033;
+  font-weight: bold;
+}
