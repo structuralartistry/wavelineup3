@@ -7,7 +7,7 @@
 <div id="travel_card" style='width: 7in;'>
 <table>
   <tr>
-    <td valign='top'>          
+    <td valign='top'>
       <%= form_for @travel_card do |f| %>
 
       <table class="selector_table">
@@ -21,7 +21,7 @@
           <td colspan="7"></td>
         </tr>
         <tr>
-        
+
           <td id="dominant_occiput" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('side_selector', this, 'dominant_occiput', 'travel_card_dominant_occiput');"></td>
           <td id="level_of_care" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('level_of_care_selector', this, 'level_of_care', 'travel_card_level_of_care');"></td>
           <td id="full_respiratory_wave" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('boolean_selector', this, 'full_respiratory_wave', 'travel_card_full_respiratory_wave');"></td>
@@ -92,13 +92,13 @@
       </table>
       <table>
         <tr>
-          <td id="tension_level_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#tension_level_detail').slideToggle(); $('#tension_level_detail_button').toggleClass('current_selected');">Tension Levels</td>     
+          <td id="tension_level_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#tension_level_detail').slideToggle(); $('#tension_level_detail_button').toggleClass('current_selected');">Tension Levels</td>
           <td>&nbsp;</td>
-          <td id="sri_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#sri_detail').slideToggle(); $('#sri_detail_button').toggleClass('current_selected');">SRI</td>     
+          <td id="sri_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#sri_detail').slideToggle(); $('#sri_detail_button').toggleClass('current_selected'); $('#travel_card_buzz_words_for_sri').autoResize().trigger('change');">SRI</td>
           <td>&nbsp;</td>
-          <td id="programs_education_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#programs_education_detail').slideToggle(); $('#programs_education_detail_button').toggleClass('current_selected');">Programs/Education</td>     
+          <td id="programs_education_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#programs_education_detail').slideToggle(); $('#programs_education_detail_button').toggleClass('current_selected');">Programs/Education</td>
           <td>&nbsp;</td>
-          <td id="notes_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#notes_detail').slideToggle(); $('#notes_detail_button').toggleClass('current_selected');">Notes</td>     
+          <td id="notes_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#notes_detail').slideToggle(); $('#notes_detail_button').toggleClass('current_selected'); $('#travel_card_notes').autoResize().trigger('change');">Notes</td>
 
         </tr>
         <tr>
@@ -147,13 +147,13 @@
                 <td id="sri_position_2_level_of_awareness" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_2_level_of_awareness', 'travel_card_sri_position_2_level_of_awareness');"></td>
                 <td id="sri_position_3_level_of_awareness" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_3_level_of_awareness', 'travel_card_sri_position_3_level_of_awareness');"></td>
                 <td id="sri_safety_position" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('sri_position_selector', this, 'sri_safety_position', 'travel_card_sri_safety_position');"></td>
-                <td colspan="4"> 
-                    <%= f.text_area :buzz_words_for_sri, :style => "width: 4in; height: 0.5in;", :class => 'autosave' %>  
+                <td colspan="4">
+                    <%= f.text_area :buzz_words_for_sri, :style => "width: 4in; height: 0.1in;", :class => 'autosave' %>
                 </td>
               </tr>
             </table>
           </td>
-        </tr>       
+        </tr>
       </table>
       <table id="programs_education_detail" class="hidden">
         <tr>
@@ -189,14 +189,14 @@
 	        <td id="book_healing_magic" class="selector_cell selector_cell_text_single_character" onMouseDown="show_selector('boolean_selector', this, 'book_healing_magic', 'travel_card_book_healing_magic');"></td>
         </tr>
       </table>
-      
+
       <table id="notes_detail" class="hidden">
         <tr>
           <td class="label">Notes</td>
         </tr>
         <tr>
           <td>
-            <%= f.text_area :notes, :style => "width: 6in; height: 0.5in;", :class => 'autosave' %>
+            <%= f.text_area :notes, :style => "width: 6in; height: 0.1in;", :class => 'autosave' %>
           </td>
       </table>
 
@@ -233,7 +233,7 @@
         <%= f.hidden_field :gateway_s4 %>
         <%= f.hidden_field :gateway_s5 %>
         <%= f.hidden_field :gateway_cx %>
-        
+
         <%= f.hidden_field :passive_c1_c7_tension_level %>
         <%= f.hidden_field :passive_t1_t12_tension_level %>
         <%= f.hidden_field :passive_l1_l5_tension_level %>
@@ -242,7 +242,7 @@
         <%= f.hidden_field :active_t1_t12_tension_level %>
         <%= f.hidden_field :active_l1_l5_tension_level %>
         <%= f.hidden_field :active_s1_cx_tension_level %>
-        
+
         <%= f.hidden_field :sri_position_1_level_of_awareness %>
         <%= f.hidden_field :sri_position_2_level_of_awareness %>
         <%= f.hidden_field :sri_position_3_level_of_awareness %>
@@ -251,7 +251,7 @@
 				<%= f.hidden_field :book_12_stages %>
 				<%= f.hidden_field :book_healing_magic %>
 
-      <% end %>    
+      <% end %>
     </td>
   </tr>
 </table>
