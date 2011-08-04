@@ -16,7 +16,7 @@
 	<%= form_for(@visit, :html => { :class => "ajaxForm"}) do |f| %>
 	  <table class="selector_table">
 	    <tr>
-			<td><%= render :partial => 'visits/mini_travel_card' %></td>
+			<td valign='top'><%= render :partial => 'visits/mini_travel_card' %></td>
 	      <td valign='top'>
 				<table class='selector_table'>
 					<tr>
@@ -32,7 +32,7 @@
 						<td colspan='3' class="half_height label">Notes</td>
 					</tr>
 					<tr>
-			      <td colspan='3'><%= f.text_area :notes, :style => "width: 350px; height: 50px", :class => 'autosave' %></td>
+			      <td colspan='3'><%= f.text_area :notes, :style => "width: 350px;", :class => 'autosave' %></td>
 		      </tr>
 				</table>
 			</td>
@@ -115,7 +115,8 @@
 	    <tr>
 			<td id='label_sri_4_col' colspan="4" class="half_height label" >SRI</td>
 	      <td id='label_sri_5_col' colspan="5" class="half_height label hidden" >SRI</td>
-	      <td colspan="6" class="half_height">&nbsp;</td>
+	      <td class='half_height'>&nbsp;</td>
+	      <td colspan="5" class="half_height label">Diagnosis</td>
 	    </tr>
 	    <tr>
 	      <td class="half_height label" >Stage</td>
@@ -123,8 +124,8 @@
 			<td id='label_sri_position_b' class="half_height label hidden" >Pos</td>
 	      <td class="half_height label" >LOC</td>
 	      <td class="half_height label" >OF</td>
-	      <td class="half_height">&nbsp;&nbsp;</td>
-	      <td colspan="5" style="width: 3.0in;" class="half_height label">Diagnosis</td>
+	      <td>&nbsp;</td>
+	      <td colspan="5" rowspan='2' valign='top'><%= f.text_area :diagnosis, :style => "width: 300px; height: 50px;", :class => 'autosave' %></td>
 	    </tr>
 	    <tr>
 	      <td id="sri_stage" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('sri_stage_selector', this, 'sri_stage', 'visit_sri_stage');"></td>
@@ -132,8 +133,7 @@
 	      <td id="sri_position_b" class="selector_cell selector_cell_text_three_character hidden" onMouseDown="show_selector('sri_position_selector', this, 'sri_position_b', 'visit_sri_position_b');"></td>
 			<td id="sri_level_of_care" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('level_of_care_selector', this, 'sri_level_of_care', 'visit_sri_level_of_care');"></td>
 	      <td id="sri_organizing_field" class="selector_cell selector_cell_text_three_character" onMouseDown="show_selector('organizing_field_selector', this, 'sri_organizing_field', 'visit_sri_organizing_field');"></td>
-	      <td>&nbsp;&nbsp;</td>
-	      <td colspan="5"><%= f.text_area :diagnosis, :style => "width: 300px; height: 50px", :class => 'autosave' %></td>
+	      <td>&nbsp;</td>
 	    </tr>
 	  </table>
 
