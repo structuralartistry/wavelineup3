@@ -12,7 +12,7 @@
       <td colspan='2' class='label'>Visits Returned</td>
     </tr>
     <tr>
-      <td colspan='6' class='bold'><%= visit.practice_member.full_name_last_comma_first_middle_initial.upcase %>&nbsp;</td>
+      <td colspan='6' class='bold'><%= visit.practice_member.full_name.upcase %>&nbsp;</td>
       <td><%= visit.practice_member_id %></td>
       <td colspan='2'><%= @visits.select('COUNT(*)').where('practice_member_id=?', visit.practice_member_id).count %>
     </tr>

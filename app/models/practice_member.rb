@@ -43,7 +43,7 @@ class PracticeMember < ActiveRecord::Base
     self.where(['last_practice_room_access>=? AND practice_id=?', lookback_to, practice_id])
   end
 
-  def full_name_last_comma_first_middle_initial
+  def full_name
     "#{self.last_name}, #{self.first_name} #{self.middle_name[0,1] if self.middle_name.length>=1}".strip
   end
 

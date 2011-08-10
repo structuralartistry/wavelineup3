@@ -21,7 +21,7 @@ describe ReportsController do
     end
 
     it "should render the report (show) if the correct parameters are supplied" do
-      get :show, {:filter_practice_members => 'all', :lookback_days => '1'}
+      get :show, {:filter_practice_member => 'all', :lookback_days => '1'}
     end
 
   end
