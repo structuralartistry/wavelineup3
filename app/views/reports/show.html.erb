@@ -1,5 +1,5 @@
 <h1>Report</h1>
-<p>Report for time period <%= Time.zone.now-@lookback_days.to_i.days %> to <%= Time.zone.now %></p>
+<p>Report for time period <%= (Time.zone.now-@lookback_days.to_i.days).strftime('%Y-%m-%d') %> to <%= (Time.zone.now).strftime('%Y-%m-%d') %></p>
 <p>Practice Member filter: <%= @filtered_practice_member_name %></p>
 <p><%= @visits.count %> Visit records returned for <%= @visits.select('DISTINCT practice_member_id').count %> Practice Members</p>
 <% current_practice_member_id = nil %>
