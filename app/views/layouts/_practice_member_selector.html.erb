@@ -1,5 +1,5 @@
 <% if current_user && current_user.practice && current_user.practice.practice_members.size > 0 %>
-  <table class="selector_table">
+  <table id='select_target_page' class="selector_table">
     <tr>
       <th align='left' colspan='4'><h1>Select Target Page</h1></th>
     </tr>
@@ -63,7 +63,7 @@
           <tr class='practice_member_list character_group_<%= character_group %>'>
           <% counter = 0 %>
         <% end %>
-        <td style="width: 1.5in;" class="selector_cell selector_cell_text_six_character" onmousedown="selected_practice_member_id=<%= practice_member.id %>; navigate_now();"><%= truncate(practice_member.full_name_last_comma_first_middle_initial, :length => 30) %></td>
+        <td style="width: 1.5in;" class="selector_cell selector_cell_text_six_character" onmousedown="selected_practice_member_id=<%= practice_member.id %>; selected_practice_member_name='<%= truncate(practice_member.full_name, :length => 30).gsub(/'/, '&#39;') %>'; execute_practice_member_selector_dialog_operation();"><%= truncate(practice_member.full_name, :length => 30) %></td>
         <% counter = counter + 1 %>
       <% end %>
     </tr>

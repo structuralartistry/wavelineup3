@@ -1,5 +1,8 @@
 Wavelineup3::Application.routes.draw do
 
+  resources :reports
+  match 'reports' => 'reports#index', :as => 'reports'
+  match 'reports/show' => 'reports#show', :as => 'show_report'
 
   resources :feature_requests
 

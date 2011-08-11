@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :perishable_token, :persistence_token
 
+  def email=(umail)
+    write_attribute(:email, umail.downcase)
+  end
+
   # password not always present if updating a user, etc...anything beyond new user creation
   def password_present?
     return self.password
@@ -166,6 +170,13 @@ class User < ActiveRecord::Base
           end
         end
         return authorize_success_message
+      end
+
+    when 'reports'
+      if current_role == 'practice admin' || current_role == 'practice user'
+        return authorize_success_message
+      else
+        return set_autorize_failure_value(RESTRICTED_PAGE_NOTICE)
       end
 
     when 'travel_cards'

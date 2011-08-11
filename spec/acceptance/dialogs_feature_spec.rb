@@ -23,19 +23,19 @@ feature "New Practice Member and Find dialog feature", %q{
 
         click_selector_cell('New PM')
         new_practice_member_dialog_present?.should == true
-        find_dialog_present?.should == false
+        find_practice_member_selector_present?.should == false
         feedback_support_dialog_present?.should == false
         lineup_dialog_present?.should == false
 
         click_selector_cell('Find')
         new_practice_member_dialog_present?.should == false
-        find_dialog_present?.should == true
+        find_practice_member_selector_present?.should == true
         feedback_support_dialog_present?.should == false
         lineup_dialog_present?.should == false
 
         click_selector_cell('Feedback/Support')
         new_practice_member_dialog_present?.should == false
-        find_dialog_present?.should == false
+        find_practice_member_selector_present?.should == false
         feedback_support_dialog_present?.should == true
         lineup_dialog_present?.should == false
 
@@ -45,14 +45,14 @@ feature "New Practice Member and Find dialog feature", %q{
         selector_cell_present?('Lineup').should == true
         click_selector_cell('Lineup')
         new_practice_member_dialog_present?.should == false
-        find_dialog_present?.should == false
+        find_practice_member_selector_present?.should == false
         feedback_support_dialog_present?.should == false
         lineup_dialog_present?.should == true
         selector_cell_present?(@practice_member_name_one)
 
         click_selector_cell('New PM')
         new_practice_member_dialog_present?.should == true
-        find_dialog_present?.should == false
+        find_practice_member_selector_present?.should == false
         feedback_support_dialog_present?.should == false
         lineup_dialog_present?.should == false
       end

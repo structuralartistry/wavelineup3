@@ -16,7 +16,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     respond_to do |format|
       if @user_session.save
-        Login.create!(:email => @user_session.email, :user_id => User.find_by_email(@user_session.email).id, :success => true)
+        Login.create!(:email => @user_session.email, :user_id => User.find_by_email(@user_session.email.downcase).id, :success => true)
         flash[:notice] = "Welcome to WaveLineup #{@user_session.email}!"
         format.html { redirect_to(home_path) }
       else

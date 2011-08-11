@@ -132,18 +132,30 @@ function toggle_dialog(dialog_id) {
   set_left_column_buttons();
 }
 
+practice_member_selector_dialog_operation = '';
 selected_practice_member_id = '';
+selected_practice_member_name = '';
 
 // practice member selector
-function navigate_now() {
-  selected_page_name = $('.page_selector.current_selected').html();
-  switch(selected_page_name) {
-    case 'Personal Info':
-      nav_url = '/practice_members/' + selected_practice_member_id + '/edit';
+function execute_practice_member_selector_dialog_operation() {
+  switch(practice_member_selector_dialog_operation) {
+    case 'find':
+      selected_page_name = $('.page_selector.current_selected').html();
+      switch(selected_page_name) {
+        case 'Personal Info':
+          nav_url = '/practice_members/' + selected_practice_member_id + '/edit';
+          break;
+        case 'Practice Room':
+          nav_url = '/practice_room/' + selected_practice_member_id + '/visit';
+          break;
+      }
+      window.location.href=nav_url
       break;
-    case 'Practice Room':
-      nav_url = '/practice_room/' + selected_practice_member_id + '/visit';
+    case 'set_report_filter':
+      $('#filter_practice_member_single').html(selected_practice_member_name);
+      $('#filter_practice_member_all').removeClass('current_selected');
+      $('#filter_practice_member_single').addClass('current_selected');
+      $('#practice_member_selector').hide();
       break;
   }
-  window.location.href=nav_url
 }

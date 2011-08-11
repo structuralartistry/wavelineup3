@@ -62,6 +62,7 @@ def is_text_or_id(selector_cell_text_or_id)
 end
 
 def selector_cell_selected?(selector_cell_text)
+  # note that 'true' on calling selector_cell_xpath enables check that the selector is current_selected
   page.has_xpath?(selector_cell_xpath(selector_cell_text, true), :visible => true)
 end
 

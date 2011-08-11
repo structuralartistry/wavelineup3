@@ -45,10 +45,6 @@ describe User do
     it "is authorized to access certain pages only" do
       user = User.new
       user.authorize('activations', 'create')[:success].should == true
-      user.authorize('home', 'index')[:success].should == false
-      user.authorize('home', 'terms_of_service')[:success].should == true
-      user.authorize('home', 'privacy_policy')[:success].should == true
-      user.authorize('home', 'about')[:success].should == true
       user.authorize('feature_requests', 'index')[:success].should == false
       user.authorize('feature_requests', 'new')[:success].should == false
       user.authorize('feature_requests', 'edit')[:success].should == false
@@ -56,6 +52,10 @@ describe User do
       user.authorize('feature_requests', 'update')[:success].should == false
       user.authorize('feature_requests', 'destroy')[:success].should == false
       user.authorize('feedback_supports', 'create')[:success].should == false
+      user.authorize('home', 'index')[:success].should == false
+      user.authorize('home', 'terms_of_service')[:success].should == true
+      user.authorize('home', 'privacy_policy')[:success].should == true
+      user.authorize('home', 'about')[:success].should == true
       user.authorize('invitations', 'create')[:success].should == false
       user.authorize('password_resets', 'new')[:success].should == true
       user.authorize('password_resets', 'create')[:success].should == true
@@ -75,6 +75,8 @@ describe User do
       user.authorize('practices', 'update')[:success].should == false
       user.authorize('practices', 'confirm_delete')[:success].should == false
       user.authorize('practices', 'destroy')[:success].should == false
+      user.authorize('reports', 'index')[:success].should == false
+      user.authorize('reports', 'show')[:success].should == false
       user.authorize('travel_cards', 'edit')[:success].should == false
       user.authorize('travel_cards', 'update')[:success].should == false
       user.authorize('user_sessions', 'new')[:success].should == true
@@ -93,10 +95,6 @@ describe User do
     it "is authorized to access certain pages only" do
       user = Factory.create(:sysadmin_user)
       user.authorize('activations', 'create')[:success].should == false
-      user.authorize('home', 'index')[:success].should == true
-      user.authorize('home', 'terms_of_service')[:success].should == true
-      user.authorize('home', 'privacy_policy')[:success].should == true
-      user.authorize('home', 'about')[:success].should == true
       user.authorize('feature_requests', 'index')[:success].should == true
       user.authorize('feature_requests', 'new')[:success].should == true
       user.authorize('feature_requests', 'edit')[:success].should == true
@@ -104,6 +102,10 @@ describe User do
       user.authorize('feature_requests', 'update')[:success].should == true
       user.authorize('feature_requests', 'destroy')[:success].should == true
       user.authorize('feedback_supports', 'create')[:success].should == false
+      user.authorize('home', 'index')[:success].should == true
+      user.authorize('home', 'terms_of_service')[:success].should == true
+      user.authorize('home', 'privacy_policy')[:success].should == true
+      user.authorize('home', 'about')[:success].should == true
       user.authorize('invitations', 'create')[:success].should == false
       user.authorize('password_resets', 'new')[:success].should == false
       user.authorize('password_resets', 'create')[:success].should == false
@@ -123,6 +125,8 @@ describe User do
       user.authorize('practices', 'update')[:success].should == true
       user.authorize('practices', 'confirm_delete')[:success].should == false
       user.authorize('practices', 'destroy')[:success].should == false
+      user.authorize('reports', 'index')[:success].should == false
+      user.authorize('reports', 'show')[:success].should == false
       user.authorize('travel_cards', 'edit')[:success].should == true
       user.authorize('travel_cards', 'update')[:success].should == true
       user.authorize('user_sessions', 'new')[:success].should == false
@@ -141,10 +145,6 @@ describe User do
     it "is authorized to access certain pages only" do
       user = Factory.create(:practice_admin_user)
       user.authorize('activations', 'create')[:success].should == false
-      user.authorize('home', 'index')[:success].should == true
-      user.authorize('home', 'terms_of_service')[:success].should == true
-      user.authorize('home', 'privacy_policy')[:success].should == true
-      user.authorize('home', 'about')[:success].should == true
       user.authorize('feature_requests', 'index')[:success].should == true
       user.authorize('feature_requests', 'new')[:success].should == false
       user.authorize('feature_requests', 'edit')[:success].should == false
@@ -152,6 +152,10 @@ describe User do
       user.authorize('feature_requests', 'update')[:success].should == false
       user.authorize('feature_requests', 'destroy')[:success].should == false
       user.authorize('feedback_supports', 'create')[:success].should == true
+      user.authorize('home', 'index')[:success].should == true
+      user.authorize('home', 'terms_of_service')[:success].should == true
+      user.authorize('home', 'privacy_policy')[:success].should == true
+      user.authorize('home', 'about')[:success].should == true
       user.authorize('invitations', 'create')[:success].should == true
       user.authorize('password_resets', 'new')[:success].should == false
       user.authorize('password_resets', 'create')[:success].should == false
@@ -171,6 +175,8 @@ describe User do
       user.authorize('practices', 'update')[:success].should == true
       user.authorize('practices', 'confirm_delete')[:success].should == true
       user.authorize('practices', 'destroy')[:success].should == true
+      user.authorize('reports', 'index')[:success].should == true
+      user.authorize('reports', 'show')[:success].should == true
       user.authorize('travel_cards', 'edit')[:success].should == true
       user.authorize('travel_cards', 'update')[:success].should == true
       user.authorize('user_sessions', 'new')[:success].should == false
@@ -189,10 +195,6 @@ describe User do
     it "is authorized to access certain pages only" do
       user = Factory.create(:practice_user)
       user.authorize('activations', 'create')[:success].should == false
-      user.authorize('home', 'index')[:success].should == true
-      user.authorize('home', 'terms_of_service')[:success].should == true
-      user.authorize('home', 'privacy_policy')[:success].should == true
-      user.authorize('home', 'about')[:success].should == true
       user.authorize('feature_requests', 'index')[:success].should == true
       user.authorize('feature_requests', 'new')[:success].should == false
       user.authorize('feature_requests', 'edit')[:success].should == false
@@ -200,6 +202,10 @@ describe User do
       user.authorize('feature_requests', 'update')[:success].should == false
       user.authorize('feature_requests', 'destroy')[:success].should == false
       user.authorize('feedback_supports', 'create')[:success].should == true
+      user.authorize('home', 'index')[:success].should == true
+      user.authorize('home', 'terms_of_service')[:success].should == true
+      user.authorize('home', 'privacy_policy')[:success].should == true
+      user.authorize('home', 'about')[:success].should == true
       user.authorize('invitations', 'create')[:success].should == true
       user.authorize('password_resets', 'new')[:success].should == false
       user.authorize('password_resets', 'create')[:success].should == false
@@ -219,6 +225,8 @@ describe User do
       user.authorize('practices', 'update')[:success].should == true
       user.authorize('practices', 'confirm_delete')[:success].should == false
       user.authorize('practices', 'destroy')[:success].should == false
+      user.authorize('reports', 'index')[:success].should == true
+      user.authorize('reports', 'show')[:success].should == true
       user.authorize('travel_cards', 'edit')[:success].should == true
       user.authorize('travel_cards', 'update')[:success].should == true
       user.authorize('user_sessions', 'new')[:success].should == false
@@ -342,6 +350,11 @@ describe User do
       user = Factory.create(:practice_user)
       user.can_create_a_practice_member?.should == true
     end
+  end
+
+  it "should make email lowercase" do
+    user = Factory(:practice_admin_user, :email => 'Dk.Kahn@gmail.com')
+    user.email.should eq('dk.kahn@gmail.com')
   end
 
 end

@@ -1,0 +1,64 @@
+<h1>Report</h1>
+<p>Report for time period <%= (Time.zone.now-@lookback_days.to_i.days).strftime('%Y-%m-%d') %> to <%= (Time.zone.now).strftime('%Y-%m-%d') %></p>
+<p>Practice Member filter: <%= @filtered_practice_member_name %></p>
+<p><%= @visits.count %> Visit records returned for <%= @visits.select('DISTINCT practice_member_id').count %> Practice Members</p>
+<% current_practice_member_id = nil %>
+<% @visits.all.each do |visit| %>
+<table class='report'>
+  <% if visit.practice_member_id != current_practice_member_id %>
+    <tr>
+      <td colspan='6' class='label'>Practice Member</td>
+      <td class='label'>ID</td>
+      <td colspan='2' class='label'>Visits Returned</td>
+    </tr>
+    <tr>
+      <td colspan='6' class='bold'><%= visit.practice_member.full_name.upcase %>&nbsp;</td>
+      <td><%= visit.practice_member_id %></td>
+      <td colspan='2'><%= @visits.select('COUNT(*)').where('practice_member_id=?', visit.practice_member_id).count %>
+    </tr>
+    <tr><td colspan='9'>&nbsp;</td></tr>
+    <% current_practice_member_id = visit.practice_member_id %>
+  <% end %>
+  <tr>
+    <td align='center' class='light_green_background bold'>Visit Dt</td><td colspan='7' class='bold'><%= visit.date %></td>
+  </tr>
+  <tr>
+    <th>PH Worked</th><th>PH</th><th>GW 1</th><th>GW 1 Aff</th><th>GW 2</th><th>GW 2 Aff</th><th>LOC</th><th>Dir</th>
+  </tr>
+  <tr>
+    <th>1st</td><td><%= visit.phase_1 %></td><td><%= visit.phase_1_gateway_1 %></td><td><%= visit.phase_1_gateway_1_affecting %></td><td><%= visit.phase_1_gateway_2 %></td><td><%= visit.phase_1_gateway_2_affecting %></td><td><%= visit.phase_1_level_of_care %></td><td><%= visit.phase_1_direction %></td>
+  </tr>
+  <tr>
+    <th>2nd</th><td><%= visit.phase_2 %></td><td><%= visit.phase_2_gateway_1 %></td><td><%= visit.phase_2_gateway_1_affecting %></td><td><%= visit.phase_2_gateway_2 %></td><td><%= visit.phase_2_gateway_2_affecting %></td><td><%= visit.phase_2_level_of_care %></td><td><%= visit.phase_2_direction %></td>
+  </tr>
+  <tr>
+    <th colspan='5'>SRI</th><td></td><th colspan='2'>Short Leg</th>
+  </tr>
+  <tr>
+    <th>Stage</th><th>Pos A</th><th>Pos B</th><th>LOC</th><th>OF</th><td></td><th>S Leg</th><th>Amount</th>
+  </tr>
+  <tr>
+    <td><%= visit.sri_stage %>&nbsp;</td><td><%= visit.sri_position_a %></td><td><%= visit.sri_position_b %></td><td><%= visit.sri_level_of_care %></td><td><%= visit.sri_organizing_field %></td><td></td><td><%= visit.short_leg_side %>&nbsp;</td><td><%= visit.short_leg_amount %></td>
+  </tr>
+  <tr>
+    <th colspan='4'>Tension Levels</th>
+    <th colspan='5'>Adv/Misc</th>
+  </tr>
+  <tr>
+    <th>HT</th><th>EV</th><th>ABD</th><th>ADD</th><th>I OF</th><th>E OF</th><th>LLA</th><th>SLA</th><th>Crest</th>
+  </tr>
+  <tr>
+    <td><%= visit.heel_tension_level %>&nbsp;</td><td><%= visit.eversion_tension_level %></td><td><%= visit.abduction_tension_level %></td><td><%= visit.adduction_tension_level %></td>
+    <td><%= visit.ingression_organizing_field %>&nbsp;</td><td><%= visit.egression_organizing_field %></td><td><%= visit.long_lever_arm %></td><td><%= visit.short_lever_arm %></td><td><%= visit.crest %></td>
+  </tr>
+  <tr>
+    <th colspan='4'>Diagnosis</th>
+    <th colspan='5'>Notes</th>
+  </tr>
+  <tr>
+    <td colspan='4'><%= visit.diagnosis %>&nbsp;</td>
+    <td colspan='5'><%= visit.notes %></td>
+  </tr>
+</table>
+<br>
+<% end %>
