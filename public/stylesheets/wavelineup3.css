@@ -613,14 +613,48 @@ div#mini_travel_card {
 table.report th {
   width: 0.5in;
   padding: 0 10px 0px 10px;
+  border: 1px solid lightgray;
 }
 
 table.report td {
   width: 0.5in;
+  border: 1px solid lightgray;
 }
 
 table.report th {
   background-color: #e0e0e0;
   color: #000033;
   font-weight: bold;
+}
+
+@media print {
+  input,
+  textarea,
+  select,
+  .selector_cell,
+  .selector_cell_diagnosis,
+  .selector_cell_half_height,
+  .selector_cell_half_height_quadruple,
+  .selector_cell_half_height_sentiplet,
+  .selector_cell_wide,
+  .selector_cell_wide_triple,
+  .selector_cell_wide_half_height,
+  .selector_cell_wide_half_height_triple,
+  .keyboard_selector_cell,
+  .keyboard_selector_cell_wide,
+  .keyboard_selector_cell_spacebar {
+    border: 1px solid black;
+  }
+
+  .wavelineup_table td {
+    border: 1px solid black;
+  }
+
+  table.report th {
+    border: 1px solid black;
+  }
+
+  table.report td {
+    border: 1px solid black;
+  }
 }

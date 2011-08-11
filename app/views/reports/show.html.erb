@@ -5,7 +5,6 @@
 <% current_practice_member_id = nil %>
 <% @visits.all.each do |visit| %>
   <% if visit.practice_member_id != current_practice_member_id %>
-    <br><br>
     <table class='report'>
       <tr>
         <td class='bold light_pink_background' style='width: 3.0in'>Practice Member</td>
@@ -13,7 +12,7 @@
         <td class='bold light_pink_background' style='width: 1.5in'>Visits Returned</td>
       </tr>
       <tr>
-        <td><%= visit.practice_member.full_name.upcase %>&nbsp;</td>
+        <td class='bold'><%= visit.practice_member.full_name.upcase %>&nbsp;</td>
         <td><%= visit.practice_member_id %></td>
         <td><%= @visits.select('COUNT(*)').where('practice_member_id=?', visit.practice_member_id).count %>
       </tr>
@@ -21,7 +20,7 @@
     <br>
     <% current_practice_member_id = visit.practice_member_id %>
   <% end %>
-  <table class='report'>
+  <table class='report' style='margin: 0px 0px 0px 40px'>
     <% if visit.practice_member_id != current_practice_member_id %>
       <tr>
         <td colspan='6' class='label'>Practice Member</td>
