@@ -613,12 +613,12 @@ div#mini_travel_card {
 table.report th {
   width: 0.5in;
   padding: 0 10px 0px 10px;
-  border: 1px solid lightgray;
+  border: 1px solid gray;
 }
 
 table.report td {
   width: 0.5in;
-  border: 1px solid lightgray;
+  border: 1px solid gray;
 }
 
 table.report th {
