@@ -157,8 +157,8 @@ table.light_green td {
   padding: 10px;
 }
 
-.light_green_background {
-	background-color: lightgreen;
+.light_pink_background {
+	background-color: lightpink;
 }
 
 table.yellow {
@@ -453,6 +453,7 @@ div#cal_event_selector {
 
 .wavelineup_table {
   font-size: 14px;
+  border: 1px solid black;
 }
 
 .wavelineup_table tr {

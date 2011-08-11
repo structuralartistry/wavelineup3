@@ -19,3 +19,4 @@ javascripts:
 stylesheets:
   common:
     - public/stylesheets/wavelineup3.css    
+    - public/stylesheets/wavelineup3_print.css    
