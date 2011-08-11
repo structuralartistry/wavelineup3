@@ -7,12 +7,12 @@
   <% if visit.practice_member_id != current_practice_member_id %>
     <table class='report'>
       <tr>
-        <td class='bold light_pink_background' style='width: 3.0in'>Practice Member</td>
-        <td class='bold light_pink_background'>ID</td>
-        <td class='bold light_pink_background' style='width: 1.5in'>Visits Returned</td>
+        <td class='bold light_pink_background' style='width: 3.0in; font-size: 10px;'>Practice Member</td>
+        <td class='bold light_pink_background' style='font-size: 10px;'>ID</td>
+        <td class='bold light_pink_background' style='width: 1.5in; font-size: 10px;'>Visits Returned</td>
       </tr>
       <tr>
-        <td class='bold'><%= visit.practice_member.full_name.upcase %>&nbsp;</td>
+        <td><%= visit.practice_member.full_name.upcase %>&nbsp;</td>
         <td><%= visit.practice_member_id %></td>
         <td><%= @visits.select('COUNT(*)').where('practice_member_id=?', visit.practice_member_id).count %>
       </tr>
@@ -21,24 +21,11 @@
     <% current_practice_member_id = visit.practice_member_id %>
   <% end %>
   <table class='report' style='margin: 0px 0px 0px 40px'>
-    <% if visit.practice_member_id != current_practice_member_id %>
-      <tr>
-        <td colspan='6' class='label'>Practice Member</td>
-        <td class='label'>ID</td>
-        <td colspan='2' class='label'>Visits Returned</td>
-      </tr>
-      <tr>
-        <td colspan='6' class='bold'><%= visit.practice_member.full_name.upcase %>&nbsp;</td>
-        <td><%= visit.practice_member_id %></td>
-        <td colspan='2'><%= @visits.select('COUNT(*)').where('practice_member_id=?', visit.practice_member_id).count %>
-      </tr>
-      <% current_practice_member_id = visit.practice_member_id %>
-    <% end %>
     <tr>
       <th align='center'>Visit Dt</td><td colspan='7' class='bold'><%= visit.date %></th>
     </tr>
     <tr>
-      <th>PH Worked</th><th>PH</th><th>GW 1</th><th>GW 1 Aff</th><th>GW 2</th><th>GW 2 Aff</th><th>LOC</th><th>Dir</th>
+      <th>PH #</th><th>PH</th><th>GW1</th><th>GW1A</th><th>GW 2</th><th>GW2A</th><th>LOC</th><th>Dir</th>
     </tr>
     <tr>
       <th>1st</td><td><%= visit.phase_1 %></td><td><%= visit.phase_1_gateway_1 %></td><td><%= visit.phase_1_gateway_1_affecting %></td><td><%= visit.phase_1_gateway_2 %></td><td><%= visit.phase_1_gateway_2_affecting %></td><td><%= visit.phase_1_level_of_care %></td><td><%= visit.phase_1_direction %></td>

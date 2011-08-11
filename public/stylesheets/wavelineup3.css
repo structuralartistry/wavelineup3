@@ -612,19 +612,17 @@ div#mini_travel_card {
 
 table.report th {
   width: 0.5in;
-  padding: 0 10px 0px 10px;
+  font-size: 10px;
   border: 1px solid gray;
+  background-color: #e0e0e0;
+  color: #000033;
+  font-weight: bold;
 }
 
 table.report td {
   width: 0.5in;
   border: 1px solid gray;
-}
-
-table.report th {
-  background-color: #e0e0e0;
-  color: #000033;
-  font-weight: bold;
+  padding: 0 0 0 10px;
 }
 
 @media print {
