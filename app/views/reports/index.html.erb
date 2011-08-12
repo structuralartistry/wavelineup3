@@ -1,6 +1,7 @@
 <script language='javascript'>
   function submit_request(){
     if(selected_practice_member_id=='') selected_practice_member_id='all';
+    if($('#lookback_days_today').hasClass('current_selected')) lookback_days = '0';
     if($('#lookback_days_1').hasClass('current_selected')) lookback_days = '1';
     if($('#lookback_days_7').hasClass('current_selected')) lookback_days = '7';
     if($('#lookback_days_30').hasClass('current_selected')) lookback_days = '30';
@@ -26,7 +27,8 @@
       <td colspan='5' class="half_height label">Lookback Period</td>
     </tr>
     <tr>
-      <td style='width: 1.0in' id="lookback_days_1" class="selector_cell selector_cell_text_three_character current_selected lookback_days" onClick="$('.lookback_days').removeClass('current_selected'); $(this).addClass('current_selected');">1 Day</td>
+      <td style='width: 1.0in' id="lookback_days_today" class="selector_cell selector_cell_text_three_character current_selected lookback_days" onClick="$('.lookback_days').removeClass('current_selected'); $(this).addClass('current_selected');">Today</td>
+      <td style='width: 1.0in' id="lookback_days_1" class="selector_cell selector_cell_text_three_character lookback_days" onClick="$('.lookback_days').removeClass('current_selected'); $(this).addClass('current_selected');">1 Day</td>
       <td style='width: 1.0in' id="lookback_days_7" class="selector_cell selector_cell_text_three_character lookback_days" onClick="$('.lookback_days').removeClass('current_selected'); $(this).addClass('current_selected');" onClick="$('.lookback_days').removeClass('current_selected'); $(this).addClass('current_selected');">7 Days</td>
       <td style='width: 1.0in' id="lookback_days_30" class="selector_cell selector_cell_text_three_character lookback_days" onClick="$('.lookback_days').removeClass('current_selected'); $(this).addClass('current_selected');">30 Days</td>
       <td style='width: 1.0in' id="lookback_days_60" class="selector_cell selector_cell_text_three_character lookback_days" onClick="$('.lookback_days').removeClass('current_selected'); $(this).addClass('current_selected');">60 Days</td>

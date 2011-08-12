@@ -5,6 +5,7 @@
 			<td class='label' colspan='3'>1st Phase</td>
 			<td class='label' colspan='3'>2nd Phase</td>
 			<td class='label' rowspan='2'>SRI Stage</td>
+      <td class="selector_cell selector_cell_text_six_character selector_cell_size_medium" rowspan='2' onclick="$(this).toggleClass('current_selected'); $('.visit_notes').toggle();" style="cursor: pointer">More</td>
 		</tr>
 		<tr style='height: 0.25in'>
 			<td class='label'>Phase</td>
@@ -15,16 +16,23 @@
 			<td class='label'>Dir</td>
 		</tr>
 		<% Visit.where("practice_member_id = #{@practice_member.id}").order("date DESC").all.each do |visit| %>
-		<tr id='<%= visit.id %>' class='selector_cell' onClick="window.location.href='/practice_room/<%= @practice_member.id %>/visit/<%= visit.id %>'">
-			<td align='center'><%= visit.date %></td>
-			<td align='center'><%= visit.phase_1 %></td>
-			<td align='center'><%= visit.phase_1_level_of_care %></td>
-			<td align='center'><%= visit.phase_1_direction %></td>
-			<td align='center'><%= visit.phase_2 %></td>
-			<td align='center'><%= visit.phase_2_level_of_care %></td>
-			<td align='center'><%= visit.phase_2_direction %></td>
-			<td align='center'><%= visit.sri_stage %></td>
-		</tr>
+      <tr id='<%= visit.id %>' class='selector_cell' onClick="window.location.href='/practice_room/<%= @practice_member.id %>/visit/<%= visit.id %>'">
+        <td align='center'><%= visit.date %></td>
+        <td align='center'><%= visit.phase_1 %></td>
+        <td align='center'><%= visit.phase_1_level_of_care %></td>
+        <td align='center'><%= visit.phase_1_direction %></td>
+        <td align='center'><%= visit.phase_2 %></td>
+        <td align='center'><%= visit.phase_2_level_of_care %></td>
+        <td align='center'><%= visit.phase_2_direction %></td>
+        <td align='center'><%= visit.sri_stage %></td>
+        <td style='display: none'></td>
+      </tr>
+      <% if !visit.notes.to_s.strip.empty? %>
+        <tr class='visit_notes' style='display: none;'>
+          <td colspan='8' class='gray_border'><span class='label'>&nbsp;Notes&nbsp;</span>&nbsp;<%= visit.notes %></td>
+          <td style='display: none'></td>
+        </tr>
+      <% end %>
 		<% end %>
 	</table>
 <% else %>

@@ -34,7 +34,7 @@ feature "Reporting Feature", %q{
     visit('/reports')
 
     selector_cell_selected?('All').should == true
-    selector_cell_selected?('1 Day').should == true
+    selector_cell_selected?('Today').should == true
 
     click_selector_cell('Submit')
 
@@ -90,7 +90,8 @@ feature "Reporting Feature", %q{
 
   scenario "current selected for lookback period should toggle correctly", :js => true do
     visit('/reports')
-    selector_cell_selected?('1 Day').should eq(true)
+    selector_cell_selected?('Today').should eq(true)
+    selector_cell_selected?('1 Day').should eq(false)
     selector_cell_selected?('7 Days').should eq(false)
     selector_cell_selected?('30 Days').should eq(false)
     selector_cell_selected?('60 Days').should eq(false)
@@ -98,6 +99,7 @@ feature "Reporting Feature", %q{
 
     click_selector_cell('30 Days')
 
+    selector_cell_selected?('Today').should eq(false)
     selector_cell_selected?('1 Day').should eq(false)
     selector_cell_selected?('7 Days').should eq(false)
     selector_cell_selected?('30 Days').should eq(true)
@@ -106,6 +108,7 @@ feature "Reporting Feature", %q{
 
     click_selector_cell('1 Day')
 
+    selector_cell_selected?('Today').should eq(false)
     selector_cell_selected?('1 Day').should eq(true)
     selector_cell_selected?('7 Days').should eq(false)
     selector_cell_selected?('30 Days').should eq(false)
@@ -116,6 +119,7 @@ feature "Reporting Feature", %q{
   scenario "should be able to filter report by date range", :js => true do
     practice_member = Factory(:practice_member, :practice => @practice)
     visit = Factory(:visit, :practice_member => practice_member, :date => DateTime.now)
+    visit = Factory(:visit, :practice_member => practice_member, :date => DateTime.now-1.day)
     visit = Factory(:visit, :practice_member => practice_member, :date => DateTime.now-10.days)
     visit = Factory(:visit, :practice_member => practice_member, :date => DateTime.now-35.days)
     visit = Factory(:visit, :practice_member => practice_member, :date => DateTime.now-65.days)
@@ -125,7 +129,19 @@ feature "Reporting Feature", %q{
     click_selector_cell('30 Days')
     click_selector_cell('Submit')
 
-    has_text?("2 Visit records returned for 1 Practice Members", 'p').should == true
+    has_text?("3 Visit records returned for 1 Practice Members", 'p').should == true
+  end
+
+  scenario "should be able to just show todays visits", :js => true do
+    practice_member = Factory(:practice_member, :practice => @practice)
+    visit = Factory(:visit, :practice_member => practice_member, :date => DateTime.now)
+    visit = Factory(:visit, :practice_member => practice_member, :date => DateTime.now-1.day)
+
+    visit('/reports')
+
+    click_selector_cell('Submit')
+
+    has_text?("1 Visit records returned for 1 Practice Members", 'p').should == true
   end
 
   scenario "it should show the correct fields for a visit on the report" do

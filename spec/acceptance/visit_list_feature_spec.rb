@@ -4,7 +4,7 @@ feature "Visit List Feature", %q{
 
 } do
 
-  context "visit list functionality", :visit_list => true, :js => true do
+  context "visit list functionality", :js => true do
 
     before(:each) do
       practice_name = 'StructuralArtistry practice'
@@ -29,13 +29,13 @@ feature "Visit List Feature", %q{
       has_text?('5', 'td').should == false
       has_text?('6', 'td').should == false
 
-      visit = Factory.create(:visit)
+      visit = Factory.build(:visit)
       visit.practice_member_id = @practice_member.id
-      visit.date = '2010-01-01'
+      visit.date = Time.zone.now
       visit.phase_1 = '3'
       visit.phase_2 = '5'
       visit.sri_stage = '6'
-      visit.save
+      visit.save!
 
       visit(@practice_room_visit_list_page)
 
@@ -45,15 +45,14 @@ feature "Visit List Feature", %q{
       has_text?('Dir', 'td').should == true
       has_text?('2nd Phase', 'td').should == true
       has_text?('SRI Stage', 'td').should == true
-
       has_text?('2010-01-01 00:00', 'td').should == true
       has_text?('3', 'td').should == true
       has_text?('5', 'td').should == true
       has_text?('6', 'td').should == true
 
-      visit = Factory.create(:visit)
+      visit = Factory.build(:visit)
       visit.practice_member_id = visit.id
-      visit.date = '2011-01-01'
+      visit.date = Time.zone.now
       visit.phase_1 = '1 > 2 C5'
       visit.phase_2 = '4'
       visit.sri_stage = '9'
@@ -61,7 +60,7 @@ feature "Visit List Feature", %q{
 
       visit(@practice_room_visit_list_page)
 
-      has_text?('2010-01-01 00:00', 'td').should == true
+      has_text?(Time.zone.now, 'td').should == true
       has_text?('3', 'td').should == true
       has_text?('5', 'td').should == true
       has_text?('6', 'td').should == true
@@ -81,6 +80,23 @@ feature "Visit List Feature", %q{
       click_selector_cell("#{visit.id}")
 
       verify_visit_loaded(visit.id)
+    end
+
+    scenario "clicking 'Show Notes'/'Hide Notes' toggles the notes for each visit on the visit list" do
+      visit = Factory(:visit, :practice_member => @practice_member)
+
+      visit(@practice_room_visit_list_page)
+      page.has_content?(visit.notes).should eq(false)
+      selector_cell_present?('More').should == true
+      selector_cell_selected?('More').should == false
+
+      click_selector_cell('More')
+      selector_cell_selected?('More').should == true
+      page.has_content?(visit.notes).should eq(true)
+
+      click_selector_cell('More')
+      selector_cell_selected?('More').should == false
+      page.has_content?(visit.notes).should eq(false)
     end
 
   end
