@@ -26,7 +26,7 @@
 					<tr>
 						<td><%= f.text_field :date, :size => "20", :class => 'autosave', :value => @visit.date.strftime('%Y-%m-%d %H:%M') %></td>
 						<td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character selector_cell_add" onClick="window.location.href='/practice_room/<%= @practice_member.id %>/visit/new';">New Visit</td>
-						<td><%= button_to 'Delete', @visit, :confirm => "This action can not be undone. Are you sure?", :method => :delete, :class => 'selector_cell_submit selector_cell_text_six_character ', :style => "width: 0.5in; font-size: 12px; background-color: red;" %></td>
+						<td><%= button_to 'Delete', @visit, :confirm => "This action can not be undone. Are you sure?", :method => :delete, :class => 'selector_cell_submit selector_cell_text_six_character ', :style => "width: 0.75in; font-size: 12px; background-color: red;" %></td>
 					</tr>
 					<tr>
 						<td colspan='3' class="half_height label">Notes</td>

@@ -6,6 +6,7 @@
 			<td class='label' colspan='3'>2nd Phase</td>
 			<td class='label' rowspan='2'>SRI Stage</td>
       <td class="selector_cell selector_cell_text_six_character selector_cell_size_medium" rowspan='2' onclick="$(this).toggleClass('current_selected'); $('.visit_notes').toggle();" style="cursor: pointer">More</td>
+      <td style='display: none'></td>
 		</tr>
 		<tr style='height: 0.25in'>
 			<td class='label'>Phase</td>
@@ -14,6 +15,7 @@
 			<td class='label'>Phase</td>
 			<td class='label'>LOC</td>
 			<td class='label'>Dir</td>
+      <td style='display: none'></td>
 		</tr>
 		<% Visit.where("practice_member_id = #{@practice_member.id}").order("date DESC").all.each do |visit| %>
       <tr id='<%= visit.id %>' class='selector_cell' onClick="window.location.href='/practice_room/<%= @practice_member.id %>/visit/<%= visit.id %>'">
@@ -29,7 +31,7 @@
       </tr>
       <% if !visit.notes.to_s.strip.empty? %>
         <tr class='visit_notes' style='display: none;'>
-          <td colspan='8' class='gray_border'><span class='label'>&nbsp;Notes&nbsp;</span>&nbsp;<%= visit.notes %></td>
+          <td colspan='8' class='gray_border'><span class='label'>&nbsp;Notes&nbsp;</span>&nbsp;<span><%= visit.notes %></span></td>
           <td style='display: none'></td>
         </tr>
       <% end %>

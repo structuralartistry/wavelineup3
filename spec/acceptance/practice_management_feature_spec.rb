@@ -39,8 +39,8 @@ feature "Practice Management Feature", %q{
       click_selector_cell('Delete Practice')
 
       has_text?('Confirm Practice Deletion', 'h1').should == true
-      has_text?('Please confirm that you wish to delete your practice.').should == true
-      has_text?('All Practice Members, Travel Cards and Visits will be deleted permanently.').should == true
+      has_text?('Please confirm that you wish to delete your Practice.').should == true
+      has_text?('All Practice information including Practice Members, Travel Cards and Visits will be deleted permanently and unable to be recovered.').should == true
       selector_cell_present?('Delete Practice').should == true
       selector_cell_present?('Cancel').should == true
 

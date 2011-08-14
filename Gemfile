@@ -30,4 +30,5 @@ group :development, :test do
 	gem 'sqlite3-ruby', '1.2.5'
 	gem 'taps'
   gem 'escape_utils' # to get rid of error: /usr/local/rvm/gems/ruby-1.9.2-p136@ncc_billing/gems/rack-1.2.3/lib/rack/utils.rb:16: warning: regexp match /.../n against to UTF-8 string
+  gem 'timecop'
 end

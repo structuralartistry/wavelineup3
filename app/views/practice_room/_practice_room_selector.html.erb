@@ -2,6 +2,7 @@
 
 	$(document).ready(function() {
 		set_practice_room_section_and_buttons('practice_room_<%= params[:visible_section] %>');
+    $('.visit_notes').hide();
 	});
 
 	function set_practice_room_section_and_buttons(section_id) {
