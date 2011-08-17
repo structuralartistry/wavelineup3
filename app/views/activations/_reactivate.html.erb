@@ -1,5 +1,5 @@
 <li>
   <%= "Your account is not active. Please check your email for activation link or click" %>
-  <%= link_to 'here', resend_activation_path(User.find_by_email(params[:user_session][:email]).perishable_token) %>
+  <%= link_to 'here', resend_activation_path(User.find_by_email(params[:email]).perishable_token) %>
   <%= "for the link to be resent." %>
 </li>

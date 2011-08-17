@@ -3,9 +3,7 @@
 <head>
   <title>WaveLineup<%= ' ::: ' + current_user.practice.name if current_user && current_user.practice %><%= ' ::: ' + current_user.email if current_user %></title>
 
-	<%= include_stylesheets :common %>
-	<%= include_javascripts :common %>
-  <%= csrf_meta_tag %>
+  <%= render :partial => '/layouts/general_includes' %>
 
 	<% if flash[:notice] %>
 	<script language='javascript'>
@@ -23,7 +21,7 @@
           <table class="nav_table">
             <tr>
               <td><%= image_tag 'wavelineup_logo.gif' %></td>
-							<% if controller_name=='user_sessions' %>
+							<% if controller_name=='logins' %>
 								<td><%= button_to 'Create My Practice', register_path, :method => :get, :class => 'bold selector_cell selector_cell_nav', :style => 'width: 3.0in;' %></td>
 					    <% end %>
         	  </tr>

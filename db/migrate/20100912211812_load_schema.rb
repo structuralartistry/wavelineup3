@@ -1,6 +1,16 @@
 class LoadSchema < ActiveRecord::Migration
   def self.up
 
+    create_table "feature_requests", :force => true do |t|
+      t.string   "name"
+      t.text     "description"
+      t.text     "notes"
+      t.integer  "popularity_priority_index"
+      t.date     "date_implemented"
+      t.datetime "created_at"
+      t.datetime "updated_at"
+    end
+
     create_table "feedback_supports", :force => true do |t|
       t.integer  "user_id"
       t.text     "message"
@@ -14,6 +24,15 @@ class LoadSchema < ActiveRecord::Migration
       t.integer  "referring_user_id"
       t.datetime "created_at"
       t.datetime "updated_at"
+      t.string   "token"
+    end
+
+    create_table "logins", :force => true do |t|
+      t.string   "email"
+      t.integer  "user_id"
+      t.boolean  "success"
+      t.datetime "created_at"
+      t.datetime "updated_at"
     end
 
     create_table "practice_members", :force => true do |t|
@@ -23,12 +42,15 @@ class LoadSchema < ActiveRecord::Migration
       t.string   "middle_name"
       t.datetime "created_at"
       t.datetime "updated_at"
+      t.datetime "last_practice_room_access"
     end
 
     create_table "practices", :force => true do |t|
       t.string   "name"
       t.datetime "created_at"
       t.datetime "updated_at"
+      t.string   "time_zone"
+      t.integer  "referring_practice_id"
     end
 
     create_table "roles", :force => true do |t|
@@ -125,7 +147,7 @@ class LoadSchema < ActiveRecord::Migration
 
     create_table "visits", :force => true do |t|
       t.integer  "practice_member_id"
-      t.date     "date"
+      t.datetime "date"
       t.string   "phase_1"
       t.string   "phase_1_gateway_1"
       t.string   "phase_1_gateway_2"
@@ -141,7 +163,7 @@ class LoadSchema < ActiveRecord::Migration
       t.string   "phase_2_level_of_care"
       t.string   "phase_2_direction"
       t.string   "sri_stage"
-      t.string   "sri_position"
+      t.string   "sri_position_a"
       t.string   "sri_level_of_care"
       t.string   "sri_organizing_field"
       t.string   "short_leg_side"
@@ -159,11 +181,11 @@ class LoadSchema < ActiveRecord::Migration
       t.text     "notes"
       t.datetime "created_at"
       t.datetime "updated_at"
+      t.string   "sri_position_b"
     end
 
   end
 
   def self.down
-    drop_table :users
   end
 end

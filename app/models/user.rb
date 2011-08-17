@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  acts_as_authentic
   belongs_to :practice
   belongs_to :role
   has_many :invitations, :foreign_key => 'referring_user_id'
@@ -8,13 +7,19 @@ class User < ActiveRecord::Base
   has_many :logins
 
   validates_presence_of :role
-
+  validates_uniqueness_of :email
+  validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
   validates_format_of :password, :with => /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/, :if => :password_present?, :message => 'must be at least 8 characters and contain at least one uppercase letter and one number'
+  validates_confirmation_of :password
+
+  attr_accessor :password, :password_confirmation
 
   attr_accessible :email, :password, :password_confirmation, :perishable_token, :persistence_token
 
-  def email=(umail)
-    write_attribute(:email, umail.downcase)
+  before_save :set_password_encryption
+
+  def email=(uemail)
+    write_attribute(:email, uemail.downcase)
   end
 
   # password not always present if updating a user, etc...anything beyond new user creation
@@ -41,12 +46,8 @@ class User < ActiveRecord::Base
   end
 
   def deliver_activation_instructions!
-    begin
-      reset_perishable_token!
-      SystemMailer.user_activation_instructions(self).deliver
-    rescue
-
-    end
+    reset_perishable_token!
+    SystemMailer.user_activation_instructions(self).deliver
   end
 
   def activate!
@@ -55,21 +56,13 @@ class User < ActiveRecord::Base
   end
 
   def deliver_welcome!
-    begin
-      reset_perishable_token!
-      SystemMailer.user_welcome_email(self).deliver
-    rescue
-
-    end
+    reset_perishable_token!
+    SystemMailer.user_welcome_email(self).deliver
   end
 
   def deliver_password_reset_instructions!
-    begin
-      reset_perishable_token!
-      SystemMailer.password_reset_instructions(self).deliver
-    rescue
-
-    end
+    reset_perishable_token!
+    SystemMailer.password_reset_instructions(self).deliver
   end
 
   def can_create_a_practice_member?
@@ -79,6 +72,20 @@ class User < ActiveRecord::Base
     false
   end
 
+  def set_password_encryption
+    if password_present?
+      self.password_salt = WlSecurity.friendly_token
+      self.crypted_password = WlSecurity.one_way_encrypt(self.password, self.password_salt)
+    end
+  end
+
+  def authenticate(email, password)
+    user_to_authenticate = User.find_by_email(email)
+    if user_to_authenticate
+      return true if user_to_authenticate.crypted_password == WlSecurity.one_way_encrypt(password, user_to_authenticate.password_salt)
+    end
+    return false
+  end
 
   def authorize(controller_name, action_name)
     if self.role
@@ -122,6 +129,19 @@ class User < ActiveRecord::Base
     when 'invitations'
       if current_role == 'guest' || current_role == 'sysadmin'
         return set_autorize_failure_value(LOGIN_NOTICE)
+      end
+      return authorize_success_message
+
+    when 'logins'
+      case current_role
+      when 'guest'
+        if action_name == 'destroy'
+          return set_autorize_failure_value("You are not logged in to the system")
+        end
+      else
+        if action_name != 'destroy'
+          return set_autorize_failure_value("You are already logged in to the system")
+        end
       end
       return authorize_success_message
 
@@ -188,19 +208,6 @@ class User < ActiveRecord::Base
       end
       return authorize_success_message
 
-    when 'user_sessions'
-      case current_role
-      when 'guest'
-        if action_name == 'destroy'
-          return set_autorize_failure_value("You are not logged in to the system")
-        end
-      else
-        if action_name != 'destroy'
-          return set_autorize_failure_value("You are already logged in to the system")
-        end
-      end
-      return authorize_success_message
-
     when 'users'
       if current_role == 'guest'
         return set_autorize_failure_value(LOGIN_NOTICE)
@@ -221,6 +228,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def reset_perishable_token!
+    self.perishable_token = WlSecurity.friendly_token
+    self.save
+    self.perishable_token
+  end
 
   private
 
@@ -231,8 +243,5 @@ class User < ActiveRecord::Base
   def set_autorize_failure_value(failure_message)
     return { :success => false, :failure_message => failure_message}
   end
-
-
-
 
 end

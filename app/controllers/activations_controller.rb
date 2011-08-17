@@ -1,17 +1,18 @@
 class ActivationsController < ApplicationController
 
   def create
-    @user = User.find_using_perishable_token(params[:activation_code], 1.week)
+    @user = User.find_by_perishable_token(params[:activation_code])
+    @user.reset_perishable_token! # for security
     if @user
       if @user.active?
         flash[:notice] = "This user is already active. You have been logged in to the system."
-        UserSession.create(@user, false) # Log user in manually
+        session[:current_user] = @user
         @user.deliver_welcome!
         redirect_to home_path
       else
         if @user.activate!
           flash[:notice] = "Your account has been activated"
-          UserSession.create(@user, false) # Log user in manually
+          session[:current_user] = @user
           @user.deliver_welcome!
           redirect_to home_path
         else

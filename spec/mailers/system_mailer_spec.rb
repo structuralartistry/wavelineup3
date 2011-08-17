@@ -3,11 +3,9 @@ require "spec_helper"
 describe SystemMailer do
 
   it "successfully sends activation instructions to a new user" do
-    user = Factory.build(:practice_user)
-    user.save
+    user = Factory(:practice_user, :perishable_token => '55555')
     email = SystemMailer.user_activation_instructions(user).deliver
     ActionMailer::Base.deliveries.size.should == 1
-
     email.to.should == [user.email]
     email.subject.should == 'User activation for WaveLineup'
     email.encoded.should =~ /To activate your user please follow this link:<\/p>/
@@ -26,12 +24,9 @@ describe SystemMailer do
   end
 
   it "successfully sends password reset instructions to the requesting user" do
-    user = Factory.create(:practice_user)
-    user.perishable_token = "55555"
-    user.save
+    user = Factory(:practice_user, :perishable_token => '55555')
     email = SystemMailer.password_reset_instructions(user).deliver
     ActionMailer::Base.deliveries.size.should == 1
-
     email.to.should == [user.email]
     email.subject.should == "Password Reset for WaveLineup"
     email.encoded.should =~ /Please follow this link to reset your password:/

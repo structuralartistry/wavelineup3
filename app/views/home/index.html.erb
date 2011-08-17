@@ -1,3 +1,5 @@
+<% sysadmin_stats_lookback = 2.days %>
+
 <span class='home_intro app_color'><%= flash[:notice] %></span>
 
 <table>
@@ -70,7 +72,7 @@
             <tr>
               <th colspan='3'>SYSADMIN</th>
             </tr>
-            <% practices_added_today = Practice.where('created_at >= ?', Time.zone.now-SYSADMIN_STATS_LOOKBACK) %>
+            <% practices_added_today = Practice.where('created_at >= ?', Time.zone.now-sysadmin_stats_lookback) %>
             <tr>
               <td class='label_light' align="center" colspan='2'>
                 Practices/today
@@ -89,26 +91,26 @@
               <td class='label_light' align="center" colspan='2'>
                 PMs/today
               </td>
-              <td align="center" colspan='2'><%= PracticeMember.count %>/<%= PracticeMember.where('created_at >= ?', Time.zone.now-SYSADMIN_STATS_LOOKBACK).all.count %></td>
+              <td align="center" colspan='2'><%= PracticeMember.count %>/<%= PracticeMember.where('created_at >= ?', Time.zone.now-sysadmin_stats_lookback).all.count %></td>
             </tr>
             <tr>
               <td class='label_light' align="center" colspan='2'>
                 Visits/today
               </td>
-              <td align="center" colspan='2'><%= Visit.count %>/<%= Visit.where('created_at >= ?', Time.zone.now-SYSADMIN_STATS_LOOKBACK).all.count %></td>
+              <td align="center" colspan='2'><%= Visit.count %>/<%= Visit.where('created_at >= ?', Time.zone.now-sysadmin_stats_lookback).all.count %></td>
             </tr>
             <tr>
               <td class='label_light' align="center" colspan='2'>
                 Users/today
               </td>
-              <td align="center" colspan='2'><%= User.count %>/<%= User.where('created_at >= ?', Time.zone.now-SYSADMIN_STATS_LOOKBACK).all.count %></td>
+              <td align="center" colspan='2'><%= User.count %>/<%= User.where('created_at >= ?', Time.zone.now-sysadmin_stats_lookback).all.count %></td>
             </tr>
             <tr>
               <td class='label_light' align="center" colspan='2'>
                 Logins today/bad
               </td>
-              <% failed_logins_today = Login.where('created_at >= ? AND success != ?', Time.zone.now-SYSADMIN_STATS_LOOKBACK, true) %>
-              <td align="center" colspan='2'><%= Login.where('created_at >= ?', Time.zone.now-SYSADMIN_STATS_LOOKBACK).all.count %>/<%= failed_logins_today.all.count %></td>
+              <% failed_logins_today = Login.where('created_at >= ? AND success != ?', Time.zone.now-sysadmin_stats_lookback, true) %>
+              <td align="center" colspan='2'><%= Login.where('created_at >= ?', Time.zone.now-sysadmin_stats_lookback).all.count %>/<%= failed_logins_today.all.count %></td>
             </tr>
             <tr>
               <td class='label_light' align="center" colspan='3'>
@@ -116,7 +118,7 @@
               </td>
             </tr>
             <% Practice.all.each do |practice| %>
-              <tr><td><%= practice.name %></td><td align='center'><% total_logins = 0; practice.users.each {|user| total_logins += user.logins.where('created_at >= ?', Time.zone.now-SYSADMIN_STATS_LOOKBACK).count}; %><%= total_logins %></td><td><% last_login = Login.joins(:user).where('users.practice_id=?', practice.id).order('logins.created_at DESC').limit(1).first %> <%= last_login.created_at.strftime('%m-%d-%y') if last_login %></td></tr>
+              <tr><td><%= practice.name %></td><td align='center'><% total_logins = 0; practice.users.each {|user| total_logins += user.logins.where('created_at >= ?', Time.zone.now-sysadmin_stats_lookback).count}; %><%= total_logins %></td><td><% last_login = Login.joins(:user).where('users.practice_id=?', practice.id).order('logins.created_at DESC').limit(1).first %> <%= last_login.created_at.strftime('%m-%d-%y') if last_login %></td></tr>
             <% end %>
             <tr>
               <td class='label_light' align="center" colspan='3'>

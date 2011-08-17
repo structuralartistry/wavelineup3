@@ -3,9 +3,7 @@
 <head>
   <title>WaveLineup<%= ' ::: ' + current_user.practice.name if current_user && current_user.practice %><%= ' ::: ' + current_user.email if current_user %></title>
 
-	<%= include_stylesheets :common, :media => :all %>
-	<%= include_javascripts :common %>
-  <%= csrf_meta_tag %>
+  <%= render :partial => '/layouts/general_includes' %>
 
 	<% if flash[:notice] %>
 	<script language='javascript'>

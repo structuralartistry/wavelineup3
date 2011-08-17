@@ -21,7 +21,7 @@ RSpec.configure do |config|
   config.mock_with :rspec
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -34,7 +34,6 @@ RSpec.configure do |config|
 end
 
 def login_user(user_factory, options = {})
-
   # could create a practice outside of this and assign it in to this user by practice_id in the options hash,
   # but if does not exist then we create a practice for this user
   if user_factory != "sysadmin_user" # sysadmin does not have a practice
@@ -46,7 +45,7 @@ def login_user(user_factory, options = {})
   end
 
   @logged_in_user = Factory.create(user_factory, options)
-  @controller.stub!(:current_user).and_return(@logged_in_user)
+  session[:current_user] = @logged_in_user
   @logged_in_user
 end
 
@@ -56,5 +55,6 @@ def logout_user
   @logged_in_user
 end
 
-
-
+RSpec.configure do |config|
+  config.after(:each) { SystemError.all.each {|error| puts "**SYSTEM ERROR**: #{error.inspect}"}; SystemError.delete_all }
+end

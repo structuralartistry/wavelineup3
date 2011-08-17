@@ -31,6 +31,14 @@ describe User do
   it { should_not allow_value('pass').for(:password)}
   it { should_not allow_value('11111111').for(:password)}
 
+  it "should validate password confirmation matches" do
+    user = Factory.build(:user)
+    user.password = STANDARD_TEST_PASSWORD
+    user.password_confirmation = BAD_STANDARD_TEST_PASSWORD
+    user.valid?.should == false
+    user.errors[:password].empty?.should eq(false)
+  end
+
   it { should_not allow_mass_assignment_of(:crypted_password)}
   it { should_not allow_mass_assignment_of(:password_salt)}
   it { should_not allow_mass_assignment_of(:practice_id)}
@@ -57,6 +65,9 @@ describe User do
       user.authorize('home', 'privacy_policy')[:success].should == true
       user.authorize('home', 'about')[:success].should == true
       user.authorize('invitations', 'create')[:success].should == false
+      user.authorize('logins', 'new')[:success].should == true
+      user.authorize('logins', 'create')[:success].should == true
+      user.authorize('logins', 'destroy')[:success].should == false
       user.authorize('password_resets', 'new')[:success].should == true
       user.authorize('password_resets', 'create')[:success].should == true
       user.authorize('password_resets', 'edit')[:success].should == true
@@ -79,9 +90,6 @@ describe User do
       user.authorize('reports', 'show')[:success].should == false
       user.authorize('travel_cards', 'edit')[:success].should == false
       user.authorize('travel_cards', 'update')[:success].should == false
-      user.authorize('user_sessions', 'new')[:success].should == true
-      user.authorize('user_sessions', 'create')[:success].should == true
-      user.authorize('user_sessions', 'destroy')[:success].should == false
       user.authorize('users', 'new')[:success].should == false
       user.authorize('users', 'edit')[:success].should == false
       user.authorize('users', 'create')[:success].should == false
@@ -107,6 +115,9 @@ describe User do
       user.authorize('home', 'privacy_policy')[:success].should == true
       user.authorize('home', 'about')[:success].should == true
       user.authorize('invitations', 'create')[:success].should == false
+      user.authorize('logins', 'new')[:success].should == false
+      user.authorize('logins', 'create')[:success].should == false
+      user.authorize('logins', 'destroy')[:success].should == true
       user.authorize('password_resets', 'new')[:success].should == false
       user.authorize('password_resets', 'create')[:success].should == false
       user.authorize('password_resets', 'edit')[:success].should == false
@@ -129,9 +140,6 @@ describe User do
       user.authorize('reports', 'show')[:success].should == false
       user.authorize('travel_cards', 'edit')[:success].should == true
       user.authorize('travel_cards', 'update')[:success].should == true
-      user.authorize('user_sessions', 'new')[:success].should == false
-      user.authorize('user_sessions', 'create')[:success].should == false
-      user.authorize('user_sessions', 'destroy')[:success].should == true
       user.authorize('users', 'new')[:success].should == true
       user.authorize('users', 'edit')[:success].should == true
       user.authorize('users', 'create')[:success].should == true
@@ -157,6 +165,9 @@ describe User do
       user.authorize('home', 'privacy_policy')[:success].should == true
       user.authorize('home', 'about')[:success].should == true
       user.authorize('invitations', 'create')[:success].should == true
+      user.authorize('logins', 'new')[:success].should == false
+      user.authorize('logins', 'create')[:success].should == false
+      user.authorize('logins', 'destroy')[:success].should == true
       user.authorize('password_resets', 'new')[:success].should == false
       user.authorize('password_resets', 'create')[:success].should == false
       user.authorize('password_resets', 'edit')[:success].should == false
@@ -179,9 +190,6 @@ describe User do
       user.authorize('reports', 'show')[:success].should == true
       user.authorize('travel_cards', 'edit')[:success].should == true
       user.authorize('travel_cards', 'update')[:success].should == true
-      user.authorize('user_sessions', 'new')[:success].should == false
-      user.authorize('user_sessions', 'create')[:success].should == false
-      user.authorize('user_sessions', 'destroy')[:success].should == true
       user.authorize('users', 'new')[:success].should == true
       user.authorize('users', 'edit')[:success].should == true
       user.authorize('users', 'create')[:success].should == true
@@ -207,6 +215,9 @@ describe User do
       user.authorize('home', 'privacy_policy')[:success].should == true
       user.authorize('home', 'about')[:success].should == true
       user.authorize('invitations', 'create')[:success].should == true
+      user.authorize('logins', 'new')[:success].should == false
+      user.authorize('logins', 'create')[:success].should == false
+      user.authorize('logins', 'destroy')[:success].should == true
       user.authorize('password_resets', 'new')[:success].should == false
       user.authorize('password_resets', 'create')[:success].should == false
       user.authorize('password_resets', 'edit')[:success].should == false
@@ -229,9 +240,6 @@ describe User do
       user.authorize('reports', 'show')[:success].should == true
       user.authorize('travel_cards', 'edit')[:success].should == true
       user.authorize('travel_cards', 'update')[:success].should == true
-      user.authorize('user_sessions', 'new')[:success].should == false
-      user.authorize('user_sessions', 'create')[:success].should == false
-      user.authorize('user_sessions', 'destroy')[:success].should == true
       user.authorize('users', 'new')[:success].should == true
       user.authorize('users', 'edit')[:success].should == true
       user.authorize('users', 'create')[:success].should == true
@@ -357,4 +365,64 @@ describe User do
     user.email.should eq('dk.kahn@gmail.com')
   end
 
+  it "should accept the legacy authlogic authentication information" do
+    # test a legacy user
+    #ruby-1.9.2-p290 :006 > usr.crypted_password
+    # => "20705a461cc2f3af634e886c445c220ea4691a2a37f601d9aab9796ad298c2a699d2a1d38c3b45acd6c6854ef2092a314f6fc654c08ceeff684952436f5c6ac6"
+    #ruby-1.9.2-p290 :007 > usr.password_salt
+    # => "vvfWf7PV6i2hQmevkPUC"
+    clear_text_password = 'Password1'
+    user = User.new
+    user.email = 'system@wavelineup.com'
+    user.crypted_password = '20705a461cc2f3af634e886c445c220ea4691a2a37f601d9aab9796ad298c2a699d2a1d38c3b45acd6c6854ef2092a314f6fc654c08ceeff684952436f5c6ac6'
+    user.password_salt = 'vvfWf7PV6i2hQmevkPUC'
+    user.role = Role.find_by_name('sysadmin')
+    user.active = true
+    user.save!
+
+    user.authenticate(user.email, clear_text_password).should == true
+    user.authenticate(user.email, 'BadPassword1').should == false
+
+    # test another legacy user to be sure
+    #ruby-1.9.2-p290 :016 > user.crypted_password
+    # => "343a995b40bfb8a52a49c91816ee91fd3cf48918c8e06991051282be247dc74ba0d5619fe03b6b5d08c195334400113cc601f9b6bf3aceec9907e877d0d8a39f"
+    #ruby-1.9.2-p290 :017 > user.password_salt
+    # => "-aVdvAFgez8fjPZbf5h6"
+    clear_text_password = 'Password1'
+    user = User.new
+    user.email = 'dk.kahn@gmail.com'
+    user.crypted_password = '343a995b40bfb8a52a49c91816ee91fd3cf48918c8e06991051282be247dc74ba0d5619fe03b6b5d08c195334400113cc601f9b6bf3aceec9907e877d0d8a39f'
+    user.password_salt = '-aVdvAFgez8fjPZbf5h6'
+    user.role = Role.find_by_name('sysadmin')
+    user.active = true
+    user.save!
+
+    user.authenticate(user.email, clear_text_password).should == true
+    user.authenticate(user.email, 'BadPassword1').should == false
+  end
+
+  it "should create authenticable crypted password and salt for a new user" do
+    clear_text_password = 'Password1'
+    user = Factory(:practice_admin_user)
+    user.reload
+    user.crypted_password.should_not eq(nil)
+    user.password_salt.should_not eq(nil)
+    user.authenticate(user.email, clear_text_password).should == true
+  end
+
+  it "should create/reset perishable token" do
+    user = Factory(:practice_admin_user)
+    user.perishable_token.empty?.should  eq(true)
+    perishable_token = user.reset_perishable_token!
+    user.perishable_token.should_not eq(nil)
+    user.reset_perishable_token!.should_not eq(perishable_token)
+  end
+
+  it "should deliver password reset instructions" do
+    ActionMailer::Base.deliveries.clear
+    ActionMailer::Base.deliveries.size.should eq(0)
+    user = Factory(:practice_admin_user)
+    user.deliver_password_reset_instructions!
+    ActionMailer::Base.deliveries.size.should eq(1)
+  end
 end

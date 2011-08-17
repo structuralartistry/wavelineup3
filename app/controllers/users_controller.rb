@@ -11,14 +11,14 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
   end
-  
+
   def create
     @user = User.new(params[:user])
     @user.practice_id = current_user.practice.id
     @user.role_id = Role.find_by_name('practice user').id
-   
+
     respond_to do |format|
-      if @user.save_without_session_maintenance 
+      if @user.save
         @user.deliver_activation_instructions!
         format.html { redirect_to(edit_practice_path(current_user.practice.id), :notice => "User was successfully created. Please check email for #{@user.email} for the activation link.") }
       else
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.get_by_id_restricted_by_user(params[:id], current_user)    
+    @user = User.get_by_id_restricted_by_user(params[:id], current_user)
 
     respond_to do |format|
       if @user != current_user

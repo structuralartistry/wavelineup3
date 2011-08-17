@@ -9,7 +9,7 @@ class Invitation < ActiveRecord::Base
   private
 
   def create_token
-    self.token = rand(36**8).to_s(36).upcase
+    self.token = WlSecurity.friendly_token
     create_token if Invitation.find_by_token(self.token)
   end
 

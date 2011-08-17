@@ -1,3 +1,14 @@
+// This is a manifest file that'll be compiled into including all the files listed below.
+// Add new JavaScript/Coffee code in separate files in this directory and they'll automatically
+// be included in the compiled file accessible from http://example.com/assets/application.js
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// the compiled file.
+//
+//= require jquery
+//= require jquery_ujs
+//= require jquery-ui
+//= require_tree .
+
 $(document).ready(function() {
   initialize_page();
 });
@@ -6,21 +17,6 @@ function initialize_page() {
 	$('.hidden').hide();
 
   ajax_links_and_forms();
-
-  // no select - this makes the text of any element with this class not selectable
-	$(function(){
-		$.extend($.fn.disableTextSelect = function() {
-			return this.each(function(){
-				if($.browser.mozilla){//Firefox
-					$(this).css('MozUserSelect','none');
-				}else if($.browser.msie){//IE
-					$(this).bind('selectstart',function(){return false;});
-				}else{//Opera, etc.
-					$(this).mousedown(function(){return false;});
-				}
-			});
-		});
-	});
 
   $('h1').disableTextSelect();
   $('label').disableTextSelect();

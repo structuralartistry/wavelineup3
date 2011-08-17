@@ -49,7 +49,7 @@ feature "User Management Feature", %q{
   end
 
   scenario "if user tries to log in with inactivated user, they receive a message and can request the activation link to be resent" do
-    Factory.create(:practice_user)
+    Factory.create(:practice_user, :perishable_token => '123456')
 
     click_selector_cell('Edit Practice')
     click_selector_cell('New User')
@@ -74,6 +74,7 @@ feature "User Management Feature", %q{
     fill_in('Email', :with => new_user_email)
     fill_in('Password', :with => 'Password1')
     click_selector_cell('Submit')
+
     page.has_content?('Your account is not active. Please check your email for activation link or click').should == true
 
     click_link('here')

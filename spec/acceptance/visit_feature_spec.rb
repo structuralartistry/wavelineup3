@@ -700,6 +700,7 @@ feature "Visit Feature", %q{
     end
 
     scenario "the visit can be deleted" do
+      tell_brower_to_auto_accept_delete
       click_selector_cell('Delete')
       has_flash_notice?('Visit successfully deleted').should == true
 
