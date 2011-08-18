@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100912211812) do
+ActiveRecord::Schema.define(:version => 20110817204239) do
 
   create_table "feature_requests", :force => true do |t|
     t.string   "name"
@@ -140,17 +140,9 @@ ActiveRecord::Schema.define(:version => 20100912211812) do
     t.string   "email"
     t.string   "crypted_password"
     t.string   "password_salt"
-    t.string   "persistence_token"
-    t.integer  "login_count"
-    t.integer  "failed_login_count"
-    t.datetime "last_request_at"
-    t.datetime "current_login_at"
-    t.datetime "last_login_at"
-    t.datetime "current_login_ip"
-    t.datetime "last_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "perishable_token",   :default => "", :null => false
+    t.string   "perishable_token", :default => "", :null => false
     t.integer  "practice_id"
     t.integer  "role_id"
     t.boolean  "active"
