@@ -9,6 +9,7 @@ gem 'pg'
 
 gem 'validates_timeliness', '~> 3.0.2'
 gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'kaminari'
 
 # Gems used only for assets and not required
 # in production environments by default.
