@@ -229,7 +229,7 @@ feature "Visit List Feature", %q{
         has_text?('testing_token_16', 'td').should eq(true)
       end
 
-      it "should still render the New PM, Find and Lineup left column buttons after selecting another paginated page", :focus => true do
+      it "should still render the New PM, Find and Lineup left column buttons after selecting another paginated page" do
         visit(@practice_room_page)
         click_selector_cell('Visit List')
 
