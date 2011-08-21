@@ -17,8 +17,8 @@
 			<td class='label'>Dir</td>
       <td style='display: none'></td>
 		</tr>
-		<% Visit.where("practice_member_id = #{@practice_member.id}").order("date DESC").all.each do |visit| %>
-      <tr id='<%= visit.id %>' class='selector_cell' onClick="window.location.href='/practice_room/<%= @practice_member.id %>/visit/<%= visit.id %>'">
+		<% @visit_list.all.each do |visit| %>
+      <tr id='visit_<%= visit.id %>' class='selector_cell' onClick="window.location.href='/practice_room/<%= @practice_member.id %>/visit/<%= visit.id %>'">
         <td align='center'><%= visit.date %></td>
         <td align='center'><%= visit.phase_1 %></td>
         <td align='center'><%= visit.phase_1_level_of_care %></td>
@@ -40,3 +40,5 @@
 <% else %>
 	<p class='bold'>No Visits on record for this Practice Member</p>
 <% end %>
+<br>
+<%= paginate @visit_list, :window => 2, :params => {:controller => 'visits', :action => 'index', :id => @practice_member.id } %>

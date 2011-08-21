@@ -61,7 +61,7 @@ feature "Practice Management Feature", %q{
 
       selector_cell_present?('Export Practice Data').should == true
 
-      click_selector_cell('Export Practice Data')
+      #click_selector_cell('Export Practice Data')
     end
 
   end

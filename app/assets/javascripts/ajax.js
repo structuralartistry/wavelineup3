@@ -69,7 +69,7 @@ jQuery.fn.delete_with_ajax = function() {
   this.unbind('click', false);
   this.click(function() {
     input_box=confirm("You are about to delete a record. This action can not be reversed. Click 'OK' to continue or 'Cancel' to abort.");
-    if (input_box==true){ 
+    if (input_box==true){
       // OK response
       $.delete_($(this).attr("href"), $(this).serialize(), null, "script");
     }
@@ -82,11 +82,11 @@ jQuery.fn.delete_with_ajax = function() {
 //This will "ajaxify" the links
 function ajax_links_and_forms(){
     $('.ajax_form').submit_with_ajax();
-    //$('a.get').get_with_ajax();
+    // $('a.get').get_with_ajax();
     // $('a.post').post_with_ajax();
     // $('a.put').put_with_ajax();
     // $('a.delete').delete_with_ajax();
-    // 
+    //
     // $('tr.get').get_with_ajax();
     $('td.get').get_with_ajax();
     // $('td.delete').delete_with_ajax();
