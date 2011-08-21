@@ -7,7 +7,7 @@ gem 'pg'
 
 # gem 'authlogic'
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'  # standard authlogic broken
-
+gem 'kaminari'
 gem 'validates_timeliness', '~> 3.0.2'
 
 gem 'yui-compressor'

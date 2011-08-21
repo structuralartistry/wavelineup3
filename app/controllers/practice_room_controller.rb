@@ -23,7 +23,7 @@ class PracticeRoomController < ApplicationController
         redirect_to "/practice_room/#{@practice_member.id}/visit/#{@visit.id}" if @visit
       end
 
-      @visit_list = Visit.where(['practice_member_id=?', @practice_member.id]).order('date DESC').all
+      @visit_list = Visit.where(['practice_member_id=?', @practice_member.id]).order('date DESC').page(nil).per(7)
 
       acceptable_sections = %w(visit visit_list travel_card)
       if !acceptable_sections.include?(params[:visible_section])

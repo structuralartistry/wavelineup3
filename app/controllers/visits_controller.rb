@@ -1,5 +1,10 @@
 class VisitsController < ApplicationController
 
+  def index
+    @practice_member = PracticeMember.get_by_id_restricted_by_user(params[:id], current_user)
+    @visit_list = Visit.where(['practice_member_id=?', @practice_member.id]).order('date DESC').page(params[:page]).per(7)
+  end
+
   def update
     @visit = Visit.get_by_id_restricted_by_user(params[:id], current_user)
 

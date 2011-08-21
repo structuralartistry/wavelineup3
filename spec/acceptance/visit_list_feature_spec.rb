@@ -83,7 +83,7 @@ feature "Visit List Feature", %q{
       visit(@practice_room_page)
       click_selector_cell('Visit List')
 
-      click_selector_cell("#{visit.id}")
+      click_selector_cell("visit_#{visit.id}")
 
       verify_visit_loaded(visit.id)
     end
@@ -110,6 +110,125 @@ feature "Visit List Feature", %q{
       click_selector_cell('More')
       selector_cell_selected?('More').should == false
       has_text?(visit.notes, 'span').should eq(false)
+    end
+
+    context "it paginates the visits", :js => true do
+
+      before(:each) do
+        unique_number = 1
+        20.times { Factory(:visit, :practice_member => @practice_member, :sri_stage => "testing_token_#{unique_number}"); unique_number+=1; }
+      end
+
+      it "should show the pagination selector" do
+        visit(@practice_room_page)
+        click_selector_cell('Visit List')
+
+        selector_cell_present?('First').should eq(false)
+        selector_cell_present?('Prev').should eq(false)
+        selector_cell_present?('1').should eq(true)
+        selector_cell_present?('2').should eq(true)
+        selector_cell_present?('3').should eq(true)
+        selector_cell_present?('4').should eq(false) # should only be 3 paginated pages
+        selector_cell_present?('5').should eq(false) # should only be 3 paginated pages
+        selector_cell_present?('Next').should eq(true)
+        selector_cell_present?('Last').should eq(true)
+
+        click_selector_cell('2')
+
+        selector_cell_present?('First').should eq(true)
+        selector_cell_present?('Prev').should eq(true)
+        selector_cell_present?('1').should eq(true)
+        selector_cell_present?('2').should eq(true)
+        selector_cell_present?('3').should eq(true)
+        selector_cell_present?('4').should eq(false) # should only be 3 paginated pages
+        selector_cell_present?('5').should eq(false) # should only be 3 paginated pages
+        selector_cell_present?('Next').should eq(true)
+        selector_cell_present?('Last').should eq(true)
+      end
+
+      it "should show the current paginated page in the selector" do
+        visit(@practice_room_page)
+        click_selector_cell('Visit List')
+
+        selector_cell_selected?('1').should eq(true)
+        selector_cell_selected?('3').should eq(false)
+
+        click_selector_cell('3')
+
+        selector_cell_selected?('1').should eq(false)
+        selector_cell_selected?('3').should eq(true)
+      end
+
+      it "should by default show the first paginated visits page containing 7 records" do
+        visit(@practice_room_page)
+        click_selector_cell('Visit List')
+
+        has_text?('testing_token_1', 'td').should eq(true)
+        has_text?('testing_token_2', 'td').should eq(true)
+        has_text?('testing_token_3', 'td').should eq(true)
+        has_text?('testing_token_4', 'td').should eq(true)
+        has_text?('testing_token_5', 'td').should eq(true)
+        has_text?('testing_token_6', 'td').should eq(true)
+        has_text?('testing_token_7', 'td').should eq(true)
+        has_text?('testing_token_8', 'td').should eq(false)
+        has_text?('testing_token_9', 'td').should eq(false)
+        has_text?('testing_token_10', 'td').should eq(false)
+        has_text?('testing_token_11', 'td').should eq(false)
+        has_text?('testing_token_12', 'td').should eq(false)
+        has_text?('testing_token_13', 'td').should eq(false)
+        has_text?('testing_token_14', 'td').should eq(false)
+        has_text?('testing_token_15', 'td').should eq(false)
+        has_text?('testing_token_16', 'td').should eq(false)
+      end
+
+      it "should get the second paginated visit page of 7 records" do
+        visit(@practice_room_page)
+        click_selector_cell('Visit List')
+
+        click_selector_cell('2')
+
+        has_text?('testing_token_1', 'td').should eq(false)
+        has_text?('testing_token_2', 'td').should eq(false)
+        has_text?('testing_token_3', 'td').should eq(false)
+        has_text?('testing_token_4', 'td').should eq(false)
+        has_text?('testing_token_5', 'td').should eq(false)
+        has_text?('testing_token_6', 'td').should eq(false)
+        has_text?('testing_token_7', 'td').should eq(false)
+        has_text?('testing_token_8', 'td').should eq(true)
+        has_text?('testing_token_9', 'td').should eq(true)
+        has_text?('testing_token_10', 'td').should eq(true)
+        has_text?('testing_token_11', 'td').should eq(true)
+        has_text?('testing_token_12', 'td').should eq(true)
+        has_text?('testing_token_13', 'td').should eq(true)
+        has_text?('testing_token_14', 'td').should eq(true)
+        has_text?('testing_token_15', 'td').should eq(false)
+        has_text?('testing_token_16', 'td').should eq(false)
+      end
+
+      it "should get the last paginated visit page" do
+        visit(@practice_room_page)
+        click_selector_cell('Visit List')
+
+        click_selector_cell('Last')
+
+        has_text?('testing_token_1', 'td').should eq(false)
+        has_text?('testing_token_2', 'td').should eq(false)
+        has_text?('testing_token_3', 'td').should eq(false)
+        has_text?('testing_token_4', 'td').should eq(false)
+        has_text?('testing_token_5', 'td').should eq(false)
+        has_text?('testing_token_6', 'td').should eq(false)
+        has_text?('testing_token_7', 'td').should eq(false)
+        has_text?('testing_token_8', 'td').should eq(false)
+        has_text?('testing_token_9', 'td').should eq(false)
+        has_text?('testing_token_10', 'td').should eq(false)
+        has_text?('testing_token_11', 'td').should eq(false)
+        has_text?('testing_token_12', 'td').should eq(false)
+        has_text?('testing_token_13', 'td').should eq(false)
+        has_text?('testing_token_14', 'td').should eq(false)
+        has_text?('testing_token_15', 'td').should eq(true)
+        has_text?('testing_token_16', 'td').should eq(true)
+      end
+
     end
 
   end

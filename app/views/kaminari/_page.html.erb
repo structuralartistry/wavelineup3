@@ -1,0 +1,10 @@
+<%# Link showing page number
+  - available local variables
+    page:          a page object for "this" page
+    url:           url to this page
+    current_page:  a page object for the currently displayed page
+    num_pages:     total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+-%>
+<td class='selector_cell selector_cell_text_single_character get<% if page==current_page %> current_selected<% end %>' href='<%= url %>'><%= page %></td>
