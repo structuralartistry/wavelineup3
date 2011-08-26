@@ -1,1 +1,1 @@
-say = (something) -> alert(something)
+@say = (message) -> alert message
