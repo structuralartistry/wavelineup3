@@ -11,13 +11,13 @@ feature "Practice Room Feature", %q{
 
   scenario "when I go to the practice_room/visit I see the visit area", :js => true do
     visit("/practice_room/#{@practice_member.id}/visit")
-    confirm_visit_loaded
+    confirm_visit_view_showing
   end
 
   scenario "when I go to practice_room/travel_card I see the travel card", :js => true do
     visit("/practice_room/#{@practice_member.id}/travel_card")
-    has_text?('Kahn, David N', 'h1')
-    confirm_travel_card_loaded
+    has_text?('Kahn, David N', 'h1').should eq(true)
+    confirm_travel_card_view_showing
   end
 
   scenario "when I go to practice_room/visit_list I see the visit list", :js => true do
@@ -38,25 +38,25 @@ feature "Practice Room Feature", %q{
     selector_cell_selected?('Visit').should == true
     selector_cell_selected?('Travel Card').should == false
     selector_cell_selected?('Visit List').should == false
-    confirm_visit_loaded
+    confirm_visit_view_showing
 
     click_selector_cell('Travel Card')
     selector_cell_selected?('Visit').should == false
     selector_cell_selected?('Travel Card').should == true
     selector_cell_selected?('Visit List').should == false
-    confirm_travel_card_loaded
+    confirm_travel_card_view_showing
 
     click_selector_cell('Visit List')
     selector_cell_selected?('Visit').should == false
     selector_cell_selected?('Travel Card').should == false
     selector_cell_selected?('Visit List').should == true
-    confirm_visit_list_loaded
+    confirm_visit_list_view_showing
 
     click_selector_cell('Visit')
     selector_cell_selected?('Visit').should == true
     selector_cell_selected?('Travel Card').should == false
     selector_cell_selected?('Visit List').should == false
-    confirm_visit_loaded
+    confirm_visit_view_showing
   end
 
 end

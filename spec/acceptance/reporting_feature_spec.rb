@@ -43,7 +43,7 @@ feature "Reporting Feature", %q{
 
   scenario "should be able to filter report by a specific practice member", :js => true do
     practice_member = Factory(:practice_member, :practice => @practice)
-    visit = Factory(:visit, :practice_member => practice_member)
+    visit = Factory(:visit, :practice_member => practice_member, :date => DateTime.now)
 
     # create another which should not return on report
     Factory(:practice_member, :practice => Factory(:practice_two))
@@ -146,7 +146,7 @@ feature "Reporting Feature", %q{
 
   scenario "it should show the correct fields for a visit on the report" do
     practice_member = Factory(:practice_member, :practice => @practice)
-    visit = Factory(:visit, :practice_member => practice_member)
+    visit = Factory(:visit, :practice_member => practice_member, :date => DateTime.now)
     visit('/reports/show?filter_practice_member=all&lookback_days=1')
 
     page.has_content?('Report for time period').should == true

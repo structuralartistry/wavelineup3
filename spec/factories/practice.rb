@@ -1,5 +1,5 @@
 Factory.define :practice do |p|
-  p.time_zone 'Eastern Time (US & Canada)'
+  p.time_zone 'UTC'
 end
 
 Factory.define :practice_one, :parent => :practice do |p|
@@ -8,7 +8,7 @@ end
 
 Factory.define :practice_two, :parent => :practice do |p|
   p.name 'Practice Two'
-  
+
 end
 
 Factory.define :practice_three, :parent => :practice do |p|

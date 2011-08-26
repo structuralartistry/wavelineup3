@@ -1,7 +1,7 @@
 Factory.define :visit do |v|
   # v.association :practice_member, :factory => :practice_member
   v.practice_member_id 1
-  v.date DateTime.now
+  v.date '2011-06-01 13:00'
   v.phase_1 '1 > 3'
   v.phase_1_gateway_1 'OCC'
   v.phase_1_gateway_2 'S1'
@@ -16,11 +16,6 @@ Factory.define :visit do |v|
   v.phase_2_gateway_2_affecting 'C1/C2'
   v.phase_2_level_of_care '1A'
   v.phase_2_direction 'F/E'
-  v.sri_stage '1'
-  v.sri_position_a '1'
-  v.sri_position_b '1'
-  v.sri_level_of_care '1A'
-  v.sri_organizing_field 'H1'
   v.short_leg_side 'L'
   v.short_leg_amount '0-0.5'
   v.heel_tension_level '1'
@@ -34,4 +29,20 @@ Factory.define :visit do |v|
   v.crest 'X'
   v.diagnosis 'I diagnose no diagnosis'
   v.notes 'I note no notes'
+
+  v.sri_session_1_stage '1'
+  v.sri_session_1_position_a '1'
+  v.sri_session_1_position_b '1'
+  v.sri_session_1_level_of_care '1A'
+  v.sri_session_1_organizing_field 'H1'
+  v.sri_session_2_stage '2'
+  v.sri_session_2_position_a '2'
+  v.sri_session_2_position_b '2'
+  v.sri_session_2_level_of_care '2A'
+  v.sri_session_2_organizing_field 'H2'
+  v.sri_session_3_stage '3'
+  v.sri_session_3_position_a '3'
+  v.sri_session_3_position_b '3'
+  v.sri_session_3_level_of_care '3A'
+  v.sri_session_3_organizing_field 'H3'
 end

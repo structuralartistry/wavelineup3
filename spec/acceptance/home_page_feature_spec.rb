@@ -31,7 +31,7 @@ feature "Home Page Feature", %q{
       confirm_home_page_loaded
       title_contains?("WaveLineup ::: #{practice.name} ::: #{practice.users[0].email}")
       has_text?('System', 'th').should == true
-      has_text?('Feature Requests', 'a')
+      has_text?('Feature Requests List', 'a').should eq(true)
     end
 
     scenario "Home page logged in as a practice user" do
@@ -40,7 +40,7 @@ feature "Home Page Feature", %q{
       confirm_home_page_loaded
       title_contains?("WaveLineup ::: #{practice.name} ::: #{practice.users[0].email}")
       has_text?('System', 'th').should == true
-      has_text?('Feature Requests', 'a')
+      has_text?('Feature Requests List', 'a').should eq(true)
     end
 
   end
@@ -66,7 +66,6 @@ feature "Home Page Feature", %q{
     fill_in("Email", :with => invitee_email)
     click_selector_cell('Send!')
 
-    has_text?("An invite has been sent to #{invitee_email}", 'p')
     selector_cell_present?('New PM').should == true # page gets reinitialized to reset the form and the send button as a selector cell, so make sure these are present
     selector_cell_present?('Find').should == true
     selector_cell_present?('Feedback/Support').should == true

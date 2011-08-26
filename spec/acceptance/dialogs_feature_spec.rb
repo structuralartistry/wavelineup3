@@ -82,21 +82,22 @@ feature "New Practice Member and Find dialog feature", %q{
       scenario "Find dialog navigation" do
         click_selector_cell('Find')
         click_selector_cell(@practice_member_name_one)
-        confirm_visit_loaded
+
+        confirm_visit_view_showing
 
         click_selector_cell('Find')
         click_selector_cell('Practice Room')
         click_selector_cell(@practice_member_name_one)
-        has_text?('Kahn, David N', 'h1')
+        has_text?('Kahn, David N', 'h1').should eq(true)
         selector_cell_present?('New Visit').should == true
 
         click_selector_cell('Find')
         click_selector_cell('Personal Info')
         click_selector_cell(@practice_member_name_one)
-        assert has_text?('Edit Practice Member', 'h1')
+        assert has_text?('Edit Practice Member', 'h1').should eq(true)
       end
 
-      scenario "Feedback and Support dialog operations", :js => true do
+      scenario "Feedback and Support dialog operations" do
         visit('/home')
         has_text?('Let us know how it is going or if you need some help!').should == false
         selector_cell_selected?('Feedback/Support').should == false
@@ -106,8 +107,6 @@ feature "New Practice Member and Find dialog feature", %q{
         has_text?('Feedback & Support', 'h1').should == true
         fill_in('Let us know how it is going or if you need some help!', :with => 'A comment provided')
         click_selector_cell('Send')
-
-        has_text?('Thanks for your message. We will respond promptly!', 'p')
 
         selector_cell_present?('New PM').should == true # page gets reinitialized to reset the form and the send button as a selector cell, so make sure these are present
         selector_cell_present?('Find').should == true
@@ -123,7 +122,7 @@ feature "New Practice Member and Find dialog feature", %q{
 
         click_selector_cell('Find')
         click_selector_cell(@practice_member_name_one)
-        confirm_visit_loaded
+        confirm_visit_view_showing
         selector_cell_present?('Lineup').should == true
         click_selector_cell('Lineup')
         assert selector_cell_present?(@practice_member_name_one)

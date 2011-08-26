@@ -4,7 +4,8 @@ feature "Visit Feature", %q{
 
 } do
 
-  context "test aspects of Visit", :js => true, :visit => true do
+  context "aspects of Visit", :js => true do
+
     before(:each) do
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
@@ -14,8 +15,11 @@ feature "Visit Feature", %q{
       visit("/practice_room/#{@practice_member.id}/visit/new")
       @practice_room_visit_page = page.current_url
 
-      has_text?('Kahn, David N', 'h1')
-      confirm_visit_loaded
+      page.current_url =~ /\d$/
+      @visit = Visit.find($&)
+
+      has_text?('Kahn, David N', 'h1').should eq(true)
+      confirm_visit_view_showing
     end
 
     scenario "I can change the entrainment date of the visit" do
@@ -75,7 +79,7 @@ feature "Visit Feature", %q{
 
 
       # phase 2
-      click_selector_cell('work_second_phase_button')
+      click_selector_cell('+ 2nd Phase')
 
       get_selector_cell_text('selected_phase_2').should == ''
       click_selector_cell('selected_phase_2')
@@ -126,7 +130,7 @@ feature "Visit Feature", %q{
 
 
       # phase 2
-      click_selector_cell('work_second_phase_button')
+      click_selector_cell('+ 2nd Phase')
 
       get_selector_cell_text('selected_phase_2').should == '1 > 2 C5'
       get_selector_cell_text('selected_phase_2_gateway_1').should == 'S1'
@@ -146,7 +150,7 @@ feature "Visit Feature", %q{
       get_selector_cell_text('selected_phase_1_direction').should == 'L/B'
 
       # phase 2
-      click_selector_cell('work_second_phase_button')
+      click_selector_cell('+ 2nd Phase')
       click_selector_cell('selected_phase_2')
       click_selector_cell('select_phase_3')
       get_selector_cell_text('selected_phase_2').should == '3'
@@ -168,7 +172,7 @@ feature "Visit Feature", %q{
       has_text?('Dir', 'td').should == false
 
       # phase 2
-      click_selector_cell('work_second_phase_button')
+      click_selector_cell('+ 2nd Phase')
       has_text?('Dir', 'td').should == true
       click_selector_cell('selected_phase_2')
       click_selector_cell('select_phase_5')
@@ -332,7 +336,7 @@ feature "Visit Feature", %q{
 
     scenario "click on mini-travel card opens the travel card view" do
       page.find(:xpath, "//div[@id='mini_travel_card']").click
-      confirm_travel_card_loaded
+      confirm_travel_card_view_showing
     end
 
     scenario "values for Tension can be set and autosave" do
@@ -401,102 +405,334 @@ feature "Visit Feature", %q{
 
     end
 
-    scenario "values for SRI can be set and autosave" do
+    context "SRI session information" do
 
-      get_selector_cell_text('sri_stage').should == ''
-      click_selector_cell('sri_stage')
-      click_selector_cell('select_sri_stage_3')
-      get_selector_cell_text('sri_stage').should == '3'
+      scenario "SRI session 2 and 3 should be hidden by default" do
+        %w(sri_session_2 sri_session_3).each do |sri_instance|
+          selector_cell_present?("#{sri_instance}_stage").should == false
+          selector_cell_present?("#{sri_instance}_position_a").should == false
+          selector_cell_present?("#{sri_instance}_position_b").should == false
+          selector_cell_present?("#{sri_instance}_level_of_care").should == false
+          selector_cell_present?("#{sri_instance}_organizing_field").should == false
+        end
+      end
 
-      get_selector_cell_text('sri_position_a').should == ''
-      click_selector_cell('sri_position_a')
-      click_selector_cell('select_sri_position_6')
-      get_selector_cell_text('sri_position_a').should == '6'
+      scenario "values for SRI can be set and autosave" do
 
-      get_selector_cell_text('sri_level_of_care').should == ''
-      click_selector_cell('sri_level_of_care')
-      click_selector_cell('select_level_of_care_2b')
-      get_selector_cell_text('sri_level_of_care').should == '2B'
+        # sri session 1
+        get_selector_cell_text('sri_session_1_stage').should == ''
+        click_selector_cell('sri_session_1_stage')
+        click_selector_cell('select_sri_stage_3')
+        get_selector_cell_text('sri_session_1_stage').should == '3'
 
-      get_selector_cell_text('sri_organizing_field').should == ''
-      click_selector_cell('sri_organizing_field')
-      click_selector_cell('select_organizing_field_h5')
-      get_selector_cell_text('sri_organizing_field').should == 'H5'
+        get_selector_cell_text('sri_session_1_position_a').should == ''
+        click_selector_cell('sri_session_1_position_a')
+        click_selector_cell('select_sri_position_1')
+        get_selector_cell_text('sri_session_1_position_a').should == '1'
 
-      # verify autosave
-      visit(@practice_room_visit_page)
-      get_selector_cell_text('sri_stage').should == '3'
-      get_selector_cell_text('sri_position_a').should == '6'
-      get_selector_cell_text('sri_level_of_care').should == '2B'
-      get_selector_cell_text('sri_organizing_field').should == 'H5'
+        get_selector_cell_text('sri_session_1_level_of_care').should == ''
+        click_selector_cell('sri_session_1_level_of_care')
+        click_selector_cell('select_level_of_care_1a')
+        get_selector_cell_text('sri_session_1_level_of_care').should == '1A'
 
-    end
+        get_selector_cell_text('sri_session_1_organizing_field').should == ''
+        click_selector_cell('sri_session_1_organizing_field')
+        click_selector_cell('select_organizing_field_h1')
+        get_selector_cell_text('sri_session_1_organizing_field').should == 'H1'
 
-    scenario "when SRI stage 1 is selected show two position selectors: peace and disconnection, they can be set and loaded" do
-      get_selector_cell_text('sri_position_a').should == ''
+        # sri session 2
+        click_selector_cell('+ SRI Session')
 
-      selector_cell_present?('sri_position_a').should == true
-      selector_cell_present?('sri_position_b').should == false
-      has_text?('Pos', 'td', 'label_sri_position_a')
-      has_text?('Pos', 'td', 'label_sri_position_b')
+        get_selector_cell_text('sri_session_2_stage').should == ''
+        click_selector_cell('sri_session_2_stage')
+        click_selector_cell('select_sri_stage_4')
+        get_selector_cell_text('sri_session_2_stage').should == '4'
 
-      click_selector_cell('sri_stage')
-      click_selector_cell('select_sri_stage_1')
-      selector_cell_present?('sri_position_a').should == true
-      selector_cell_present?('sri_position_b').should == true
-      has_text?('Peace', 'td', 'label_sri_position_a')
-      has_text?('Discon', 'td', 'label_sri_position_b')
+        get_selector_cell_text('sri_session_2_position_a').should == ''
+        click_selector_cell('sri_session_2_position_a')
+        click_selector_cell('select_sri_position_2')
+        get_selector_cell_text('sri_session_2_position_a').should == '2'
 
-      click_selector_cell('sri_position_a')
-      click_selector_cell('select_sri_position_3')
-      get_selector_cell_text('sri_position_a').should == '3'
-      click_selector_cell('sri_position_b')
-      click_selector_cell('select_sri_position_6')
-      get_selector_cell_text('sri_position_b').should == '6'
+        get_selector_cell_text('sri_session_2_level_of_care').should == ''
+        click_selector_cell('sri_session_2_level_of_care')
+        click_selector_cell('select_level_of_care_2a')
+        get_selector_cell_text('sri_session_2_level_of_care').should == '2A'
 
-      # test autosave and reload logic
-      visit(@practice_room_visit_page)
+        get_selector_cell_text('sri_session_2_organizing_field').should == ''
+        click_selector_cell('sri_session_2_organizing_field')
+        click_selector_cell('select_organizing_field_h2')
+        get_selector_cell_text('sri_session_2_organizing_field').should == 'H2'
 
-      selector_cell_present?('sri_position_a').should == true
-      selector_cell_present?('sri_position_b').should == true
-      has_text?('Peace', 'td', 'label_sri_position_a')
-      has_text?('Discon', 'td', 'label_sri_position_b')
-      get_selector_cell_text('sri_position_a').should == '3'
-      get_selector_cell_text('sri_position_b').should == '6'
+        # sri session 3
+        click_selector_cell('+ SRI Session')
 
-    end
+        get_selector_cell_text('sri_session_3_stage').should == ''
+        click_selector_cell('sri_session_3_stage')
+        click_selector_cell('select_sri_stage_5')
+        get_selector_cell_text('sri_session_3_stage').should == '5'
 
-    scenario "when SRI stage 2 is selected show two position selectors" do
-      get_selector_cell_text('sri_position_a').should == ''
+        get_selector_cell_text('sri_session_3_position_a').should == ''
+        click_selector_cell('sri_session_3_position_a')
+        click_selector_cell('select_sri_position_3')
+        get_selector_cell_text('sri_session_3_position_a').should == '3'
 
-      selector_cell_present?('sri_position_a').should == true
-      selector_cell_present?('sri_position_b').should == false
-      has_text?('Pos', 'td', 'label_sri_position_a')
-      has_text?('Pos', 'td', 'label_sri_position_b')
+        get_selector_cell_text('sri_session_3_level_of_care').should == ''
+        click_selector_cell('sri_session_3_level_of_care')
+        click_selector_cell('select_level_of_care_3a')
+        get_selector_cell_text('sri_session_3_level_of_care').should == '3A'
 
-      click_selector_cell('sri_stage')
-      click_selector_cell('select_sri_stage_2')
-      selector_cell_present?('sri_position_a').should == true
-      selector_cell_present?('sri_position_b').should == true
-      has_text?('Pos A', 'td', 'label_sri_position_a')
-      has_text?('Pos B', 'td', 'label_sri_position_b')
+        get_selector_cell_text('sri_session_3_organizing_field').should == ''
+        click_selector_cell('sri_session_3_organizing_field')
+        click_selector_cell('select_organizing_field_h3l')
+        get_selector_cell_text('sri_session_3_organizing_field').should == 'H3L'
 
-      click_selector_cell('sri_position_a')
-      click_selector_cell('select_sri_position_2')
-      get_selector_cell_text('sri_position_a').should == '2'
-      click_selector_cell('sri_position_b')
-      click_selector_cell('select_sri_position_4')
-      get_selector_cell_text('sri_position_b').should == '4'
+        selector_cell_present?('+ SRI Session').should eq(false)
 
-      # test autosave and reload logic
-      visit(@practice_room_visit_page)
 
-      selector_cell_present?('sri_position_a').should == true
-      selector_cell_present?('sri_position_b').should == true
-      has_text?('Pos A', 'td', 'label_sri_position_a')
-      has_text?('Pos B', 'td', 'label_sri_position_b')
-      get_selector_cell_text('sri_position_a').should == '2'
-      get_selector_cell_text('sri_position_b').should == '4'
+        # verify autosave
+        visit(@practice_room_visit_page)
+        # sri session 1
+        get_selector_cell_text('sri_session_1_stage').should == '3'
+        get_selector_cell_text('sri_session_1_position_a').should == '1'
+        get_selector_cell_text('sri_session_1_level_of_care').should == '1A'
+        get_selector_cell_text('sri_session_1_organizing_field').should == 'H1'
+
+        # sri session 2
+        get_selector_cell_text('sri_session_2_stage').should == '4'
+        get_selector_cell_text('sri_session_2_position_a').should == '2'
+        get_selector_cell_text('sri_session_2_level_of_care').should == '2A'
+        get_selector_cell_text('sri_session_2_organizing_field').should == 'H2'
+
+        # sri session 3
+        get_selector_cell_text('sri_session_3_stage').should == '5'
+        get_selector_cell_text('sri_session_3_position_a').should == '3'
+        get_selector_cell_text('sri_session_3_level_of_care').should == '3A'
+        get_selector_cell_text('sri_session_3_organizing_field').should == 'H3L'
+      end
+
+      scenario "when SRI stage 1 is selected show two position selectors: peace and disconnection, they can be set and loaded" do
+        # sri session 1
+        get_selector_cell_text('sri_session_1_position_a').should == ''
+
+        selector_cell_present?('sri_session_1_position_a').should == true
+        selector_cell_present?('sri_session_1_position_b').should == false
+        has_text?('Pos', 'td', 'label_sri_session_1_position_a').should == true
+        has_text?('Pos', 'td', 'label_sri_session_1_position_b').should == false
+
+        click_selector_cell('sri_session_1_stage')
+        click_selector_cell('select_sri_stage_1')
+        selector_cell_present?('sri_session_1_position_a').should == true
+        selector_cell_present?('sri_session_1_position_b').should == true
+        has_text?('Peace', 'td', 'label_sri_session_1_position_a').should eq(true)
+        has_text?('Discon', 'td', 'label_sri_session_1_position_b').should eq(true)
+
+        click_selector_cell('sri_session_1_position_a')
+        click_selector_cell('select_sri_position_3')
+        get_selector_cell_text('sri_session_1_position_a').should == '3'
+        click_selector_cell('sri_session_1_position_b')
+        click_selector_cell('select_sri_position_6')
+        get_selector_cell_text('sri_session_1_position_b').should == '6'
+
+        # sri session 2
+        click_selector_cell('+ SRI Session')
+
+        get_selector_cell_text('sri_session_2_position_a').should == ''
+
+        selector_cell_present?('sri_session_2_position_a').should == true
+        selector_cell_present?('sri_session_2_position_b').should == false
+        has_text?('Pos', 'td', 'label_sri_session_2_position_a').should == true
+        has_text?('Pos', 'td', 'label_sri_session_2_position_b').should == false
+
+        click_selector_cell('sri_session_2_stage')
+        click_selector_cell('select_sri_stage_1')
+        selector_cell_present?('sri_session_2_position_a').should == true
+        selector_cell_present?('sri_session_2_position_b').should == true
+        has_text?('Peace', 'td', 'label_sri_session_2_position_a').should eq(true)
+        has_text?('Discon', 'td', 'label_sri_session_2_position_b').should eq(true)
+
+        click_selector_cell('sri_session_2_position_a')
+        click_selector_cell('select_sri_position_3')
+        get_selector_cell_text('sri_session_2_position_a').should == '3'
+        click_selector_cell('sri_session_2_position_b')
+        click_selector_cell('select_sri_position_6')
+        get_selector_cell_text('sri_session_2_position_b').should == '6'
+
+        # sri session 3
+        click_selector_cell('+ SRI Session')
+
+        get_selector_cell_text('sri_session_3_position_a').should == ''
+
+        selector_cell_present?('sri_session_3_position_a').should == true
+        selector_cell_present?('sri_session_3_position_b').should == false
+        has_text?('Pos', 'td', 'label_sri_session_3_position_a').should == true
+        has_text?('Pos', 'td', 'label_sri_session_3_position_b').should == false
+
+        click_selector_cell('sri_session_3_stage')
+        click_selector_cell('select_sri_stage_1')
+        selector_cell_present?('sri_session_3_position_a').should == true
+        selector_cell_present?('sri_session_3_position_b').should == true
+        has_text?('Peace', 'td', 'label_sri_session_3_position_a').should eq(true)
+        has_text?('Discon', 'td', 'label_sri_session_3_position_b').should eq(true)
+
+        click_selector_cell('sri_session_3_position_a')
+        click_selector_cell('select_sri_position_3')
+        get_selector_cell_text('sri_session_3_position_a').should == '3'
+        click_selector_cell('sri_session_3_position_b')
+        click_selector_cell('select_sri_position_6')
+        get_selector_cell_text('sri_session_3_position_b').should == '6'
+
+
+        # verify autosave and reload logic
+        visit(@practice_room_visit_page)
+
+        # sri session 1
+        selector_cell_present?('sri_session_1_position_a').should == true
+        selector_cell_present?('sri_session_1_position_b').should == true
+        has_text?('Peace', 'td', 'label_sri_session_1_position_a').should eq(true)
+        has_text?('Discon', 'td', 'label_sri_session_1_position_b').should eq(true)
+        get_selector_cell_text('sri_session_1_position_a').should == '3'
+        get_selector_cell_text('sri_session_1_position_b').should == '6'
+
+        # sri session 2
+        selector_cell_present?('sri_session_2_position_a').should == true
+        selector_cell_present?('sri_session_2_position_b').should == true
+        has_text?('Peace', 'td', 'label_sri_session_2_position_a').should eq(true)
+        has_text?('Discon', 'td', 'label_sri_session_2_position_b').should eq(true)
+        get_selector_cell_text('sri_session_2_position_a').should == '3'
+        get_selector_cell_text('sri_session_2_position_b').should == '6'
+
+        # sri session 3
+        selector_cell_present?('sri_session_3_position_a').should == true
+        selector_cell_present?('sri_session_3_position_b').should == true
+        has_text?('Peace', 'td', 'label_sri_session_3_position_a').should eq(true)
+        has_text?('Discon', 'td', 'label_sri_session_3_position_b').should eq(true)
+        get_selector_cell_text('sri_session_3_position_a').should == '3'
+        get_selector_cell_text('sri_session_3_position_b').should == '6'
+      end
+
+      scenario "when SRI stage 2 is selected show two position selectors" do
+        # sri session 1
+        get_selector_cell_text('sri_session_1_position_a').should == ''
+
+        selector_cell_present?('sri_session_1_position_a').should == true
+        selector_cell_present?('sri_session_1_position_b').should == false
+        has_text?('Pos', 'td', 'label_sri_session_1_position_a').should eq(true)
+        has_text?('Pos', 'td', 'label_sri_session_1_position_b').should eq(false)
+
+        has_text?('Pos', 'td', 'label_sri_session_1_position_b')
+
+        click_selector_cell('sri_session_1_stage')
+        click_selector_cell('select_sri_stage_2')
+        selector_cell_present?('sri_session_1_position_a').should == true
+        selector_cell_present?('sri_session_1_position_b').should == true
+        has_text?('Pos A', 'td', 'label_sri_session_1_position_a').should eq(true)
+        has_text?('Pos B', 'td', 'label_sri_session_1_position_b').should eq(true)
+
+        click_selector_cell('sri_session_1_position_a')
+        click_selector_cell('select_sri_position_2')
+        get_selector_cell_text('sri_session_1_position_a').should == '2'
+        click_selector_cell('sri_session_1_position_b')
+        click_selector_cell('select_sri_position_4')
+        get_selector_cell_text('sri_session_1_position_b').should == '4'
+
+        # sri session 2
+        click_selector_cell('+ SRI Session')
+
+        get_selector_cell_text('sri_session_2_position_a').should == ''
+
+        selector_cell_present?('sri_session_2_position_a').should == true
+        selector_cell_present?('sri_session_2_position_b').should == false
+        has_text?('Pos', 'td', 'label_sri_session_2_position_a').should eq(true)
+        has_text?('Pos', 'td', 'label_sri_session_2_position_b').should eq(false)
+
+        click_selector_cell('sri_session_2_stage')
+        click_selector_cell('select_sri_stage_2')
+        selector_cell_present?('sri_session_2_position_a').should == true
+        selector_cell_present?('sri_session_2_position_b').should == true
+        has_text?('Pos A', 'td', 'label_sri_session_2_position_a').should eq(true)
+        has_text?('Pos B', 'td', 'label_sri_session_2_position_b').should eq(true)
+
+        click_selector_cell('sri_session_2_position_a')
+        click_selector_cell('select_sri_position_2')
+        get_selector_cell_text('sri_session_2_position_a').should == '2'
+        click_selector_cell('sri_session_2_position_b')
+        click_selector_cell('select_sri_position_4')
+        get_selector_cell_text('sri_session_2_position_b').should == '4'
+
+        # sri session 3
+        click_selector_cell('+ SRI Session')
+
+        get_selector_cell_text('sri_session_3_position_a').should == ''
+
+        selector_cell_present?('sri_session_3_position_a').should == true
+        selector_cell_present?('sri_session_3_position_b').should == false
+        has_text?('Pos', 'td', 'label_sri_session_3_position_a').should eq(true)
+        has_text?('Pos', 'td', 'label_sri_session_3_position_b').should eq(false)
+
+        click_selector_cell('sri_session_3_stage')
+        click_selector_cell('select_sri_stage_2')
+        selector_cell_present?('sri_session_3_position_a').should == true
+        selector_cell_present?('sri_session_3_position_b').should == true
+        has_text?('Pos A', 'td', 'label_sri_session_3_position_a').should eq(true)
+        has_text?('Pos B', 'td', 'label_sri_session_3_position_b').should eq(true)
+
+        click_selector_cell('sri_session_3_position_a')
+        click_selector_cell('select_sri_position_2')
+        get_selector_cell_text('sri_session_3_position_a').should == '2'
+        click_selector_cell('sri_session_3_position_b')
+        click_selector_cell('select_sri_position_4')
+        get_selector_cell_text('sri_session_3_position_b').should == '4'
+
+
+        # test autosave and reload logic
+        visit(@practice_room_visit_page)
+
+        # sri session 1
+        selector_cell_present?('sri_session_1_position_a').should == true
+        selector_cell_present?('sri_session_1_position_b').should == true
+        has_text?('Pos A', 'td', 'label_sri_session_1_position_a').should eq(true)
+        has_text?('Pos B', 'td', 'label_sri_session_1_position_b').should eq(true)
+        get_selector_cell_text('sri_session_1_position_a').should == '2'
+        get_selector_cell_text('sri_session_1_position_b').should == '4'
+
+        # sri session 2
+        selector_cell_present?('sri_session_2_position_a').should == true
+        selector_cell_present?('sri_session_2_position_b').should == true
+        has_text?('Pos A', 'td', 'label_sri_session_2_position_a').should eq(true)
+        has_text?('Pos B', 'td', 'label_sri_session_2_position_b').should eq(true)
+        get_selector_cell_text('sri_session_2_position_a').should == '2'
+        get_selector_cell_text('sri_session_2_position_b').should == '4'
+
+        # sri session 3
+        selector_cell_present?('sri_session_3_position_a').should == true
+        selector_cell_present?('sri_session_3_position_b').should == true
+        has_text?('Pos A', 'td', 'label_sri_session_3_position_a').should eq(true)
+        has_text?('Pos B', 'td', 'label_sri_session_3_position_b').should eq(true)
+        get_selector_cell_text('sri_session_3_position_a').should == '2'
+        get_selector_cell_text('sri_session_3_position_b').should == '4'
+      end
+
+      scenario "button to work another sri session should be visible if less than 3 sri sessions have been worked on visit" do
+        selector_cell_present?('+ SRI Session').should == true
+
+        @visit.sri_session_1_stage = '3'
+        @visit.save!
+        visit(@practice_room_visit_page)
+        selector_cell_present?('add_sri_session_2').should == true
+
+        @visit.sri_session_2_stage = '4'
+        @visit.save!
+        visit(@practice_room_visit_page)
+        selector_cell_present?('add_sri_session_3').should == true
+
+        @visit.sri_session_1_stage = '3'
+        @visit.sri_session_2_stage = '4'
+        @visit.sri_session_3_stage = '5'
+        @visit.save!
+        visit(@practice_room_visit_page)
+        selector_cell_present?('+ SRI Session').should == false
+      end
+
     end
 
     scenario "values for Diagnosis and Notes can be set and autosave" do
@@ -528,7 +764,7 @@ feature "Visit Feature", %q{
       verify_highlighted?('mini_travel_card_gateway_c1_c2').should == true
 
       # phase 2
-      click_selector_cell('work_second_phase_button')
+      click_selector_cell('+ 2nd Phase')
 
       verify_highlighted?('mini_travel_card_gateway_c2_c1').should == false
       verify_highlighted?('mini_travel_card_gateway_c2_c3').should == false
@@ -710,7 +946,7 @@ feature "Visit Feature", %q{
 
   end
 
-  context "test mini-travel card", :js => true, :visit => true do
+  context "mini-travel card", :js => true do
     before(:each) do
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
@@ -777,7 +1013,7 @@ feature "Visit Feature", %q{
     end
   end
 
-  context "test gateway selector side text and coloring", :js => true, :visit => true do
+  context "gateway selector side text and coloring", :js => true do
 
     before(:each) do
       practice_name = 'StructuralArtistry practice'
@@ -892,7 +1128,7 @@ feature "Visit Feature", %q{
 
   end
 
-  context "test the different loading strategies of the visit view", :visit => true do
+  context "the different loading strategies of the visit view" do
     before(:each) do
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)

@@ -33,78 +33,14 @@ function travel_card_set_values_from_hidden_fields() {
   $('#sri_position_3_level_of_awareness').html($('#travel_card_sri_position_3_level_of_awareness').val());
   $('#sri_safety_position').html($('#travel_card_sri_safety_position').val());
   $('#buzz_words_for_sri').html($('#travel_card_buzz_words_for_sri').val());
-  
+
   $('#book_12_stages').html($('#travel_card_book_12_stages').val());
   $('#book_healing_magic').html($('#travel_card_book_healing_magic').val());
   $('#number_gate').html($('#travel_card_number_gate').val());
   $('#number_hip').html($('#travel_card_number_hip').val());
   $('#number_ultima').html($('#travel_card_number_ultima').val());
   $('#number_ultimatum').html($('#travel_card_number_ultimatum').val());
-  $('#number_sri').html($('#travel_card_number_sri').val());  
-}
-
-function show_selector(selector_name, calling_object, _element_to_update_inner_html, _control_to_update) {
-  // set the global vars
-  element_to_update_inner_html=_element_to_update_inner_html;
-  control_to_update=_control_to_update;
- 
-  switch(selector_name) {
-    case "boolean_selector":
-      boolean_toggle_selected_value(calling_object);
-      break;
-    case "side_selector":
-      left_right_toggle_selected_value(calling_object);
-      
-      break;
-    default:
-      if(selector_name=="phase_gateway_selector") {
-        // set gateway choices based on the selected phase and whether this is gateway_1, 2 or affecting gateway
-        set_phase_and_gateway_currently_working();
-                        
-        selected_phase = $('#visit_phase_' + visit_phase_currently_working).val();
-          
-				set_phase_gateway_selector_visible_text();
-
-        set_phase_gateway_selector_choices(selected_phase);
-      }
-      else if(selector_name=="phase_direction_selector") {
-
-        set_phase_and_gateway_currently_working();
-       
-        selected_phase = $('#visit_phase_' + visit_phase_currently_working).val();
-    
-        set_phase_direction_selector_choices(visit_phase_currently_working, selected_phase);
-      }
-      else if(selector_name.indexOf("phase")>=0) {
-        set_phase_and_gateway_currently_working();
-      }
-
-      eleOffset = $(calling_object).offset();
-      left = eleOffset.left + 'px';
-      topp = eleOffset.top + 'px';
-      $(".selector").hide();
-      $('#' + selector_name).css("left",left).css("top",topp).css("position","absolute");
-      $('#' + selector_name).show('fast');
-      break;
-  }
-}
-
-function boolean_toggle_selected_value(object) {
-  current_value = $(object).html();
-  if(current_value=="X") $(object).html("");
-  else $(object).html("X");
-
-  set_selected_value(object);
-}
-
-function left_right_toggle_selected_value(object) {
-  current_value = $(object).html();
-
-  if(current_value=="") $(object).html("L").addClass('L');
-  else if(current_value=="L") $(object).html("R").addClass('R');
-  else $(object).html('').removeClass('L').removeClass('R');
-
-  set_selected_value(object);
+  $('#number_sri').html($('#travel_card_number_sri').val());
 }
 
 function add_color_class_to_gateway(id, gateway_setting) {
@@ -121,7 +57,7 @@ function set_bme_strategy(bme_strategy) {
     if(second_strategy==bme_strategy) {
       $('#second_bme_strategy').html('');
       $('#travel_card_second_bme_strategy').val('');
-      
+
       second_strategy = '';
     }
   }
@@ -130,29 +66,29 @@ function set_bme_strategy(bme_strategy) {
     if(leading_strategy==bme_strategy) {
       $('#leading_bme_strategy').html('');
       $('#travel_card_leading_bme_strategy').val('');
-      
+
       leading_strategy = '';
     }
-  }  
-  
+  }
+
   // make the setting
   $('#' + element_to_update_inner_html).html(bme_strategy);
-   
+
   // third strategy is virtual, not saved
   if(control_to_update!='') {
     $("#" + control_to_update).val(bme_strategy);
   }
-  
+
   // autosave
   autosave('travel_card_leading_bme_strategy', $('#travel_card_leading_bme_strategy').val());
   autosave('travel_card_second_bme_strategy', $('#travel_card_second_bme_strategy').val());
-  
+
   // set the third strategy inner html if first two set
   set_third_bme_strategy(false);
 
   // clear and hide
   element_to_update_inner_html='';
-  control_to_update=''; 
+  control_to_update='';
   $('#bme_strategy_selector').hide('fast');
 }
 
@@ -161,17 +97,17 @@ function set_third_bme_strategy(mini_travel_card) {
 	if(mini_travel_card==true) {
 		mini_tc_prefix = 'mini_travel_card_';
 	}
-	
+
   leading_strategy = $('#travel_card_leading_bme_strategy').val();
   second_strategy = $('#travel_card_second_bme_strategy').val();
-  
+
   $('#third_bme_strategy').html('');
   if(leading_strategy != '' && second_strategy != '') {
     remaining_strategy = "BME";
     remaining_strategy = remaining_strategy.replace(leading_strategy,'');
     remaining_strategy = remaining_strategy.replace(second_strategy,'');
     if(remaining_strategy.length == 1) $('#' + mini_tc_prefix + 'third_bme_strategy').html(remaining_strategy);
-  }  
+  }
 }
 
 

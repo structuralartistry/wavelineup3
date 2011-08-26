@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110817204239) do
+ActiveRecord::Schema.define(:version => 20110823125604) do
 
   create_table "feature_requests", :force => true do |t|
     t.string   "name"
@@ -165,10 +165,10 @@ ActiveRecord::Schema.define(:version => 20110817204239) do
     t.string   "phase_2_gateway_2_affecting"
     t.string   "phase_2_level_of_care"
     t.string   "phase_2_direction"
-    t.string   "sri_stage"
-    t.string   "sri_position_a"
-    t.string   "sri_level_of_care"
-    t.string   "sri_organizing_field"
+    t.string   "sri_session_1_stage"
+    t.string   "sri_session_1_position_a"
+    t.string   "sri_session_1_level_of_care"
+    t.string   "sri_session_1_organizing_field"
     t.string   "short_leg_side"
     t.string   "short_leg_amount"
     t.string   "heel_tension_level"
@@ -184,7 +184,17 @@ ActiveRecord::Schema.define(:version => 20110817204239) do
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sri_position_b"
+    t.string   "sri_session_1_position_b"
+    t.string   "sri_session_2_stage"
+    t.string   "sri_session_2_position_a"
+    t.string   "sri_session_2_position_b"
+    t.string   "sri_session_2_level_of_care"
+    t.string   "sri_session_2_organizing_field"
+    t.string   "sri_session_3_stage"
+    t.string   "sri_session_3_position_a"
+    t.string   "sri_session_3_position_b"
+    t.string   "sri_session_3_level_of_care"
+    t.string   "sri_session_3_organizing_field"
   end
 
 end

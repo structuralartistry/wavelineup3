@@ -74,11 +74,6 @@ function visit_set_values_from_hidden_fields() {
   $('#adduction_tension_level').html($('#visit_adduction_tension_level').val());
   $('#heel_tension_level').html($('#visit_heel_tension_level').val());
   $('#eversion_tension_level').html($('#visit_eversion_tension_level').val());
-  $('#sri_stage').html($('#visit_sri_stage').val());
-  $('#sri_position_a').html($('#visit_sri_position_a').val());
-	$('#sri_position_b').html($('#visit_sri_position_b').val());
-  $('#sri_level_of_care').html($('#visit_sri_level_of_care').val());
-  $('#sri_organizing_field').html($('#visit_sri_organizing_field').val());
   $('#ingression_organizing_field').html($('#visit_ingression_organizing_field').val());
   $('#egression_organizing_field').html($('#visit_egression_organizing_field').val());
   $('#long_lever_arm').html($('#visit_long_lever_arm').val());
@@ -88,9 +83,33 @@ function visit_set_values_from_hidden_fields() {
   $('#short_leg_amount').html($('#visit_short_leg_amount').val());
   $('#diagnosis').html($('#visit_diagnosis').val());
 
+  $('#sri_session_1_stage').html($('#visit_sri_session_1_stage').val());
+  $('#sri_session_1_position_a').html($('#visit_sri_session_1_position_a').val());
+	$('#sri_session_1_position_b').html($('#visit_sri_session_1_position_b').val());
+  $('#sri_session_1_level_of_care').html($('#visit_sri_session_1_level_of_care').val());
+  $('#sri_session_1_organizing_field').html($('#visit_sri_session_1_organizing_field').val());
+  if($('#sri_session_2_stage').html()!='') {
+    $('.sri_session_2').show();
+    $('#add_sri_session_2').hide();
+  }
+  $('#sri_session_2_stage').html($('#visit_sri_session_2_stage').val());
+  $('#sri_session_2_position_a').html($('#visit_sri_session_2_position_a').val());
+	$('#sri_session_2_position_b').html($('#visit_sri_session_2_position_b').val());
+  $('#sri_session_2_level_of_care').html($('#visit_sri_session_2_level_of_care').val());
+  $('#sri_session_2_organizing_field').html($('#visit_sri_session_2_organizing_field').val());
+  if($('#sri_session_3_stage').html()!='') {
+    $('.sri_session_3').show();
+    $('#add_sri_session_3').hide();
+  }
+  $('#sri_session_3_stage').html($('#visit_sri_session_3_stage').val());
+  $('#sri_session_3_position_a').html($('#visit_sri_session_3_position_a').val());
+	$('#sri_session_3_position_b').html($('#visit_sri_session_3_position_b').val());
+  $('#sri_session_3_level_of_care').html($('#visit_sri_session_3_level_of_care').val());
+  $('#sri_session_3_organizing_field').html($('#visit_sri_session_3_organizing_field').val());
+
   highlight_available_gateways();
 
-	set_sri_positions($('#visit_sri_stage').val());
+	set_sri_positions();
 }
 
 // note: travel_card.js handles the "hide all selectors" funciton for the practice member visit partial
@@ -734,36 +753,46 @@ function hide_all_phase_directions(visit_phase) {
 
 // SRI
 function set_selected_sri_stage(object) {
-	stage = $(object).html();
-	set_sri_positions(stage);
+	selected_stage = $(object).html();
 	set_selected_value(object);
+	set_sri_positions();
 }
 
-function set_sri_positions(stage) {
-	// if is stage 1 or 2 show the second field and place appropriate text in the label
-	if(stage=='1' || stage=='2') {
-		$('#label_sri_position_b').show();
-		$('#sri_position_b').show();
-		if(stage=='1') {
-			$('#label_sri_position_a').html('Peace');
-			$('#label_sri_position_b').html('Discon');
-		}
-		if(stage=='2') {
-			$('#label_sri_position_a').html('Pos A');
-			$('#label_sri_position_b').html('Pos B');
-		}
-		$('#label_sri_4_col').hide();
-		$('#label_sri_5_col').show();
-	}
-	else {
-		// hide the second position field and clear the value visually and in hidden field
-		$('#label_sri_position_a').html('Pos');
-		$('#label_sri_position_b').html('Pos')
-		$('#label_sri_position_b').hide();
-		$('#sri_position_b').html('').hide();
-		$('#visit_sri_position_b').val('');
-		$('#label_sri_4_col').show();
-		$('#label_sri_5_col').hide();
-	}
+function set_sri_positions() {
+  sri_sessions = ['1','2','3']
+  for(var i=0, length=sri_sessions.length; i<length; i++){
+    sri_session = sri_sessions[i];
+    sri_stage = $('#visit_sri_session_' + sri_session + '_stage').val();
+
+    if(sri_stage!=undefined && sri_stage!='') {
+      // if is stage 1 or 2 show the second field and place appropriate text in the label
+      if(sri_stage=='1' || sri_stage=='2') {
+        $('#label_sri_session_' + sri_session + '_position_b').show();
+        $('#sri_session_' + sri_session + '_position_b').show();
+        if(sri_stage=='1') {
+          $('#label_sri_session_' + sri_session + '_position_a').html('Peace');
+          $('#label_sri_session_' + sri_session + '_position_b').html('Discon');
+        }
+        if(sri_stage=='2') {
+          $('#label_sri_session_' + sri_session + '_position_a').html('Pos A');
+          $('#label_sri_session_' + sri_session + '_position_b').html('Pos B');
+        }
+        if(sri_session=='1') {
+          $('#label_sri_4_col').hide();
+          $('#label_sri_5_col').show();
+        }
+      }
+      else {
+        // hide the second position field and clear the value visually and in hidden field
+        $('#label_sri_session_' + sri_session + '_position_a').html('Pos');
+        $('#label_sri_session_' + sri_session + '_position_b').html('Pos')
+        $('#label_sri_session_' + sri_session + '_position_b').hide();
+        $('#sri_session_' + sri_session + '_position_b').html('').hide();
+        $('#visit_sri_session_' + sri_session + '_position_b').val('');
+        $('#label_sri_4_col').show();
+        $('#label_sri_5_col').hide();
+      }
+    }
+  }
 }
 

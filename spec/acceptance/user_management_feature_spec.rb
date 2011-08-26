@@ -30,7 +30,7 @@ feature "User Management Feature", %q{
     click_selector_cell('Submit')
 
     has_flash_notice?('User was successfully created. Please check email for new_user@gmail.com for the activation link.').should == true
-    has_text?(new_user_email, 'td')
+    has_text?(new_user_email, 'td').should eq(true)
 
     # cant activate while logged in
     activate_user?(new_user_email).should == false
@@ -66,7 +66,7 @@ feature "User Management Feature", %q{
     click_selector_cell('Submit')
 
     has_flash_notice?('User was successfully created. Please check email for new_user@gmail.com for the activation link.').should == true
-    has_text?(new_user_email, 'td')
+    has_text?(new_user_email, 'td').should eq(true)
 
     # should get reactivation info if tries to log in before activated
     click_selector_cell('Logout')
@@ -107,7 +107,7 @@ feature "User Management Feature", %q{
     register_and_activate_user(new_user_email, @practice.name, :practice_user)
     click_selector_cell('Edit Practice')
 
-    has_text?(new_user_email, 'td')
+    has_text?(new_user_email, 'td').should eq(true)
     # tell_brower_to_auto_accept_delete
     page.find(:xpath, "//tr[@id='#{new_user_email}']//input[@value='Delete']").click
     has_flash_notice?('User successfully deleted').should == true

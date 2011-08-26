@@ -25,19 +25,11 @@ feature "Visit List Feature", %q{
       has_text?('Dir', 'td').should == false
       has_text?('2nd Phase', 'td').should == false
       has_text?('SRI Stage', 'td').should == false
-      has_text?('2010-01-01', 'td').should == false
       has_text?('3', 'td').should == false
       has_text?('5', 'td').should == false
       has_text?('6', 'td').should == false
 
-      visit = Factory.build(:visit)
-      visit.practice_member_id = @practice_member.id
-      now = DateTime.now
-      visit.date = now
-      visit.phase_1 = '3'
-      visit.phase_2 = '5'
-      visit.sri_stage = '6'
-      visit.save!
+      visit = Factory(:visit, :practice_member_id => @practice_member.id, :phase_1 => '3', :phase_2 => '2', :sri_session_1_stage => '6')
 
       visit(@practice_room_page)
       click_selector_cell('Visit List')
@@ -48,27 +40,26 @@ feature "Visit List Feature", %q{
       has_text?('Dir', 'td').should == true
       has_text?('2nd Phase', 'td').should == true
       has_text?('SRI Stage', 'td').should == true
-      has_text?(now.strftime('%Y-%m-%d %H:%M'), 'td').should == true
+      has_text?(visit.date.strftime('%Y-%m-%d %H:%M'), 'td').should == true
       has_text?('3', 'td').should == true
-      has_text?('5', 'td').should == true
+      has_text?('2', 'td').should == true
       has_text?('6', 'td').should == true
 
-      visit = Factory.build(:visit)
-      visit.practice_member_id = visit.id
-      now = DateTime.now
-      visit.date = now
-      visit.phase_1 = '1 > 2 C5'
-      visit.phase_2 = '4'
-      visit.sri_stage = '9'
-      visit.save
+      other_visit_date = DateTime.now
+      visit_other_pm = Factory(:visit, :practice_member_id => @practice_member.id.succ, :date => other_visit_date, :phase_1 => '1 > 2 C5', :phase_2 => '4', :sri_session_1_stage => '9')
 
       visit(@practice_room_page)
       click_selector_cell('Visit List')
 
-      has_text?(now.strftime('%Y-%m-%d %H:%M'), 'td').should == true
+      has_text?(visit.date.strftime('%Y-%m-%d %H:%M'), 'td').should == true
       has_text?('3', 'td').should == true
-      has_text?('5', 'td').should == true
+      has_text?('2', 'td').should == true
       has_text?('6', 'td').should == true
+      has_text?(visit.date.strftime('%Y-%m-%d %H:%M'), 'td').should == true
+      has_text?(visit_other_pm.date.strftime('%Y-%m-%d %H:%M'), 'td').should == false
+      has_text?('1 > 2 C5', 'td').should == false
+      has_text?('4', 'td').should == false
+      has_text?('9', 'td').should == false
     end
 
     scenario "when I click on a visit in the visit list, the visit loads into the visit view", :js => true do
@@ -77,7 +68,7 @@ feature "Visit List Feature", %q{
       visit.date = Time.zone.now
       visit.phase_1 = '3'
       visit.phase_2 = '5'
-      visit.sri_stage = '6'
+      visit.sri_session_1_stage = '6'
       visit.save
 
       visit(@practice_room_page)
@@ -116,7 +107,7 @@ feature "Visit List Feature", %q{
 
       before(:each) do
         unique_number = 1
-        20.times { Factory(:visit, :practice_member => @practice_member, :sri_stage => "testing_token_#{unique_number}"); unique_number+=1; }
+        20.times { Factory(:visit, :practice_member => @practice_member, :sri_session_1_stage => "testing_token_#{unique_number}"); unique_number+=1; }
       end
 
       it "should show the pagination selector" do
@@ -229,7 +220,7 @@ feature "Visit List Feature", %q{
         has_text?('testing_token_16', 'td').should eq(true)
       end
 
-      it "should still render the New PM, Find and Lineup left column buttons after selecting another paginated page", :focus => true do
+      it "should still render the New PM, Find and Lineup left column buttons after selecting another paginated page" do
         visit(@practice_room_page)
         click_selector_cell('Visit List')
 
