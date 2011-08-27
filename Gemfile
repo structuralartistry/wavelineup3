@@ -44,4 +44,5 @@ group :development, :test do
   gem 'escape_utils' # warning: regexp match /.../n against to UTF-8 string
   gem 'steak'
   gem 'heroku'
+  gem 'jasmine'
 end

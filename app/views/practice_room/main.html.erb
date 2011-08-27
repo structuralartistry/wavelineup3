@@ -1,10 +1,12 @@
-<script language='javascript'>
-  visit_data = '<%= @visit.to_json.html_safe %>';
-  say(visit_data);
-</script>
-
 <%= javascript_include_tag 'travel_card.js' %>
 <%= javascript_include_tag 'visit.js' %>
+
+<script language="javascript">
+  $(document).ready(function() {
+    visit = new Visit('visit data from server');
+    visit.callAFunction();
+  });
+</script>
 
 <table>
 	<tr>
