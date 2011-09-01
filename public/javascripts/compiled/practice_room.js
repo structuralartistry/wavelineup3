@@ -1,9 +1,15 @@
 (function() {
-  this.PracticeRoom = (function() {
-    function PracticeRoom() {}
-    PracticeRoom.prototype.do_something = function(something) {
+  this.Visit = (function() {
+    Visit.prototype.do_something = function(something) {
       return something;
     };
-    return PracticeRoom;
+    function Visit(data) {
+      this.data = data;
+    }
+    Visit.prototype.set_ui_values = function() {
+      this.visit_data = jQuery.parseJSON(this.data);
+      return $('#sri_session_1_stage').html(this.visit_data.sri_session_1_stage);
+    };
+    return Visit;
   })();
 }).call(this);

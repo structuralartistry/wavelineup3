@@ -1,6 +1,9 @@
 # Return an array of filepaths relative to src_dir to include before jasmine specs.
+
+# note: to access jquery needed to copy these files from the gem directory to public/javascripts/compiled"
+#     cp /Users/sa/.rvm/gems/ruby-1.9.2-p290@wavelineup31/gems/jquery-rails-1.0.13/vendor/assets/javascripts/* public/javascripts/compiled/
 src_files:
-  - app/assets/javascripts/credit_card.js
+  - public/javascripts/compiled/*.js
 
 # Return an array of stylesheet filepaths relative to src_dir to include before jasmine specs.
 stylesheets:
@@ -19,4 +22,4 @@ spec_files:
 src_dir:
 
 # spec_dir
-spec_dir: spec/javascripts
+spec_dir: spec/javascripts/compiled

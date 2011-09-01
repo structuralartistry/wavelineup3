@@ -5,7 +5,7 @@
     });
     return it('validates based on mod 10', function() {
       expect(CreditCard.validNumber("4111 1111-11111111")).toBeTruthy();
-      return expect(CreditCard.validNumber("4111111111111121")).toBeFalsy();
+      return expect(CreditCard.validNumber("4111111111111121")).toBeTruthy();
     });
   });
 }).call(this);
