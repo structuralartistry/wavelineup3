@@ -3,8 +3,8 @@
 
 <script language="javascript">
   $(document).ready(function() {
-    visit = new Visit('visit data from server');
-    visit.callAFunction();
+    visit = new Visit('<%= escape_javascript(@visit.to_json.html_safe) %>');
+    visit.set_ui_values();
   });
 </script>
 

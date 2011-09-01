@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe FeatureRequest do
 
-  it "should not return unrecently implemented features" do
+  it "should not return unrecently implemented features", :focus => true do
     feature_request = Factory(:feature_request)
     FeatureRequest.recently_implemented.empty?.should == true
   end
