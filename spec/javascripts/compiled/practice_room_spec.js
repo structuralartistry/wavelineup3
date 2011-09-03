@@ -177,7 +177,7 @@
     it('when SRI stage 1 is selected show two position selectors: peace and disconnection with correct labels', function() {
       var script, sri_session, _i, _len, _ref, _results;
       loadFixtures('visits/_sri_sessions.html.erb', 'practice_room/_selectors.html.erb');
-      script = "       <script language=\"javascript\">        $(document).ready(function() {          visit = new Visit('');        });      </script>";
+      script = "       <script language=\"javascript\">        $(document).ready(function() {          visit = new Visit('');          visit.data = {};          visit.data.sri_session_1_stage = null;          visit.data.sri_session_2_stage = null;          visit.data.sri_session_3_stage = null;        });      </script>";
       $('#jasmine-fixtures').append(script);
       _ref = ['1', '2', '3'];
       _results = [];
@@ -225,7 +225,7 @@
     it('when SRI stage 2 is selected show two position selectors (Pos A/B) with correct labels', function() {
       var script, sri_session, _i, _len, _ref, _results;
       loadFixtures('visits/_sri_sessions.html.erb', 'practice_room/_selectors.html.erb');
-      script = "       <script language=\"javascript\">        $(document).ready(function() {          visit = new Visit('');        });      </script>";
+      script = "       <script language=\"javascript\">        $(document).ready(function() {          visit = new Visit('');          visit.data = {};          visit.data.sri_session_1_stage = null;          visit.data.sri_session_2_stage = null;          visit.data.sri_session_3_stage = null;        });      </script>";
       $('#jasmine-fixtures').append(script);
       _ref = ['1', '2', '3'];
       _results = [];
@@ -270,10 +270,10 @@
       }
       return _results;
     });
-    return it('toggles from stage 1 to stage 2 to other stage position selectors correctly', function() {
+    it('toggles from stage 1 to stage 2 to other stage position selectors correctly', function() {
       var script, sri_session, _i, _len, _ref, _results;
       loadFixtures('visits/_sri_sessions.html.erb', 'practice_room/_selectors.html.erb');
-      script = "       <script language=\"javascript\">        $(document).ready(function() {          visit = new Visit('');        });      </script>";
+      script = "       <script language=\"javascript\">        $(document).ready(function() {          visit = new Visit('');          visit.data = {};          visit.data.sri_session_1_stage = null;          visit.data.sri_session_2_stage = null;          visit.data.sri_session_3_stage = null;        });      </script>";
       $('#jasmine-fixtures').append(script);
       _ref = ['1', '2', '3'];
       _results = [];
@@ -305,6 +305,40 @@
         expect($('#sri_session_' + sri_session + '_position_a')).toBeVisible();
         expect($('#sri_session_' + sri_session + '_position_b')).toBeHidden();
         _results.push(expect($('#label_sri_session_' + sri_session + '_position_a').html()).toEqual('Pos'));
+      }
+      return _results;
+    });
+    return it('autosaves data correctly', function() {
+      var script, sri_session, _i, _len, _ref, _results;
+      loadFixtures('visits/_sri_sessions.html.erb', 'practice_room/_selectors.html.erb');
+      script = "       <script language=\"javascript\">        $(document).ready(function() {          visit = new Visit('');          visit.data = {};          visit.data.sri_session_1_level_of_care = null;          visit.data.sri_session_1_organizing_field = null;          visit.data.sri_session_1_position_a = null;          visit.data.sri_session_1_position_b = null;          visit.data.sri_session_1_stage = null;          visit.data.sri_session_2_level_of_care = null;          visit.data.sri_session_2_organizing_field = null;          visit.data.sri_session_2_position_a = null;          visit.data.sri_session_2_position_b = null;          visit.data.sri_session_2_stage = null;          visit.data.sri_session_3_level_of_care = null;          visit.data.sri_session_3_organizing_field = null;          visit.data.sri_session_3_position_a = null;          visit.data.sri_session_3_position_b = null;          visit.data.sri_session_3_stage = null;          visit.set_ui_values();        });      </script>";
+      $('#jasmine-fixtures').append(script);
+      spyOn(jQuery, 'ajax');
+      _ref = ['1', '2', '3'];
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        sri_session = _ref[_i];
+        if (sri_session === '2') {
+          $('#add_sri_session_2').mousedown();
+        }
+        if (sri_session === '3') {
+          $('#add_sri_session_3').mousedown();
+        }
+        $('#sri_session_' + sri_session + '_stage').mousedown();
+        $('#select_sri_stage_1').mousedown();
+        expect(jQuery.ajax.mostRecentCall.args[0]['data']).toEqual('visit[sri_session_' + sri_session + '_stage]=1');
+        $('#sri_session_' + sri_session + '_position_a').mousedown();
+        $('#select_sri_position_1').mousedown();
+        expect(jQuery.ajax.mostRecentCall.args[0]['data']).toEqual('visit[sri_session_' + sri_session + '_position_a]=1');
+        $('#sri_session_' + sri_session + '_position_b').mousedown();
+        $('#select_sri_position_2').mousedown();
+        expect(jQuery.ajax.mostRecentCall.args[0]['data']).toEqual('visit[sri_session_' + sri_session + '_position_b]=2');
+        $('#sri_session_' + sri_session + '_level_of_care').mousedown();
+        $('#select_level_of_care_1a').mousedown();
+        expect(jQuery.ajax.mostRecentCall.args[0]['data']).toEqual('visit[sri_session_' + sri_session + '_level_of_care]=1A');
+        $('#sri_session_' + sri_session + '_organizing_field').mousedown();
+        $('#select_organizing_field_h1').mousedown();
+        _results.push(expect(jQuery.ajax.mostRecentCall.args[0]['data']).toEqual('visit[sri_session_' + sri_session + '_organizing_field]=H1'));
       }
       return _results;
     });

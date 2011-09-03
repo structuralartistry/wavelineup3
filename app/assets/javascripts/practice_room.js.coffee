@@ -71,9 +71,11 @@ class @Visit
     $('#' + selector_id).show('fast')
 
   set_selected_value: (value, field_to_set) ->
-    # do we want to update the object values? ... kind of cheesy to leave around the initial vals
-    # unless we specify them as just that
-    # in other aspects of visit it may be useful or needed to reference the actual set values...
-    # but we can always harness this here using an eval or the like... so no urgency to do this now
+    @data[field_to_set] = value
     $('#' + field_to_set).html(value) 
     $(".selector").hide('fast')
+    $('#transmitting').show()
+    qualified_field = "visit[" + field_to_set + "]"
+    record_id = visit.data.id
+    update_field_to_server('visits', record_id, qualified_field, value)
+

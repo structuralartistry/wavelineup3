@@ -55,8 +55,14 @@
       return $('#' + selector_id).show('fast');
     };
     Visit.prototype.set_selected_value = function(value, field_to_set) {
+      var qualified_field, record_id;
+      this.data[field_to_set] = value;
       $('#' + field_to_set).html(value);
-      return $(".selector").hide('fast');
+      $(".selector").hide('fast');
+      $('#transmitting').show();
+      qualified_field = "visit[" + field_to_set + "]";
+      record_id = visit.data.id;
+      return update_field_to_server('visits', record_id, qualified_field, value);
     };
     return Visit;
   })();
