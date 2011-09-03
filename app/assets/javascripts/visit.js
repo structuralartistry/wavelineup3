@@ -83,7 +83,7 @@ function visit_set_values_from_hidden_fields() {
   $('#short_leg_amount').html($('#visit_short_leg_amount').val());
   $('#diagnosis').html($('#visit_diagnosis').val());
 
-  $('#sri_session_1_stage').html($('#visit_sri_session_1_stage').val());
+//  $('#sri_session_1_stage').html($('#visit_sri_session_1_stage').val());
   $('#sri_session_1_position_a').html($('#visit_sri_session_1_position_a').val());
 	$('#sri_session_1_position_b').html($('#visit_sri_session_1_position_b').val());
   $('#sri_session_1_level_of_care').html($('#visit_sri_session_1_level_of_care').val());

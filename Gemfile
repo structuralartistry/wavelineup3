@@ -44,4 +44,9 @@ group :development, :test do
   gem 'escape_utils' # warning: regexp match /.../n against to UTF-8 string
   gem 'steak'
   gem 'heroku'
+  gem 'jasmine'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard-rspec'
+  gem 'guard-coffeescript'
+  gem 'guard-livereload'
 end
