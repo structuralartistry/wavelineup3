@@ -71,5 +71,9 @@ class @Visit
     $('#' + selector_id).show('fast')
 
   set_selected_value: (value, field_to_set) ->
+    # do we want to update the object values? ... kind of cheesy to leave around the initial vals
+    # unless we specify them as just that
+    # in other aspects of visit it may be useful or needed to reference the actual set values...
+    # but we can always harness this here using an eval or the like... so no urgency to do this now
     $('#' + field_to_set).html(value) 
     $(".selector").hide('fast')
