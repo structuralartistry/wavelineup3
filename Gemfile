@@ -45,7 +45,7 @@ group :development, :test do
   gem 'steak'
   gem 'heroku'
   gem 'jasmine'
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  #gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec'
   gem 'guard-coffeescript'
   gem 'guard-livereload'

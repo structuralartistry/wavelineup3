@@ -136,7 +136,6 @@ GEM
       rdoc (~> 3.4)
       thor (~> 0.14.6)
     rake (0.9.2)
-    rb-fsevent (0.4.3.1)
     rdoc (3.9.2)
     recaptcha (0.3.1)
     rest-client (1.6.3)
@@ -236,7 +235,6 @@ DEPENDENCIES
   kaminari
   pg
   rails (= 3.1.0.rc5)
-  rb-fsevent
   recaptcha
   rspec-rails
   ruby-debug19
