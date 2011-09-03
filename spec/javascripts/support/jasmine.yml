@@ -3,15 +3,17 @@
 # note: to access jquery needed to copy these files from the gem directory to public/javascripts/compiled"
 #     cp /Users/sa/.rvm/gems/ruby-1.9.2-p290@wavelineup31/gems/jquery-rails-1.0.13/vendor/assets/javascripts/* public/javascripts/compiled/
 src_files:
+  - app/assets/javascripts/autosave.js
+  - app/assets/javascripts/selector.js
   - public/javascripts/compiled/*.js
 
 # Return an array of stylesheet filepaths relative to src_dir to include before jasmine specs.
 stylesheets:
-  - stylesheets/**/*.css
+  - app/assets/stylesheets/*.css
 
 # Return an array of filepaths relative to spec_dir to include before jasmine specs.
 helpers:
-  - helpers/**/*.js
+  - helpers/*.js
 
 # Return an array of filepaths relative to spec_dir to include.
 spec_files:

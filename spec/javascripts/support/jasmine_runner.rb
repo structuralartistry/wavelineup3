@@ -18,3 +18,4 @@ end
 spec_builder.start
 should_stop = true
 spec_builder.declare_suites
+

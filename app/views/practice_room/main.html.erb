@@ -1,12 +1,14 @@
 <%= javascript_include_tag 'travel_card.js' %>
 <%= javascript_include_tag 'visit.js' %>
 
-<script language="javascript">
-  $(document).ready(function() {
-    visit = new Visit('<%= escape_javascript(@visit.to_json.html_safe) %>');
-    visit.set_ui_values();
-  });
-</script>
+<% if @visit %>
+  <script language="javascript">
+    $(document).ready(function() {
+      visit = new Visit('<%= escape_javascript(@visit.to_json.html_safe) %>');
+      visit.set_ui_values();
+    });
+  </script>
+<% end %>
 
 <table>
 	<tr>
