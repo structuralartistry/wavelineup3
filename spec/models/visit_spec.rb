@@ -10,6 +10,7 @@ describe Visit do
   it { should belong_to(:visit_view_type) }
 
   it { should validate_presence_of(:practice_member_id) }
+  it { should validate_presence_of(:visit_view_type_id) }
 
   it { should_not allow_value('').for(:date) }
   it { should_not allow_value(nil).for(:date) }
@@ -43,5 +44,16 @@ describe Visit do
     Visit.get_by_id_restricted_by_user(visit_one.id, sysadmin_user).id.should == visit_one.id
     Visit.get_by_id_restricted_by_user(visit_two.id, sysadmin_user).id.should == visit_two.id
   end
+
+  it "sets the default visit view type on create" do
+    visit = Visit.create(:practice_member_id => 1)
+    visit.visit_view_type_id.should == VisitViewType.find_by_name('standard').id
+  end
+
+  it "only sets the view type if it is nil" do
+    visit = Visit.create(:practice_member_id => 1, :visit_view_type_id => 999)
+    visit.visit_view_type_id.should == 999
+  end
+
 end
 
