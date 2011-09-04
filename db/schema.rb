@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110904194614) do
+ActiveRecord::Schema.define(:version => 20110904204659) do
 
   create_table "feature_requests", :force => true do |t|
     t.string   "name"
@@ -149,6 +149,12 @@ ActiveRecord::Schema.define(:version => 20110904194614) do
     t.boolean  "active"
   end
 
+  create_table "visit_view_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "visits", :force => true do |t|
     t.integer  "practice_member_id"
     t.datetime "date"
@@ -196,6 +202,7 @@ ActiveRecord::Schema.define(:version => 20110904194614) do
     t.string   "sri_session_3_position_b"
     t.string   "sri_session_3_level_of_care"
     t.string   "sri_session_3_organizing_field"
+    t.integer  "visit_view_type_id"
   end
 
 end

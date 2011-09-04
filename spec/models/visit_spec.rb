@@ -7,6 +7,7 @@ describe Visit do
   end
 
   it { should belong_to(:practice_member) }
+  it { should belong_to(:visit_view_type) }
 
   it { should validate_presence_of(:practice_member_id) }
 

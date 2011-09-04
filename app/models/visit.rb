@@ -1,5 +1,6 @@
 class Visit < ActiveRecord::Base
   belongs_to :practice_member
+  belongs_to :visit_view_type
 
   validates_presence_of :practice_member_id
 
