@@ -7,7 +7,7 @@ class Visit < ActiveRecord::Base
 
   validates_datetime :date, :after => 50.years.ago, :before => DateTime.now + 50.years, :message => 'must be a valid date'
 
-  validate :set_visit_view_type
+  before_validation :set_visit_view_type
 
   def set_visit_view_type
     self.visit_view_type_id = VisitViewType.find_by_name('standard').id if !self.visit_view_type_id

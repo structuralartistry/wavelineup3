@@ -13,7 +13,6 @@ class PracticeRoomController < ApplicationController
           @visit.date = Time.zone.now
           @visit.practice_member_id = @practice_member.id
           @visit.save
-
           redirect_to "/practice_room/#{@practice_member.id}/visit/#{@visit.id}"
         else
           @visit = Visit.where(['id=? AND practice_member_id=?', params[:visit_id], @practice_member.id]).first
