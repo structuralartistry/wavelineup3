@@ -733,6 +733,17 @@ feature "Visit Feature", %q{
         selector_cell_present?('+ SRI Session').should == false
       end
 
+      it "should allow multiple SRI sessions for paid accounts" do
+        @practice_member.practice.package_id = 1
+        @practice_member.practice.save!
+        visit(@practice_room_visit_page)
+        selector_cell_present?('+ SRI Session').should == true
+      end
+
+      it "should not allow multiple SRI sessions for free accounts" do
+        selector_cell_present?('+ SRI Session').should == false
+      end
+
     end
 
     scenario "values for Diagnosis and Notes can be set and autosave" do

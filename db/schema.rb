@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110823125604) do
+ActiveRecord::Schema.define(:version => 20110904194614) do
 
   create_table "feature_requests", :force => true do |t|
     t.string   "name"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20110823125604) do
     t.datetime "updated_at"
     t.string   "time_zone"
     t.integer  "referring_practice_id"
+    t.integer  "package_id"
   end
 
   create_table "roles", :force => true do |t|
