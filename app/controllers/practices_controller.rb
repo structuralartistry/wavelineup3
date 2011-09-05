@@ -81,7 +81,7 @@ class PracticesController < ApplicationController
     @practice = current_user.practice
     @practice.destroy
     flash[:notice] = "Practice successfully deleted"
-    session[:current_user] = nil
+    session[:current_user_id] = nil
 
     redirect_to(login_path)
   end

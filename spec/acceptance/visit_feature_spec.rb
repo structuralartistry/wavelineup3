@@ -749,7 +749,7 @@ feature "Visit Feature", %q{
         selector_cell_present?('+ SRI Session').should == true
       end
 
-      it "should not allow multiple SRI sessions for free accounts", :focus => true do
+      it "should not allow multiple SRI sessions for free accounts" do
         @practice_member.practice.package_id = nil
         @practice_member.practice.save!
 

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc5'
+gem 'rails', '3.1'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -14,8 +14,8 @@ gem 'kaminari'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "~> 3.1.0.rc"
-  gem 'coffee-rails', "~> 3.1.0.rc"
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier'
 end
 
@@ -38,7 +38,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
 	#gem 'shoulda'
-  gem 'shoulda', '>= 3.0.0.beta'
+  gem 'shoulda-matchers' #, '>= 3.0.0.beta'
 	#gem 'sqlite3-ruby', '1.2.5'
 	gem 'taps'
   gem 'escape_utils' # warning: regexp match /.../n against to UTF-8 string

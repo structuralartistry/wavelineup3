@@ -3,14 +3,13 @@ require 'spec_helper'
 describe Visit do
 
   before(:each) do
-    Factory.create(:visit)
+    visit = Factory.create(:visit)
   end
 
   it { should belong_to(:practice_member) }
   it { should belong_to(:visit_view_type) }
 
   it { should validate_presence_of(:practice_member_id) }
-  it { should validate_presence_of(:visit_view_type_id) }
 
   it { should_not allow_value('').for(:date) }
   it { should_not allow_value(nil).for(:date) }

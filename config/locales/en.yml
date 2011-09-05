@@ -3,13 +3,13 @@
 
 en:
   hello: "Home Page"
-  activerecord:  
+  activerecord:
     errors:
       models:
         visit:
           attributes:
             date:
-              invalid_date: 'is invalid'
+              invalid_datetime: 'must be a valid date'
     attributes: 
       practice: 
         name: "Practice name"

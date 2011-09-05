@@ -2,7 +2,7 @@ Factory.define :visit do |v|
   v.visit_view_type {VisitViewType.first || Factory(:visit_view_type)}
   # v.association :practice_member, :factory => :practice_member
   v.practice_member_id 1
-  v.date '2011-06-01 13:00'
+  v.date DateTime.parse('2011-06-01 13:00')
   v.phase_1 '1 > 3'
   v.phase_1_gateway_1 'OCC'
   v.phase_1_gateway_2 'S1'

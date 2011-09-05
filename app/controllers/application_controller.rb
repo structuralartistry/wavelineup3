@@ -75,7 +75,7 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-      session[:current_user]
+      User.find(session[:current_user_id]) if session[:current_user_id]
     end
 
   def lineup_practice_members

@@ -11,20 +11,20 @@ class LoginsController < ApplicationController
   def create
     @user = User.find_by_email(params[:email])
     if @user && @user.active && @user.authenticate(@user.email, params[:password])
-      session[:current_user] = @user
+      session[:current_user_id] = @user.id
       Login.create!(:email => @user.email, :user_id => @user.id, :success => true)
       flash[:notice] = "Welcome to WaveLineup #{@user.email}!"
       redirect_to(home_path)
     else
       Login.create!(:email => params[:email], :success => false)
-      session[:current_user] = nil
+      session[:current_user_id] = nil
       flash[:notice] = "Authentication failed"
       render :action => "new", :layout => 'guest'
     end
   end
 
   def destroy
-    session[:current_user] = nil
+    session[:current_user_id] = nil
     flash[:notice] = "Successfully logged out"
     redirect_to(login_path)
   end

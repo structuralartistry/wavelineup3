@@ -45,7 +45,7 @@ def login_user(user_factory, options = {})
   end
 
   @logged_in_user = Factory.create(user_factory, options)
-  session[:current_user] = @logged_in_user
+  session[:current_user_id] = @logged_in_user.id
   @logged_in_user
 end
 

@@ -22,7 +22,7 @@ describe LoginsController do
       post :create, { :email => user.email, :password => STANDARD_TEST_PASSWORD}
       flash[:notice].should == "Welcome to WaveLineup #{user.email}!"
       response.should redirect_to(home_path)
-      session[:current_user].id.should == user.id
+      session[:current_user_id].should == user.id
     end
 
     it "should give message to non-activated user" do
@@ -30,7 +30,7 @@ describe LoginsController do
       post :create, { :email => user.email, :password => STANDARD_TEST_PASSWORD}
       flash[:notice].should == "Authentication failed"
       response.should render_template(:new)
-      session[:current_user].should eq(nil)
+      session[:current_user_id].should eq(nil)
     end
 
     it "should fail a bad login" do
@@ -38,7 +38,7 @@ describe LoginsController do
       post :create, { :email => user.email, :password => BAD_STANDARD_TEST_PASSWORD}
       flash[:notice].should == "Authentication failed"
       response.should render_template(:new)
-      session[:current_user].should eq(nil)
+      session[:current_user_id].should eq(nil)
     end
 
     it "should log a successful authentication" do
@@ -65,11 +65,11 @@ describe LoginsController do
   describe "DELETE destroy" do
     it "should kill the session" do
       user = login_user('practice_admin_user')
-      session[:current_user].id.should eq(user.id)
+      session[:current_user_id].should eq(user.id)
       delete :destroy
       flash[:notice].should == 'Successfully logged out'
       response.should redirect_to(login_path)
-      session[:current_user].should eq(nil)
+      session[:current_user_id].should eq(nil)
     end
   end
 

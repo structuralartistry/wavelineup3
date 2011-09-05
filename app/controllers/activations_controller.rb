@@ -6,13 +6,13 @@ class ActivationsController < ApplicationController
     if @user
       if @user.active?
         flash[:notice] = "This user is already active. You have been logged in to the system."
-        session[:current_user] = @user
+        session[:current_user_id] = @user.id
         @user.deliver_welcome!
         redirect_to home_path
       else
         if @user.activate!
           flash[:notice] = "Your account has been activated"
-          session[:current_user] = @user
+          session[:current_user_id] = @user.id
           @user.deliver_welcome!
           redirect_to home_path
         else
