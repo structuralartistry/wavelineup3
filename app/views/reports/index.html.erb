@@ -13,7 +13,7 @@
 </script>
 
 <h1>Reports</h1><br>
-  <table id="current_visit" class="selector_table">
+  <table class="selector_table">
     <tr>
       <td colspan='2' class="half_height label">Filter Practice Members</td>
     </tr>
@@ -22,7 +22,7 @@
       <td style='width: 3.0in' id="filter_practice_member_single" class="selector_cell selector_cell_text_three_character" onClick="practice_member_selector_dialog_operation='set_report_filter'; $('#select_target_page').hide(); $('#practice_member_selector').show(); return false;">Individual</td>
     </tr>
   </table>
-  <table id="current_visit" class="selector_table">
+  <table class="selector_table">
     <tr>
       <td colspan='6' class="half_height label">Lookback Period</td>
     </tr>
@@ -36,7 +36,7 @@
     </tr>
   </table>
   <br>
-  <table id="current_visit" class="selector_table">
+  <table class="selector_table">
     <tr>
 	    <td><%= button_to 'Submit', '#', :method => :get, :onclick => 'submit_request(); return false;', :class => 'bold selector_cell selector_cell_nav', :style => 'width: 1.5in;' %></td>
       <td></td>

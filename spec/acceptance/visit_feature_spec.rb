@@ -7,6 +7,7 @@ feature "Visit Feature", %q{
   context "aspects of Visit", :js => true do
 
     before(:each) do
+      Factory(:visit_view_type)
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
       @practice_member = create_practice_member('Kahn, David Nathan', practice_name)
@@ -417,6 +418,14 @@ feature "Visit Feature", %q{
         end
       end
 
+    before(:each) do
+      @practice_member.practice.package_id = 1
+      @practice_member.practice.save!
+
+      # this will create a new visit organically
+      visit(@practice_room_visit_page)
+    end
+
       scenario "values for SRI can be set and autosave" do
 
         # sri session 1
@@ -740,7 +749,13 @@ feature "Visit Feature", %q{
         selector_cell_present?('+ SRI Session').should == true
       end
 
-      it "should not allow multiple SRI sessions for free accounts" do
+      it "should not allow multiple SRI sessions for free accounts", :focus => true do
+        @practice_member.practice.package_id = nil
+        @practice_member.practice.save!
+
+        # this will create a new visit organically
+        visit(@practice_room_visit_page)
+
         selector_cell_present?('+ SRI Session').should == false
       end
 
@@ -957,8 +972,50 @@ feature "Visit Feature", %q{
 
   end
 
+#  context "aspects of Visit non-js (transition)", :focus => true do
+#
+#    before(:each) do
+#      practice_name = 'StructuralArtistry practice'
+#      logged_in_as_role_for_practice(:practice_user, practice_name)
+#      @practice_member = create_practice_member('Kahn, David Nathan', practice_name)
+#
+#      visit = Factory(:visit, :practice_member => @practice_member)
+#      @practice_room_visit_page = "/practice_room/#{@practice_member.id}/visit/#{visit.id}"
+#      visit(@practice_room_visit_page)
+#    end
+#
+#    context "Visit View Type/SOAP" do
+#
+#      it "shows the Visit View Type toggle selector for paid accounts" do
+#        @practice_member.practice.package_id = 1
+#        @practice_member.practice.save!
+#        visit(@practice_room_visit_page)
+#save_and_open_page
+#
+## so... the way we load (visit/tc/vl are manually display: none on load... is using js
+## what I am wondering is I can continue to go about how I did the SRI work, or perhaps
+## I can find a way to manually render views and output them to jasmine/jquery
+## this seems like it would be a good solid strategy, as we would get all the benefits of
+## irb, can render at highest level and not partial level, and get full testability/implementation
+## ???????
+## can look into how rspec does :include_views
+## and that way can also go back and do the sri tests via this way and reduce other manual work....
+#        page.has_content?('View').should eq(true)
+#        selector_cell_present?('visit_view_type_id').should eq(true)
+#      end
+#
+#      it "does not show the Visit View Type toggle selector for free accounts" do
+#        page.has_content?('View').should eq(false)
+#        selector_cell_present?('visit_view_type_id').should eq(false)
+#      end
+#
+#    end
+#
+#  end
+
   context "mini-travel card", :js => true do
     before(:each) do
+      Factory(:visit_view_type)
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
       @practice_member = create_practice_member('Kahn, David Nathan', practice_name)
@@ -1027,6 +1084,7 @@ feature "Visit Feature", %q{
   context "gateway selector side text and coloring", :js => true do
 
     before(:each) do
+      Factory(:visit_view_type)
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
       practice_member = create_practice_member('Kahn, David Nathan', practice_name)
@@ -1141,6 +1199,7 @@ feature "Visit Feature", %q{
 
   context "the different loading strategies of the visit view" do
     before(:each) do
+      Factory(:visit_view_type)
       practice_name = 'StructuralArtistry practice'
       logged_in_as_role_for_practice(:practice_user, practice_name)
       @practice_member = create_practice_member('Kahn, David Nathan', practice_name)

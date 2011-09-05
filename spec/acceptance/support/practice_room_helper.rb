@@ -1,10 +1,12 @@
 def confirm_travel_card_view_showing
+  selector_cell_selected?('Travel Card').should eq(true)
   has_text?('DO', 'td').should==true
   has_text?('LOC', 'td').should==true
   has_text?('Rsp Wv', 'td').should==true
 end
 
 def confirm_visit_view_showing
+  selector_cell_selected?('Visit').should eq(true)
   # just verifying that the view is showing...
   return if selector_cell_present?('New Visit')
 
@@ -23,6 +25,7 @@ def confirm_visit_view_showing
 end
 
 def confirm_visit_list_view_showing
+  selector_cell_selected?('Visit List').should eq(true)
   page.has_content?('No Visits on record for this Practice Member').should == true
 end
 
