@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+  <title>WaveLineup ::: StructuralArtistry practice ::: practice_user_user@structuralartistry.com</title>
+
+  <link type="text/css" rel="stylesheet" media="screen" href="/assets/application.css" />
+<script type="text/javascript" src="/assets/application.js"></script>
+
+
+
+
+</head>
+<body>
+  <div id="container">
+  	<table style="width: 800px;">
+      <tbody><tr valign="top">
+        <td valign="top" style="width: 15px;">
+    		    <script language="javascript">
+$(document).ready(function() {
+  // determine if each button should be visible
+
+    practice_member_selector_available = true;
+
+    new_practice_member_form_available = true;
+
+    lineup_selector_available = true;
+
+  set_left_column_buttons();
+});
+
+function new_practice_member_form() {
+	return "&lt;form accept-charset=\"UTF-8\" action=\"/practice_members\" class=\"ajax_form\" id=\"new_practice_member\" method=\"post\"&gt;&lt;div style=\"margin:0;padding:0;display:inline\"&gt;&lt;input name=\"utf8\" type=\"hidden\" value=\"&amp;#x2713;\" /&gt;&lt;\/div&gt;\n  &lt;table&gt;\n    &lt;tr&gt;\n      &lt;th align=\'left\' colspan=\'4\'&gt;&lt;h1&gt;New Practice Member&lt;\/h1&gt;&lt;\/th&gt;\n    &lt;\/tr&gt;\n    \n    \n    &lt;tr&gt;\n      &lt;td&gt;\n        &lt;label for=\"practice_member_first_name\"&gt;First Name&lt;\/label&gt;&lt;br /&gt;\n      &lt;\/td&gt;\n      &lt;td&gt;\n        &lt;label for=\"practice_member_last_name\"&gt;Last Name&lt;\/label&gt;&lt;br /&gt;\n      &lt;\/td&gt;\n      &lt;td&gt;\n        &lt;label for=\"practice_member_middle_name\"&gt;Middle Name&lt;\/label&gt;&lt;br /&gt;\n      &lt;\/td&gt;\n      &lt;td&gt;\n      &lt;\/td&gt;\n    &lt;\/tr&gt;    \n    &lt;tr&gt;\n      &lt;td&gt;\n        &lt;input id=\"practice_member_first_name\" name=\"practice_member[first_name]\" size=\"15\" type=\"text\" /&gt;\n      &lt;\/td&gt;\n      &lt;td&gt;\n        &lt;input id=\"practice_member_last_name\" name=\"practice_member[last_name]\" size=\"15\" type=\"text\" /&gt;\n      &lt;\/td&gt;\n      &lt;td&gt;\n        &lt;input id=\"practice_member_middle_name\" name=\"practice_member[middle_name]\" size=\"10\" type=\"text\" /&gt;\n      &lt;\/td&gt;\n      &lt;td&gt;\n        &lt;input class=\"selector_cell_submit\" name=\"commit\" type=\"submit\" value=\"Submit\" /&gt;            \n      &lt;\/td&gt;\n    &lt;\/tr&gt;\n  &lt;\/table&gt;\n&lt;\/form&gt;"
+}
+
+function feedback_support_form() {
+	return "&lt;h1&gt;Feedback &amp; Support&lt;\/h1&gt;\n&lt;form accept-charset=\"UTF-8\" action=\"/feedback_supports\" class=\"ajax_form\" id=\"new_feedback_support\" method=\"post\"&gt;&lt;div style=\"margin:0;padding:0;display:inline\"&gt;&lt;input name=\"utf8\" type=\"hidden\" value=\"&amp;#x2713;\" /&gt;&lt;\/div&gt;\n&lt;table&gt;\n	&lt;tr&gt;\n		&lt;td&gt;\n			&lt;label for=\"feedback_support_message\"&gt;Let us know how it is going or if you need some help!&lt;\/label&gt;\n		&lt;\/td&gt;\n	&lt;\/tr&gt;\n		&lt;td&gt;\n	    &lt;textarea cols=\"40\" id=\"feedback_support_message\" name=\"feedback_support[message]\" rows=\"20\" style=\"width: 6in; height: 1in;\"&gt;&lt;\/textarea&gt;\n		&lt;\/td&gt;\n	&lt;\/tr&gt;\n	&lt;tr&gt;\n		&lt;td&gt;\n		  &lt;input class=\"selector_cell_submit\" name=\"commit\" style=\"float: right;\" type=\"submit\" value=\"Send\" /&gt;\n		&lt;\/td&gt;\n	&lt;\/tr&gt;\n&lt;\/table&gt;\n&lt;\/form&gt;"
+}
+</script>
+
+<table width="150px" class="selector_table">
+	<tbody><tr><td><img src="/assets/wavelineup_logo.gif" alt="Wavelineup_logo" /></td></tr>
+	<tr>
+    <td align="center">
+      <div class="flash_notice hidden" id="transmitting" style="display: none;">
+        Transmitting
+      </div>
+			<div id="notices" style="-moz-user-select: none;"></div>
+    </td>
+  </tr>
+	<tr><td><form class="button_to" action="/home" method="get"><div><input type="submit" value="Home" style="width: 1.5in; -moz-user-select: none;" class="bold selector_cell selector_cell_nav" /></div></form></td></tr>
+	<tr><td><form class="button_to" action="#" method="get"><div><input type="submit" value="New PM" style="width: 1.5in; -moz-user-select: none; display: inline;" onclick="show_dialog('new_practice_member'); return false;" id="new_practice_member_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" /></div></form></td></tr>
+	<tr><td><form class="button_to" action="#" method="get"><div><input type="submit" value="Find" style="width: 1.5in; -moz-user-select: none; display: inline;" onclick="practice_member_selector_dialog_operation='find'; toggle_dialog('practice_member_selector'); return false;" id="practice_member_selector_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" /></div></form></td></tr>
+	<tr><td><form class="button_to" action="#" method="get"><div><input type="submit" value="Lineup" style="width: 1.5in; -moz-user-select: none; display: inline;" onclick="toggle_dialog('lineup_selector'); return false;" id="lineup_selector_show_selector_cell" class="bold selector_cell selector_cell_nav hidden" /></div></form></td></tr>
+	<tr><td><form class="button_to" action="/reports" method="get"><div><input type="submit" value="Reports" style="width: 1.5in; -moz-user-select: none;" class="bold selector_cell selector_cell_nav" /></div></form></td></tr>
+	<tr><td><form class="button_to" action="#" method="get"><div><input type="submit" value="Feedback/Support" style="width: 1.5in; -moz-user-select: none;" onclick="show_dialog('feedback_support'); return false;" id="feedback_support_show_selector_cell" class="bold selector_cell selector_cell_nav" /></div></form></td></tr>
+		<tr><td><form class="button_to" action="/practices/1/edit" method="get"><div><input type="submit" value="Edit Practice" style="width: 1.5in; -moz-user-select: none;" class="bold selector_cell selector_cell_nav" /></div></form></td></tr>
+	<tr><td><form class="button_to" action="/users/current/edit" method="get"><div><input type="submit" value="Edit User" style="width: 1.5in; -moz-user-select: none;" class="bold selector_cell selector_cell_nav" /></div></form></td></tr>
+  <tr><td><form class="button_to" action="/logout" method="get"><div><input type="submit" value="Logout" style="width: 1.5in; -moz-user-select: none;" class="bold selector_cell selector_cell_nav" /></div></form></td></tr>
+</tbody></table>
+
+
+
+
+        </td>
+        <td style="width: 98%;">
+          <div class="selector hidden" id="new_practice_member" style="display: none;">
+          </div>
+          <div class="selector hidden" id="practice_member_selector" style="display: none;">
+						  <table class="selector_table" id="select_target_page">
+    <tbody><tr>
+      <th align="left" colspan="4" style="-moz-user-select: none;"><h1 style="-moz-user-select: none;">Select Target Page</h1></th>
+    </tr>
+    <tr>
+			<td onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');" class="selector_cell selector_cell_text_six_character page_selector current_selected" style="width: 1.5in; -moz-user-select: none;" id="visit_page_selector">Practice Room</td>
+      <td onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');" class="selector_cell selector_cell_text_six_character page_selector" style="width: 1.5in; -moz-user-select: none;" id="practice_member_edit_page_selector">Personal Info</td>
+    </tr>
+  </tbody></table>
+  <table class="selector_table">
+    <tbody><tr>
+      <th align="left" colspan="14" style="-moz-user-select: none;"><h1 style="-moz-user-select: none;">Filter Names</h1></th>
+    </tr>
+    <tr>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.practice_member_list').show();" class="selector_cell selector_cell_text_six_character alphabet_selector current_selected" style="width: 0.5in; -moz-user-select: none;">All</td>
+
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">0-9</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">A</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">B</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">C</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">D</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">E</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">F</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">G</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">H</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">I</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">J</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">K</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">L</td>
+    </tr>
+    <tr>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">M</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">N</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">O</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">P</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">Q</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">R</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">S</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">T</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">U</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">V</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">W</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">X</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">Y</td>
+      <td onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();" class="selector_cell selector_cell_text_six_character alphabet_selector" style="width: 0.5in; -moz-user-select: none;">Z</td>
+    </tr>
+  </tbody></table>
+
+	<table class="selector_table">
+    <tbody><tr>
+      <th align="left" colspan="5" style="-moz-user-select: none;"><h1 style="-moz-user-select: none;">Go</h1></th>
+    </tr>
+    <tr class="practice_member_list character_group_">
+        <!-- if counter get to expected number, create a new row so these wrap -->
+          </tr>
+          <tr class="practice_member_list character_group_K">
+        <td onmousedown="selected_practice_member_id=1; selected_practice_member_name='Kahn, David N'; execute_practice_member_selector_dialog_operation();" class="selector_cell selector_cell_text_six_character" style="width: 1.5in; -moz-user-select: none;">Kahn, David N</td>
+    </tr>
+  </tbody></table>
+
+
+     	    </div>
+          <div class="selector hidden" id="lineup_selector" style="display: none;">
+							<table class="selector_table">
+    <tbody><tr>
+      <th align="left" colspan="5" style="-moz-user-select: none;"><h1 style="-moz-user-select: none;">Lineup</h1></th>
+    </tr>
+    <tr>
+        <!-- if counter get to expected number, create a new row so these wrap -->
+          </tr>
+          <tr>
+        <td onmousedown="window.location.href='/practice_room/1/visit';" class="selector_cell selector_cell_text_six_character" style="width: 1.5in; -moz-user-select: none;">Kahn, David N</td>
+    </tr>
+  </tbody></table>
+
+
+          </div>
+					<div class="selector hidden" id="feedback_support" style="display: none;"></div>
+     	    <div id="main_frame">
+            <script type="text/javascript" src="/assets/travel_card.js"></script>
+<script type="text/javascript" src="/assets/visit.js"></script>
+
+  <script language="javascript">
+    $(document).ready(function() {
+      visit = new Visit('{\"abduction_tension_level\":null,\"adduction_tension_level\":null,\"created_at\":\"2011-09-16T13:25:04Z\",\"crest\":null,\"date\":\"2011-09-16T13:25:04Z\",\"diagnosis\":null,\"egression_organizing_field\":null,\"eversion_tension_level\":null,\"heel_tension_level\":null,\"id\":1,\"ingression_organizing_field\":null,\"long_lever_arm\":null,\"notes\":null,\"phase_1\":null,\"phase_1_direction\":null,\"phase_1_gateway_1\":null,\"phase_1_gateway_1_affecting\":null,\"phase_1_gateway_2\":null,\"phase_1_gateway_2_affecting\":null,\"phase_1_level_of_care\":null,\"phase_2\":null,\"phase_2_direction\":null,\"phase_2_gateway_1\":null,\"phase_2_gateway_1_affecting\":null,\"phase_2_gateway_2\":null,\"phase_2_gateway_2_affecting\":null,\"phase_2_level_of_care\":null,\"practice_member_id\":1,\"short_leg_amount\":null,\"short_leg_side\":null,\"short_lever_arm\":null,\"sri_session_1_level_of_care\":null,\"sri_session_1_organizing_field\":null,\"sri_session_1_position_a\":null,\"sri_session_1_position_b\":null,\"sri_session_1_stage\":null,\"sri_session_2_level_of_care\":null,\"sri_session_2_organizing_field\":null,\"sri_session_2_position_a\":null,\"sri_session_2_position_b\":null,\"sri_session_2_stage\":null,\"sri_session_3_level_of_care\":null,\"sri_session_3_organizing_field\":null,\"sri_session_3_position_a\":null,\"sri_session_3_position_b\":null,\"sri_session_3_stage\":null,\"updated_at\":\"2011-09-16T13:25:04Z\",\"visit_view_type_id\":1}');
+      visit.set_ui_values();
+    });
+  </script>
+
+<table>
+	<tbody><tr>
+		<td valign="top">
+			<script language="javascript">
+
+	$(document).ready(function() {
+		set_practice_room_section_and_buttons('practice_room_visit');
+    $('.visit_notes').hide();
+	});
+
+	function set_practice_room_section_and_buttons(section_id) {
+		// hide all sections
+		$('#practice_room_visit').hide();
+		$('#practice_room_travel_card').hide();
+		$('#practice_room_visit_list').hide();
+
+		// unhighlight other buttons
+		$('#practice_room_visit_show_selector_cell').removeClass('current_selected');
+		$('#practice_room_travel_card_show_selector_cell').removeClass('current_selected');
+		$('#practice_room_visit_list_show_selector_cell').removeClass('current_selected');
+
+		// highlight button
+		$('#' + section_id + '_show_selector_cell').addClass('current_selected');
+
+		if(section_id=='practice_room_visit') initialize_visit_view();
+
+		$('#' + section_id).show();
+	}
+
+	function initialize_visit_view() {
+		mini_travel_card_set_values_from_hidden_fields();
+		set_third_bme_strategy(true);
+		visit_set_values_from_hidden_fields();
+    $('#visit_notes').autoResize().trigger('change');
+    $('#visit_diagnosis').autoResize().trigger('change');
+	}
+
+</script>
+
+<table style="width: 7in;" class="selector_table">
+  <tbody><tr>
+    <td><form class="button_to" action="#" method="get"><div><input type="submit" value="Visit" style="width: 1.5in; -moz-user-select: none;" onclick="set_practice_room_section_and_buttons('practice_room_visit'); return false;" id="practice_room_visit_show_selector_cell" class="selector_cell selector_cell_nav selector_cell_text_six_character page_selector current_selected" /></div></form></td>
+    <td><form class="button_to" action="#" method="get"><div><input type="submit" value="Travel Card" style="width: 1.5in; -moz-user-select: none;" onclick="set_practice_room_section_and_buttons('practice_room_travel_card'); return false;" id="practice_room_travel_card_show_selector_cell" class="selector_cell selector_cell_nav selector_cell_text_six_character page_selector" /></div></form></td>
+    <td><form class="button_to" action="#" method="get"><div><input type="submit" value="Visit List" style="width: 1.5in; -moz-user-select: none;" onclick="set_practice_room_section_and_buttons('practice_room_visit_list'); return false;" id="practice_room_visit_list_show_selector_cell" class="selector_cell selector_cell_nav selector_cell_text_six_character page_selector" /></div></form></td>
+		<td align="right" style="width: 5.5in;"><h1 style="-moz-user-select: none;">Kahn, David N</h1></td>
+	</tr>
+</tbody></table>
+
+		</td>
+	</tr>
+	<tr>
+		<td valign="top">
+			<div style="" id="practice_room_visit">
+				<div style="width: 7in;" id="visit">
+
+	<script language="javascript">
+	  $(document).ready(function() {
+	    initialize_visit_view();
+	  });
+	</script>
+
+	<form method="post" id="edit_visit_1" class="ajaxForm" action="/visits/1" accept-charset="UTF-8"><div style="margin:0;padding:0;display:inline"><input type="hidden" value="✓" name="utf8" /><input type="hidden" value="put" name="_method" /></div>
+	  <table class="selector_table">
+	    <tbody><tr>
+			<td valign="top"><div onclick="set_practice_room_section_and_buttons('practice_room_travel_card');" id="mini_travel_card">
+<div style="margin:0;padding:0;display:inline"><input type="hidden" value="✓" name="utf8" /><input type="hidden" value="put" name="_method" /></div>
+<table class="mini_travel_card">
+  <tbody><tr>
+    <td align="center" class="half_height label" style="-moz-user-select: none;">DO</td>
+    <td align="center" class="half_height label" style="-moz-user-select: none;">LC</td>
+    <td align="center" class="half_height label" style="-moz-user-select: none;">RW</td>
+    <td align="center" class="half_height label" style="-moz-user-select: none;">1</td>
+    <td align="center" class="half_height label" style="-moz-user-select: none;">2</td>
+    <td align="center" class="half_height label" style="-moz-user-select: none;">3</td>
+    <td align="center" colspan="6"></td>
+  </tr>
+  <tr>
+    <td class="mini_travel_card_cell" id="mini_travel_card_dominant_occiput" style="-moz-user-select: none;"></td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_level_of_care" style="-moz-user-select: none;"></td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_full_respiratory_wave" style="-moz-user-select: none;"></td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_leading_bme_strategy" style="-moz-user-select: none;"></td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_second_bme_strategy" style="-moz-user-select: none;"></td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_third_bme_strategy" style="-moz-user-select: none;"></td>
+    <td colspan="6"></td>
+  </tr>
+  <tr>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_occ_c1" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">O/1</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_c1_occ" style="-moz-user-select: none;"></td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_c1_c2" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">1/2</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_c2_c1" style="-moz-user-select: none;"></td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_c2_c3" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">2/3</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_c3_c2" style="-moz-user-select: none;"></td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_c3_c4" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">3/4</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_c4_c3" style="-moz-user-select: none;"></td>
+  </tr>
+  <tr>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_c4_c5" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">4/5</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_c5_c4" style="-moz-user-select: none;"></td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_c5_c6" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">5/6</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_c6_c5" style="-moz-user-select: none;"></td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_c6_c7" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">6/7</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_c7_c6" style="-moz-user-select: none;"></td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_c7_t1" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">7/1</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_t1_c7" style="-moz-user-select: none;"></td>
+  </tr>
+  <tr>
+    <td colspan="3"></td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_t1_t2" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">1/2</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_t2_t1" style="-moz-user-select: none;"></td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_t2_t3" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">2/3</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_t3_t2" style="-moz-user-select: none;"></td>
+    <td colspan="3"></td>
+  </tr>
+  <tr>
+    <td align="center" class="label" style="-moz-user-select: none;">S1</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_s1" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">S2</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_s2" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">S3</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_s3" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">S4</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_s4" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">S5</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_s5" style="-moz-user-select: none;"></td>
+    <td align="center" class="label" style="-moz-user-select: none;">CX</td>
+    <td class="mini_travel_card_cell" id="mini_travel_card_gateway_cx" style="-moz-user-select: none;"></td>
+  </tr>
+</tbody></table> 
+</div></td>
+	      <td valign="top">
+				<table class="selector_table">
+					<tbody><tr>
+						<td class="half_height label" style="-moz-user-select: none;">Date</td>
+						<td colspan="2" class="half_height">
+					</td></tr>
+					<tr>
+						<td><input type="text" value="2011-09-16 13:25" size="20" name="visit[date]" id="visit_date" class="autosave" /></td>
+						<td onclick="window.location.href='/practice_room/1/visit/new';" class="selector_cell selector_cell_text_six_character selector_cell_add" style="width: 0.5in; -moz-user-select: none;">New Visit</td>
+						<td><form class="button_to" action="/visits/1" method="post"><div><input type="hidden" value="delete" name="_method" /><input type="submit" value="Delete" style="width: 0.75in; font-size: 12px; background-color: red; -moz-user-select: none;" data-confirm="This action can not be undone. Are you sure?" class="selector_cell_submit selector_cell_text_six_character " /></div></form></td>
+					</tr>
+					<tr>
+						<td class="half_height label" colspan="3" style="-moz-user-select: none;">Notes</td>
+					</tr>
+					<tr>
+			      <td colspan="3"><textarea style="width: 350px; resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; height: 0px; line-height: 19px; text-decoration: none; letter-spacing: normal;" rows="20" cols="40" class="autosave" tabindex="-1"></textarea><textarea style="width: 350px; resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; height: 20px; line-height: 19px; text-decoration: none; letter-spacing: normal;" rows="20" cols="40" class="autosave" tabindex="-1"></textarea><textarea style="width: 350px; resize: none; overflow-y: hidden; height: 40px; position: absolute; top: 0px; left: -9999px; line-height: 19px; text-decoration: none; letter-spacing: normal;" rows="20" cols="40" class="autosave" tabindex="-1"></textarea><textarea style="width: 350px; resize: none; overflow-y: hidden; height: 40px;" rows="20" name="visit[notes]" id="visit_notes" cols="40" class="autosave"></textarea></td>
+		      </tr>
+				</tbody></table>
+			</td>
+	    </tr>
+	  </tbody></table>
+	  <table class="selector_table">
+	    <tbody><tr>
+	      <td style="width: 1in; -moz-user-select: none;" class="half_height label">PH</td>
+	      <td style="width: 1in; -moz-user-select: none;" class="half_height label">GW 1</td>
+	      <td style="width: 1in; -moz-user-select: none; display: none;" class="half_height label phase_1_affected_gateway_label">Aff</td>
+	      <td style="width: 1in; -moz-user-select: none;" class="half_height label">GW 2</td>
+	      <td style="width: 1in; -moz-user-select: none; display: none;" class="half_height label phase_1_affected_gateway_label">Aff</td>
+	      <td class="half_height label" id="phase_1_direction_label" style="-moz-user-select: none;">Dir</td>
+	      <td class="half_height label" style="-moz-user-select: none;">LOC</td>
+	      <td class="half_height"> </td>
+	    </tr>
+	    <tr>
+	      <td onmousedown="show_selector('phase_selector',this, 'selected_phase_1', 'visit_phase_1_gateway_1');" class="selector_cell selector_cell_text_three_character" id="selected_phase_1" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_1_gateway_1', 'visit_phase_1_gateway_1');" class="selector_cell selector_cell_text_three_character" id="selected_phase_1_gateway_1" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_1_gateway_1_affecting', 'visit_phase_1_gateway_1_affecting');" class="selector_cell selector_cell_text_three_character" id="selected_phase_1_gateway_1_affecting" style="-moz-user-select: none; display: none;"></td>
+	      <td onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_1_gateway_2', 'visit_phase_1_gateway_2');" class="selector_cell selector_cell_text_three_character" id="selected_phase_1_gateway_2" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_1_gateway_2_affecting', 'visit_phase_1_gateway_2_affecting');" class="selector_cell selector_cell_text_three_character" id="selected_phase_1_gateway_2_affecting" style="-moz-user-select: none; display: none;"></td>
+	      <td onmousedown="show_selector('phase_direction_selector', this, 'selected_phase_1_direction', 'visit_phase_1_direction');" class="selector_cell selector_cell_text_three_character" id="selected_phase_1_direction" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('level_of_care_selector', this, 'selected_phase_1_level_of_care', 'visit_phase_1_level_of_care');" class="selector_cell selector_cell_text_three_character" id="selected_phase_1_level_of_care" style="-moz-user-select: none;"></td>
+	      <td onclick="$('.phase_2').show(); $(this).hide();" class="selector_cell selector_cell_text_six_character selector_cell_size_medium" id="work_second_phase_button" style="-moz-user-select: none;">+ 2nd Phase</td>
+	    </tr>
+	    <tr class="phase_2 hidden" style="display: none;">
+	     <td style="width: 1in; -moz-user-select: none;" class="half_height label">PH</td>
+	      <td style="width: 1in; -moz-user-select: none;" class="half_height label">GW 1</td>
+	      <td style="width: 1in; -moz-user-select: none; display: none;" class="half_height label phase_2_affected_gateway_label">Aff</td>
+	      <td style="width: 1in; -moz-user-select: none;" class="half_height label">GW 2</td>
+	      <td style="width: 1in; -moz-user-select: none; display: none;" class="half_height label phase_2_affected_gateway_label">Aff</td>
+	      <td class="half_height label" id="phase_2_direction_label" style="-moz-user-select: none;">Dir</td>
+	      <td class="half_height label" style="-moz-user-select: none;">LOC</td>
+	    </tr>
+	    <tr class="phase_2 hidden" style="display: none;">
+	      <td onmousedown="show_selector('phase_selector',this, 'selected_phase_2', 'visit_phase_2_gateway_2');" class="selector_cell selector_cell_text_three_character" id="selected_phase_2" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_2_gateway_1', 'visit_phase_2_gateway_1');" class="selector_cell selector_cell_text_three_character" id="selected_phase_2_gateway_1" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_2_gateway_1_affecting', 'visit_phase_2_gateway_1_affecting');" class="selector_cell selector_cell_text_three_character" id="selected_phase_2_gateway_1_affecting" style="-moz-user-select: none; display: none;"></td>
+	      <td onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_2_gateway_2', 'visit_phase_2_gateway_2');" class="selector_cell selector_cell_text_three_character" id="selected_phase_2_gateway_2" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_2_gateway_2_affecting', 'visit_phase_2_gateway_2_affecting');" class="selector_cell selector_cell_text_three_character" id="selected_phase_2_gateway_2_affecting" style="-moz-user-select: none; display: none;"></td>
+	      <td onmousedown="show_selector('phase_direction_selector', this, 'selected_phase_2_direction', 'visit_phase_2_direction');" class="selector_cell selector_cell_text_three_character" id="selected_phase_2_direction" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('level_of_care_selector', this, 'selected_phase_2_level_of_care', 'visit_phase_2_level_of_care');" class="selector_cell selector_cell_text_three_character" id="selected_phase_2_level_of_care" style="-moz-user-select: none;"></td>
+	    </tr>
+	  </tbody></table>
+<!--
+	  <table class="selector_table">
+      <tr>
+	      <td class="half_height label" >View</td>
+      </tr>
+	    <tr>
+	      <td id="visit_view_type_id" class="selector_cell selector_cell_text_six_character selector_cell_size_medium" onClick="alert('implement me');">Std</td>
+	    </tr>
+    </table>
+-->
+	  <table class="selector_table">
+	    <tbody><tr>
+	      <td class="half_height label" colspan="6" style="-moz-user-select: none;">Tension</td>
+	      <td class="half_height label" colspan="5" style="-moz-user-select: none;">Advanced/Misc</td>
+	    </tr>
+	    <tr>
+	      <td class="half_height label" style="-moz-user-select: none;">S Leg</td>
+	      <td class="half_height label" style="-moz-user-select: none;">Amount</td>
+	      <td class="half_height label" style="-moz-user-select: none;">HT</td>
+	      <td class="half_height label" style="-moz-user-select: none;">EV</td>
+	      <td class="half_height label" style="-moz-user-select: none;">ABD</td>
+	      <td class="half_height label" style="-moz-user-select: none;">ADD</td>
+	      <td class="half_height label" style="-moz-user-select: none;">I OF</td>
+	      <td class="half_height label" style="-moz-user-select: none;">E OF</td>
+	      <td class="half_height label" style="-moz-user-select: none;">LLA</td>
+	      <td class="half_height label" style="-moz-user-select: none;">SLA</td>
+	      <td class="half_height label" style="-moz-user-select: none;">Crest</td>
+	    </tr>
+	    <tr>
+	      <td onmousedown="show_selector('side_selector', this, 'short_leg_side', 'visit_short_leg_side');" class="selector_cell selector_cell_text_three_character" id="short_leg_side" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('short_leg_amount_selector', this, 'short_leg_amount', 'visit_short_leg_amount');" class="selector_cell selector_cell_text_three_character" id="short_leg_amount" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('tension_level_selector', this, 'heel_tension_level', 'visit_heel_tension_level');" class="selector_cell selector_cell_text_three_character" id="heel_tension_level" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('tension_level_selector', this, 'eversion_tension_level', 'visit_eversion_tension_level');" class="selector_cell selector_cell_text_three_character" id="eversion_tension_level" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('tension_level_selector', this, 'abduction_tension_level', 'visit_abduction_tension_level');" class="selector_cell selector_cell_text_three_character" id="abduction_tension_level" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('tension_level_selector', this, 'adduction_tension_level', 'visit_adduction_tension_level');" class="selector_cell selector_cell_text_three_character" id="adduction_tension_level" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('organizing_field_selector', this, 'ingression_organizing_field', 'visit_ingression_organizing_field');" class="selector_cell selector_cell_text_three_character" id="ingression_organizing_field" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('organizing_field_selector', this, 'egression_organizing_field', 'visit_egression_organizing_field');" class="selector_cell selector_cell_text_three_character" id="egression_organizing_field" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('boolean_selector', this, 'long_lever_arm', 'visit_long_lever_arm');" class="selector_cell selector_cell_text_three_character" id="long_lever_arm" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('boolean_selector', this, 'short_lever_arm', 'visit_short_lever_arm');" class="selector_cell selector_cell_text_three_character" id="short_lever_arm" style="-moz-user-select: none;"></td>
+	      <td onmousedown="show_selector('boolean_selector', this, 'crest', 'visit_crest');" class="selector_cell selector_cell_text_three_character" id="crest" style="-moz-user-select: none;"></td>
+	    </tr>
+	  </tbody></table>
+    <table>
+      <tbody><tr>
+        <td valign="top">
+          <table class="selector_table">
+  <tbody><tr>
+    <td class="half_height label" colspan="4" id="label_sri_4_col" style="-moz-user-select: none;">SRI</td>
+    <td class="half_height label hidden" colspan="5" id="label_sri_5_col" style="display: none; -moz-user-select: none;">SRI</td>
+    <td class="half_height"></td>
+  </tr>
+
+  <tr class="sri_session_1">
+    <td class="half_height label" style="-moz-user-select: none;">Stage</td>
+    <td class="half_height label" id="label_sri_session_1_position_a" style="-moz-user-select: none;">Pos</td>
+    <td class="half_height label hidden" id="label_sri_session_1_position_b" style="display: none; -moz-user-select: none;">Pos</td>
+    <td class="half_height label" style="-moz-user-select: none;">LOC</td>
+    <td class="half_height label" style="-moz-user-select: none;">OF</td>
+    <td class="half_height"></td>
+  </tr>
+  <tr class="sri_session_1">
+    <td onmousedown="visit.show_selector('sri_stage_selector', this);" class="selector_cell selector_cell_text_three_character" id="sri_session_1_stage" style="-moz-user-select: none;"></td>
+    <td onmousedown="visit.show_selector('sri_position_selector', this);" class="selector_cell selector_cell_text_three_character" id="sri_session_1_position_a" style="-moz-user-select: none;"></td>
+    <td onmousedown="visit.show_selector('sri_position_selector', this);" class="selector_cell selector_cell_text_three_character hidden" id="sri_session_1_position_b" style="display: none; -moz-user-select: none;"></td>
+    <td onmousedown="visit.show_selector('level_of_care_selector', this);" class="selector_cell selector_cell_text_three_character" id="sri_session_1_level_of_care" style="-moz-user-select: none;"></td>
+    <td onmousedown="visit.show_selector('organizing_field_selector', this);" class="selector_cell selector_cell_text_three_character" id="sri_session_1_organizing_field" style="-moz-user-select: none;"></td>
+      <td onmousedown="$('.sri_session_2').show(); $(this).hide();" class="selector_cell selector_cell_text_six_character selector_cell_size_medium" id="add_sri_session_2" style="-moz-user-select: none;">+ SRI Session</td>
+  </tr>
+
+    <tr class="sri_session_2 hidden" style="display: none;">
+      <td class="half_height label" style="-moz-user-select: none;">Stage</td>
+      <td class="half_height label" id="label_sri_session_2_position_a" style="-moz-user-select: none;">Pos</td>
+      <td class="half_height label hidden" id="label_sri_session_2_position_b" style="display: none; -moz-user-select: none;">Pos</td>
+      <td class="half_height label" style="-moz-user-select: none;">LOC</td>
+      <td class="half_height label" style="-moz-user-select: none;">OF</td>
+      <td class="half_height"></td>
+    </tr>
+    <tr class="sri_session_2 hidden" style="display: none;">
+      <td onmousedown="visit.show_selector('sri_stage_selector', this);" class="selector_cell selector_cell_text_three_character" id="sri_session_2_stage" style="-moz-user-select: none;"></td>
+      <td onmousedown="visit.show_selector('sri_position_selector', this);" class="selector_cell selector_cell_text_three_character" id="sri_session_2_position_a" style="-moz-user-select: none;"></td>
+      <td onmousedown="visit.show_selector('sri_position_selector', this);" class="selector_cell selector_cell_text_three_character hidden" id="sri_session_2_position_b" style="display: none; -moz-user-select: none;"></td>
+      <td onmousedown="visit.show_selector('level_of_care_selector', this);" class="selector_cell selector_cell_text_three_character" id="sri_session_2_level_of_care" style="-moz-user-select: none;"></td>
+      <td onmousedown="visit.show_selector('organizing_field_selector', this);" class="selector_cell selector_cell_text_three_character" id="sri_session_2_organizing_field" style="-moz-user-select: none;"></td>
+      <td onmousedown="$('.sri_session_3').show(); $(this).hide();" class="selector_cell selector_cell_text_six_character selector_cell_size_medium" id="add_sri_session_3" style="-moz-user-select: none;">+ SRI Session</td>
+    </tr>
+    <tr class="sri_session_3 hidden" style="display: none;">
+      <td class="half_height label" style="-moz-user-select: none;">Stage</td>
+      <td class="half_height label" id="label_sri_session_3_position_a" style="-moz-user-select: none;">Pos</td>
+      <td class="half_height label hidden" id="label_sri_session_3_position_b" style="display: none; -moz-user-select: none;">Pos</td>
+      <td class="half_height label" style="-moz-user-select: none;">LOC</td>
+      <td class="half_height label" style="-moz-user-select: none;">OF</td>
+      <td class="half_height"></td>
+    </tr>
+    <tr class="sri_session_3 hidden" style="display: none;">
+      <td onmousedown="visit.show_selector('sri_stage_selector', this);" class="selector_cell selector_cell_text_three_character" id="sri_session_3_stage" style="-moz-user-select: none;"></td>
+      <td onmousedown="visit.show_selector('sri_position_selector', this);" class="selector_cell selector_cell_text_three_character" id="sri_session_3_position_a" style="-moz-user-select: none;"></td>
+      <td onmousedown="visit.show_selector('sri_position_selector', this);" class="selector_cell selector_cell_text_three_character hidden" id="sri_session_3_position_b" style="display: none; -moz-user-select: none;"></td>
+      <td onmousedown="visit.show_selector('level_of_care_selector', this);" class="selector_cell selector_cell_text_three_character" id="sri_session_3_level_of_care" style="-moz-user-select: none;"></td>
+      <td onmousedown="visit.show_selector('organizing_field_selector', this);" class="selector_cell selector_cell_text_three_character" id="sri_session_3_organizing_field" style="-moz-user-select: none;"></td>
+      <td></td>
+    </tr>
+</tbody></table>
+
+        </td>
+        <td>
+          <table class="selector_table">
+            <tbody><tr>
+              <td class="half_height label" colspan="5" style="-moz-user-select: none;">Diagnosis</td>
+            </tr>
+            <tr>
+              <td valign="top" rowspan="2" colspan="5"><textarea style="width: 300px; height: 50px; resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; line-height: 19px; text-decoration: none; letter-spacing: normal;" rows="20" cols="40" class="autosave" tabindex="-1"></textarea><textarea style="width: 300px; height: 70px; resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; line-height: 19px; text-decoration: none; letter-spacing: normal;" rows="20" cols="40" class="autosave" tabindex="-1"></textarea><textarea style="width: 300px; height: 90px; resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; line-height: 19px; text-decoration: none; letter-spacing: normal;" rows="20" cols="40" class="autosave" tabindex="-1"></textarea><textarea style="width: 300px; height: 90px; resize: none; overflow-y: hidden;" rows="20" name="visit[diagnosis]" id="visit_diagnosis" cols="40" class="autosave"></textarea></td>
+            </tr>
+            <tr>
+              <td> </td>
+            </tr>
+          </tbody></table>
+        </td>
+      </tr>
+    </tbody></table>
+
+	  <input type="hidden" value="1" name="visit[id]" id="visit_id" />
+	  <input type="hidden" value="1" name="visit[practice_member_id]" id="visit_practice_member_id" />
+	  <input type="hidden" name="visit[phase_1]" id="visit_phase_1" />
+	  <input type="hidden" name="visit[phase_1_gateway_1]" id="visit_phase_1_gateway_1" />
+	  <input type="hidden" name="visit[phase_1_gateway_1_affecting]" id="visit_phase_1_gateway_1_affecting" />
+	  <input type="hidden" name="visit[phase_1_gateway_2]" id="visit_phase_1_gateway_2" />
+	  <input type="hidden" name="visit[phase_1_gateway_2_affecting]" id="visit_phase_1_gateway_2_affecting" />
+	  <input type="hidden" name="visit[phase_1_level_of_care]" id="visit_phase_1_level_of_care" />
+	  <input type="hidden" name="visit[phase_1_direction]" id="visit_phase_1_direction" />
+	  <input type="hidden" name="visit[phase_2]" id="visit_phase_2" />
+	  <input type="hidden" name="visit[phase_2_gateway_1]" id="visit_phase_2_gateway_1" />
+	  <input type="hidden" name="visit[phase_2_gateway_1_affecting]" id="visit_phase_2_gateway_1_affecting" />
+	  <input type="hidden" name="visit[phase_2_gateway_2]" id="visit_phase_2_gateway_2" />
+	  <input type="hidden" name="visit[phase_2_gateway_2_affecting]" id="visit_phase_2_gateway_2_affecting" />
+	  <input type="hidden" name="visit[phase_2_level_of_care]" id="visit_phase_2_level_of_care" />
+	  <input type="hidden" name="visit[phase_2_direction]" id="visit_phase_2_direction" />
+	  <input type="hidden" name="visit[abduction_tension_level]" id="visit_abduction_tension_level" />
+	  <input type="hidden" name="visit[adduction_tension_level]" id="visit_adduction_tension_level" />
+	  <input type="hidden" name="visit[heel_tension_level]" id="visit_heel_tension_level" />
+	  <input type="hidden" name="visit[eversion_tension_level]" id="visit_eversion_tension_level" />
+	  <input type="hidden" name="visit[ingression_organizing_field]" id="visit_ingression_organizing_field" />
+	  <input type="hidden" name="visit[egression_organizing_field]" id="visit_egression_organizing_field" />
+	  <input type="hidden" name="visit[long_lever_arm]" id="visit_long_lever_arm" />
+	  <input type="hidden" name="visit[short_lever_arm]" id="visit_short_lever_arm" />
+	  <input type="hidden" name="visit[crest]" id="visit_crest" />
+	  <input type="hidden" name="visit[short_leg_side]" id="visit_short_leg_side" />
+	  <input type="hidden" name="visit[short_leg_amount]" id="visit_short_leg_amount" />
+	  <input type="hidden" name="visit[diagnosis]" id="visit_diagnosis" />
+
+</form></div>
+
+			</div>
+
+			<div style="display: none;" id="practice_room_visit_list">
+					<table class="wavelineup_table">
+		<tbody><tr style="height: 0.25in">
+			<td rowspan="2" class="label" style="-moz-user-select: none;">Date</td>
+			<td colspan="3" class="label" style="-moz-user-select: none;">1st Phase</td>
+			<td colspan="3" class="label" style="-moz-user-select: none;">2nd Phase</td>
+			<td rowspan="2" class="label" style="-moz-user-select: none;">SRI Stage</td>
+      <td style="cursor: pointer; -moz-user-select: none;" onclick="$(this).toggleClass('current_selected'); $('.visit_notes').toggle();" rowspan="2" class="selector_cell selector_cell_text_six_character selector_cell_size_medium">More</td>
+      <td style="display: none"></td>
+		</tr>
+		<tr style="height: 0.25in">
+			<td class="label" style="-moz-user-select: none;">Phase</td>
+			<td class="label" style="-moz-user-select: none;">LOC</td>
+			<td class="label" style="-moz-user-select: none;">Dir</td>
+			<td class="label" style="-moz-user-select: none;">Phase</td>
+			<td class="label" style="-moz-user-select: none;">LOC</td>
+			<td class="label" style="-moz-user-select: none;">Dir</td>
+      <td style="display: none"></td>
+		</tr>
+      <tr onclick="window.location.href='/practice_room/1/visit/1'" class="selector_cell" id="visit_1" style="-moz-user-select: none;">
+        <td align="center">2011-09-16 13:25</td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td style="display: none"></td>
+      </tr>
+	</tbody></table>
+<br />
+
+
+			</div>
+
+			<div style="display: none;" id="practice_room_travel_card">
+				<script language="javascript">
+  $(document).ready(function() {
+    travel_card_set_values_from_hidden_fields(false);
+  });
+</script>
+
+<div style="width: 7in;" id="travel_card">
+<table>
+  <tbody><tr>
+    <td valign="top">
+      <form method="post" id="edit_travel_card_1" class="edit_travel_card" action="/travel_cards/1" accept-charset="UTF-8"><div style="margin:0;padding:0;display:inline"><input type="hidden" value="✓" name="utf8" /><input type="hidden" value="put" name="_method" /></div>
+
+      <table class="selector_table">
+        <tbody><tr>
+          <td align="center" class="half_height label" style="-moz-user-select: none;">DO</td>
+          <td align="center" class="half_height label" style="-moz-user-select: none;">LOC</td>
+          <td align="center" class="half_height label" style="-moz-user-select: none;">Rsp Wv</td>
+          <td align="center" class="half_height label" style="-moz-user-select: none;">BME 1</td>
+          <td align="center" class="half_height label" style="-moz-user-select: none;">BME 2</td>
+          <td align="center" class="half_height label" style="-moz-user-select: none;">BME 3</td>
+          <td colspan="7"></td>
+        </tr>
+        <tr>
+
+          <td onmousedown="show_selector('side_selector', this, 'dominant_occiput', 'travel_card_dominant_occiput');" class="selector_cell selector_cell_text_single_character" id="dominant_occiput" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('level_of_care_selector', this, 'level_of_care', 'travel_card_level_of_care');" class="selector_cell selector_cell_text_single_character" id="level_of_care" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('boolean_selector', this, 'full_respiratory_wave', 'travel_card_full_respiratory_wave');" class="selector_cell selector_cell_text_single_character" id="full_respiratory_wave" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('bme_strategy_selector', this, 'leading_bme_strategy', 'travel_card_leading_bme_strategy');" class="selector_cell selector_cell_text_single_character" id="leading_bme_strategy" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('bme_strategy_selector', this, 'second_bme_strategy', 'travel_card_second_bme_strategy');" class="selector_cell selector_cell_text_single_character" id="second_bme_strategy" style="-moz-user-select: none;"></td>
+          <td class="selector_cell selector_cell_text_single_character" id="third_bme_strategy" style="-moz-user-select: none;"></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_occ_c1', 'travel_card_gateway_occ_c1');" class="selector_cell selector_cell_text_single_character" id="gateway_occ_c1" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">OCC/C1</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_c1_occ', 'travel_card_gateway_c1_occ');" class="selector_cell selector_cell_text_single_character" id="gateway_c1_occ" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_c1_c2', 'travel_card_gateway_c1_c2');" class="selector_cell selector_cell_text_single_character" id="gateway_c1_c2" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">C1/C2</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_c2_c1', 'travel_card_gateway_c2_c1');" class="selector_cell selector_cell_text_single_character" id="gateway_c2_c1" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_c2_c3', 'travel_card_gateway_c2_c3');" class="selector_cell selector_cell_text_single_character" id="gateway_c2_c3" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">C2/C3</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_c3_c2', 'travel_card_gateway_c3_c2');" class="selector_cell selector_cell_text_single_character" id="gateway_c3_c2" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_c3_c4', 'travel_card_gateway_c3_c4');" class="selector_cell selector_cell_text_single_character" id="gateway_c3_c4" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">C3/C4</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_c4_c3', 'travel_card_gateway_c4_c3');" class="selector_cell selector_cell_text_single_character" id="gateway_c4_c3" style="-moz-user-select: none;"></td>
+        </tr>
+        <tr>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_c4_c5', 'travel_card_gateway_c4_c5');" class="selector_cell selector_cell_text_single_character" id="gateway_c4_c5" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">C4/C5</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_c5_c4', 'travel_card_gateway_c5_c4');" class="selector_cell selector_cell_text_single_character" id="gateway_c5_c4" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_c5_c6', 'travel_card_gateway_c5_c6');" class="selector_cell selector_cell_text_single_character" id="gateway_c5_c6" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">C5/C6</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_c6_c5', 'travel_card_gateway_c6_c5');" class="selector_cell selector_cell_text_single_character" id="gateway_c6_c5" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_c6_c7', 'travel_card_gateway_c6_c7');" class="selector_cell selector_cell_text_single_character" id="gateway_c6_c7" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">C6/C7</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_c7_c6', 'travel_card_gateway_c7_c6');" class="selector_cell selector_cell_text_single_character" id="gateway_c7_c6" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_c7_t1', 'travel_card_gateway_c7_t1');" class="selector_cell selector_cell_text_single_character" id="gateway_c7_t1" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">C7/T1</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_t1_c7', 'travel_card_gateway_t1_c7');" class="selector_cell selector_cell_text_single_character" id="gateway_t1_c7" style="-moz-user-select: none;"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_t1_t2', 'travel_card_gateway_t1_t2');" class="selector_cell selector_cell_text_single_character" id="gateway_t1_t2" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">T1/T2</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_t2_t1', 'travel_card_gateway_t2_t1');" class="selector_cell selector_cell_text_single_character" id="gateway_t2_t1" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_t2_t3', 'travel_card_gateway_t2_t3');" class="selector_cell selector_cell_text_single_character" id="gateway_t2_t3" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">T2/T3</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_t3_t2', 'travel_card_gateway_t3_t2');" class="selector_cell selector_cell_text_single_character" id="gateway_t3_t2" style="-moz-user-select: none;"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td align="center" class="label" style="-moz-user-select: none;">S1</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_s1', 'travel_card_gateway_s1');" class="selector_cell selector_cell_text_single_character" id="gateway_s1" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">S2</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_s2', 'travel_card_gateway_s2');" class="selector_cell selector_cell_text_single_character" id="gateway_s2" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">S3</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_s3', 'travel_card_gateway_s3');" class="selector_cell selector_cell_text_single_character" id="gateway_s3" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">S4</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_s4', 'travel_card_gateway_s4');" class="selector_cell selector_cell_text_single_character" id="gateway_s4" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">S5</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_s5', 'travel_card_gateway_s5');" class="selector_cell selector_cell_text_single_character" id="gateway_s5" style="-moz-user-select: none;"></td>
+          <td align="center" class="label" style="-moz-user-select: none;">CX</td>
+          <td onmousedown="show_selector('side_selector', this, 'gateway_cx', 'travel_card_gateway_cx');" class="selector_cell selector_cell_text_single_character" id="gateway_cx" style="-moz-user-select: none;"></td>
+        </tr>
+        <tr>
+          <td class="half_height" colspan="12"> </td>
+        </tr>
+      </tbody></table>
+      <table>
+        <tbody><tr>
+          <td onclick="$('#tension_level_detail').slideToggle(); $('#tension_level_detail_button').toggleClass('current_selected');" class="section_name selector_cell_nav selector_cell_size_medium" style="width: 2in; -moz-user-select: none;" id="tension_level_detail_button">Tension Levels</td>
+          <td> </td>
+          <td onclick="$('#sri_detail').slideToggle(); $('#sri_detail_button').toggleClass('current_selected'); $('#travel_card_buzz_words_for_sri').autoResize().trigger('change');" class="section_name selector_cell_nav selector_cell_size_medium" style="width: 2in; -moz-user-select: none;" id="sri_detail_button">SRI</td>
+          <td> </td>
+          <td onclick="$('#programs_education_detail').slideToggle(); $('#programs_education_detail_button').toggleClass('current_selected');" class="section_name selector_cell_nav selector_cell_size_medium" style="width: 2in; -moz-user-select: none;" id="programs_education_detail_button">Programs/Education</td>
+          <td> </td>
+          <td onclick="$('#notes_detail').slideToggle(); $('#notes_detail_button').toggleClass('current_selected'); $('#travel_card_notes').autoResize().trigger('change');" class="section_name selector_cell_nav selector_cell_size_medium" style="width: 2in; -moz-user-select: none;" id="notes_detail_button">Notes</td>
+
+        </tr>
+        <tr>
+          <td class="half_height" colspan="10"> </td>
+        </tr>
+      </tbody></table>
+      <table class="selector_table hidden" id="tension_level_detail" style="display: none;">
+        <tbody><tr>
+          <td class="half_height label" style="-moz-user-select: none;">Tension</td>
+          <td class="half_height label" style="-moz-user-select: none;">C1-7</td>
+          <td class="half_height label" style="-moz-user-select: none;">T1-12</td>
+          <td class="half_height label" style="-moz-user-select: none;">L1-5</td>
+          <td class="half_height label" style="-moz-user-select: none;">S1-CX</td>
+          <td class="half_height"> </td>
+          <td class="half_height label" style="-moz-user-select: none;">C1-7</td>
+          <td class="half_height label" style="-moz-user-select: none;">T1-12</td>
+          <td class="half_height label" style="-moz-user-select: none;">L1-5</td>
+          <td class="half_height label" style="-moz-user-select: none;">S1-CX</td>
+        </tr>
+        <tr>
+          <td class="label" style="-moz-user-select: none;">Passive</td>
+          <td onmousedown="show_selector('tension_level_selector', this, 'passive_c1_c7_tension_level', 'travel_card_passive_c1_c7_tension_level');" class="selector_cell selector_cell_text_single_character" id="passive_c1_c7_tension_level" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('tension_level_selector', this, 'passive_t1_t12_tension_level', 'travel_card_passive_t1_t12_tension_level');" class="selector_cell selector_cell_text_single_character" id="passive_t1_t12_tension_level" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('tension_level_selector', this, 'passive_l1_l5_tension_level', 'travel_card_passive_l1_l5_tension_level');" class="selector_cell selector_cell_text_single_character" id="passive_l1_l5_tension_level" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('tension_level_selector', this, 'passive_s1_cx_tension_level', 'travel_card_passive_s1_cx_tension_level');" class="selector_cell selector_cell_text_single_character" id="passive_s1_cx_tension_level" style="-moz-user-select: none;"></td>
+          <td class="label" style="-moz-user-select: none;">Active</td>
+          <td onmousedown="show_selector('tension_level_selector', this, 'active_c1_c7_tension_level', 'travel_card_active_c1_c7_tension_level');" class="selector_cell selector_cell_text_single_character" id="active_c1_c7_tension_level" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('tension_level_selector', this, 'active_t1_t12_tension_level', 'travel_card_active_t1_t12_tension_level');" class="selector_cell selector_cell_text_single_character" id="active_t1_t12_tension_level" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('tension_level_selector', this, 'active_l1_l5_tension_level', 'travel_card_active_l1_l5_tension_level');" class="selector_cell selector_cell_text_single_character" id="active_l1_l5_tension_level" style="-moz-user-select: none;"></td>
+          <td onmousedown="show_selector('tension_level_selector', this, 'active_s1_cx_tension_level', 'travel_card_active_s1_cx_tension_level');" class="selector_cell selector_cell_text_single_character" id="active_s1_cx_tension_level" style="-moz-user-select: none;"></td>
+        </tr>
+      </tbody></table>
+      <table class="hidden" id="sri_detail" style="display: none;">
+        <tbody><tr>
+          <td valign="top">
+            <table class="selector_table">
+              <tbody><tr>
+                <td class="half_height label" style="-moz-user-select: none;">SRI P1 Aware</td>
+                <td class="half_height label" style="-moz-user-select: none;">SRI P2 Aware</td>
+                <td class="half_height label" style="-moz-user-select: none;">SRI P3 Aware</td>
+                <td class="half_height label" style="-moz-user-select: none;">Safety Pos</td>
+                <td class="half_height label" colspan="4" style="-moz-user-select: none;">Triggers/Notes</td>
+              </tr>
+              <tr>
+                <td onmousedown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_1_level_of_awareness', 'travel_card_sri_position_1_level_of_awareness');" class="selector_cell selector_cell_text_single_character" id="sri_position_1_level_of_awareness" style="-moz-user-select: none;"></td>
+                <td onmousedown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_2_level_of_awareness', 'travel_card_sri_position_2_level_of_awareness');" class="selector_cell selector_cell_text_single_character" id="sri_position_2_level_of_awareness" style="-moz-user-select: none;"></td>
+                <td onmousedown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_3_level_of_awareness', 'travel_card_sri_position_3_level_of_awareness');" class="selector_cell selector_cell_text_single_character" id="sri_position_3_level_of_awareness" style="-moz-user-select: none;"></td>
+                <td onmousedown="show_selector('sri_position_selector', this, 'sri_safety_position', 'travel_card_sri_safety_position');" class="selector_cell selector_cell_text_single_character" id="sri_safety_position" style="-moz-user-select: none;"></td>
+                <td colspan="4">
+                    <textarea style="width: 384px; height: 9.6px; resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; line-height: 19px; text-decoration: none; letter-spacing: normal;" rows="20" cols="40" class="autosave" tabindex="-1"></textarea><textarea style="width: 4in; height: 0.1in; resize: none; overflow-y: hidden;" rows="20" name="travel_card[buzz_words_for_sri]" id="travel_card_buzz_words_for_sri" cols="40" class="autosave"></textarea>
+                </td>
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+      </tbody></table>
+      <table class="hidden" id="programs_education_detail" style="display: none;">
+        <tbody><tr>
+          <td colspan="5" class="label" style="-moz-user-select: none;">Programs</td>
+          <td colspan="2" class="label" style="-moz-user-select: none;">Books</td>
+        </tr>
+        <tr>
+          <td class="label" style="-moz-user-select: none;">Gates</td>
+          <td class="label" style="-moz-user-select: none;">SRI</td>
+          <td class="label" style="-moz-user-select: none;">HIP</td>
+          <td class="label" style="-moz-user-select: none;">Ultima</td>
+          <td class="label" style="-moz-user-select: none;">Ultimatum</td>
+          <td class="label" style="-moz-user-select: none;">12 Stages</td>
+          <td class="label" style="-moz-user-select: none;">Healing Magic</td>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" size="3" name="travel_card[number_gate]" id="travel_card_number_gate" class="autosave" />
+          </td>
+          <td>
+            <input type="text" size="3" name="travel_card[number_sri]" id="travel_card_number_sri" class="autosave" />
+          </td>
+          <td>
+            <input type="text" size="3" name="travel_card[number_hip]" id="travel_card_number_hip" class="autosave" />
+          </td>
+          <td>
+            <input type="text" size="3" name="travel_card[number_ultima]" id="travel_card_number_ultima" class="autosave" />
+          </td>
+          <td>
+            <input type="text" size="3" name="travel_card[number_ultimatum]" id="travel_card_number_ultimatum" class="autosave" />
+          </td>
+	        <td onmousedown="show_selector('boolean_selector', this, 'book_12_stages', 'travel_card_book_12_stages');" class="selector_cell selector_cell_text_single_character" id="book_12_stages" style="-moz-user-select: none;"></td>
+	        <td onmousedown="show_selector('boolean_selector', this, 'book_healing_magic', 'travel_card_book_healing_magic');" class="selector_cell selector_cell_text_single_character" id="book_healing_magic" style="-moz-user-select: none;"></td>
+        </tr>
+      </tbody></table>
+
+      <table class="hidden" id="notes_detail" style="display: none;">
+        <tbody><tr>
+          <td class="label" style="-moz-user-select: none;">Notes</td>
+        </tr>
+        <tr>
+          <td>
+            <textarea style="width: 576px; height: 9.6px; resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; line-height: 19px; text-decoration: none; letter-spacing: normal;" rows="20" cols="40" class="autosave" tabindex="-1"></textarea><textarea style="width: 6in; height: 0.1in; resize: none; overflow-y: hidden;" rows="20" name="travel_card[notes]" id="travel_card_notes" cols="40" class="autosave"></textarea>
+          </td>
+      </tr></tbody></table>
+
+        <input type="hidden" value="1" name="travel_card[id]" id="travel_card_id" />
+        <input type="hidden" value="1" name="travel_card[practice_member_id]" id="travel_card_practice_member_id" />
+        <input type="hidden" name="travel_card[dominant_occiput]" id="travel_card_dominant_occiput" />
+        <input type="hidden" name="travel_card[leading_bme_strategy]" id="travel_card_leading_bme_strategy" />
+        <input type="hidden" name="travel_card[second_bme_strategy]" id="travel_card_second_bme_strategy" />
+        <input type="hidden" name="travel_card[level_of_care]" id="travel_card_level_of_care" />
+        <input type="hidden" name="travel_card[full_respiratory_wave]" id="travel_card_full_respiratory_wave" />
+        <input type="hidden" name="travel_card[gateway_occ_c1]" id="travel_card_gateway_occ_c1" />
+        <input type="hidden" name="travel_card[gateway_c1_occ]" id="travel_card_gateway_c1_occ" />
+        <input type="hidden" name="travel_card[gateway_c1_c2]" id="travel_card_gateway_c1_c2" />
+        <input type="hidden" name="travel_card[gateway_c2_c1]" id="travel_card_gateway_c2_c1" />
+        <input type="hidden" name="travel_card[gateway_c2_c3]" id="travel_card_gateway_c2_c3" />
+        <input type="hidden" name="travel_card[gateway_c3_c2]" id="travel_card_gateway_c3_c2" />
+        <input type="hidden" name="travel_card[gateway_c3_c4]" id="travel_card_gateway_c3_c4" />
+        <input type="hidden" name="travel_card[gateway_c4_c3]" id="travel_card_gateway_c4_c3" />
+        <input type="hidden" name="travel_card[gateway_c4_c5]" id="travel_card_gateway_c4_c5" />
+        <input type="hidden" name="travel_card[gateway_c5_c4]" id="travel_card_gateway_c5_c4" />
+        <input type="hidden" name="travel_card[gateway_c5_c6]" id="travel_card_gateway_c5_c6" />
+        <input type="hidden" name="travel_card[gateway_c6_c5]" id="travel_card_gateway_c6_c5" />
+        <input type="hidden" name="travel_card[gateway_c6_c7]" id="travel_card_gateway_c6_c7" />
+        <input type="hidden" name="travel_card[gateway_c7_c6]" id="travel_card_gateway_c7_c6" />
+        <input type="hidden" name="travel_card[gateway_c7_t1]" id="travel_card_gateway_c7_t1" />
+        <input type="hidden" name="travel_card[gateway_t1_c7]" id="travel_card_gateway_t1_c7" />
+        <input type="hidden" name="travel_card[gateway_t1_t2]" id="travel_card_gateway_t1_t2" />
+        <input type="hidden" name="travel_card[gateway_t2_t1]" id="travel_card_gateway_t2_t1" />
+        <input type="hidden" name="travel_card[gateway_t2_t3]" id="travel_card_gateway_t2_t3" />
+        <input type="hidden" name="travel_card[gateway_t3_t2]" id="travel_card_gateway_t3_t2" />
+        <input type="hidden" name="travel_card[gateway_s1]" id="travel_card_gateway_s1" />
+        <input type="hidden" name="travel_card[gateway_s2]" id="travel_card_gateway_s2" />
+        <input type="hidden" name="travel_card[gateway_s3]" id="travel_card_gateway_s3" />
+        <input type="hidden" name="travel_card[gateway_s4]" id="travel_card_gateway_s4" />
+        <input type="hidden" name="travel_card[gateway_s5]" id="travel_card_gateway_s5" />
+        <input type="hidden" name="travel_card[gateway_cx]" id="travel_card_gateway_cx" />
+
+        <input type="hidden" name="travel_card[passive_c1_c7_tension_level]" id="travel_card_passive_c1_c7_tension_level" />
+        <input type="hidden" name="travel_card[passive_t1_t12_tension_level]" id="travel_card_passive_t1_t12_tension_level" />
+        <input type="hidden" name="travel_card[passive_l1_l5_tension_level]" id="travel_card_passive_l1_l5_tension_level" />
+        <input type="hidden" name="travel_card[passive_s1_cx_tension_level]" id="travel_card_passive_s1_cx_tension_level" />
+        <input type="hidden" name="travel_card[active_c1_c7_tension_level]" id="travel_card_active_c1_c7_tension_level" />
+        <input type="hidden" name="travel_card[active_t1_t12_tension_level]" id="travel_card_active_t1_t12_tension_level" />
+        <input type="hidden" name="travel_card[active_l1_l5_tension_level]" id="travel_card_active_l1_l5_tension_level" />
+        <input type="hidden" name="travel_card[active_s1_cx_tension_level]" id="travel_card_active_s1_cx_tension_level" />
+
+        <input type="hidden" name="travel_card[sri_position_1_level_of_awareness]" id="travel_card_sri_position_1_level_of_awareness" />
+        <input type="hidden" name="travel_card[sri_position_2_level_of_awareness]" id="travel_card_sri_position_2_level_of_awareness" />
+        <input type="hidden" name="travel_card[sri_position_3_level_of_awareness]" id="travel_card_sri_position_3_level_of_awareness" />
+        <input type="hidden" name="travel_card[sri_safety_position]" id="travel_card_sri_safety_position" />
+
+				<input type="hidden" name="travel_card[book_12_stages]" id="travel_card_book_12_stages" />
+				<input type="hidden" name="travel_card[book_healing_magic]" id="travel_card_book_healing_magic" />
+
+</form>    </td>
+  </tr>
+</tbody></table>
+
+			</div>
+		</div></td>
+	</tr>
+</tbody></table>
+
+
+<!-- SELECTORS -->
+
+  <!-- level of care selector -->
+  <div class="selector hidden" id="level_of_care_selector" style="display: none;">
+    <table class="selector_table">
+			<tbody><tr>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_level_of_care_1a" style="-moz-user-select: none;">1A</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_level_of_care_1b" style="-moz-user-select: none;">1B</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_level_of_care_1c" style="-moz-user-select: none;">1C</td>
+			</tr>
+			<tr>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_level_of_care_2a" style="-moz-user-select: none;">2A</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_level_of_care_2b" style="-moz-user-select: none;">2B</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_level_of_care_2c" style="-moz-user-select: none;">2C</td>
+			</tr>
+			<tr>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_level_of_care_3a" style="-moz-user-select: none;">3A</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_level_of_care_3b" style="-moz-user-select: none;">3B</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_level_of_care_3c" style="-moz-user-select: none;">3C</td>
+			</tr>
+			<tr>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_level_of_care_4" style="-moz-user-select: none;">4</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_level_of_care_" style="-moz-user-select: none;"> </td>
+    </tr></tbody></table>
+  </div>
+
+  <!-- bme strategy selector -->
+  <div class="selector hidden" id="bme_strategy_selector" style="display: none;">
+    <table class="selector_table">
+			<tbody><tr>
+	      <td onmousedown="set_bme_strategy('B');" class="selector_cell selector_cell_text_single_character" id="bme_selector_b" style="-moz-user-select: none;">B</td>
+	      <td onmousedown="set_bme_strategy('M');" class="selector_cell selector_cell_text_single_character" id="bme_selector_m" style="-moz-user-select: none;">M</td>
+	      <td onmousedown="set_bme_strategy('E');" class="selector_cell selector_cell_text_single_character" id="bme_selector_e" style="-moz-user-select: none;">E</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="bme_selector_" style="-moz-user-select: none;"> </td>
+			</tr>
+    </tbody></table>
+  </div>
+
+  <!-- sri level of awareness selector -->
+  <div class="selector hidden" id="sri_level_of_awareness_selector" style="display: none;">
+    <table class="selector_table">
+			<tbody><tr>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_sri_level_of_awareness_0" style="-moz-user-select: none;">0</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_sri_level_of_awareness_1" style="-moz-user-select: none;">1</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_sri_level_of_awareness_2" style="-moz-user-select: none;">2</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_sri_level_of_awareness_3" style="-moz-user-select: none;">3</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_sri_level_of_awareness_" style="-moz-user-select: none;"> </td>
+			</tr>
+    </tbody></table>
+  </div>
+
+  <!-- sri position selector -->
+  <div class="selector hidden" id="sri_position_selector" style="display: none;">
+    <table class="selector_table">
+      <tbody><tr>
+				<td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_sri_position_1" style="-moz-user-select: none;">1</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_sri_position_2" style="-moz-user-select: none;">2</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_sri_position_3" style="-moz-user-select: none;">3</td>
+	    </tr>
+			<tr>
+			  <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_sri_position_4" style="-moz-user-select: none;">4</td>
+	  		<td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_sri_position_5" style="-moz-user-select: none;">5</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_sri_position_6" style="-moz-user-select: none;">6</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_sri_position_" style="-moz-user-select: none;"> </td>
+			</tr>
+    </tbody></table>
+  </div>
+
+  <!-- phase selector -->
+  <div class="selector hidden" id="phase_selector" style="display: none;">
+    <table class="selector_table">
+			<tbody><tr>
+	      <td onmousedown="set_phase('1 > 2 C1'); " style="width: 1in; -moz-user-select: none;" class="selector_cell selector_cell_text_three_character" id="select_phase_1_2_c1">1 &gt; 2 C1</td>
+	      <td onmousedown="set_phase('1 > 2 C5'); " style="width: 1in; -moz-user-select: none;" class="selector_cell selector_cell_text_three_character" id="select_phase_1_2_c5">1 &gt; 2 C5</td>
+	      <td onmousedown="set_phase('1 > 3'); " style="width: 1in; -moz-user-select: none;" class="selector_cell selector_cell_text_three_character" id="select_phase_1_3">1 &gt; 3</td>
+	      <td onmousedown="set_phase('1 > 4'); " style="width: 1in; -moz-user-select: none;" class="selector_cell selector_cell_text_three_character" id="select_phase_1_4">1 &gt; 4</td>
+	      <td onmousedown="set_phase('1 > 5'); " style="width: 1in; -moz-user-select: none;" class="selector_cell selector_cell_text_three_character" id="select_phase_1_5">1 &gt; 5</td>
+			</tr>
+			<tr>
+	      <td onmousedown="set_phase('2 C1');" style="width: 1in; -moz-user-select: none;" class="selector_cell selector_cell_text_three_character" id="select_phase_2_c1">2 C1</td>
+	      <td onmousedown="set_phase('2 C5');" style="width: 1in; -moz-user-select: none;" class="selector_cell selector_cell_text_three_character" id="select_phase_2_c5">2 C5</td>
+	      <td onmousedown="set_phase('3');" style="width: 1in; -moz-user-select: none;" class="selector_cell selector_cell_text_three_character" id="select_phase_3">3</td>
+	      <td onmousedown="set_phase('4');" style="width: 1in; -moz-user-select: none;" class="selector_cell selector_cell_text_three_character" id="select_phase_4">4</td>
+	      <td onmousedown="set_phase('5');" style="width: 1in; -moz-user-select: none;" class="selector_cell selector_cell_text_three_character" id="select_phase_5">5</td>
+	      <td onmousedown="set_phase('');" style="width: 1in; -moz-user-select: none;" class="selector_cell selector_cell_text_three_character" id="select_phase_"> </td>
+    	</tr>
+		</tbody></table>
+  </div>
+
+  <!-- gateway selector -->
+    <div class="selector hidden" id="phase_gateway_selector" style="display: none;">
+      <table class="selector_table">
+        <tbody><tr>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_occ">OCC</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_occ_c1">OCC/C1</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_c1_occ">C1/OCC</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_c1_c2">C1/C2</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_c2_c1">C2/C1</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_c2_c3">C2/C3</td>
+        </tr>
+				<tr>
+					<td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_c3_c2">C3/C2</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_c3_c4">C3/C4</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_c4_c3">C4/C3</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_c4_c5">C4/C5</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_c5_c4">C5/C4</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_c5_c6">C5/C6</td>
+        </tr>
+				<tr>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_c6_c5">C6/C5</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_c6_c7">C6/C7</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_c7_c6">C7/C6</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_c7_t1">C7/T1</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_t1_c7">T1/C7</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_t1_t2">T1/T2</td>
+        </tr>
+				<tr>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_t2_t1">T2/T1</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_t2_t3">T2/T3</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_t3_t2">T3/T2</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_s1">S1</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_s2">S2</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_s3">S3</td>
+        </tr>
+				<tr>
+					<td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_s4">S4</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_s5">S5</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_cx">CX</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_cx_c">C CX</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_l_apex">L APEX</td>
+          <td onmousedown="set_phase_gateway(this);" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_r_apex">R APEX</td>
+          <td onmousedown="clear_phase_gateway();" style="width: 1in; -moz-user-select: none;" class="selector_cell gateway_selection_cell selector_cell_text_three_character" id="select_gateway_"> </td>
+        </tr>
+      </tbody></table>
+    </div>
+
+  <!-- direction selector -->
+  <div class="selector hidden" id="phase_direction_selector" style="display: none;">
+    <table class="selector_table">
+			<tbody><tr>
+	      <td onmousedown="set_phase_direction('F/E');" class="selector_cell selector_cell_text_single_character" id="select_direction_f_e" style="-moz-user-select: none;">F/E</td>
+	      <td onmousedown="set_phase_direction('L/B');" class="selector_cell selector_cell_text_single_character" id="select_direction_l_b" style="-moz-user-select: none;">L/B</td>
+			</tr>
+			<tr>
+	      <td onmousedown="set_phase_direction('M');" class="selector_cell selector_cell_text_single_character" id="select_direction_m" style="-moz-user-select: none;">M</td>
+	      <td onmousedown="set_phase_direction('L');" class="selector_cell selector_cell_text_single_character" id="select_direction_l" style="-moz-user-select: none;">L</td>
+	      <td onmousedown="clear_phase_direction();" class="selector_cell selector_cell_text_single_character" id="select_direction_" style="-moz-user-select: none;"> </td>
+			</tr>
+    </tbody></table>
+  </div>
+
+  <!-- SRI -->
+  <!-- sri stage selector -->
+  <div class="selector hidden" id="sri_stage_selector" style="display: none;">
+    <table class="selector_table">
+			<tbody><tr>
+	      <td class="selector_cell selector_cell_text_single_character" id="select_sri_stage_1" style="-moz-user-select: none;">1</td>
+	      <td class="selector_cell selector_cell_text_single_character" id="select_sri_stage_2" style="-moz-user-select: none;">2</td>
+	      <td class="selector_cell selector_cell_text_single_character" id="select_sri_stage_3" style="-moz-user-select: none;">3</td>
+	      <td class="selector_cell selector_cell_text_single_character" id="select_sri_stage_4" style="-moz-user-select: none;">4</td>
+	      <td class="selector_cell selector_cell_text_single_character" id="select_sri_stage_5" style="-moz-user-select: none;">5</td>
+	      <td class="selector_cell selector_cell_text_single_character" id="select_sri_stage_6" style="-moz-user-select: none;">6</td>
+			</tr>
+			<tr>
+	      <td class="selector_cell selector_cell_text_single_character" id="select_sri_stage_7" style="-moz-user-select: none;">7</td>
+	      <td class="selector_cell selector_cell_text_single_character" id="select_sri_stage_8" style="-moz-user-select: none;">8</td>
+	      <td class="selector_cell selector_cell_text_single_character" id="select_sri_stage_9" style="-moz-user-select: none;">9</td>
+	      <td class="selector_cell selector_cell_text_single_character" id="select_sri_stage_10" style="-moz-user-select: none;">10</td>
+	      <td class="selector_cell selector_cell_text_single_character" id="select_sri_stage_11" style="-moz-user-select: none;">11</td>
+	      <td class="selector_cell selector_cell_text_single_character" id="select_sri_stage_12" style="-moz-user-select: none;">12</td>
+	      <td class="selector_cell selector_cell_text_single_character" id="select_sri_stage_" style="-moz-user-select: none;"> </td>
+			</tr>
+    </tbody></table>
+  </div>
+
+  <!-- organizing field selector -->
+  <div class="selector hidden" id="organizing_field_selector" style="display: none;">
+    <table class="selector_table">
+			<tbody><tr>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_organizing_field_h1" style="-moz-user-select: none;">H1</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_organizing_field_h2" style="-moz-user-select: none;">H2</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_organizing_field_h3l" style="-moz-user-select: none;">H3L</td>
+			</tr>
+			<tr>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_organizing_field_h3u" style="-moz-user-select: none;">H3U</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_organizing_field_h4" style="-moz-user-select: none;">H4</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_organizing_field_h5" style="-moz-user-select: none;">H5</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_organizing_field_" style="-moz-user-select: none;"> </td>
+			</tr>
+    </tbody></table>
+  </div>
+
+  <!-- short leg amount -->
+  <div class="selector hidden" id="short_leg_amount_selector" style="display: none;">
+    <table class="selector_table">
+			<tbody><tr>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_three_character" id="select_amount_0_05" style="-moz-user-select: none;">0-0.5</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_three_character" id="select_amount_05_1" style="-moz-user-select: none;">0.5-1</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_three_character" id="select_amount_1_15" style="-moz-user-select: none;">1-1.5</td>
+			</tr>
+			<tr>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_three_character" id="select_amount_15_2" style="-moz-user-select: none;">1.5-2</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_three_character" id="select_amount_2" style="-moz-user-select: none;">2+</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_three_character" id="select_amount_" style="-moz-user-select: none;"> </td>
+			</tr>
+    </tbody></table>
+  </div>
+
+  <!-- tension level selector -->
+  <div class="selector hidden" id="tension_level_selector" style="display: none;">
+    <table class="selector_table">
+			<tbody><tr>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_tension_level_0" style="-moz-user-select: none;">0</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_tension_level_1" style="-moz-user-select: none;">1</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_tension_level_2" style="-moz-user-select: none;">2</td>
+			</tr>
+			<tr>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_tension_level_3" style="-moz-user-select: none;">3</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_tension_level_4" style="-moz-user-select: none;">4</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_tension_level_5" style="-moz-user-select: none;">5</td>
+	      <td onmousedown="set_selected_value(this);" class="selector_cell selector_cell_text_single_character" id="select_tension_level_" style="-moz-user-select: none;"> </td>
+			</tr>
+    </tbody></table>
+  </div>
+</div>
+
+
+
+          
+        </td>
+      </tr>
+    </tbody></table>
+  </div>
+  <div id="footer">
+    <table>
+  <tbody><tr>
+    <td>
+      Copyright 2009-2011 by <a target="_blank" href="http://structuralartistry.com">StructuralArtistry</a>
+    </td>
+    <td style="width: 3.0in;">
+    </td>
+    <td style="float: right;">
+     <a target="_blank" href="/terms_of_service">Terms of Service</a>     
+    </td>
+    <td>
+      <a target="_blank" href="/privacy_policy">Privacy Policy</a>     
+    </td>
+    <td>
+      <a target="new" href="/about">About</a>
+    </td>
+  </tr>
+</tbody></table>
+
+  </div>
+
+
+<div id="lbOverlay" style="display: none;"></div><div id="lbCenter" style="display: none;"><div id="lbImage"><div style="position: relative;"><a href="#" id="lbPrevLink"></a><a href="#" id="lbNextLink"></a></div></div></div><div id="lbBottomContainer" style="display: none;"><div id="lbBottom"><a href="#" id="lbCloseLink"></a><div id="lbCaption"></div><div id="lbNumber"></div><div style="clear: both;"></div></div></div></body></html>

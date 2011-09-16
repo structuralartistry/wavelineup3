@@ -1,1 +1,1 @@
-jasmine.getFixtures().fixturesPath = 'app/views';
+jasmine.getFixtures().fixturesPath = '';

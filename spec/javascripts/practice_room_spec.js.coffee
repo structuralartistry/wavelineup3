@@ -60,7 +60,7 @@ describe 'Visit', ->
     expect(visit.data.abduction_tension_level).toEqual '2'
 
   it 'should set ui values based on the data from server', ->
-    loadFixtures('visits/_sri_sessions.html.erb')
+    loadFixtures('app/views/visits/_sri_sessions.html.erb')
     visit = new Visit(json_data_from_server)
     visit.set_ui_values()
 
@@ -81,7 +81,7 @@ describe 'Visit', ->
     expect($('#sri_session_3_organizing_field').html()).toEqual('H3L')
 
   it 'should only show first SRI session if no SRI session data in Visit', ->
-    loadFixtures('visits/_sri_sessions.html.erb')
+    loadFixtures('app/views/visits/_sri_sessions.html.erb')
     visit = new Visit(json_data_from_server)
     visit.data.sri_session_1_stage = null
     visit.data.sri_session_1_position_a = null
@@ -105,7 +105,7 @@ describe 'Visit', ->
 
 
   it 'should only show first SRI session if only first SRI session data in Visit', ->
-    loadFixtures('visits/_sri_sessions.html.erb')
+    loadFixtures('app/views/visits/_sri_sessions.html.erb')
     visit = new Visit(json_data_from_server)
     visit.data.sri_session_2_stage = null
     visit.data.sri_session_2_position_a = null
@@ -123,7 +123,7 @@ describe 'Visit', ->
     expect($('.sri_session_3')).toBeHidden()
 
   it 'should show first and second SRI session if first and second SRI session data in Visit', ->
-    loadFixtures('visits/_sri_sessions.html.erb')
+    loadFixtures('app/views/visits/_sri_sessions.html.erb')
     visit = new Visit(json_data_from_server)
     visit.data.sri_session_3_stage = null
     visit.data.sri_session_3_position_a = null
@@ -136,7 +136,7 @@ describe 'Visit', ->
     expect($('.sri_session_3')).toBeHidden()
 
   it 'should show all three SRI sessions if first, second and third SRI session data in Visit', ->
-    loadFixtures('visits/_sri_sessions.html.erb')
+    loadFixtures('app/views/visits/_sri_sessions.html.erb')
     visit = new Visit(json_data_from_server)
     visit.set_ui_values()
     expect($('.sri_session_1')).toBeVisible()
@@ -144,7 +144,7 @@ describe 'Visit', ->
     expect($('.sri_session_3')).toBeVisible()
 
   it 'should show the button to add SRI session if one session present', ->
-    loadFixtures('visits/_sri_sessions.html.erb')
+    loadFixtures('app/views/visits/_sri_sessions.html.erb')
     visit = new Visit(json_data_from_server)
     visit.data.sri_session_2_stage = null
     visit.data.sri_session_2_position_a = null
@@ -161,7 +161,7 @@ describe 'Visit', ->
     expect($('#add_sri_session_3')).toBeHidden()
 
   it 'should show the button to add SRI session if two sessions present', ->
-    loadFixtures('visits/_sri_sessions.html.erb')
+    loadFixtures('app/views/visits/_sri_sessions.html.erb')
     visit = new Visit(json_data_from_server)
     visit.data.sri_session_3_stage = null
     visit.data.sri_session_3_position_a = null
@@ -173,14 +173,14 @@ describe 'Visit', ->
     expect($('#add_sri_session_3')).toBeVisible()
 
   it 'should not show the button to add SRI session if all three sessions data are present', ->
-    loadFixtures('visits/_sri_sessions.html.erb')
+    loadFixtures('app/views/visits/_sri_sessions.html.erb')
     visit = new Visit(json_data_from_server)
     visit.set_ui_values()
     expect($('#add_sri_session_2')).toBeHidden()
     expect($('#add_sri_session_3')).toBeHidden()
 
   it 'should show an additional session when the add SRI session button is clicked', ->
-    loadFixtures('visits/_sri_sessions.html.erb')
+    loadFixtures('app/views/visits/_sri_sessions.html.erb')
     visit = new Visit(json_data_from_server)
     visit.data.sri_session_1_stage = null
     visit.data.sri_session_1_position_a = null
@@ -198,7 +198,7 @@ describe 'Visit', ->
     visit.data.sri_session_3_level_of_care = null
     visit.data.sri_session_3_organizing_field = null
     visit.set_ui_values()
-    
+
     expect($('#add_sri_session_2')).toBeVisible()
     expect($('#add_sri_session_3')).toBeHidden()
     expect($('.sri_session_2')).toBeHidden()
@@ -216,10 +216,10 @@ describe 'Visit', ->
     expect($('.sri_session_2')).toBeVisible()
     expect($('.sri_session_3')).toBeVisible()
 
-  it 'when SRI stage 1 is selected show two position selectors: peace and disconnection with correct labels', -> 
-    loadFixtures('visits/_sri_sessions.html.erb', 'practice_room/_selectors.html.erb')
+  it 'when SRI stage 1 is selected show two position selectors: peace and disconnection with correct labels', ->
+    loadFixtures('app/views/visits/_sri_sessions.html.erb', 'app/views/practice_room/_selectors.html.erb')
 
-    script = " 
+    script = "
       <script language=\"javascript\">
         $(document).ready(function() {
           visit = new Visit('');
@@ -229,7 +229,7 @@ describe 'Visit', ->
           visit.data.sri_session_3_stage = null;
         });
       </script>"
-    
+
     $('#jasmine-fixtures').append(script)
 
     for sri_session in ['1','2','3']
@@ -253,10 +253,10 @@ describe 'Visit', ->
       expect($('#label_sri_session_' + sri_session + '_position_a').html()).toEqual 'Peace'
       expect($('#label_sri_session_' + sri_session + '_position_b').html()).toEqual 'Discon'
 
-  it 'on page load/reload when SRI stage 1 is selected show two position selectors: peace and disconnection with correct labels', -> 
-    loadFixtures('visits/_sri_sessions.html.erb', 'practice_room/_selectors.html.erb')
+  it 'on page load/reload when SRI stage 1 is selected show two position selectors: peace and disconnection with correct labels', ->
+    loadFixtures('app/views/visits/_sri_sessions.html.erb', 'app/views/practice_room/_selectors.html.erb')
 
-    script = " 
+    script = "
       <script language=\"javascript\">
         $(document).ready(function() {
           visit = new Visit('');
@@ -267,7 +267,7 @@ describe 'Visit', ->
           visit.set_ui_values();
         });
       </script>"
-    
+
     $('#jasmine-fixtures').append(script)
     for sri_session in ['1','2','3']
       expect($('#sri_session_' + sri_session + '_stage').html()).toEqual '1'
@@ -276,10 +276,10 @@ describe 'Visit', ->
       expect($('#label_sri_session_' + sri_session + '_position_a').html()).toEqual 'Peace'
       expect($('#label_sri_session_' + sri_session + '_position_b').html()).toEqual 'Discon'
 
-  it 'when SRI stage 2 is selected show two position selectors (Pos A/B) with correct labels', -> 
-    loadFixtures('visits/_sri_sessions.html.erb', 'practice_room/_selectors.html.erb')
+  it 'when SRI stage 2 is selected show two position selectors (Pos A/B) with correct labels', ->
+    loadFixtures('app/views/visits/_sri_sessions.html.erb', 'app/views/practice_room/_selectors.html.erb')
 
-    script = " 
+    script = "
       <script language=\"javascript\">
         $(document).ready(function() {
           visit = new Visit('');
@@ -289,7 +289,7 @@ describe 'Visit', ->
           visit.data.sri_session_3_stage = null;
         });
       </script>"
-    
+
     $('#jasmine-fixtures').append(script)
 
     for sri_session in ['1','2','3']
@@ -313,10 +313,10 @@ describe 'Visit', ->
       expect($('#label_sri_session_' + sri_session + '_position_a').html()).toEqual 'Pos A'
       expect($('#label_sri_session_' + sri_session + '_position_b').html()).toEqual 'Pos B'
 
-  it 'on page load/reload when SRI stage 2 is selected show two position selectors (Pos A/B)', -> 
-    loadFixtures('visits/_sri_sessions.html.erb', 'practice_room/_selectors.html.erb')
+  it 'on page load/reload when SRI stage 2 is selected show two position selectors (Pos A/B)', ->
+    loadFixtures('app/views/visits/_sri_sessions.html.erb', 'app/views/practice_room/_selectors.html.erb')
 
-    script = " 
+    script = "
       <script language=\"javascript\">
         $(document).ready(function() {
           visit = new Visit('');
@@ -327,7 +327,7 @@ describe 'Visit', ->
           visit.set_ui_values();
         });
       </script>"
-    
+
     $('#jasmine-fixtures').append(script)
     for sri_session in ['1','2','3']
       expect($('#sri_session_' + sri_session + '_stage').html()).toEqual '2'
@@ -337,9 +337,9 @@ describe 'Visit', ->
       expect($('#label_sri_session_' + sri_session + '_position_b').html()).toEqual 'Pos B'
 
   it 'toggles from stage 1 to stage 2 to other stage position selectors correctly', ->
-    loadFixtures('visits/_sri_sessions.html.erb', 'practice_room/_selectors.html.erb')
+    loadFixtures('app/views/visits/_sri_sessions.html.erb', 'app/views/practice_room/_selectors.html.erb')
 
-    script = " 
+    script = "
       <script language=\"javascript\">
         $(document).ready(function() {
           visit = new Visit('');
@@ -349,7 +349,7 @@ describe 'Visit', ->
           visit.data.sri_session_3_stage = null;
         });
       </script>"
-    
+
     $('#jasmine-fixtures').append(script)
 
     for sri_session in ['1','2','3']
@@ -380,9 +380,9 @@ describe 'Visit', ->
       expect($('#label_sri_session_' + sri_session + '_position_a').html()).toEqual 'Pos'
 
   it 'autosaves data correctly', ->
-    loadFixtures('visits/_sri_sessions.html.erb', 'practice_room/_selectors.html.erb')
+    loadFixtures('app/views/visits/_sri_sessions.html.erb', 'app/views/practice_room/_selectors.html.erb')
 
-    script = " 
+    script = "
       <script language=\"javascript\">
         $(document).ready(function() {
           visit = new Visit('');
@@ -405,7 +405,7 @@ describe 'Visit', ->
           visit.set_ui_values();
         });
       </script>"
-    
+
     $('#jasmine-fixtures').append(script)
     spyOn(jQuery,'ajax')
     for sri_session in ['1','2','3']
@@ -419,16 +419,60 @@ describe 'Visit', ->
       $('#sri_session_' + sri_session + '_position_a').mousedown()
       $('#select_sri_position_1').mousedown()
       expect(jQuery.ajax.mostRecentCall.args[0]['data']).toEqual('visit[sri_session_' + sri_session + '_position_a]=1')
-      
+
       $('#sri_session_' + sri_session + '_position_b').mousedown()
       $('#select_sri_position_2').mousedown()
       expect(jQuery.ajax.mostRecentCall.args[0]['data']).toEqual('visit[sri_session_' + sri_session + '_position_b]=2')
-      
+
       $('#sri_session_' + sri_session + '_level_of_care').mousedown()
       $('#select_level_of_care_1a').mousedown()
       expect(jQuery.ajax.mostRecentCall.args[0]['data']).toEqual('visit[sri_session_' + sri_session + '_level_of_care]=1A')
-      
+
       $('#sri_session_' + sri_session + '_organizing_field').mousedown()
       $('#select_organizing_field_h1').mousedown()
       expect(jQuery.ajax.mostRecentCall.args[0]['data']).toEqual('visit[sri_session_' + sri_session + '_organizing_field]=H1')
-      
+
+
+
+  it 'compiled template poc', ->
+    loadFixtures('spec/javascripts/fixtures/visit.html')
+
+    script = "
+      <script language=\"javascript\">
+        $(document).ready(function() {
+          visit = new Visit('');
+          visit.data = {};
+          visit.data.sri_session_1_stage = null;
+          visit.data.sri_session_2_stage = null;
+          visit.data.sri_session_3_stage = null;
+        });
+      </script>"
+
+    $('#jasmine-fixtures').append(script)
+
+    for sri_session in ['1','2','3']
+      $('#add_sri_session_2').mousedown() if sri_session == '2'
+      $('#add_sri_session_3').mousedown() if sri_session == '3'
+
+      $('#sri_session_' + sri_session + '_stage').mousedown()
+      $('#select_sri_stage_1').mousedown()
+      expect($('#sri_session_' + sri_session + '_stage').html()).toEqual '1'
+      expect($('#sri_session_' + sri_session + '_position_a')).toBeVisible()
+      expect($('#sri_session_' + sri_session + '_position_b')).toBeVisible()
+      expect($('#label_sri_session_' + sri_session + '_position_a').html()).toEqual 'Peace'
+      expect($('#label_sri_session_' + sri_session + '_position_b').html()).toEqual 'Discon'
+
+      $('#sri_session_' + sri_session + '_stage').mousedown()
+      $('#select_sri_stage_2').mousedown()
+      expect($('#sri_session_' + sri_session + '_stage').html()).toEqual '2'
+      expect($('#sri_session_' + sri_session + '_position_a')).toBeVisible()
+      expect($('#sri_session_' + sri_session + '_position_b')).toBeVisible()
+      expect($('#label_sri_session_' + sri_session + '_position_a').html()).toEqual 'Pos A'
+      expect($('#label_sri_session_' + sri_session + '_position_b').html()).toEqual 'Pos B'
+
+      $('#sri_session_' + sri_session + '_stage').mousedown()
+      $('#select_sri_stage_3').mousedown()
+      expect($('#sri_session_' + sri_session + '_stage').html()).toEqual '3'
+      expect($('#sri_session_' + sri_session + '_position_a')).toBeVisible()
+      expect($('#sri_session_' + sri_session + '_position_b')).toBeHidden()
+      expect($('#label_sri_session_' + sri_session + '_position_a').html()).toEqual 'Pos'
