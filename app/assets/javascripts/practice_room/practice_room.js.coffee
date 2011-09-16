@@ -1,3 +1,14 @@
+# PracticeRoom.Visit.Sri.
+# PracticeRoom.Visit.view_type
+# PracticeRoom.Visit.click_view_type
+
+# do I want the js object to set the field value upon click?... so we go with more how backbone does it
+# where all changes on page are directed via the js object?
+
+class @PracticeRoom
+  constructor: (visit_json) ->
+    @visit = new Visit(visit_json)
+
 class @Visit
   constructor: (raw_json) ->
     @data = jQuery.parseJSON(raw_json)
@@ -56,7 +67,7 @@ class @Visit
           $('#label_sri_4_col').show()
           $('#label_sri_5_col').hide()
 
-  show_selector: (selector_id, calling_object) -> 
+  show_selector: (selector_id, calling_object) ->
     field_to_set = $(calling_object).attr('id')
 
     $('#' + selector_id).find('.selector_cell').each( ->
@@ -72,7 +83,7 @@ class @Visit
 
   set_selected_value: (value, field_to_set) ->
     @data[field_to_set] = value
-    $('#' + field_to_set).html(value) 
+    $('#' + field_to_set).html(value)
     $(".selector").hide('fast')
     $('#transmitting').show()
     qualified_field = "visit[" + field_to_set + "]"

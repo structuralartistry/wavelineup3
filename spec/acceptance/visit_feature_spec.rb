@@ -23,24 +23,6 @@ feature "Visit Feature", %q{
       confirm_visit_view_showing
     end
 
-    context "fixture compilation for jasmine" do
-
-      it "should compile the practice room page" do
-        # need to have different templates for paid vs unpaid
-        # need to remove js scripts and place into object
-        @practice_member.practice.package_id = 1
-        @practice_member.practice.save!
-        visit(@practice_room_visit_page)
-        selector_cell_present?('+ SRI Session').should == true
-        file_path = "#{Rails.root}/spec/javascripts/fixtures/visit.html"
-        File.delete(file_path) if File.exists?(file_path)
-        doc = page.body
-        File.open(file_path, 'w') {|f| f.write(doc) }
-        File.exists?(file_path).should eq(true)
-      end
-
-    end
-
     scenario "I can change the entrainment date of the visit" do
       fill_in('visit_date', :with => '2011-01-07 15:13')
       sleep(2) # delay for autosave to complete... wait_until {} not working on this

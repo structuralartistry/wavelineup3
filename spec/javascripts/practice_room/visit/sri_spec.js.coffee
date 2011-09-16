@@ -1,4 +1,4 @@
-describe 'Visit', ->
+describe 'SRI', ->
 
   json_data_from_server = "
     { \"abduction_tension_level\":\"2\",
@@ -102,7 +102,6 @@ describe 'Visit', ->
     expect($('.sri_session_1')).toBeVisible()
     expect($('.sri_session_2')).toBeHidden()
     expect($('.sri_session_3')).toBeHidden()
-
 
   it 'should only show first SRI session if only first SRI session data in Visit', ->
     loadFixtures('app/views/visits/_sri_sessions.html.erb')
@@ -432,10 +431,8 @@ describe 'Visit', ->
       $('#select_organizing_field_h1').mousedown()
       expect(jQuery.ajax.mostRecentCall.args[0]['data']).toEqual('visit[sri_session_' + sri_session + '_organizing_field]=H1')
 
-
-
   it 'compiled template poc', ->
-    loadFixtures('spec/javascripts/fixtures/visit.html')
+    loadFixtures('spec/javascripts/fixtures/practice_room_paid.html')
 
     script = "
       <script language=\"javascript\">
@@ -449,6 +446,9 @@ describe 'Visit', ->
       </script>"
 
     $('#jasmine-fixtures').append(script)
+
+    # show the practice room page!
+    $('#practice_room_visit').show()
 
     for sri_session in ['1','2','3']
       $('#add_sri_session_2').mousedown() if sri_session == '2'
@@ -476,3 +476,4 @@ describe 'Visit', ->
       expect($('#sri_session_' + sri_session + '_position_a')).toBeVisible()
       expect($('#sri_session_' + sri_session + '_position_b')).toBeHidden()
       expect($('#label_sri_session_' + sri_session + '_position_a').html()).toEqual 'Pos'
+

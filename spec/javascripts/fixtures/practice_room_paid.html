@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>WaveLineup ::: StructuralArtistry practice ::: practice_user_user@structuralartistry.com</title>
+<link href="/assets/application.css" media="screen" rel="stylesheet" type="text/css">
+<!--<script src="/assets/application.js" type="text/javascript"></script>-->
+</head>
+<body>
+  <div id="container">
+  	<table style="width: 800px;"><tr valign="top">
+<td valign="top" style="width: 15px;">
+    		    <!--<script language="javascript">
+$(document).ready(function() {
+  // determine if each button should be visible
+
+    practice_member_selector_available = true;
+
+    new_practice_member_form_available = true;
+
+    lineup_selector_available = true;
+
+  set_left_column_buttons();
+});
+
+function new_practice_member_form() {
+	return "<form accept-charset=\"UTF-8\" action=\"/practice_members\" class=\"ajax_form\" id=\"new_practice_member\" method=\"post\"><div style=\"margin:0;padding:0;display:inline\"><input name=\"utf8\" type=\"hidden\" value=\"&#x2713;\" /><\/div>\n  <table>\n    <tr>\n      <th align=\'left\' colspan=\'4\'><h1>New Practice Member<\/h1><\/th>\n    <\/tr>\n    \n    \n    <tr>\n      <td>\n        <label for=\"practice_member_first_name\">First Name<\/label><br />\n      <\/td>\n      <td>\n        <label for=\"practice_member_last_name\">Last Name<\/label><br />\n      <\/td>\n      <td>\n        <label for=\"practice_member_middle_name\">Middle Name<\/label><br />\n      <\/td>\n      <td>\n      <\/td>\n    <\/tr>    \n    <tr>\n      <td>\n        <input id=\"practice_member_first_name\" name=\"practice_member[first_name]\" size=\"15\" type=\"text\" />\n      <\/td>\n      <td>\n        <input id=\"practice_member_last_name\" name=\"practice_member[last_name]\" size=\"15\" type=\"text\" />\n      <\/td>\n      <td>\n        <input id=\"practice_member_middle_name\" name=\"practice_member[middle_name]\" size=\"10\" type=\"text\" />\n      <\/td>\n      <td>\n        <input class=\"selector_cell_submit\" name=\"commit\" type=\"submit\" value=\"Submit\" />            \n      <\/td>\n    <\/tr>\n  <\/table>\n<\/form>"
+}
+
+function feedback_support_form() {
+	return "<h1>Feedback & Support<\/h1>\n<form accept-charset=\"UTF-8\" action=\"/feedback_supports\" class=\"ajax_form\" id=\"new_feedback_support\" method=\"post\"><div style=\"margin:0;padding:0;display:inline\"><input name=\"utf8\" type=\"hidden\" value=\"&#x2713;\" /><\/div>\n<table>\n	<tr>\n		<td>\n			<label for=\"feedback_support_message\">Let us know how it is going or if you need some help!<\/label>\n		<\/td>\n	<\/tr>\n		<td>\n	    <textarea cols=\"40\" id=\"feedback_support_message\" name=\"feedback_support[message]\" rows=\"20\" style=\"width: 6in; height: 1in;\"><\/textarea>\n		<\/td>\n	<\/tr>\n	<tr>\n		<td>\n		  <input class=\"selector_cell_submit\" name=\"commit\" style=\"float: right;\" type=\"submit\" value=\"Send\" />\n		<\/td>\n	<\/tr>\n<\/table>\n<\/form>"
+}
+</script>--><table class="selector_table" width="150px">
+<tr><td><img alt="Wavelineup_logo" src="/assets/wavelineup_logo.gif"></td></tr>
+<tr>
+<td align="center">
+      <div id="transmitting" class="flash_notice hidden">
+        Transmitting
+      </div>
+			<div id="notices"></div>
+    </td>
+  </tr>
+<tr><td><form method="get" action="/home" class="button_to"><div><input class="bold selector_cell selector_cell_nav" style="width: 1.5in;" type="submit" value="Home"></div></form></td></tr>
+<tr><td><form method="get" action="#" class="button_to"><div><input class="bold selector_cell selector_cell_nav hidden" id="new_practice_member_show_selector_cell" onclick="show_dialog('new_practice_member'); return false;" style="width: 1.5in;" type="submit" value="New PM"></div></form></td></tr>
+<tr><td><form method="get" action="#" class="button_to"><div><input class="bold selector_cell selector_cell_nav hidden" id="practice_member_selector_show_selector_cell" onclick="practice_member_selector_dialog_operation='find'; toggle_dialog('practice_member_selector'); return false;" style="width: 1.5in;" type="submit" value="Find"></div></form></td></tr>
+<tr><td><form method="get" action="#" class="button_to"><div><input class="bold selector_cell selector_cell_nav hidden" id="lineup_selector_show_selector_cell" onclick="toggle_dialog('lineup_selector'); return false;" style="width: 1.5in;" type="submit" value="Lineup"></div></form></td></tr>
+<tr><td><form method="get" action="/reports" class="button_to"><div><input class="bold selector_cell selector_cell_nav" style="width: 1.5in;" type="submit" value="Reports"></div></form></td></tr>
+<tr><td><form method="get" action="#" class="button_to"><div><input class="bold selector_cell selector_cell_nav" id="feedback_support_show_selector_cell" onclick="show_dialog('feedback_support'); return false;" style="width: 1.5in;" type="submit" value="Feedback/Support"></div></form></td></tr>
+<tr><td><form method="get" action="/practices/3/edit" class="button_to"><div><input class="bold selector_cell selector_cell_nav" style="width: 1.5in;" type="submit" value="Edit Practice"></div></form></td></tr>
+<tr><td><form method="get" action="/users/current/edit" class="button_to"><div><input class="bold selector_cell selector_cell_nav" style="width: 1.5in;" type="submit" value="Edit User"></div></form></td></tr>
+<tr><td><form method="get" action="/logout" class="button_to"><div><input class="bold selector_cell selector_cell_nav" style="width: 1.5in;" type="submit" value="Logout"></div></form></td></tr>
+</table>
+</td>
+        <td style="width: 98%;">
+          <div id="new_practice_member" class="selector hidden">
+          </div>
+          <div id="practice_member_selector" class="selector hidden">
+						  <table id="select_target_page" class="selector_table">
+<tr>
+<th align="left" colspan="4"><h1>Select Target Page</h1></th>
+    </tr>
+<tr>
+<td id="visit_page_selector" style="width: 1.5in;" class="selector_cell selector_cell_text_six_character page_selector current_selected" onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');">Practice Room</td>
+      <td id="practice_member_edit_page_selector" style="width: 1.5in;" class="selector_cell selector_cell_text_six_character page_selector" onmousedown="$('.page_selector').removeClass('current_selected'); $(this).addClass('current_selected');">Personal Info</td>
+    </tr>
+</table>
+<table class="selector_table">
+<tr>
+<th align="left" colspan="14"><h1>Filter Names</h1></th>
+    </tr>
+<tr>
+<td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector current_selected" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.practice_member_list').show();">All</td>
+
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">0-9</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">A</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">B</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">C</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">D</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">E</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">F</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">G</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">H</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">I</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">J</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">K</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">L</td>
+    </tr>
+<tr>
+<td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">M</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">N</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">O</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">P</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">Q</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">R</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">S</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">T</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">U</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">V</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">W</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">X</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">Y</td>
+      <td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character alphabet_selector" onmousedown="$('.alphabet_selector').removeClass('current_selected'); $(this).addClass('current_selected'); $('.practice_member_list').hide(); $('.character_group_' + $(this).html()).show();">Z</td>
+    </tr>
+</table>
+<table class="selector_table">
+<tr>
+<th align="left" colspan="5"><h1>Go</h1></th>
+    </tr>
+<tr class="practice_member_list character_group_"><!-- if counter get to expected number, create a new row so these wrap --></tr>
+<tr class="practice_member_list character_group_K">
+<td style="width: 1.5in;" class="selector_cell selector_cell_text_six_character" onmousedown="selected_practice_member_id=3; selected_practice_member_name='Kahn, David N'; execute_practice_member_selector_dialog_operation();">Kahn, David N</td>
+    </tr>
+</table>
+</div>
+          <div id="lineup_selector" class="selector hidden">
+							<table class="selector_table">
+<tr>
+<th align="left" colspan="5"><h1>Lineup</h1></th>
+    </tr>
+<tr><!-- if counter get to expected number, create a new row so these wrap --></tr>
+<tr>
+<td style="width: 1.5in;" class="selector_cell selector_cell_text_six_character" onmousedown="window.location.href='/practice_room/3/visit';">Kahn, David N</td>
+    </tr>
+</table>
+</div>
+					<div id="feedback_support" class="selector hidden"></div>
+     	    <div id="main_frame">
+            <!--<script src="/assets/travel_card.js" type="text/javascript"></script>--><!--<script src="/assets/visit.js" type="text/javascript"></script>--><!--<script language="javascript">
+    $(document).ready(function() {
+      visit = new Visit('{\"abduction_tension_level\":null,\"adduction_tension_level\":null,\"created_at\":\"2011-09-16T20:42:30Z\",\"crest\":null,\"date\":\"2011-09-16T20:42:30Z\",\"diagnosis\":null,\"egression_organizing_field\":null,\"eversion_tension_level\":null,\"heel_tension_level\":null,\"id\":3,\"ingression_organizing_field\":null,\"long_lever_arm\":null,\"notes\":null,\"phase_1\":null,\"phase_1_direction\":null,\"phase_1_gateway_1\":null,\"phase_1_gateway_1_affecting\":null,\"phase_1_gateway_2\":null,\"phase_1_gateway_2_affecting\":null,\"phase_1_level_of_care\":null,\"phase_2\":null,\"phase_2_direction\":null,\"phase_2_gateway_1\":null,\"phase_2_gateway_1_affecting\":null,\"phase_2_gateway_2\":null,\"phase_2_gateway_2_affecting\":null,\"phase_2_level_of_care\":null,\"practice_member_id\":3,\"short_leg_amount\":null,\"short_leg_side\":null,\"short_lever_arm\":null,\"sri_session_1_level_of_care\":null,\"sri_session_1_organizing_field\":null,\"sri_session_1_position_a\":null,\"sri_session_1_position_b\":null,\"sri_session_1_stage\":null,\"sri_session_2_level_of_care\":null,\"sri_session_2_organizing_field\":null,\"sri_session_2_position_a\":null,\"sri_session_2_position_b\":null,\"sri_session_2_stage\":null,\"sri_session_3_level_of_care\":null,\"sri_session_3_organizing_field\":null,\"sri_session_3_position_a\":null,\"sri_session_3_position_b\":null,\"sri_session_3_stage\":null,\"updated_at\":\"2011-09-16T20:42:30Z\",\"visit_view_type_id\":3}');
+      visit.set_ui_values();
+    });
+  </script>--><table>
+<tr>
+<td valign="top">
+			<!--<script language="javascript">
+
+	$(document).ready(function() {
+		set_practice_room_section_and_buttons('practice_room_visit');
+    $('.visit_notes').hide();
+	});
+
+	function set_practice_room_section_and_buttons(section_id) {
+		// hide all sections
+		$('#practice_room_visit').hide();
+		$('#practice_room_travel_card').hide();
+		$('#practice_room_visit_list').hide();
+
+		// unhighlight other buttons
+		$('#practice_room_visit_show_selector_cell').removeClass('current_selected');
+		$('#practice_room_travel_card_show_selector_cell').removeClass('current_selected');
+		$('#practice_room_visit_list_show_selector_cell').removeClass('current_selected');
+
+		// highlight button
+		$('#' + section_id + '_show_selector_cell').addClass('current_selected');
+
+		if(section_id=='practice_room_visit') initialize_visit_view();
+
+		$('#' + section_id).show();
+	}
+
+	function initialize_visit_view() {
+		mini_travel_card_set_values_from_hidden_fields();
+		set_third_bme_strategy(true);
+		visit_set_values_from_hidden_fields();
+    $('#visit_notes').autoResize().trigger('change');
+    $('#visit_diagnosis').autoResize().trigger('change');
+	}
+
+</script>--><table class="selector_table" style="width: 7in;"><tr>
+<td><form method="get" action="#" class="button_to"><div><input class="selector_cell selector_cell_nav selector_cell_text_six_character page_selector current_selected" id="practice_room_visit_show_selector_cell" onclick="set_practice_room_section_and_buttons('practice_room_visit'); return false;" style="width: 1.5in;" type="submit" value="Visit"></div></form></td>
+    <td><form method="get" action="#" class="button_to"><div><input class="selector_cell selector_cell_nav selector_cell_text_six_character page_selector current_selected" id="practice_room_travel_card_show_selector_cell" onclick="set_practice_room_section_and_buttons('practice_room_travel_card'); return false;" style="width: 1.5in;" type="submit" value="Travel Card"></div></form></td>
+    <td><form method="get" action="#" class="button_to"><div><input class="selector_cell selector_cell_nav selector_cell_text_six_character page_selector current_selected" id="practice_room_visit_list_show_selector_cell" onclick="set_practice_room_section_and_buttons('practice_room_visit_list'); return false;" style="width: 1.5in;" type="submit" value="Visit List"></div></form></td>
+		<td align="right" style="width: 5.5in;"><h1>Kahn, David N</h1></td>
+	</tr></table>
+</td>
+	</tr>
+<tr>
+<td valign="top">
+			<div id="practice_room_visit" style="display: none;">
+				<div id="visit" style="width: 7in;">
+
+	<!--<script language="javascript">
+	  $(document).ready(function() {
+	    initialize_visit_view();
+	  });
+	</script>--><form accept-charset="UTF-8" action="/visits/3" class="ajaxForm" id="edit_visit_3" method="post">
+<div style="margin:0;padding:0;display:inline">
+<input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put">
+</div>
+	  <table class="selector_table"><tr>
+<td valign="top"><div id="mini_travel_card" onclick="set_practice_room_section_and_buttons('practice_room_travel_card');">
+<form accept-charset="UTF-8" action="/travel_cards/3" class="edit_travel_card" id="edit_travel_card_3" method="post">
+<div style="margin:0;padding:0;display:inline">
+<input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put">
+</div>
+<table class="mini_travel_card">
+<tr>
+<td class="half_height label" align="center">DO</td>
+    <td class="half_height label" align="center">LC</td>
+    <td class="half_height label" align="center">RW</td>
+    <td class="half_height label" align="center">1</td>
+    <td class="half_height label" align="center">2</td>
+    <td class="half_height label" align="center">3</td>
+    <td colspan="6" align="center"></td>
+  </tr>
+<tr>
+<td id="mini_travel_card_dominant_occiput" class="mini_travel_card_cell"></td>
+    <td id="mini_travel_card_level_of_care" class="mini_travel_card_cell"></td>
+    <td id="mini_travel_card_full_respiratory_wave" class="mini_travel_card_cell"></td>
+    <td id="mini_travel_card_leading_bme_strategy" class="mini_travel_card_cell"></td>
+    <td id="mini_travel_card_second_bme_strategy" class="mini_travel_card_cell"></td>
+    <td id="mini_travel_card_third_bme_strategy" class="mini_travel_card_cell"></td>
+    <td colspan="6"></td>
+  </tr>
+<tr>
+<td id="mini_travel_card_gateway_occ_c1" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">O/1</td>
+    <td id="mini_travel_card_gateway_c1_occ" class="mini_travel_card_cell"></td>
+    <td id="mini_travel_card_gateway_c1_c2" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">1/2</td>
+    <td id="mini_travel_card_gateway_c2_c1" class="mini_travel_card_cell"></td>
+    <td id="mini_travel_card_gateway_c2_c3" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">2/3</td>
+    <td id="mini_travel_card_gateway_c3_c2" class="mini_travel_card_cell"></td>
+    <td id="mini_travel_card_gateway_c3_c4" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">3/4</td>
+    <td id="mini_travel_card_gateway_c4_c3" class="mini_travel_card_cell"></td>
+  </tr>
+<tr>
+<td id="mini_travel_card_gateway_c4_c5" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">4/5</td>
+    <td id="mini_travel_card_gateway_c5_c4" class="mini_travel_card_cell"></td>
+    <td id="mini_travel_card_gateway_c5_c6" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">5/6</td>
+    <td id="mini_travel_card_gateway_c6_c5" class="mini_travel_card_cell"></td>
+    <td id="mini_travel_card_gateway_c6_c7" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">6/7</td>
+    <td id="mini_travel_card_gateway_c7_c6" class="mini_travel_card_cell"></td>
+    <td id="mini_travel_card_gateway_c7_t1" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">7/1</td>
+    <td id="mini_travel_card_gateway_t1_c7" class="mini_travel_card_cell"></td>
+  </tr>
+<tr>
+<td colspan="3"></td>
+    <td id="mini_travel_card_gateway_t1_t2" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">1/2</td>
+    <td id="mini_travel_card_gateway_t2_t1" class="mini_travel_card_cell"></td>
+    <td id="mini_travel_card_gateway_t2_t3" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">2/3</td>
+    <td id="mini_travel_card_gateway_t3_t2" class="mini_travel_card_cell"></td>
+    <td colspan="3"></td>
+  </tr>
+<tr>
+<td class="label" align="center">S1</td>
+    <td id="mini_travel_card_gateway_s1" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">S2</td>
+    <td id="mini_travel_card_gateway_s2" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">S3</td>
+    <td id="mini_travel_card_gateway_s3" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">S4</td>
+    <td id="mini_travel_card_gateway_s4" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">S5</td>
+    <td id="mini_travel_card_gateway_s5" class="mini_travel_card_cell"></td>
+    <td class="label" align="center">CX</td>
+    <td id="mini_travel_card_gateway_cx" class="mini_travel_card_cell"></td>
+  </tr>
+</table>
+</form>
+</div></td>
+	      <td valign="top">
+				<table class="selector_table">
+<tr>
+<td class="half_height label">Date</td>
+						<td class="half_height" colspan="2">
+					</td>
+</tr>
+<tr>
+<td><input class="autosave" id="visit_date" name="visit[date]" size="20" type="text" value="2011-09-16 20:42"></td>
+						<td style="width: 0.5in;" class="selector_cell selector_cell_text_six_character selector_cell_add" onclick="window.location.href='/practice_room/3/visit/new';">New Visit</td>
+						<td><form method="post" action="/visits/3" class="button_to"><div>
+<input name="_method" type="hidden" value="delete"><input class="selector_cell_submit selector_cell_text_six_character " data-confirm="This action can not be undone. Are you sure?" style="width: 0.75in; font-size: 12px; background-color: red;" type="submit" value="Delete">
+</div></form></td>
+					</tr>
+<tr>
+<td colspan="3" class="half_height label">Notes</td>
+					</tr>
+<tr>
+<td colspan="3"><textarea class="autosave" cols="40" id="visit_notes" name="visit[notes]" rows="20" style="width: 350px;"></textarea></td>
+		      </tr>
+</table>
+</td>
+	    </tr></table>
+<table class="selector_table">
+<tr>
+<td class="half_height label" style="width: 1.0in;">PH</td>
+	      <td class="half_height label" style="width: 1.0in;">GW 1</td>
+	      <td class="half_height label phase_1_affected_gateway_label" style="width: 1.0in;">Aff</td>
+	      <td class="half_height label" style="width: 1.0in;">GW 2</td>
+	      <td class="half_height label phase_1_affected_gateway_label" style="width: 1.0in;">Aff</td>
+	      <td id="phase_1_direction_label" class="half_height label">Dir</td>
+	      <td class="half_height label">LOC</td>
+	      <td class="half_height"> </td>
+	    </tr>
+<tr>
+<td id="selected_phase_1" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('phase_selector',this, 'selected_phase_1', 'visit_phase_1_gateway_1');"></td>
+	      <td id="selected_phase_1_gateway_1" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_1_gateway_1', 'visit_phase_1_gateway_1');"></td>
+	      <td id="selected_phase_1_gateway_1_affecting" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_1_gateway_1_affecting', 'visit_phase_1_gateway_1_affecting');"></td>
+	      <td id="selected_phase_1_gateway_2" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_1_gateway_2', 'visit_phase_1_gateway_2');"></td>
+	      <td id="selected_phase_1_gateway_2_affecting" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_1_gateway_2_affecting', 'visit_phase_1_gateway_2_affecting');"></td>
+	      <td id="selected_phase_1_direction" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('phase_direction_selector', this, 'selected_phase_1_direction', 'visit_phase_1_direction');"></td>
+	      <td id="selected_phase_1_level_of_care" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('level_of_care_selector', this, 'selected_phase_1_level_of_care', 'visit_phase_1_level_of_care');"></td>
+	      <td id="work_second_phase_button" class="selector_cell selector_cell_text_six_character selector_cell_size_medium" onclick="$('.phase_2').show(); $(this).hide();">+ 2nd Phase</td>
+	    </tr>
+<tr class="phase_2 hidden">
+<td class="half_height label" style="width: 1.0in;">PH</td>
+	      <td class="half_height label" style="width: 1.0in;">GW 1</td>
+	      <td class="half_height label phase_2_affected_gateway_label" style="width: 1.0in;">Aff</td>
+	      <td class="half_height label" style="width: 1.0in;">GW 2</td>
+	      <td class="half_height label phase_2_affected_gateway_label" style="width: 1.0in;">Aff</td>
+	      <td id="phase_2_direction_label" class="half_height label">Dir</td>
+	      <td class="half_height label">LOC</td>
+	    </tr>
+<tr class="phase_2 hidden">
+<td id="selected_phase_2" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('phase_selector',this, 'selected_phase_2', 'visit_phase_2_gateway_2');"></td>
+	      <td id="selected_phase_2_gateway_1" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_2_gateway_1', 'visit_phase_2_gateway_1');"></td>
+	      <td id="selected_phase_2_gateway_1_affecting" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_2_gateway_1_affecting', 'visit_phase_2_gateway_1_affecting');"></td>
+	      <td id="selected_phase_2_gateway_2" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_2_gateway_2', 'visit_phase_2_gateway_2');"></td>
+	      <td id="selected_phase_2_gateway_2_affecting" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('phase_gateway_selector', this, 'selected_phase_2_gateway_2_affecting', 'visit_phase_2_gateway_2_affecting');"></td>
+	      <td id="selected_phase_2_direction" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('phase_direction_selector', this, 'selected_phase_2_direction', 'visit_phase_2_direction');"></td>
+	      <td id="selected_phase_2_level_of_care" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('level_of_care_selector', this, 'selected_phase_2_level_of_care', 'visit_phase_2_level_of_care');"></td>
+	    </tr>
+</table>
+<table class="selector_table">
+<tr>
+<td class="half_height label">View</td>
+      </tr>
+<tr>
+<td id="visit_view_type" class="selector_cell selector_cell_text_six_character selector_cell_size_medium" onclick="alert('implement me');">Std</td>
+	    </tr>
+</table>
+<table class="selector_table">
+<tr>
+<td colspan="6" class="half_height label">Tension</td>
+	      <td colspan="5" class="half_height label">Advanced/Misc</td>
+	    </tr>
+<tr>
+<td class="half_height label">S Leg</td>
+	      <td class="half_height label">Amount</td>
+	      <td class="half_height label">HT</td>
+	      <td class="half_height label">EV</td>
+	      <td class="half_height label">ABD</td>
+	      <td class="half_height label">ADD</td>
+	      <td class="half_height label">I OF</td>
+	      <td class="half_height label">E OF</td>
+	      <td class="half_height label">LLA</td>
+	      <td class="half_height label">SLA</td>
+	      <td class="half_height label">Crest</td>
+	    </tr>
+<tr>
+<td id="short_leg_side" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('side_selector', this, 'short_leg_side', 'visit_short_leg_side');"></td>
+	      <td id="short_leg_amount" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('short_leg_amount_selector', this, 'short_leg_amount', 'visit_short_leg_amount');"></td>
+	      <td id="heel_tension_level" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('tension_level_selector', this, 'heel_tension_level', 'visit_heel_tension_level');"></td>
+	      <td id="eversion_tension_level" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('tension_level_selector', this, 'eversion_tension_level', 'visit_eversion_tension_level');"></td>
+	      <td id="abduction_tension_level" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('tension_level_selector', this, 'abduction_tension_level', 'visit_abduction_tension_level');"></td>
+	      <td id="adduction_tension_level" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('tension_level_selector', this, 'adduction_tension_level', 'visit_adduction_tension_level');"></td>
+	      <td id="ingression_organizing_field" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('organizing_field_selector', this, 'ingression_organizing_field', 'visit_ingression_organizing_field');"></td>
+	      <td id="egression_organizing_field" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('organizing_field_selector', this, 'egression_organizing_field', 'visit_egression_organizing_field');"></td>
+	      <td id="long_lever_arm" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('boolean_selector', this, 'long_lever_arm', 'visit_long_lever_arm');"></td>
+	      <td id="short_lever_arm" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('boolean_selector', this, 'short_lever_arm', 'visit_short_lever_arm');"></td>
+	      <td id="crest" class="selector_cell selector_cell_text_three_character" onmousedown="show_selector('boolean_selector', this, 'crest', 'visit_crest');"></td>
+	    </tr>
+</table>
+<table><tr>
+<td valign="top">
+          <table class="selector_table">
+<tr>
+<td id="label_sri_4_col" colspan="4" class="half_height label">SRI</td>
+    <td id="label_sri_5_col" colspan="5" class="half_height label hidden">SRI</td>
+    <td class="half_height"></td>
+  </tr>
+<tr class="sri_session_1">
+<td class="half_height label">Stage</td>
+    <td id="label_sri_session_1_position_a" class="half_height label">Pos</td>
+    <td id="label_sri_session_1_position_b" class="half_height label hidden">Pos</td>
+    <td class="half_height label">LOC</td>
+    <td class="half_height label">OF</td>
+    <td class="half_height"></td>
+  </tr>
+<tr class="sri_session_1">
+<td id="sri_session_1_stage" class="selector_cell selector_cell_text_three_character" onmousedown="visit.show_selector('sri_stage_selector', this);"></td>
+    <td id="sri_session_1_position_a" class="selector_cell selector_cell_text_three_character" onmousedown="visit.show_selector('sri_position_selector', this);"></td>
+    <td id="sri_session_1_position_b" class="selector_cell selector_cell_text_three_character hidden" onmousedown="visit.show_selector('sri_position_selector', this);"></td>
+    <td id="sri_session_1_level_of_care" class="selector_cell selector_cell_text_three_character" onmousedown="visit.show_selector('level_of_care_selector', this);"></td>
+    <td id="sri_session_1_organizing_field" class="selector_cell selector_cell_text_three_character" onmousedown="visit.show_selector('organizing_field_selector', this);"></td>
+      <td id="add_sri_session_2" class="selector_cell selector_cell_text_six_character selector_cell_size_medium" onmousedown="$('.sri_session_2').show(); $(this).hide();">+ SRI Session</td>
+  </tr>
+<tr class="sri_session_2 hidden">
+<td class="half_height label">Stage</td>
+      <td id="label_sri_session_2_position_a" class="half_height label">Pos</td>
+      <td id="label_sri_session_2_position_b" class="half_height label hidden">Pos</td>
+      <td class="half_height label">LOC</td>
+      <td class="half_height label">OF</td>
+      <td class="half_height"></td>
+    </tr>
+<tr class="sri_session_2 hidden">
+<td id="sri_session_2_stage" class="selector_cell selector_cell_text_three_character" onmousedown="visit.show_selector('sri_stage_selector', this);"></td>
+      <td id="sri_session_2_position_a" class="selector_cell selector_cell_text_three_character" onmousedown="visit.show_selector('sri_position_selector', this);"></td>
+      <td id="sri_session_2_position_b" class="selector_cell selector_cell_text_three_character hidden" onmousedown="visit.show_selector('sri_position_selector', this);"></td>
+      <td id="sri_session_2_level_of_care" class="selector_cell selector_cell_text_three_character" onmousedown="visit.show_selector('level_of_care_selector', this);"></td>
+      <td id="sri_session_2_organizing_field" class="selector_cell selector_cell_text_three_character" onmousedown="visit.show_selector('organizing_field_selector', this);"></td>
+      <td id="add_sri_session_3" class="selector_cell selector_cell_text_six_character selector_cell_size_medium" onmousedown="$('.sri_session_3').show(); $(this).hide();">+ SRI Session</td>
+    </tr>
+<tr class="sri_session_3 hidden">
+<td class="half_height label">Stage</td>
+      <td id="label_sri_session_3_position_a" class="half_height label">Pos</td>
+      <td id="label_sri_session_3_position_b" class="half_height label hidden">Pos</td>
+      <td class="half_height label">LOC</td>
+      <td class="half_height label">OF</td>
+      <td class="half_height"></td>
+    </tr>
+<tr class="sri_session_3 hidden">
+<td id="sri_session_3_stage" class="selector_cell selector_cell_text_three_character" onmousedown="visit.show_selector('sri_stage_selector', this);"></td>
+      <td id="sri_session_3_position_a" class="selector_cell selector_cell_text_three_character" onmousedown="visit.show_selector('sri_position_selector', this);"></td>
+      <td id="sri_session_3_position_b" class="selector_cell selector_cell_text_three_character hidden" onmousedown="visit.show_selector('sri_position_selector', this);"></td>
+      <td id="sri_session_3_level_of_care" class="selector_cell selector_cell_text_three_character" onmousedown="visit.show_selector('level_of_care_selector', this);"></td>
+      <td id="sri_session_3_organizing_field" class="selector_cell selector_cell_text_three_character" onmousedown="visit.show_selector('organizing_field_selector', this);"></td>
+      <td></td>
+    </tr>
+</table>
+</td>
+        <td>
+          <table class="selector_table">
+<tr>
+<td colspan="5" class="half_height label">Diagnosis</td>
+            </tr>
+<tr>
+<td colspan="5" rowspan="2" valign="top"><textarea class="autosave" cols="40" id="visit_diagnosis" name="visit[diagnosis]" rows="20" style="width: 300px; height: 50px;"></textarea></td>
+            </tr>
+<tr>
+<td> </td>
+            </tr>
+</table>
+</td>
+      </tr></table>
+<input id="visit_id" name="visit[id]" type="hidden" value="3"><input id="visit_practice_member_id" name="visit[practice_member_id]" type="hidden" value="3"><input id="visit_phase_1" name="visit[phase_1]" type="hidden"><input id="visit_phase_1_gateway_1" name="visit[phase_1_gateway_1]" type="hidden"><input id="visit_phase_1_gateway_1_affecting" name="visit[phase_1_gateway_1_affecting]" type="hidden"><input id="visit_phase_1_gateway_2" name="visit[phase_1_gateway_2]" type="hidden"><input id="visit_phase_1_gateway_2_affecting" name="visit[phase_1_gateway_2_affecting]" type="hidden"><input id="visit_phase_1_level_of_care" name="visit[phase_1_level_of_care]" type="hidden"><input id="visit_phase_1_direction" name="visit[phase_1_direction]" type="hidden"><input id="visit_phase_2" name="visit[phase_2]" type="hidden"><input id="visit_phase_2_gateway_1" name="visit[phase_2_gateway_1]" type="hidden"><input id="visit_phase_2_gateway_1_affecting" name="visit[phase_2_gateway_1_affecting]" type="hidden"><input id="visit_phase_2_gateway_2" name="visit[phase_2_gateway_2]" type="hidden"><input id="visit_phase_2_gateway_2_affecting" name="visit[phase_2_gateway_2_affecting]" type="hidden"><input id="visit_phase_2_level_of_care" name="visit[phase_2_level_of_care]" type="hidden"><input id="visit_phase_2_direction" name="visit[phase_2_direction]" type="hidden"><input id="visit_abduction_tension_level" name="visit[abduction_tension_level]" type="hidden"><input id="visit_adduction_tension_level" name="visit[adduction_tension_level]" type="hidden"><input id="visit_heel_tension_level" name="visit[heel_tension_level]" type="hidden"><input id="visit_eversion_tension_level" name="visit[eversion_tension_level]" type="hidden"><input id="visit_ingression_organizing_field" name="visit[ingression_organizing_field]" type="hidden"><input id="visit_egression_organizing_field" name="visit[egression_organizing_field]" type="hidden"><input id="visit_long_lever_arm" name="visit[long_lever_arm]" type="hidden"><input id="visit_short_lever_arm" name="visit[short_lever_arm]" type="hidden"><input id="visit_crest" name="visit[crest]" type="hidden"><input id="visit_short_leg_side" name="visit[short_leg_side]" type="hidden"><input id="visit_short_leg_amount" name="visit[short_leg_amount]" type="hidden"><input id="visit_diagnosis" name="visit[diagnosis]" type="hidden">
+</form>
+</div>
+
+			</div>
+
+			<div id="practice_room_visit_list" style="display: none;">
+					<table class="wavelineup_table">
+<tr style="height: 0.25in">
+<td class="label" rowspan="2">Date</td>
+			<td class="label" colspan="3">1st Phase</td>
+			<td class="label" colspan="3">2nd Phase</td>
+			<td class="label" rowspan="2">SRI Stage</td>
+      <td class="selector_cell selector_cell_text_six_character selector_cell_size_medium" rowspan="2" onclick="$(this).toggleClass('current_selected'); $('.visit_notes').toggle();" style="cursor: pointer">More</td>
+      <td style="display: none"></td>
+		</tr>
+<tr style="height: 0.25in">
+<td class="label">Phase</td>
+			<td class="label">LOC</td>
+			<td class="label">Dir</td>
+			<td class="label">Phase</td>
+			<td class="label">LOC</td>
+			<td class="label">Dir</td>
+      <td style="display: none"></td>
+		</tr>
+<tr id="visit_3" class="selector_cell" onclick="window.location.href='/practice_room/3/visit/3'">
+<td align="center">2011-09-16 20:42</td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td style="display: none"></td>
+      </tr>
+</table>
+<br>
+</div>
+
+			<div id="practice_room_travel_card" style="display: none;">
+				<!--<script language="javascript">
+  $(document).ready(function() {
+    travel_card_set_values_from_hidden_fields(false);
+  });
+</script>--><div id="travel_card" style="width: 7in;">
+<table><tr>
+<td valign="top">
+      <form accept-charset="UTF-8" action="/travel_cards/3" class="edit_travel_card" id="edit_travel_card_3" method="post">
+<div style="margin:0;padding:0;display:inline">
+<input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put">
+</div>
+
+      <table class="selector_table">
+<tr>
+<td class="half_height label" align="center">DO</td>
+          <td class="half_height label" align="center">LOC</td>
+          <td class="half_height label" align="center">Rsp Wv</td>
+          <td class="half_height label" align="center">BME 1</td>
+          <td class="half_height label" align="center">BME 2</td>
+          <td class="half_height label" align="center">BME 3</td>
+          <td colspan="7"></td>
+        </tr>
+<tr>
+<td id="dominant_occiput" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'dominant_occiput', 'travel_card_dominant_occiput');"></td>
+          <td id="level_of_care" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('level_of_care_selector', this, 'level_of_care', 'travel_card_level_of_care');"></td>
+          <td id="full_respiratory_wave" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('boolean_selector', this, 'full_respiratory_wave', 'travel_card_full_respiratory_wave');"></td>
+          <td id="leading_bme_strategy" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('bme_strategy_selector', this, 'leading_bme_strategy', 'travel_card_leading_bme_strategy');"></td>
+          <td id="second_bme_strategy" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('bme_strategy_selector', this, 'second_bme_strategy', 'travel_card_second_bme_strategy');"></td>
+          <td id="third_bme_strategy" class="selector_cell selector_cell_text_single_character"></td>
+          <td></td>
+        </tr>
+<tr>
+<td id="gateway_occ_c1" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_occ_c1', 'travel_card_gateway_occ_c1');"></td>
+          <td class="label" align="center">OCC/C1</td>
+          <td id="gateway_c1_occ" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c1_occ', 'travel_card_gateway_c1_occ');"></td>
+          <td id="gateway_c1_c2" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c1_c2', 'travel_card_gateway_c1_c2');"></td>
+          <td class="label" align="center">C1/C2</td>
+          <td id="gateway_c2_c1" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c2_c1', 'travel_card_gateway_c2_c1');"></td>
+          <td id="gateway_c2_c3" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c2_c3', 'travel_card_gateway_c2_c3');"></td>
+          <td class="label" align="center">C2/C3</td>
+          <td id="gateway_c3_c2" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c3_c2', 'travel_card_gateway_c3_c2');"></td>
+          <td id="gateway_c3_c4" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c3_c4', 'travel_card_gateway_c3_c4');"></td>
+          <td class="label" align="center">C3/C4</td>
+          <td id="gateway_c4_c3" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c4_c3', 'travel_card_gateway_c4_c3');"></td>
+        </tr>
+<tr>
+<td id="gateway_c4_c5" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c4_c5', 'travel_card_gateway_c4_c5');"></td>
+          <td class="label" align="center">C4/C5</td>
+          <td id="gateway_c5_c4" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c5_c4', 'travel_card_gateway_c5_c4');"></td>
+          <td id="gateway_c5_c6" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c5_c6', 'travel_card_gateway_c5_c6');"></td>
+          <td class="label" align="center">C5/C6</td>
+          <td id="gateway_c6_c5" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c6_c5', 'travel_card_gateway_c6_c5');"></td>
+          <td id="gateway_c6_c7" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c6_c7', 'travel_card_gateway_c6_c7');"></td>
+          <td class="label" align="center">C6/C7</td>
+          <td id="gateway_c7_c6" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c7_c6', 'travel_card_gateway_c7_c6');"></td>
+          <td id="gateway_c7_t1" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_c7_t1', 'travel_card_gateway_c7_t1');"></td>
+          <td class="label" align="center">C7/T1</td>
+          <td id="gateway_t1_c7" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_t1_c7', 'travel_card_gateway_t1_c7');"></td>
+        </tr>
+<tr>
+<td></td>
+          <td></td>
+          <td></td>
+          <td id="gateway_t1_t2" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_t1_t2', 'travel_card_gateway_t1_t2');"></td>
+          <td class="label" align="center">T1/T2</td>
+          <td id="gateway_t2_t1" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_t2_t1', 'travel_card_gateway_t2_t1');"></td>
+          <td id="gateway_t2_t3" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_t2_t3', 'travel_card_gateway_t2_t3');"></td>
+          <td class="label" align="center">T2/T3</td>
+          <td id="gateway_t3_t2" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_t3_t2', 'travel_card_gateway_t3_t2');"></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+<tr>
+<td class="label" align="center">S1</td>
+          <td id="gateway_s1" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_s1', 'travel_card_gateway_s1');"></td>
+          <td class="label" align="center">S2</td>
+          <td id="gateway_s2" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_s2', 'travel_card_gateway_s2');"></td>
+          <td class="label" align="center">S3</td>
+          <td id="gateway_s3" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_s3', 'travel_card_gateway_s3');"></td>
+          <td class="label" align="center">S4</td>
+          <td id="gateway_s4" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_s4', 'travel_card_gateway_s4');"></td>
+          <td class="label" align="center">S5</td>
+          <td id="gateway_s5" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_s5', 'travel_card_gateway_s5');"></td>
+          <td class="label" align="center">CX</td>
+          <td id="gateway_cx" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('side_selector', this, 'gateway_cx', 'travel_card_gateway_cx');"></td>
+        </tr>
+<tr>
+<td colspan="12" class="half_height"> </td>
+        </tr>
+</table>
+<table>
+<tr>
+<td id="tension_level_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#tension_level_detail').slideToggle(); $('#tension_level_detail_button').toggleClass('current_selected');">Tension Levels</td>
+          <td> </td>
+          <td id="sri_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#sri_detail').slideToggle(); $('#sri_detail_button').toggleClass('current_selected'); $('#travel_card_buzz_words_for_sri').autoResize().trigger('change');">SRI</td>
+          <td> </td>
+          <td id="programs_education_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#programs_education_detail').slideToggle(); $('#programs_education_detail_button').toggleClass('current_selected');">Programs/Education</td>
+          <td> </td>
+          <td id="notes_detail_button" style="width: 2.0in;" class="section_name selector_cell_nav selector_cell_size_medium" onclick="$('#notes_detail').slideToggle(); $('#notes_detail_button').toggleClass('current_selected'); $('#travel_card_notes').autoResize().trigger('change');">Notes</td>
+
+        </tr>
+<tr>
+<td colspan="10" class="half_height"> </td>
+        </tr>
+</table>
+<table id="tension_level_detail" class="selector_table hidden">
+<tr>
+<td class="half_height label">Tension</td>
+          <td class="half_height label">C1-7</td>
+          <td class="half_height label">T1-12</td>
+          <td class="half_height label">L1-5</td>
+          <td class="half_height label">S1-CX</td>
+          <td class="half_height">&amp;nbsp</td>
+          <td class="half_height label">C1-7</td>
+          <td class="half_height label">T1-12</td>
+          <td class="half_height label">L1-5</td>
+          <td class="half_height label">S1-CX</td>
+        </tr>
+<tr>
+<td class="label">Passive</td>
+          <td id="passive_c1_c7_tension_level" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('tension_level_selector', this, 'passive_c1_c7_tension_level', 'travel_card_passive_c1_c7_tension_level');"></td>
+          <td id="passive_t1_t12_tension_level" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('tension_level_selector', this, 'passive_t1_t12_tension_level', 'travel_card_passive_t1_t12_tension_level');"></td>
+          <td id="passive_l1_l5_tension_level" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('tension_level_selector', this, 'passive_l1_l5_tension_level', 'travel_card_passive_l1_l5_tension_level');"></td>
+          <td id="passive_s1_cx_tension_level" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('tension_level_selector', this, 'passive_s1_cx_tension_level', 'travel_card_passive_s1_cx_tension_level');"></td>
+          <td class="label">Active</td>
+          <td id="active_c1_c7_tension_level" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('tension_level_selector', this, 'active_c1_c7_tension_level', 'travel_card_active_c1_c7_tension_level');"></td>
+          <td id="active_t1_t12_tension_level" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('tension_level_selector', this, 'active_t1_t12_tension_level', 'travel_card_active_t1_t12_tension_level');"></td>
+          <td id="active_l1_l5_tension_level" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('tension_level_selector', this, 'active_l1_l5_tension_level', 'travel_card_active_l1_l5_tension_level');"></td>
+          <td id="active_s1_cx_tension_level" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('tension_level_selector', this, 'active_s1_cx_tension_level', 'travel_card_active_s1_cx_tension_level');"></td>
+        </tr>
+</table>
+<table id="sri_detail" class="hidden"><tr>
+<td valign="top">
+            <table class="selector_table">
+<tr>
+<td class="half_height label">SRI P1 Aware</td>
+                <td class="half_height label">SRI P2 Aware</td>
+                <td class="half_height label">SRI P3 Aware</td>
+                <td class="half_height label">Safety Pos</td>
+                <td colspan="4" class="half_height label">Triggers/Notes</td>
+              </tr>
+<tr>
+<td id="sri_position_1_level_of_awareness" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_1_level_of_awareness', 'travel_card_sri_position_1_level_of_awareness');"></td>
+                <td id="sri_position_2_level_of_awareness" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_2_level_of_awareness', 'travel_card_sri_position_2_level_of_awareness');"></td>
+                <td id="sri_position_3_level_of_awareness" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('sri_level_of_awareness_selector', this, 'sri_position_3_level_of_awareness', 'travel_card_sri_position_3_level_of_awareness');"></td>
+                <td id="sri_safety_position" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('sri_position_selector', this, 'sri_safety_position', 'travel_card_sri_safety_position');"></td>
+                <td colspan="4">
+                    <textarea class="autosave" cols="40" id="travel_card_buzz_words_for_sri" name="travel_card[buzz_words_for_sri]" rows="20" style="width: 4in; height: 0.1in;"></textarea>
+</td>
+              </tr>
+</table>
+</td>
+        </tr></table>
+<table id="programs_education_detail" class="hidden">
+<tr>
+<td class="label" colspan="5">Programs</td>
+          <td class="label" colspan="2">Books</td>
+        </tr>
+<tr>
+<td class="label">Gates</td>
+          <td class="label">SRI</td>
+          <td class="label">HIP</td>
+          <td class="label">Ultima</td>
+          <td class="label">Ultimatum</td>
+          <td class="label">12 Stages</td>
+          <td class="label">Healing Magic</td>
+        </tr>
+<tr>
+<td>
+            <input class="autosave" id="travel_card_number_gate" name="travel_card[number_gate]" size="3" type="text">
+</td>
+          <td>
+            <input class="autosave" id="travel_card_number_sri" name="travel_card[number_sri]" size="3" type="text">
+</td>
+          <td>
+            <input class="autosave" id="travel_card_number_hip" name="travel_card[number_hip]" size="3" type="text">
+</td>
+          <td>
+            <input class="autosave" id="travel_card_number_ultima" name="travel_card[number_ultima]" size="3" type="text">
+</td>
+          <td>
+            <input class="autosave" id="travel_card_number_ultimatum" name="travel_card[number_ultimatum]" size="3" type="text">
+</td>
+	        <td id="book_12_stages" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('boolean_selector', this, 'book_12_stages', 'travel_card_book_12_stages');"></td>
+	        <td id="book_healing_magic" class="selector_cell selector_cell_text_single_character" onmousedown="show_selector('boolean_selector', this, 'book_healing_magic', 'travel_card_book_healing_magic');"></td>
+        </tr>
+</table>
+<table id="notes_detail" class="hidden">
+<tr>
+<td class="label">Notes</td>
+        </tr>
+<tr>
+<td>
+            <textarea class="autosave" cols="40" id="travel_card_notes" name="travel_card[notes]" rows="20" style="width: 6in; height: 0.1in;"></textarea>
+</td>
+      </tr>
+</table>
+<input id="travel_card_id" name="travel_card[id]" type="hidden" value="3"><input id="travel_card_practice_member_id" name="travel_card[practice_member_id]" type="hidden" value="3"><input id="travel_card_dominant_occiput" name="travel_card[dominant_occiput]" type="hidden"><input id="travel_card_leading_bme_strategy" name="travel_card[leading_bme_strategy]" type="hidden"><input id="travel_card_second_bme_strategy" name="travel_card[second_bme_strategy]" type="hidden"><input id="travel_card_level_of_care" name="travel_card[level_of_care]" type="hidden"><input id="travel_card_full_respiratory_wave" name="travel_card[full_respiratory_wave]" type="hidden"><input id="travel_card_gateway_occ_c1" name="travel_card[gateway_occ_c1]" type="hidden"><input id="travel_card_gateway_c1_occ" name="travel_card[gateway_c1_occ]" type="hidden"><input id="travel_card_gateway_c1_c2" name="travel_card[gateway_c1_c2]" type="hidden"><input id="travel_card_gateway_c2_c1" name="travel_card[gateway_c2_c1]" type="hidden"><input id="travel_card_gateway_c2_c3" name="travel_card[gateway_c2_c3]" type="hidden"><input id="travel_card_gateway_c3_c2" name="travel_card[gateway_c3_c2]" type="hidden"><input id="travel_card_gateway_c3_c4" name="travel_card[gateway_c3_c4]" type="hidden"><input id="travel_card_gateway_c4_c3" name="travel_card[gateway_c4_c3]" type="hidden"><input id="travel_card_gateway_c4_c5" name="travel_card[gateway_c4_c5]" type="hidden"><input id="travel_card_gateway_c5_c4" name="travel_card[gateway_c5_c4]" type="hidden"><input id="travel_card_gateway_c5_c6" name="travel_card[gateway_c5_c6]" type="hidden"><input id="travel_card_gateway_c6_c5" name="travel_card[gateway_c6_c5]" type="hidden"><input id="travel_card_gateway_c6_c7" name="travel_card[gateway_c6_c7]" type="hidden"><input id="travel_card_gateway_c7_c6" name="travel_card[gateway_c7_c6]" type="hidden"><input id="travel_card_gateway_c7_t1" name="travel_card[gateway_c7_t1]" type="hidden"><input id="travel_card_gateway_t1_c7" name="travel_card[gateway_t1_c7]" type="hidden"><input id="travel_card_gateway_t1_t2" name="travel_card[gateway_t1_t2]" type="hidden"><input id="travel_card_gateway_t2_t1" name="travel_card[gateway_t2_t1]" type="hidden"><input id="travel_card_gateway_t2_t3" name="travel_card[gateway_t2_t3]" type="hidden"><input id="travel_card_gateway_t3_t2" name="travel_card[gateway_t3_t2]" type="hidden"><input id="travel_card_gateway_s1" name="travel_card[gateway_s1]" type="hidden"><input id="travel_card_gateway_s2" name="travel_card[gateway_s2]" type="hidden"><input id="travel_card_gateway_s3" name="travel_card[gateway_s3]" type="hidden"><input id="travel_card_gateway_s4" name="travel_card[gateway_s4]" type="hidden"><input id="travel_card_gateway_s5" name="travel_card[gateway_s5]" type="hidden"><input id="travel_card_gateway_cx" name="travel_card[gateway_cx]" type="hidden"><input id="travel_card_passive_c1_c7_tension_level" name="travel_card[passive_c1_c7_tension_level]" type="hidden"><input id="travel_card_passive_t1_t12_tension_level" name="travel_card[passive_t1_t12_tension_level]" type="hidden"><input id="travel_card_passive_l1_l5_tension_level" name="travel_card[passive_l1_l5_tension_level]" type="hidden"><input id="travel_card_passive_s1_cx_tension_level" name="travel_card[passive_s1_cx_tension_level]" type="hidden"><input id="travel_card_active_c1_c7_tension_level" name="travel_card[active_c1_c7_tension_level]" type="hidden"><input id="travel_card_active_t1_t12_tension_level" name="travel_card[active_t1_t12_tension_level]" type="hidden"><input id="travel_card_active_l1_l5_tension_level" name="travel_card[active_l1_l5_tension_level]" type="hidden"><input id="travel_card_active_s1_cx_tension_level" name="travel_card[active_s1_cx_tension_level]" type="hidden"><input id="travel_card_sri_position_1_level_of_awareness" name="travel_card[sri_position_1_level_of_awareness]" type="hidden"><input id="travel_card_sri_position_2_level_of_awareness" name="travel_card[sri_position_2_level_of_awareness]" type="hidden"><input id="travel_card_sri_position_3_level_of_awareness" name="travel_card[sri_position_3_level_of_awareness]" type="hidden"><input id="travel_card_sri_safety_position" name="travel_card[sri_safety_position]" type="hidden"><input id="travel_card_book_12_stages" name="travel_card[book_12_stages]" type="hidden"><input id="travel_card_book_healing_magic" name="travel_card[book_healing_magic]" type="hidden">
+</form>    </td>
+  </tr></table>
+</div>
+		</div>
+</td>
+	</tr>
+</table>
+<!-- SELECTORS --><!-- level of care selector --><div id="level_of_care_selector" class="selector hidden">
+    <table class="selector_table">
+<tr>
+<td id="select_level_of_care_1a" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">1A</td>
+	      <td id="select_level_of_care_1b" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">1B</td>
+	      <td id="select_level_of_care_1c" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">1C</td>
+			</tr>
+<tr>
+<td id="select_level_of_care_2a" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">2A</td>
+	      <td id="select_level_of_care_2b" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">2B</td>
+	      <td id="select_level_of_care_2c" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">2C</td>
+			</tr>
+<tr>
+<td id="select_level_of_care_3a" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">3A</td>
+	      <td id="select_level_of_care_3b" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">3B</td>
+	      <td id="select_level_of_care_3c" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">3C</td>
+			</tr>
+<tr>
+<td id="select_level_of_care_4" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">4</td>
+	      <td id="select_level_of_care_" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);"> </td>
+    </tr>
+</table>
+</div>
+
+  <!-- bme strategy selector -->
+  <div id="bme_strategy_selector" class="selector hidden">
+    <table class="selector_table"><tr>
+<td id="bme_selector_b" class="selector_cell selector_cell_text_single_character" onmousedown="set_bme_strategy('B');">B</td>
+	      <td id="bme_selector_m" class="selector_cell selector_cell_text_single_character" onmousedown="set_bme_strategy('M');">M</td>
+	      <td id="bme_selector_e" class="selector_cell selector_cell_text_single_character" onmousedown="set_bme_strategy('E');">E</td>
+	      <td id="bme_selector_" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);"> </td>
+			</tr></table>
+</div>
+
+  <!-- sri level of awareness selector -->
+  <div id="sri_level_of_awareness_selector" class="selector hidden">
+    <table class="selector_table"><tr>
+<td id="select_sri_level_of_awareness_0" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">0</td>
+	      <td id="select_sri_level_of_awareness_1" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">1</td>
+	      <td id="select_sri_level_of_awareness_2" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">2</td>
+	      <td id="select_sri_level_of_awareness_3" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">3</td>
+	      <td id="select_sri_level_of_awareness_" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);"> </td>
+			</tr></table>
+</div>
+
+  <!-- sri position selector -->
+  <div id="sri_position_selector" class="selector hidden">
+    <table class="selector_table">
+<tr>
+<td id="select_sri_position_1" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">1</td>
+	      <td id="select_sri_position_2" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">2</td>
+	      <td id="select_sri_position_3" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">3</td>
+	    </tr>
+<tr>
+<td id="select_sri_position_4" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">4</td>
+	  		<td id="select_sri_position_5" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">5</td>
+	      <td id="select_sri_position_6" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">6</td>
+	      <td id="select_sri_position_" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);"> </td>
+			</tr>
+</table>
+</div>
+
+  <!-- phase selector -->
+  <div id="phase_selector" class="selector hidden">
+    <table class="selector_table">
+<tr>
+<td id="select_phase_1_2_c1" class="selector_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase('1 &gt; 2 C1'); ">1 &gt; 2 C1</td>
+	      <td id="select_phase_1_2_c5" class="selector_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase('1 &gt; 2 C5'); ">1 &gt; 2 C5</td>
+	      <td id="select_phase_1_3" class="selector_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase('1 &gt; 3'); ">1 &gt; 3</td>
+	      <td id="select_phase_1_4" class="selector_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase('1 &gt; 4'); ">1 &gt; 4</td>
+	      <td id="select_phase_1_5" class="selector_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase('1 &gt; 5'); ">1 &gt; 5</td>
+			</tr>
+<tr>
+<td id="select_phase_2_c1" class="selector_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase('2 C1');">2 C1</td>
+	      <td id="select_phase_2_c5" class="selector_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase('2 C5');">2 C5</td>
+	      <td id="select_phase_3" class="selector_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase('3');">3</td>
+	      <td id="select_phase_4" class="selector_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase('4');">4</td>
+	      <td id="select_phase_5" class="selector_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase('5');">5</td>
+	      <td id="select_phase_" class="selector_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase('');"> </td>
+    	</tr>
+</table>
+</div>
+
+  <!-- gateway selector -->
+    <div id="phase_gateway_selector" class="selector hidden">
+      <table class="selector_table">
+<tr>
+<td id="select_gateway_occ" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">OCC</td>
+          <td id="select_gateway_occ_c1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">OCC/C1</td>
+          <td id="select_gateway_c1_occ" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C1/OCC</td>
+          <td id="select_gateway_c1_c2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C1/C2</td>
+          <td id="select_gateway_c2_c1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C2/C1</td>
+          <td id="select_gateway_c2_c3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C2/C3</td>
+        </tr>
+<tr>
+<td id="select_gateway_c3_c2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C3/C2</td>
+          <td id="select_gateway_c3_c4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C3/C4</td>
+          <td id="select_gateway_c4_c3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C4/C3</td>
+          <td id="select_gateway_c4_c5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C4/C5</td>
+          <td id="select_gateway_c5_c4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C5/C4</td>
+          <td id="select_gateway_c5_c6" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C5/C6</td>
+        </tr>
+<tr>
+<td id="select_gateway_c6_c5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C6/C5</td>
+          <td id="select_gateway_c6_c7" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C6/C7</td>
+          <td id="select_gateway_c7_c6" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C7/C6</td>
+          <td id="select_gateway_c7_t1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C7/T1</td>
+          <td id="select_gateway_t1_c7" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">T1/C7</td>
+          <td id="select_gateway_t1_t2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">T1/T2</td>
+        </tr>
+<tr>
+<td id="select_gateway_t2_t1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">T2/T1</td>
+          <td id="select_gateway_t2_t3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">T2/T3</td>
+          <td id="select_gateway_t3_t2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">T3/T2</td>
+          <td id="select_gateway_s1" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">S1</td>
+          <td id="select_gateway_s2" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">S2</td>
+          <td id="select_gateway_s3" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">S3</td>
+        </tr>
+<tr>
+<td id="select_gateway_s4" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">S4</td>
+          <td id="select_gateway_s5" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">S5</td>
+          <td id="select_gateway_cx" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">CX</td>
+          <td id="select_gateway_cx_c" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">C CX</td>
+          <td id="select_gateway_l_apex" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">L APEX</td>
+          <td id="select_gateway_r_apex" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="set_phase_gateway(this);">R APEX</td>
+          <td id="select_gateway_" class="selector_cell gateway_selection_cell selector_cell_text_three_character" style="width: 1.0in;" onmousedown="clear_phase_gateway();"> </td>
+        </tr>
+</table>
+</div>
+
+  <!-- direction selector -->
+  <div id="phase_direction_selector" class="selector hidden">
+    <table class="selector_table">
+<tr>
+<td id="select_direction_f_e" class="selector_cell selector_cell_text_single_character" onmousedown="set_phase_direction('F/E');">F/E</td>
+	      <td id="select_direction_l_b" class="selector_cell selector_cell_text_single_character" onmousedown="set_phase_direction('L/B');">L/B</td>
+			</tr>
+<tr>
+<td id="select_direction_m" class="selector_cell selector_cell_text_single_character" onmousedown="set_phase_direction('M');">M</td>
+	      <td id="select_direction_l" class="selector_cell selector_cell_text_single_character" onmousedown="set_phase_direction('L');">L</td>
+	      <td id="select_direction_" class="selector_cell selector_cell_text_single_character" onmousedown="clear_phase_direction();"> </td>
+			</tr>
+</table>
+</div>
+
+  <!-- SRI -->
+  <!-- sri stage selector -->
+  <div id="sri_stage_selector" class="selector hidden">
+    <table class="selector_table">
+<tr>
+<td id="select_sri_stage_1" class="selector_cell selector_cell_text_single_character">1</td>
+	      <td id="select_sri_stage_2" class="selector_cell selector_cell_text_single_character">2</td>
+	      <td id="select_sri_stage_3" class="selector_cell selector_cell_text_single_character">3</td>
+	      <td id="select_sri_stage_4" class="selector_cell selector_cell_text_single_character">4</td>
+	      <td id="select_sri_stage_5" class="selector_cell selector_cell_text_single_character">5</td>
+	      <td id="select_sri_stage_6" class="selector_cell selector_cell_text_single_character">6</td>
+			</tr>
+<tr>
+<td id="select_sri_stage_7" class="selector_cell selector_cell_text_single_character">7</td>
+	      <td id="select_sri_stage_8" class="selector_cell selector_cell_text_single_character">8</td>
+	      <td id="select_sri_stage_9" class="selector_cell selector_cell_text_single_character">9</td>
+	      <td id="select_sri_stage_10" class="selector_cell selector_cell_text_single_character">10</td>
+	      <td id="select_sri_stage_11" class="selector_cell selector_cell_text_single_character">11</td>
+	      <td id="select_sri_stage_12" class="selector_cell selector_cell_text_single_character">12</td>
+	      <td id="select_sri_stage_" class="selector_cell selector_cell_text_single_character"> </td>
+			</tr>
+</table>
+</div>
+
+  <!-- organizing field selector -->
+  <div id="organizing_field_selector" class="selector hidden">
+    <table class="selector_table">
+<tr>
+<td id="select_organizing_field_h1" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">H1</td>
+	      <td id="select_organizing_field_h2" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">H2</td>
+	      <td id="select_organizing_field_h3l" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">H3L</td>
+			</tr>
+<tr>
+<td id="select_organizing_field_h3u" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">H3U</td>
+	      <td id="select_organizing_field_h4" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">H4</td>
+	      <td id="select_organizing_field_h5" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">H5</td>
+	      <td id="select_organizing_field_" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);"> </td>
+			</tr>
+</table>
+</div>
+
+  <!-- short leg amount -->
+  <div id="short_leg_amount_selector" class="selector hidden">
+    <table class="selector_table">
+<tr>
+<td id="select_amount_0_05" class="selector_cell selector_cell_text_three_character" onmousedown="set_selected_value(this);">0-0.5</td>
+	      <td id="select_amount_05_1" class="selector_cell selector_cell_text_three_character" onmousedown="set_selected_value(this);">0.5-1</td>
+	      <td id="select_amount_1_15" class="selector_cell selector_cell_text_three_character" onmousedown="set_selected_value(this);">1-1.5</td>
+			</tr>
+<tr>
+<td id="select_amount_15_2" class="selector_cell selector_cell_text_three_character" onmousedown="set_selected_value(this);">1.5-2</td>
+	      <td id="select_amount_2" class="selector_cell selector_cell_text_three_character" onmousedown="set_selected_value(this);">2+</td>
+	      <td id="select_amount_" class="selector_cell selector_cell_text_three_character" onmousedown="set_selected_value(this);"> </td>
+			</tr>
+</table>
+</div>
+
+  <!-- tension level selector -->
+  <div id="tension_level_selector" class="selector hidden">
+    <table class="selector_table">
+<tr>
+<td id="select_tension_level_0" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">0</td>
+	      <td id="select_tension_level_1" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">1</td>
+	      <td id="select_tension_level_2" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">2</td>
+			</tr>
+<tr>
+<td id="select_tension_level_3" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">3</td>
+	      <td id="select_tension_level_4" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">4</td>
+	      <td id="select_tension_level_5" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);">5</td>
+	      <td id="select_tension_level_" class="selector_cell selector_cell_text_single_character" onmousedown="set_selected_value(this);"> </td>
+			</tr>
+</table>
+</div>
+</div>
+
+
+
+          
+        </td>
+      </tr></table>
+</div>
+  <div id="footer">
+    <table><tr>
+<td>
+      Copyright 2009-2011 by <a href="http://structuralartistry.com" target="_blank">StructuralArtistry</a>
+    </td>
+    <td style="width: 3.0in;">
+    </td>
+    <td style="float: right;">
+     <a href="/terms_of_service" target="_blank">Terms of Service</a>     
+    </td>
+    <td>
+      <a href="/privacy_policy" target="_blank">Privacy Policy</a>     
+    </td>
+    <td>
+      <a href="/about" target="new">About</a>
+    </td>
+  </tr></table>
+</div>
+</body>
+</html>
