@@ -1,0 +1,13 @@
+Script started on Fri Sep 16 16:58:06 2011
+script: 
+      <script language="javascript">
+        .ready(function() {
+          visit = new Visit('');
+          visit.data = {};
+          visit.data.sri_session_1_stage = null;
+          visit.data.sri_session_2_stage = null;
+          visit.data.sri_session_3_stage = null;
+        });
+      </script>: File name too long
+
+Script done on Fri Sep 16 16:58:06 2011
