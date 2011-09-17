@@ -7,6 +7,7 @@ gem 'rails', '3.1'
 
 gem 'pg'
 
+gem 'kaminari'
 gem 'validates_timeliness', '~> 3.0.2'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'kaminari'
