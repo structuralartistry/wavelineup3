@@ -17,7 +17,7 @@ feature "Visit Feature", %q{
     return File.exists?(file_path)
   end
 
-  context "practice room", :focus => true do
+  context "practice room" do
 
     before(:each) do
       Factory(:visit_view_type)
